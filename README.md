@@ -1,10 +1,10 @@
-# Audio Studio Tycoon: Game Pack v1.4
+# Mini-Game-Sammlung v1.0
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.4-green.svg)
+![Version](https://img.shields.io/badge/version-1.0-green.svg)
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
 
-Willkommen beim **Audio Studio Tycoon: Game Pack**, einer Sammlung von über 30 barrierefreien Mini-Games, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
+Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von über 30 barrierefreien Mini-Games, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
 ## 🌟 Features
 
@@ -55,8 +55,8 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert.
 
 ## 🔗 Links
 
-- **Repository:** [https://github.com/Lauju1909/Audio-Studio-Tycoon-Game-Pack-v1.4](https://github.com/Lauju1909/Audio-Studio-Tycoon-Game-Pack-v1.4)
-- **Releases:** [Download v1.4](https://github.com/Lauju1909/Audio-Studio-Tycoon-Game-Pack-v1.4/releases)
+- **Repository:** [https://github.com/Lauju1909/Mini_Game_Sammlungv1.0](https://github.com/Lauju1909/Mini_Game_Sammlungv1.0)
+- **Releases:** [Download v1.0](https://github.com/Lauju1909/Mini_Game_Sammlungv1.0/releases)
 
 ---
 *Entwickelt für das Advanced Agentic Coding Team von Google Deepmind.*

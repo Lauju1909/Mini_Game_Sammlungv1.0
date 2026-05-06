@@ -45,7 +45,7 @@ TRANSLATIONS = {
         "game_rhythm_master": "Rhythmus-König",
         "game_rhythm_master_desc": "Drücke die Leertaste genau im Takt des Metronoms. Werde zum Rhythmus-König!",
         "game_rhythm_master_instructions": "Höre auf den Takt. Drücke Leertaste oder Enter genau dann, wenn du den Klick hörst. Die Geschwindigkeit nimmt zu!",
-        "app_title": "Audio Studio Tycoon: Game Pack v1.4",
+        "app_title": "Mini-Game-Sammlung v1.0",
         "welcome": "Willkommen bei der Mini-Game-Sammlung!",
         "ready": "Mini-Game-Sammlung bereit. Hauptmenü.",
         "main_menu": "Hauptmenü",
