@@ -53,5 +53,10 @@ Das Spiel basiert auf **Pygame** und nutzt eine benutzerdefinierte Audio-Engine 
 
 Dieses Projekt ist unter der MIT-Lizenz lizenziert.
 
+## 🔗 Links
+
+- **Repository:** [https://github.com/Lauju1909/Audio-Studio-Tycoon-Game-Pack-v1.4](https://github.com/Lauju1909/Audio-Studio-Tycoon-Game-Pack-v1.4)
+- **Releases:** [Download v1.4](https://github.com/Lauju1909/Audio-Studio-Tycoon-Game-Pack-v1.4/releases)
+
 ---
 *Entwickelt für das Advanced Agentic Coding Team von Google Deepmind.*
