@@ -33,19 +33,30 @@ class AudioManager:
             if os.path.exists(dll_path):
                 self.tolk = ctypes.windll.LoadLibrary(dll_path)
                 
-                # Prototypen definieren
-                self.tolk.Tolk_Load.restype = None
+                # Prototypen explizit definieren
+                self.tolk.Tolk_Load.restype = ctypes.c_bool
                 self.tolk.Tolk_IsLoaded.restype = ctypes.c_bool
-                self.tolk.Tolk_TrySAPI.restype = ctypes.c_bool
+                self.tolk.Tolk_Unload.restype = None
+                
+                if hasattr(self.tolk, 'Tolk_TrySAPI'):
+                    self.tolk.Tolk_TrySAPI.argtypes = [ctypes.c_bool]
+                    self.tolk.Tolk_TrySAPI.restype = ctypes.c_bool
+                
                 self.tolk.Tolk_Output.argtypes = [ctypes.c_wchar_p, ctypes.c_bool]
                 self.tolk.Tolk_Output.restype = ctypes.c_bool
                 self.tolk.Tolk_IsSpeaking.restype = ctypes.c_bool
-                self.tolk.Tolk_Silence.restype = ctypes.c_bool
                 
-                self.tolk.Tolk_Load()
-                self.tolk_active = self.tolk.Tolk_IsLoaded()
-                if self.tolk_active:
-                    self.tolk.Tolk_TrySAPI(True)
+                if hasattr(self.tolk, 'Tolk_Silence'):
+                    self.tolk.Tolk_Silence.restype = ctypes.c_bool
+                
+                # Initialisieren
+                if self.tolk.Tolk_Load():
+                    self.tolk_active = self.tolk.Tolk_IsLoaded()
+                    if self.tolk_active:
+                        if hasattr(self.tolk, 'Tolk_TrySAPI'):
+                            self.tolk.Tolk_TrySAPI(True)
+                else:
+                    print("Tolk_Load() fehlgeschlagen.")
             else:
                 print("Tolk.dll nicht gefunden.")
         except Exception as e:
@@ -92,8 +103,11 @@ class AudioManager:
                     try:
                         # Warten, bis vorherige Sprachausgabe fertig ist, falls kein Interrupt
                         if not interrupt:
+                            wait_start = time.time()
+                            # Sicherheitstimeout von 5 Sekunden
                             while self.tolk.Tolk_IsSpeaking() and not self.interrupt_event.is_set():
-                                if self.stop_worker: break
+                                if self.stop_worker or (time.time() - wait_start > 5.0):
+                                    break
                                 time.sleep(0.01)
                         
                         self.interrupt_event.clear()
