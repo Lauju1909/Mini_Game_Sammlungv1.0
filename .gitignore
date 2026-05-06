@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+data/settings.json
+data/highscores.json
+.vscode/
+.idea/
+*.zip
+*.exe
+# Tolk.dll und Assets werden für die Lauffähigkeit benötigt
+# Tolk.dll
+# assets/

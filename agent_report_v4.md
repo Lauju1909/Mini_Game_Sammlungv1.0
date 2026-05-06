@@ -1,0 +1,87 @@
+# Agentic Tester V4 - QA Report
+
+- **Datum:** 2026-05-05 13:37:39
+- **Explorierte Zustände:** 14
+- **Gesamtfehler:** 78
+
+## Kritische Fehler (Crashes)
+Keine Crashes gefunden. OK
+## Audio-Inkonsistenzen (Stomping)
+- SPEECH STOMPING: 'Spielen' unterbrach 'Hauptmenü' nach 0.000s
+- SPEECH STOMPING: 'Ranglisten' unterbrach 'Spielen' nach 0.021s
+- SPEECH STOMPING: 'Spielen' unterbrach 'Ranglisten' nach 0.040s
+- SPEECH STOMPING: 'Ranglisten' unterbrach 'Spielen' nach 0.040s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Ranglisten Kategorien' nach 0.000s
+- SPEECH STOMPING: 'stereo_catch' unterbrach 'Wähle ein Spiel' nach 0.000s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'stereo_catch' nach 0.081s
+- SPEECH STOMPING: 'Logik & Gedächtnis' unterbrach 'Action & Reaktion' nach 0.020s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Logik & Gedächtnis' nach 0.062s
+- SPEECH STOMPING: 'Ranglisten' unterbrach 'Action & Reaktion' nach 0.062s
+- SPEECH STOMPING: 'Einstellungen' unterbrach 'Ranglisten' nach 0.081s
+- SPEECH STOMPING: 'Einstellungen' unterbrach 'Ranglisten' nach 0.061s
+- SPEECH STOMPING: 'Ranglisten' unterbrach 'Einstellungen' nach 0.041s
+- SPEECH STOMPING: 'Spielen' unterbrach 'Ranglisten' nach 0.020s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Wähle eine Kategorie' nach 0.000s
+- SPEECH STOMPING: 'Logik & Gedächtnis' unterbrach 'Action & Reaktion' nach 0.061s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Logik & Gedächtnis' nach 0.020s
+- SPEECH STOMPING: 'Sound-Memo' unterbrach 'Spiele in Logik & Gedächtnis' nach 0.000s
+- SPEECH STOMPING: 'Simon Says' unterbrach 'Sound-Memo' nach 0.061s
+- SPEECH STOMPING: 'Sound-Memo' unterbrach 'Simon Says' nach 0.041s
+- SPEECH STOMPING: 'Logik & Gedächtnis' unterbrach 'Sound-Memo' nach 0.123s
+- SPEECH STOMPING: 'Spielen' unterbrach 'Logik & Gedächtnis' nach 0.041s
+- SPEECH STOMPING: 'Beat-Reaktor' unterbrach 'Spiele in Action & Reaktion' nach 0.000s
+- SPEECH STOMPING: 'Stereo-Münzfang' unterbrach 'Beat-Reaktor' nach 0.102s
+- SPEECH STOMPING: '1 Spieler' unterbrach 'Spieleranzahl für Stereo-Münzfang' nach 0.000s
+- SPEECH STOMPING: '2 Spieler' unterbrach '1 Spieler' nach 0.184s
+- SPEECH STOMPING: 'Name für Spieler 1:' unterbrach '2 Spieler' nach 0.020s
+- SPEECH STOMPING: ' ' unterbrach 'Name für Spieler 1:' nach 0.020s
+- SPEECH STOMPING: '3' unterbrach ' ' nach 0.020s
+- SPEECH STOMPING: '1' unterbrach '3' nach 0.020s
+- SPEECH STOMPING: '' unterbrach '1' nach 0.020s
+- SPEECH STOMPING: '' unterbrach '' nach 0.020s
+- SPEECH STOMPING: 'Abgebrochen. Hauptmenü.' unterbrach 'Spielen' nach 0.000s
+- SPEECH STOMPING: 'Spielen' unterbrach 'Action & Reaktion' nach 0.163s
+- SPEECH STOMPING: 'Stereo-Münzfang' unterbrach 'Spielen' nach 0.041s
+- SPEECH STOMPING: '2 Spieler' unterbrach '1 Spieler' nach 0.041s
+- SPEECH STOMPING: '' unterbrach 'Name für Spieler 1:' nach 0.021s
+- SPEECH STOMPING: 'Name darf nicht leer sein.' unterbrach '' nach 0.020s
+- SPEECH STOMPING: ' ' unterbrach 'Name darf nicht leer sein.' nach 0.020s
+- SPEECH STOMPING: ' ' unterbrach ' ' nach 0.020s
+- SPEECH STOMPING: '' unterbrach ' ' nach 0.021s
+- SPEECH STOMPING: ' ' unterbrach '' nach 0.020s
+- SPEECH STOMPING: '2' unterbrach '' nach 0.020s
+- SPEECH STOMPING: 'Name für Spieler 2:' unterbrach '2' nach 0.020s
+- SPEECH STOMPING: 'Name darf nicht leer sein.' unterbrach 'Name für Spieler 2:' nach 0.020s
+- SPEECH STOMPING: '2' unterbrach 'Name darf nicht leer sein.' nach 0.020s
+- SPEECH STOMPING: '1' unterbrach '2' nach 0.020s
+- SPEECH STOMPING: '1' unterbrach '1' nach 0.021s
+- SPEECH STOMPING: '' unterbrach '' nach 0.021s
+- SPEECH STOMPING: '3' unterbrach '' nach 0.021s
+- SPEECH STOMPING: '3' unterbrach '3' nach 0.020s
+- SPEECH STOMPING: ' ' unterbrach '3' nach 0.020s
+- SPEECH STOMPING: '2' unterbrach ' ' nach 0.020s
+- SPEECH STOMPING: ' ' unterbrach '2' nach 0.020s
+- SPEECH STOMPING: '' unterbrach ' ' nach 0.020s
+- SPEECH STOMPING: '2' unterbrach '' nach 0.021s
+- SPEECH STOMPING: '3' unterbrach '2' nach 0.021s
+- SPEECH STOMPING: 'Ranglisten' unterbrach 'Abgebrochen. Hauptmenü.' nach 0.041s
+- SPEECH STOMPING: 'Spielen' unterbrach 'Ranglisten' nach 0.021s
+- SPEECH STOMPING: 'Spielen' unterbrach 'Action & Reaktion' nach 0.041s
+- SPEECH STOMPING: 'Stereo-Münzfang' unterbrach '1 Spieler' nach 0.102s
+- SPEECH STOMPING: 'Bomben-Entschärfer' unterbrach 'Stereo-Münzfang' nach 0.041s
+- SPEECH STOMPING: '1 Spieler' unterbrach 'Spieleranzahl für Bomben-Entschärfer' nach 0.000s
+- SPEECH STOMPING: 'Bomben-Entschärfer' unterbrach '1 Spieler' nach 0.020s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Bomben-Entschärfer' nach 0.020s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Beat-Reaktor' nach 0.102s
+- SPEECH STOMPING: '1 Spieler' unterbrach 'Spieleranzahl für Beat-Reaktor' nach 0.000s
+- SPEECH STOMPING: 'Beat-Reaktor' unterbrach '1 Spieler' nach 0.020s
+- SPEECH STOMPING: 'Beat-Reaktor' unterbrach '1 Spieler' nach 0.102s
+- SPEECH STOMPING: 'Logik & Gedächtnis' unterbrach 'Action & Reaktion' nach 0.102s
+- SPEECH STOMPING: 'Spielen' unterbrach 'Action & Reaktion' nach 0.021s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Beat-Reaktor' nach 0.021s
+- SPEECH STOMPING: 'Ranglisten' unterbrach 'Spielen' nach 0.020s
+- SPEECH STOMPING: 'Spielen' unterbrach 'Ranglisten' nach 0.041s
+- SPEECH STOMPING: 'Logik & Gedächtnis' unterbrach 'Action & Reaktion' nach 0.123s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Logik & Gedächtnis' nach 0.061s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Beat-Reaktor' nach 0.061s
+- SPEECH STOMPING: 'Action & Reaktion' unterbrach 'Beat-Reaktor' nach 0.041s
