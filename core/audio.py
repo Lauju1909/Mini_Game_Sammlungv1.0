@@ -32,7 +32,7 @@ class AudioManager:
         # Tolk initialisieren
         self.interrupt_event = threading.Event()
         try:
-            dll_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Tolk.dll")
+            dll_path = resource_path("Tolk.dll")
             if os.path.exists(dll_path):
                 self.tolk = ctypes.windll.LoadLibrary(dll_path)
                 
