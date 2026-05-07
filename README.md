@@ -1,10 +1,10 @@
-# Mini-Game-Sammlung v1.0
+# Audio Studio Tycoon: Mini-Game-Sammlung v1.5
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0-green.svg)
+![Version](https://img.shields.io/badge/version-1.5-green.svg)
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
 
-Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von über 30 barrierefreien Mini-Games, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
+Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
 ## 🌟 Features
 
@@ -12,11 +12,11 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von über 30 barrieref
 - **Screenreader-Integration:** Unterstützt NVDA, JAWS und andere via Tolk (SAPI Fallback).
 - **Zweisprachig:** Volle Unterstützung für **Deutsch** und **Englisch**.
 - **Vielseitige Kategorien:**
-  - **Action & Reaktion:** Beat-Reaktor, Stereo-Münzfang, Bomben-Entschärfer.
-  - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Code-Knacker.
-  - **Navigation & Erkundung:** Audio-Labyrinth, Echolot, Die blinde Farm.
-  - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Hauptstadt-Jäger.
-  - **Simulation & Spaß:** Audio-Bowling, Schere-Stein-Papier, Audio-Slots.
+  - **Action & Reaktion:** Beat-Reaktor, Stereo-Münzfang, Bomben-Entschärfer, Reaktions-Blitz, Tasten-Gewitter, Beat-Matcher.
+  - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Code-Knacker, Ton-Folge, Morse-Läufer, Klang-Weber.
+  - **Navigation & Erkundung:** Audio-Labyrinth, Echolot, Die blinde Farm, Echo-Jäger, Das goldene Mikrofon, Tier-Radar, Geheimnisvolle Türen.
+  - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Hauptstadt-Jäger, Zahlen-Raten, Buchstaben-Salat, Schnellwähler.
+  - **Simulation & Spezial:** Audio-Bowling, Schere-Stein-Papier, Audio-Slots, Tresor-Knacker, Mathe-Blitz, Tonhöhen-Meister, Frequenz-Jäger, Treppe des Schicksals, Audio-Balance.
 - **Premium Design:** Moderne UI mit Glaseffekten, Partikelsystemen und flüssigen Animationen für sehende Mitspieler.
 - **Mehrspielermodus:** Lokal an einem PC mit bis zu 4 Spielern.
 

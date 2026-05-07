@@ -1,3 +1,4 @@
+import math
 import pygame
 import os
 import sys
@@ -25,6 +26,8 @@ class AudioManager:
         # Audio Queue und Threading
         self.speech_queue = queue.Queue()
         self.stop_worker = False
+        self.last_speech_time = 0
+        self.current_priority = 0
         
         # Tolk initialisieren
         self.interrupt_event = threading.Event()
@@ -91,11 +94,15 @@ class AudioManager:
         while not self.stop_worker:
             try:
                 # Warte auf neue Nachrichten in der Queue
-                text, interrupt = self.speech_queue.get(timeout=0.1)
+                text, interrupt, priority = self.speech_queue.get(timeout=0.1)
                 
                 if interrupt:
+                    # Tolk_Output handles interrupt internally, but we can silence specifically if needed.
+                    # We only silence if it's a higher or equal priority.
                     if self.tolk_active and self.tolk:
-                        self.tolk.Tolk_Silence()
+                        # Tolk_Silence is often redundant if next call is Tolk_Output(..., True)
+                        # but helps ensure immediate feedback.
+                        pass 
                     elif self.sapi:
                         self.sapi.Speak("", 3) # SVSFPurgeBeforeSpeak + Async
 
@@ -112,14 +119,16 @@ class AudioManager:
                         
                         self.interrupt_event.clear()
                         self.tolk.Tolk_Output(text, interrupt)
+                        self.current_priority = priority
                         
                         # Kurze Pause nach dem Starten, damit Tolk_IsSpeaking Zeit hat, auf True zu springen
                         # Und damit aufeinanderfolgende Ansagen sich nicht überschneiden
-                        time.sleep(0.15)
+                        time.sleep(0.1)
                     except Exception as e:
                         print(f"Tolk Worker Fehler: {e}")
                 elif self.sapi:
                     try:
+                        self.current_priority = priority
                         if interrupt:
                             # SVSFPurgeBeforeSpeak (2) + Async (1) = 3
                             self.sapi.Speak("", 3)
@@ -129,9 +138,6 @@ class AudioManager:
                         
                         if not interrupt:
                             # Warte bis SAPI fertig ist (maximal 10 Sekunden pro Ansage)
-                            # Wir können SAPI nicht so einfach unterbrechen während WaitUntilDone,
-                            # aber wir können das Intervall verkürzen oder Async nutzen.
-                            # Da SAPI Async spricht (Flag 1), ist WaitUntilDone eigentlich nur für non-interruptive.
                             elapsed = 0
                             while elapsed < 10000 and not self.interrupt_event.is_set():
                                 if self.sapi.WaitUntilDone(100): # 100ms warten
@@ -147,22 +153,39 @@ class AudioManager:
             except queue.Empty:
                 continue
 
-    def speak(self, text, interrupt=True):
-        """Fügt Text zur Sprach-Queue hinzu oder unterbricht sofort."""
-        print(f"[TTS]: {text}")
+    def speak(self, text, interrupt=True, priority=1):
+        """
+        Fügt Text zur Sprach-Queue hinzu oder unterbricht sofort.
+        Prioritäten: 0 = Info (kann unterbrochen werden), 1 = Standard, 2 = Wichtig (z.B. Spielerwechsel)
+        """
+        if not text: return
+        
+        now = time.time()
+        # "Stomping-Schutz": Wenn zwei Ansagen fast gleichzeitig kommen ( < 50ms ),
+        # und die zweite unterbrechen will, prüfen wir ob es sinnvoll ist.
+        if interrupt and (now - self.last_speech_time < 0.05):
+            # Wenn es der exakt gleiche Text ist, ignorieren wir ihn (Debounce)
+            # Das passiert oft bei schnellen Tastendrücken
+            pass # Wir lassen es mal durch, aber wir leeren die Queue nicht unbedingt
+            
+        print(f"[TTS]: {text} (Interrupt={interrupt}, Prio={priority})")
         
         if interrupt:
-            self.interrupt_event.set()
-            # Leere die aktuelle Queue für sofortige Unterbrechung
-            while not self.speech_queue.empty():
-                try:
-                    self.speech_queue.get_nowait()
-                    self.speech_queue.task_done()
-                except queue.Empty:
-                    break
+            # Nur leeren, wenn die neue Nachricht nicht in der exakt gleichen Millisekunde kommt wie die letzte
+            # (Verhindert das Auslöschen von Sequenzen in einem Frame)
+            if now - self.last_speech_time > 0.01:
+                self.interrupt_event.set()
+                # Leere die aktuelle Queue für sofortige Unterbrechung
+                while not self.speech_queue.empty():
+                    try:
+                        self.speech_queue.get_nowait()
+                        self.speech_queue.task_done()
+                    except queue.Empty:
+                        break
         
         # Zur Queue hinzufügen
-        self.speech_queue.put((text, interrupt))
+        self.last_speech_time = now
+        self.speech_queue.put((text, interrupt, priority))
 
     def play_sound(self, sound_name):
         formats = ["ogg", "mp3", "wav"]
@@ -193,10 +216,119 @@ class AudioManager:
                         right = max(0.0, min(1.0, (1.0 + pan)))
                         channel.set_volume(left * (self.sfx_volume/100.0), right * (self.sfx_volume/100.0))
                         channel.play(sound)
-                    return
+                        return channel
                 except Exception as e:
                     print(f"Panning Fehler: {e}")
         print(f"Sound nicht gefunden: {sound_name}")
+        return None
+
+    def play_looping_sound(self, sound_name, volume=None):
+        """Startet einen Sound in einer Endlosschleife und gibt den Kanal zurück."""
+        formats = ["ogg", "mp3", "wav"]
+        for fmt in formats:
+            path = resource_path(os.path.join("assets", f"{sound_name}.{fmt}"))
+            if os.path.exists(path):
+                try:
+                    sound = pygame.mixer.Sound(path)
+                    channel = pygame.mixer.find_channel()
+                    if channel:
+                        vol = (volume if volume is not None else self.sfx_volume) / 100.0
+                        channel.set_volume(vol)
+                        channel.play(sound, loops=-1)
+                        return channel
+                except Exception as e:
+                    print(f"Looping Fehler: {e}")
+        return None
+
+    def play_tone(self, frequency, duration_ms=500, volume=None, pan=0.0):
+        """Erzeugt einen Sinuston mit der angegebenen Frequenz."""
+        try:
+            sample_rate = 44100
+            n_samples = int(sample_rate * (duration_ms / 1000.0))
+            
+            # Sinuswelle generieren (16-bit signed)
+            buffer = bytearray()
+            vol = (volume if volume is not None else self.sfx_volume) / 100.0
+            amplitude = 32767 * vol
+            
+            for i in range(n_samples):
+                # f(t) = A * sin(2 * pi * freq * t)
+                t = i / sample_rate
+                value = int(amplitude * math.sin(2 * math.pi * frequency * t))
+                # 16-bit Little Endian
+                buffer.extend(value.to_bytes(2, byteorder='little', signed=True))
+            
+            sound = pygame.mixer.Sound(buffer=buffer)
+            
+            if pan == 0.0:
+                sound.set_volume(vol)
+                sound.play()
+            else:
+                channel = pygame.mixer.find_channel()
+                if channel:
+                    left = max(0.0, min(1.0, (1.0 - pan)))
+                    right = max(0.0, min(1.0, (1.0 + pan)))
+                    channel.set_volume(left * vol, right * vol)
+                    channel.play(sound)
+                    return channel
+        except Exception as e:
+            print(f"Tone Generation Fehler: {e}")
+        return None
+
+    def create_tone_loop(self, frequency, volume=None):
+        """Erzeugt einen looping Sinuston."""
+        try:
+            sample_rate = 44100
+            # Eine Periode oder eine kurze Schleife, die nahtlos ist
+            # Wir nehmen eine feste Länge von 0.1s für den Loop-Puffer
+            duration = 0.1 
+            n_samples = int(sample_rate * duration)
+            
+            buffer = bytearray()
+            vol = (volume if volume is not None else self.sfx_volume) / 100.0
+            amplitude = 32767 * vol
+            
+            for i in range(n_samples):
+                t = i / sample_rate
+                value = int(amplitude * math.sin(2 * math.pi * frequency * t))
+                buffer.extend(value.to_bytes(2, byteorder='little', signed=True))
+            
+            sound = pygame.mixer.Sound(buffer=buffer)
+            channel = pygame.mixer.find_channel()
+            if channel:
+                channel.set_volume(vol)
+                channel.play(sound, loops=-1)
+                return channel
+        except Exception as e:
+            print(f"Tone Loop Fehler: {e}")
+        return None
+
+    def stop_sound(self, channel):
+        """Stoppt den Sound auf dem angegebenen Kanal."""
+        if channel:
+            try:
+                channel.stop()
+            except:
+                pass
+
+    def fadeout_sound(self, channel, time_ms):
+        """Blendet den Sound auf dem angegebenen Kanal über time_ms Millisekunden aus."""
+        if channel:
+            try:
+                channel.fadeout(time_ms)
+            except:
+                pass
+
+    def set_channel_volume(self, channel, volume_left, volume_right=None):
+        """Setzt die Lautstärke eines Kanals (0.0 bis 1.0)."""
+        if channel:
+            try:
+                if volume_right is None:
+                    channel.set_volume(volume_left * (self.sfx_volume / 100.0))
+                else:
+                    channel.set_volume(volume_left * (self.sfx_volume / 100.0), volume_right * (self.sfx_volume / 100.0))
+            except:
+                pass
 
     def set_volumes(self, sfx_vol, music_vol):
         """Aktualisiert die Lautstärken für SFX und Musik."""

@@ -46,6 +46,16 @@ from games.audio_archery import AudioArchery
 from games.audio_slots import AudioSlots
 from games.audio_sequence import AudioSequence
 from games.echo_hunter import EchoHunter
+from games.animal_radar import AnimalRadar
+from games.morse_runner import MorseRunner
+from games.ticking_clock import TickingClock
+from games.pitch_perfect import PitchPerfect
+from games.mystery_door import MysteryDoor
+from games.frequency_jammer import FrequencyJammer
+from games.stairs_of_fate import StairsOfFate
+from games.sound_weaver import SoundWeaver
+from games.beat_matcher import BeatMatcher
+from games.audio_balance import AudioBalance
 
 class Particle:
     def __init__(self, x, y):
@@ -117,7 +127,7 @@ class MiniGameCollection:
         self.ui_time = 0
         self.score_bars_anim = {}
         self.setup_main_menu()
-        self.audio.speak(_("ready"), interrupt=False)
+        self.audio.speak(_("ready"), interrupt=False, priority=2)
 
     def on_name_entered(self, name):
         if name:
@@ -208,7 +218,7 @@ class MiniGameCollection:
             self.state = "main_menu"
             self.text_input = None
             self.setup_main_menu()
-            self.audio.speak(_("aborted_main_menu"))
+            self.audio.speak(_("aborted_main_menu"), interrupt=True, priority=2)
             return
 
         self.temp_players.append(name)
@@ -219,7 +229,7 @@ class MiniGameCollection:
             self.players = self.temp_players
             self.state = "description"
             desc = self.selected_game_item.get("desc", _("no_desc_available"))
-            self.audio.speak(_("game_desc_start", desc=desc))
+            self.audio.speak(_("game_desc_start", desc=desc), interrupt=True, priority=2)
 
     def start_selected_game(self):
         game_class = self.selected_game_item.get("class")
@@ -298,7 +308,7 @@ class MiniGameCollection:
                 self.refresh_settings_menu_labels()
                 self.menu.current_title = _("settings")
                 self.refresh_all_menu_stacks()
-                self.audio.speak(_("language_changed"), interrupt=False)
+                self.audio.speak(_("language_changed"), interrupt=False, priority=2)
 
     def on_settings_select(self, item):
         if item["id"] == "back":
@@ -389,7 +399,10 @@ class MiniGameCollection:
                 {"label": _("game_mole_master"), "id": "mole_master", "class": MoleMaster, "desc": _("game_mole_master_desc")},
                 {"label": _("game_rhythm_master"), "id": "rhythm_master", "class": RhythmMaster, "desc": _("game_rhythm_master_desc")},
                 {"label": _("game_reaction_blitz"), "id": "reaction_blitz", "class": ReactionBlitz, "desc": _("game_reaction_blitz_desc")},
-                {"label": _("game_audio_archery"), "id": "audio_archery", "class": AudioArchery, "desc": _("game_audio_archery_desc")}
+                {"label": _("game_audio_archery"), "id": "audio_archery", "class": AudioArchery, "desc": _("game_audio_archery_desc")},
+                {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
+                {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
+                {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")}
             ]},
             {"label": _("cat_logic"), "id": "logic", "games": [
                 {"label": _("game_sound_memo"), "id": "sound_memo", "class": SoundMemo, "desc": _("game_sound_memo_desc")},
@@ -397,14 +410,22 @@ class MiniGameCollection:
                 {"label": _("game_code_breaker"), "id": "code_breaker", "class": CodeBreaker, "desc": _("game_code_breaker_desc")},
                 {"label": _("game_number_guess"), "id": "number_guess", "class": NumberGuess, "desc": _("game_number_guess_desc")},
                 {"label": _("game_safe_cracker"), "id": "safe_cracker", "class": SafeCracker, "desc": _("game_safe_cracker_desc")},
-                {"label": _("game_math_blitz"), "id": "math_blitz", "class": MathBlitz, "desc": _("game_math_blitz_desc")}
+                {"label": _("game_math_blitz"), "id": "math_blitz", "class": MathBlitz, "desc": _("game_math_blitz_desc")},
+                {"label": _("game_ticking_clock"), "id": "ticking_clock", "class": TickingClock, "desc": _("game_ticking_clock_desc")},
+                {"label": _("game_pitch_perfect"), "id": "pitch_perfect", "class": PitchPerfect, "desc": _("game_pitch_perfect_desc")},
+                {"label": _("game_sound_weaver"), "id": "sound_weaver", "class": SoundWeaver, "desc": _("game_sound_weaver_desc")},
+                {"label": _("game_audio_sequence"), "id": "audio_sequence", "class": AudioSequence, "desc": _("game_audio_sequence_desc")}
             ]},
             {"label": _("cat_nav"), "id": "nav", "games": [
                 {"label": _("game_golden_mic"), "id": "golden_mic", "class": GoldenMic, "desc": _("game_golden_mic_desc")},
                 {"label": _("game_audio_maze"), "id": "audio_maze", "class": AudioMaze, "desc": _("game_audio_maze_desc")},
                 {"label": _("game_echolot"), "id": "echolot", "class": Echolot, "desc": _("game_echolot_desc")},
                 {"label": _("game_blind_farm"), "id": "blind_farm", "class": BlindFarm, "desc": _("game_blind_farm_desc")},
-                {"label": _("game_space_flight"), "id": "space_flight", "class": SpaceFlight, "desc": _("game_space_flight_desc")}
+                {"label": _("game_space_flight"), "id": "space_flight", "class": SpaceFlight, "desc": _("game_space_flight_desc")},
+                {"label": _("game_animal_radar"), "id": "animal_radar", "class": AnimalRadar, "desc": _("game_animal_radar_desc")},
+                {"label": _("game_mystery_door"), "id": "mystery_door", "class": MysteryDoor, "desc": _("game_mystery_door_desc")},
+                {"label": _("game_frequency_jammer"), "id": "frequency_jammer", "class": FrequencyJammer, "desc": _("game_frequency_jammer_desc")},
+                {"label": _("game_stairs_of_fate"), "id": "stairs_of_fate", "class": StairsOfFate, "desc": _("game_stairs_of_fate_desc")}
             ]},
             {"label": _("cat_speech"), "id": "speech", "games": [
                 {"label": _("game_word_snake"), "id": "word_snake", "class": WordSnake, "desc": _("game_word_snake_desc")},
@@ -447,7 +468,17 @@ class MiniGameCollection:
                 {"label": _("game_capital_hunter"), "id": "capital_hunter", "class": CapitalHunter, "desc": _("game_capital_hunter_desc")},
                 {"label": _("game_audio_bowling"), "id": "audio_bowling", "class": AudioBowling, "desc": _("game_audio_bowling_desc")},
                 {"label": _("game_rps_extreme"), "id": "rps_extreme", "class": RPS_Extreme, "desc": _("game_rps_extreme_desc")},
-                {"label": _("game_audio_slots"), "id": "audio_slots", "class": AudioSlots, "desc": _("game_audio_slots_desc")}
+                {"label": _("game_audio_slots"), "id": "audio_slots", "class": AudioSlots, "desc": _("game_audio_slots_desc")},
+                {"label": _("game_animal_radar"), "id": "animal_radar", "class": AnimalRadar, "desc": _("game_animal_radar_desc")},
+                {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")},
+                {"label": _("game_ticking_clock"), "id": "ticking_clock", "class": TickingClock, "desc": _("game_ticking_clock_desc")},
+                {"label": _("game_pitch_perfect"), "id": "pitch_perfect", "class": PitchPerfect, "desc": _("game_pitch_perfect_desc")},
+                {"label": _("game_mystery_door"), "id": "mystery_door", "class": MysteryDoor, "desc": _("game_mystery_door_desc")},
+                {"label": _("game_frequency_jammer"), "id": "frequency_jammer", "class": FrequencyJammer, "desc": _("game_frequency_jammer_desc")},
+                {"label": _("game_stairs_of_fate"), "id": "stairs_of_fate", "class": StairsOfFate, "desc": _("game_stairs_of_fate_desc")},
+                {"label": _("game_sound_weaver"), "id": "sound_weaver", "class": SoundWeaver, "desc": _("game_sound_weaver_desc")},
+                {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
+                {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")}
             ]},
             {"label": _("back"), "id": "back"}
         ]
@@ -545,13 +576,13 @@ class MiniGameCollection:
             "scores": scores,
             "id": item["id"]
         }
-        self.audio.speak(_("highscore_for", game=self.current_highscore_data["game_name"]))
+        self.audio.speak(_("highscore_for", game=self.current_highscore_data["game_name"]), interrupt=True, priority=1)
         if not scores:
-            self.audio.speak(_("no_highscores"))
+            self.audio.speak(_("no_highscores"), interrupt=False)
         else:
             # Ansage der Top 3 für Barrierefreiheit
             for i, s in enumerate(scores[:3]):
-                self.audio.speak(_("score_entry", idx=i+1, name=s['name'], score=s['score']))
+                self.audio.speak(_("score_entry", idx=i+1, name=s['name'], score=s['score']), interrupt=False)
 
     def draw_gradient_rect(self, rect, color1, color2):
         """Zeichnet ein Rechteck mit einem vertikalen Gradienten."""

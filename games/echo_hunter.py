@@ -41,8 +41,9 @@ class EchoHunter(BaseGame):
             pan = self.target_x - self.player_x
             pan = max(-1.0, min(1.0, pan))
             
-            # Wir nutzen play_panned_sound für das Ziel
-            self.audio.play_panned_sound("ping", pan)
+            # Wir nutzen play_tone für das Ziel (Frequenz skaliert von 440Hz bis 1760Hz)
+            freq = 1760 - (dist / self.max_dist) * 1320
+            self.audio.play_tone(freq, duration_ms=150, pan=pan)
             
             if dist < 0.1:
                 self.finish_game()

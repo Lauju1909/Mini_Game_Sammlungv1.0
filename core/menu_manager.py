@@ -14,11 +14,13 @@ class MenuManager:
     def set_menu(self, items, title=None, silent=False, interrupt=True):
         self.current_title = title
         if title and not silent:
-            self.audio.speak(title, interrupt=interrupt)
+            # Titel unterbricht, wenn gewünscht
+            self.audio.speak(title, interrupt=interrupt, priority=1)
         self.current_menu = items
         self.index = 0
         if not silent:
-            # Wenn ein Titel angesagt wurde oder interrupt False ist, soll der erste Punkt NICHT unterbrechen
+            # Der erste Punkt sollte NICHT den Titel unterbrechen, den wir gerade gestartet haben.
+            # Daher interrupt=False, wenn ein Titel da ist.
             should_interrupt = interrupt if not title else False
             self._announce_current(interrupt=should_interrupt)
 
@@ -33,7 +35,7 @@ class MenuManager:
         if self.menu_stack:
             self.current_menu, self.index, self.on_select_callback, self.on_adjust_callback, self.current_title = self.menu_stack.pop()
             if self.current_title:
-                self.audio.speak(self.current_title, interrupt=True)
+                self.audio.speak(self.current_title, interrupt=True, priority=1)
             self._announce_current(interrupt=False if self.current_title else True)
             return True
         return False
