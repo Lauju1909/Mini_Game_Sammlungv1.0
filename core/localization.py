@@ -796,3 +796,4 @@ TRANSLATIONS = {
         "morse_o": "Letter O",
         "morse_t": "Letter T"
     }
+}
