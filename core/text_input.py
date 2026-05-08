@@ -8,7 +8,7 @@ class TextInput:
         self.callback = callback
         self.text = ""
         self.active = True
-        self.audio.speak(prompt)
+        self.audio.speak(prompt, priority=2)
 
     def handle_input(self, event):
         if not self.active:

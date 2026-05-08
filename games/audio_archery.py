@@ -61,7 +61,7 @@ class AudioArchery(BaseGame):
         elif diff < 0.15:
             round_points = 70
             self.result_text = self._("hit_good")
-            self.audio.play_sound("hit")
+            self.audio.play_sound("click_001")
         elif diff < 0.3:
             round_points = 40
             self.result_text = self._("hit_ok")

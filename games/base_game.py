@@ -16,7 +16,7 @@ class BaseGame:
         return get_text(key, **kwargs)
 
     def start(self):
-        self.audio.speak(self.instructions, interrupt=False)
+        self.audio.speak(self.instructions, interrupt=False, priority=2)
 
     def handle_input(self, event):
         if event.type == pygame.KEYDOWN:
@@ -32,5 +32,5 @@ class BaseGame:
     def finish(self):
         self.active = False
         msg = self._("final_score", score=self.score)
-        self.audio.speak(f"{self._('game_over')} {msg}")
+        self.audio.speak(f"{self._('game_over')} {msg}", priority=2)
         self.highscores.add_score(self.game_id, self.player_name, self.score)

@@ -96,22 +96,14 @@ class AudioManager:
                 # Warte auf neue Nachrichten in der Queue
                 text, interrupt, priority = self.speech_queue.get(timeout=0.1)
                 
-                if interrupt:
-                    # Tolk_Output handles interrupt internally, but we can silence specifically if needed.
-                    # We only silence if it's a higher or equal priority.
-                    if self.tolk_active and self.tolk:
-                        # Tolk_Silence is often redundant if next call is Tolk_Output(..., True)
-                        # but helps ensure immediate feedback.
-                        pass 
-                    elif self.sapi:
-                        self.sapi.Speak("", 3) # SVSFPurgeBeforeSpeak + Async
-
                 if self.tolk_active and self.tolk:
                     try:
-                        # Warten, bis vorherige Sprachausgabe fertig ist, falls kein Interrupt
-                        if not interrupt:
+                        if interrupt:
+                            if hasattr(self.tolk, 'Tolk_Silence'):
+                                self.tolk.Tolk_Silence()
+                        else:
+                            # Warten, bis vorherige Sprachausgabe fertig ist, falls kein Interrupt
                             wait_start = time.time()
-                            # Sicherheitstimeout von 5 Sekunden
                             while self.tolk.Tolk_IsSpeaking() and not self.interrupt_event.is_set():
                                 if self.stop_worker or (time.time() - wait_start > 5.0):
                                     break
@@ -121,26 +113,25 @@ class AudioManager:
                         self.tolk.Tolk_Output(text, interrupt)
                         self.current_priority = priority
                         
-                        # Kurze Pause nach dem Starten, damit Tolk_IsSpeaking Zeit hat, auf True zu springen
-                        # Und damit aufeinanderfolgende Ansagen sich nicht überschneiden
-                        time.sleep(0.1)
+                        # Kurze Pause nach dem Starten
+                        time.sleep(0.05)
                     except Exception as e:
                         print(f"Tolk Worker Fehler: {e}")
                 elif self.sapi:
                     try:
-                        self.current_priority = priority
                         if interrupt:
                             # SVSFPurgeBeforeSpeak (2) + Async (1) = 3
                             self.sapi.Speak("", 3)
                         
+                        self.current_priority = priority
                         # Flags: Async (1)
                         self.sapi.Speak(text, 1)
                         
                         if not interrupt:
-                            # Warte bis SAPI fertig ist (maximal 10 Sekunden pro Ansage)
+                            # Warte bis SAPI fertig ist
                             elapsed = 0
                             while elapsed < 10000 and not self.interrupt_event.is_set():
-                                if self.sapi.WaitUntilDone(100): # 100ms warten
+                                if self.sapi.WaitUntilDone(100):
                                     break
                                 elapsed += 100
                                 if self.stop_worker: break
@@ -150,42 +141,60 @@ class AudioManager:
                         print(f"SAPI Speak Fehler: {e}")
                 
                 self.speech_queue.task_done()
+            except Exception as e:
+                # queue.Empty ist okay bei timeout=0.1
+                if not "Empty" in str(type(e)):
+                    print(f"Audio Worker Fehler: {e}")
+                
+    def _clear_queue(self):
+        """Leert die aktuelle Sprach-Warteschlange."""
+        while not self.speech_queue.empty():
+            try:
+                self.speech_queue.get_nowait()
+                self.speech_queue.task_done()
             except queue.Empty:
-                continue
+                break
 
     def speak(self, text, interrupt=True, priority=1):
         """
         Fügt Text zur Sprach-Queue hinzu oder unterbricht sofort.
-        Prioritäten: 0 = Info (kann unterbrochen werden), 1 = Standard, 2 = Wichtig (z.B. Spielerwechsel)
+        Prioritäten: 
+        0 = Info (UI Details, kann immer unterbrochen werden)
+        1 = Standard (Menüpunkte, Ergebnisse)
+        2 = Wichtig (Systemmeldungen, Spielstart, Spielerwechsel)
         """
-        if not text: return
+        if not text or not str(text).strip(): return
         
         now = time.time()
-        # "Stomping-Schutz": Wenn zwei Ansagen fast gleichzeitig kommen ( < 50ms ),
-        # und die zweite unterbrechen will, prüfen wir ob es sinnvoll ist.
-        if interrupt and (now - self.last_speech_time < 0.05):
-            # Wenn es der exakt gleiche Text ist, ignorieren wir ihn (Debounce)
-            # Das passiert oft bei schnellen Tastendrücken
-            pass # Wir lassen es mal durch, aber wir leeren die Queue nicht unbedingt
+        
+        # Debounce: Wenn der exakt gleiche Text innerhalb von 300ms nochmal kommt, ignorieren
+        if hasattr(self, '_last_text') and self._last_text == text and (now - self.last_speech_time < 0.3):
+            return
             
-        print(f"[TTS]: {text} (Interrupt={interrupt}, Prio={priority})")
+        actual_interrupt = interrupt
         
+        # Prioritäten-Logik
         if interrupt:
-            # Nur leeren, wenn die neue Nachricht nicht in der exakt gleichen Millisekunde kommt wie die letzte
-            # (Verhindert das Auslöschen von Sequenzen in einem Frame)
-            if now - self.last_speech_time > 0.01:
+            # 1. Wenn eine Nachricht mit niedrigerer Prio eine mit höherer unterbrechen will -> Warteschlange
+            if priority < self.current_priority:
+                actual_interrupt = False
+            
+            # 2. Stomping-Schutz bei gleicher oder niedrigerer Priorität
+            elif priority <= self.current_priority:
+                # Wenn die letzte Ansage erst vor kurzem (< 200ms) gestartet wurde, 
+                # stellen wir uns lieber an, statt das erste Wort zu "stompem".
+                if now - self.last_speech_time < 0.2:
+                    actual_interrupt = False
+            
+            # Wenn wir unterbrechen (oder es vorhatten), leeren wir die Queue für veraltete Nachrichten
+            # außer wir haben gerade entschieden, uns DOCH nur hinten anzustellen.
+            if actual_interrupt:
                 self.interrupt_event.set()
-                # Leere die aktuelle Queue für sofortige Unterbrechung
-                while not self.speech_queue.empty():
-                    try:
-                        self.speech_queue.get_nowait()
-                        self.speech_queue.task_done()
-                    except queue.Empty:
-                        break
+                self._clear_queue()
         
-        # Zur Queue hinzufügen
+        self._last_text = text
         self.last_speech_time = now
-        self.speech_queue.put((text, interrupt, priority))
+        self.speech_queue.put((text, actual_interrupt, priority))
 
     def play_sound(self, sound_name):
         formats = ["ogg", "mp3", "wav"]
@@ -341,14 +350,25 @@ class AudioManager:
             print(f"Fehler beim Setzen der Musik-Lautstärke: {e}")
 
     def set_speech_volume(self, volume):
-        """Setzt die Sprachlautstärke (wird aktuell primär über den Screenreader gesteuert)."""
+        """Setzt die Sprachlautstärke (0-100)."""
         print(f"Sprachlautstärke auf {volume}% gesetzt.")
-        # Zukünftige Implementierung für SAPI-Direktsteuerung hier möglich
+        if self.sapi:
+            try:
+                # SAPI Volume ist 0-100
+                self.sapi.Volume = max(0, min(100, volume))
+            except:
+                pass
 
     def set_speech_rate(self, rate):
-        """Setzt die Sprechgeschwindigkeit (wird aktuell primär über den Screenreader gesteuert)."""
+        """Setzt die Sprechgeschwindigkeit (30-100)."""
         print(f"Sprechgeschwindigkeit auf {rate}% gesetzt.")
-        # Zukünftige Implementierung für SAPI-Direktsteuerung hier möglich
+        if self.sapi:
+            try:
+                # SAPI Rate ist -10 bis 10. 50% entspricht etwa 0.
+                sapi_rate = int((rate - 50) / 5)
+                self.sapi.Rate = max(-10, min(10, sapi_rate))
+            except:
+                pass
 
     def cleanup(self):
         self.stop_worker = True

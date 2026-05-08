@@ -126,6 +126,7 @@ class MiniGameCollection:
         self.particles = ParticleSystem(80)
         self.ui_time = 0
         self.score_bars_anim = {}
+        self.running = True
         self.setup_main_menu()
         self.audio.speak(_("ready"), interrupt=False, priority=2)
 
@@ -235,7 +236,7 @@ class MiniGameCollection:
         game_class = self.selected_game_item.get("class")
         if game_class:
             self.current_player_idx = 0
-            self.audio.speak(_("first_player", player=self.players[0]))
+            self.audio.speak(_("first_player", player=self.players[0]), priority=2)
             self.current_game = game_class(self.audio, self.highscores, self.settings, self.players[0])
             self.state = "playing"
             self.current_game.start()
@@ -856,6 +857,7 @@ class MiniGameCollection:
                     running = False
                 
                 if self.handle_input(event) == "quit":
+                    self.running = False
                     running = False
                 
             if self.state == "playing" and self.current_game:

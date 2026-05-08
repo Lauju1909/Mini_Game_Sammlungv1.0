@@ -38,21 +38,32 @@ class MiniGameEnv(BaseEnvironment):
         self.last_tts = []
         self.last_logs = []
         
-        # Mock Audio
-        self.game.audio.speak = self._mock_speak
-        self.game.audio.play_sound = lambda x, **kwargs: None
+        # Mock Audio - We use the REAL AudioManager logic but mock the output level
+        self.game.audio.tolk_active = True
+        class MockTolk:
+            def __init__(self, tts_list):
+                self.tts_list = tts_list
+                self.speaking = False
+            def Tolk_Output(self, text, interrupt):
+                self.tts_list.append({
+                    "text": text,
+                    "time": time.time(),
+                    "interrupt": interrupt
+                })
+                print(f"[AGENT SENSOR] OUTPUT: {text} (Interrupt: {interrupt})")
+                return True
+            def Tolk_IsSpeaking(self):
+                return False
+            def Tolk_Silence(self):
+                return True
+            def Tolk_Unload(self):
+                return True
+            def Tolk_IsLoaded(self):
+                return True
         
-        # Simulation State
-        self.game.running = True
-        self.game.setup_main_menu()
-
-    def _mock_speak(self, text, interrupt=True):
-        self.last_tts.append({
-            "text": text,
-            "time": time.time(),
-            "interrupt": interrupt
-        })
-        print(f"[AGENT SENSOR] TTS: {text}")
+        self.game.audio.tolk = MockTolk(self.last_tts)
+        self.game.audio.play_sound = lambda x, **kwargs: None
+        self.game.audio.play_tone = lambda frequency, duration_ms=500, volume=None, pan=0.0, **kwargs: None
 
     def get_state(self):
         """Extrahiert den aktuellen Zustand des Spiels."""
@@ -225,8 +236,7 @@ class AgenticTesterV4:
                         "trace": traceback.format_exc()
                     })
                     self.env.game.setup_main_menu()
-                
-                time.sleep(0.01) # Schnellerer Test
+                time.sleep(0.1) # Etwas langsamer für realistischere Tests
                 
                 state_after = self.env.get_state()
                 self.brain.record_transition(state_before, action, state_after)

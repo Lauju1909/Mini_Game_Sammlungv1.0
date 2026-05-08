@@ -14,8 +14,8 @@ class MenuManager:
     def set_menu(self, items, title=None, silent=False, interrupt=True):
         self.current_title = title
         if title and not silent:
-            # Titel unterbricht, wenn gewünscht
-            self.audio.speak(title, interrupt=interrupt, priority=1)
+            # Titel unterbricht, wenn gewünscht, und hat hohe Priorität
+            self.audio.speak(title, interrupt=interrupt, priority=2)
         self.current_menu = items
         self.index = 0
         if not silent:
@@ -35,7 +35,7 @@ class MenuManager:
         if self.menu_stack:
             self.current_menu, self.index, self.on_select_callback, self.on_adjust_callback, self.current_title = self.menu_stack.pop()
             if self.current_title:
-                self.audio.speak(self.current_title, interrupt=True, priority=1)
+                self.audio.speak(self.current_title, interrupt=True, priority=2)
             self._announce_current(interrupt=False if self.current_title else True)
             return True
         return False

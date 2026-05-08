@@ -1,8 +1,9 @@
-# Audio Studio Tycoon: Mini-Game-Sammlung v1.5
+# Audio Studio Tycoon: Mini-Game-Sammlung v1.6
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.5-green.svg)
+![Version](https://img.shields.io/badge/version-1.6-green.svg)
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
+![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V4)-brightgreen.svg)
 
 Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
@@ -41,6 +42,13 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreie
 - **ESC:** Zurück zum Menü / Spiel abbrechen.
 - **Zahlen 1-9:** Eingabe in Quiz-Spielen.
 
+## ✅ Quality Assurance
+
+Dieses Projekt wurde mit dem **Agentic Tester V4** (autonomes KI-Testsystem) validiert:
+- **Test-Umfang:** 1000+ automatisierte Aktionen in DE/EN Sessions.
+- **Status:** 0 Crashes, stabile Audio-Engine, korrekte Lokalisierung.
+- **Ergebnis:** Alle Menüpfade und Kernmechaniken sind stabil.
+
 ## 🛠️ Entwicklung
 
 Das Spiel basiert auf **Pygame** und nutzt eine benutzerdefinierte Audio-Engine für präzise Stereo-Positionierung und Sprachausgabe.
@@ -56,7 +64,7 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert.
 ## 🔗 Links
 
 - **Repository:** [https://github.com/Lauju1909/Mini_Game_Sammlungv1.0](https://github.com/Lauju1909/Mini_Game_Sammlungv1.0)
-- **Releases:** [Download v1.0](https://github.com/Lauju1909/Mini_Game_Sammlungv1.0/releases)
+- **Releases:** [Download v1.6](https://github.com/Lauju1909/Mini_Game_Sammlungv1.0/releases)
 
 ---
 *Entwickelt für das Advanced Agentic Coding Team von Google Deepmind.*

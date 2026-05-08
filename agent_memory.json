@@ -1,369 +1,307 @@
 {
   "Menu|Unknown|play,highscores,settings,quit": {
     "actions": {
-      "3": "Menu|Unknown|play,highscores,settings,quit",
-      "LEFT": "Menu|Unknown|play,highscores,settings,quit",
-      "UP": "Menu|Unknown|play,highscores,settings,quit",
       "SPACE": "Menu|Unknown|play,highscores,settings,quit",
-      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
-      "RIGHT": "Menu|Unknown|play,highscores,settings,quit",
-      "RETURN": "Menu|0|action,logic,nav,speech,sim,back",
+      "LEFT": "Menu|Unknown|play,highscores,settings,quit",
       "1": "Menu|Unknown|play,highscores,settings,quit",
       "4": "Menu|Unknown|play,highscores,settings,quit",
-      "2": "Menu|Unknown|play,highscores,settings,quit",
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
+      "UP": "Menu|Unknown|play,highscores,settings,quit",
+      "RETURN": "Menu|0|action,logic,nav,speech,sim,all,back",
       "5": "Menu|Unknown|play,highscores,settings,quit",
-      "DOWN": "Menu|Unknown|play,highscores,settings,quit"
+      "DOWN": "Menu|Unknown|play,highscores,settings,quit",
+      "2": "Menu|Unknown|play,highscores,settings,quit",
+      "RIGHT": "Menu|Unknown|play,highscores,settings,quit",
+      "3": "Menu|Unknown|play,highscores,settings,quit"
     },
-    "visit_count": 226,
+    "visit_count": 372,
     "tts_history": [
+      "Hauptmenü",
       "Spielen",
+      "Mini-Game-Sammlung bereit. Hauptmenü.",
       "Ranglisten",
       "Einstellungen",
-      "Beenden"
+      "Beenden",
+      "Abgebrochen. Hauptmenü.",
+      "",
+      "Settings",
+      "Highscores",
+      "Play",
+      "Aborted. Main Menu."
     ]
   },
-  "Menu|0|action,logic,nav,speech,sim,back": {
+  "Menu|0|action,logic,nav,speech,sim,all,back": {
     "actions": {
-      "RIGHT": "Menu|0|action,logic,nav,speech,sim,back",
-      "LEFT": "Menu|0|action,logic,nav,speech,sim,back",
-      "UP": "Menu|0|action,logic,nav,speech,sim,back",
-      "5": "Menu|0|action,logic,nav,speech,sim,back",
-      "SPACE": "Menu|0|action,logic,nav,speech,sim,back",
-      "2": "Menu|0|action,logic,nav,speech,sim,back",
+      "1": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "4": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "5": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "RIGHT": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "SPACE": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "3": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "LEFT": "Menu|0|action,logic,nav,speech,sim,all,back",
       "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
-      "1": "Menu|0|action,logic,nav,speech,sim,back",
-      "RETURN": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter",
-      "DOWN": "Menu|0|action,logic,nav,speech,sim,back",
-      "4": "Menu|0|action,logic,nav,speech,sim,back",
-      "3": "Menu|0|action,logic,nav,speech,sim,back"
+      "RETURN": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "DOWN": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "2": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "UP": "Menu|0|action,logic,nav,speech,sim,all,back"
     },
-    "visit_count": 158,
+    "visit_count": 121,
     "tts_history": [
       "Action & Reaktion",
       "Logik & Gedächtnis",
       "Navigation & Erkundung",
-      "Sprache & Wissen"
+      "Action & Reaction",
+      "Logic & Memory",
+      "Navigation & Exploration"
     ]
   },
-  "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back": {
+  "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back": {
     "actions": {
-      "5": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "LEFT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "4": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "2": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "RETURN": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "SPACE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
-      "UP": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "RIGHT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "3": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "DOWN": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "1": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back"
+      "1": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "4": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "3": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "SPACE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "5": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "UP": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "RIGHT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "LEFT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "RETURN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "DOWN": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "2": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit"
     },
-    "visit_count": 123,
+    "visit_count": 197,
     "tts_history": [
       "Action & Reaktion",
       "Logik & Gedächtnis",
-      "Navigation & Erkundung"
+      "Action & Reaction",
+      "Logic & Memory",
+      "Navigation & Exploration"
     ]
   },
-  "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back": {
+  "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back": {
     "actions": {
-      "RETURN": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "2": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "LEFT": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "RIGHT": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "4": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "3": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "1": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "UP": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "SPACE": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "5": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "DOWN": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back"
+      "3": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "SPACE": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "RIGHT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "RETURN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "4": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "UP": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "5": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "DOWN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "LEFT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "2": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "1": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back"
     },
-    "visit_count": 142,
+    "visit_count": 60,
     "tts_history": [
-      "stereo_catch",
-      "sound_memo",
-      "beat_reaktor",
-      "bomb_defuser"
+      "Beat-Reaktor - Top: lauju (340)",
+      "1. lauju: 340 Punkte",
+      "3. QA_Bot_4709: 0 Punkte",
+      "Stereo-Münzfang - Top: lauju (100)",
+      "Ton-Jäger - Top: aluju (300)",
+      "2. lauju: 0 Punkte",
+      "Beat Reactor - Top: lauju (340)",
+      "1. lauju: 340 points",
+      "3. QA_Bot_4709: 0 points",
+      "Stereo Coin Catch - Top: lauju (100)",
+      "2. lauju: 0 points"
     ]
   },
-  "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back": {
+  "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back": {
     "actions": {
-      "LEFT": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "RIGHT": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "5": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "4": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "DOWN": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "UP": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "RETURN": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "2": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "ESCAPE": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "SPACE": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "1": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back",
-      "3": "Menu|0|1. lauju: 100 Punkte,2. lauju: 100 Punkte,3. lauju: 0 Punkte,4. lauju: 0 Punkte,5. Bot: 0 Punkte,back"
+      "5": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "2": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "RIGHT": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "LEFT": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "1": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "SPACE": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "3": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "UP": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "DOWN": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "RETURN": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
+      "4": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back"
+    },
+    "visit_count": 79,
+    "tts_history": [
+      "Sfx Lautstärke: 90%",
+      "Sfx Lautstärke: 100%",
+      "Musik Lautstärke: 100%",
+      "Musik Lautstärke: 90%",
+      "Sfx Lautstärke: 80%",
+      "Sprach-Geschwindigkeit: 30%",
+      "Sprach-Geschwindigkeit: 40%",
+      "Sprache: de",
+      "Language set to English.",
+      "Speech Rate: 40%",
+      "Language: en",
+      "Sfx Volume: 80%",
+      "Music Volume: 90%",
+      "Music Volume: 80%",
+      "Sfx Volume: 90%",
+      "Sfx Volume: 100%"
+    ]
+  },
+  "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back": {
+    "actions": {
+      "3": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "4": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "UP": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "5": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "DOWN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "SPACE": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "1": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "ESCAPE": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "2": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "RIGHT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "RETURN": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "LEFT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back"
     },
     "visit_count": 39,
     "tts_history": [
-      "1. lauju: 100 Punkte",
-      "2. lauju: 100 Punkte",
-      "3. lauju: 0 Punkte"
-    ]
-  },
-  "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm": {
-    "actions": {
-      "RIGHT": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "SPACE": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "4": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "ESCAPE": "Menu|0|action,logic,nav,speech,sim,back",
-      "3": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "UP": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "RETURN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "1": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "5": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "2": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "LEFT": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm",
-      "DOWN": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm"
-    },
-    "visit_count": 64,
-    "tts_history": [
       "Beat-Reaktor",
       "Stereo-Münzfang",
-      "Bomben-Entschärfer",
-      "Tasten-Gewitter"
+      "Beat Reactor"
     ]
   },
   "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back": {
     "actions": {
+      "RIGHT": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "UP": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "DOWN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "3": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "4": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "SPACE": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "5": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "2": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "RETURN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "1": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "RIGHT": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "4": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "LEFT": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "ESCAPE": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter"
+      "3": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "DOWN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
+      "2": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "LEFT": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back"
+    },
+    "visit_count": 42,
+    "tts_history": [
+      "1 Spieler",
+      "Name für Spieler 1:",
+      "1",
+      "3",
+      "2 Spieler"
+    ]
+  },
+  "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back": {
+    "actions": {
+      "2": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "RIGHT": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "1": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "ESCAPE": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "DOWN": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "RETURN": "Menu|1|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "5": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "LEFT": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "SPACE": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "4": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "3": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "UP": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back"
     },
     "visit_count": 32,
     "tts_history": [
-      "1 Spieler",
-      "2 Spieler",
-      "Name für Spieler 1:",
-      "1",
-      "",
-      "4",
-      "3",
-      "5"
-    ]
-  },
-  "Menu|0|play,highscores,settings,quit": {
-    "actions": {
-      "DOWN": "Menu|0|play,highscores,settings,quit",
-      "5": "Menu|0|play,highscores,settings,quit",
-      "3": "Menu|0|play,highscores,settings,quit",
-      "RIGHT": "Menu|0|play,highscores,settings,quit",
-      "UP": "Menu|0|play,highscores,settings,quit",
-      "4": "Menu|0|play,highscores,settings,quit",
-      "1": "Menu|0|play,highscores,settings,quit",
-      "SPACE": "Menu|0|play,highscores,settings,quit",
-      "RETURN": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back",
-      "LEFT": "Menu|0|play,highscores,settings,quit",
-      "ESCAPE": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "2": "Menu|0|play,highscores,settings,quit"
-    },
-    "visit_count": 22,
-    "tts_history": [
-      "Abgebrochen. Hauptmenü.",
-      "Ranglisten",
-      "Spielen",
-      "Einstellungen"
+      "Sound-Memo",
+      "Simon Says",
+      "Sound Memo"
     ]
   },
   "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back": {
     "actions": {
-      "DOWN": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "RETURN": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "UP": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "4": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "5": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "LEFT": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "ESCAPE": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "RIGHT": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "SPACE": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "2": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "3": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "1": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back"
+      "ESCAPE": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back"
     },
-    "visit_count": 27,
+    "visit_count": 3,
     "tts_history": [
-      "1 Spieler",
-      "2 Spieler",
-      "Name für Spieler 1:",
-      "",
-      "4",
-      "5"
+      "1 Spieler"
     ]
   },
-  "Menu|1|play,highscores,settings,quit": {
+  "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back": {
     "actions": {
-      "5": "Menu|1|play,highscores,settings,quit",
-      "RIGHT": "Menu|1|play,highscores,settings,quit",
-      "LEFT": "Menu|1|play,highscores,settings,quit",
-      "SPACE": "Menu|1|play,highscores,settings,quit",
-      "2": "Menu|1|play,highscores,settings,quit",
-      "4": "Menu|1|play,highscores,settings,quit",
-      "1": "Menu|1|play,highscores,settings,quit",
-      "RETURN": "Menu|0|action,logic,nav,speech,sim,back",
-      "3": "Menu|1|play,highscores,settings,quit",
-      "DOWN": "Menu|1|play,highscores,settings,quit",
-      "UP": "Menu|1|play,highscores,settings,quit",
-      "ESCAPE": "Menu|0|beat_reaktor,stereo_catch,bomb_defuser,key_storm"
+      "DOWN": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "SPACE": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "RETURN": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "4": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "2": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "3": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "LEFT": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "5": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "1": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "RIGHT": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
+      "UP": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back"
     },
-    "visit_count": 23,
+    "visit_count": 16,
     "tts_history": [
-      "Abgebrochen. Hauptmenü.",
-      "Ranglisten",
-      "Spielen"
+      "Sound-Memo - Top: Bot (200)",
+      "Simon Says - Top: lauju (80)",
+      "1. lauju: 80 Punkte",
+      "Sound Memo - Top: Bot (200)"
     ]
   },
-  "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back": {
+  "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back": {
     "actions": {
-      "4": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "1": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "2": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "3": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "RIGHT": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "DOWN": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "LEFT": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "SPACE": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "RETURN": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "5": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "UP": "Menu|1|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,back"
-    },
-    "visit_count": 13,
-    "tts_history": [
-      "stereo_catch",
-      "sound_memo"
-    ]
-  },
-  "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back": {
-    "actions": {
-      "4": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "1": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "5": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "UP": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "3": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "ESCAPE": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "RIGHT": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "DOWN": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "2": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "RETURN": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back",
-      "SPACE": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back",
-      "LEFT": "Menu|1|1. Bot: 200 Punkte,2. lauju: 140 Punkte,3. Bot: 140 Punkte,4. Bot: 140 Punkte,5. Bot: 140 Punkte,back"
-    },
-    "visit_count": 57,
-    "tts_history": [
-      "1. Bot: 200 Punkte",
-      "2. lauju: 140 Punkte",
-      "3. Bot: 140 Punkte"
-    ]
-  },
-  "Menu|2|1. lauju: 340 Punkte,2. lauju: 0 Punkte,3. QA_Bot_7565: -200 Punkte,4. QA_Bot_6232: -250 Punkte,5. QA_Bot_6798: -250 Punkte,back": {
-    "actions": {
-      "SPACE": "Menu|2|1. lauju: 340 Punkte,2. lauju: 0 Punkte,3. QA_Bot_7565: -200 Punkte,4. QA_Bot_6232: -250 Punkte,5. QA_Bot_6798: -250 Punkte,back",
-      "4": "Menu|2|1. lauju: 340 Punkte,2. lauju: 0 Punkte,3. QA_Bot_7565: -200 Punkte,4. QA_Bot_6232: -250 Punkte,5. QA_Bot_6798: -250 Punkte,back",
-      "RIGHT": "Menu|2|1. lauju: 340 Punkte,2. lauju: 0 Punkte,3. QA_Bot_7565: -200 Punkte,4. QA_Bot_6232: -250 Punkte,5. QA_Bot_6798: -250 Punkte,back",
-      "2": "Menu|2|1. lauju: 340 Punkte,2. lauju: 0 Punkte,3. QA_Bot_7565: -200 Punkte,4. QA_Bot_6232: -250 Punkte,5. QA_Bot_6798: -250 Punkte,back",
-      "DOWN": "Menu|2|1. lauju: 340 Punkte,2. lauju: 0 Punkte,3. QA_Bot_7565: -200 Punkte,4. QA_Bot_6232: -250 Punkte,5. QA_Bot_6798: -250 Punkte,back",
-      "3": "Menu|2|1. lauju: 340 Punkte,2. lauju: 0 Punkte,3. QA_Bot_7565: -200 Punkte,4. QA_Bot_6232: -250 Punkte,5. QA_Bot_6798: -250 Punkte,back",
-      "LEFT": "Menu|2|1. lauju: 340 Punkte,2. lauju: 0 Punkte,3. QA_Bot_7565: -200 Punkte,4. QA_Bot_6232: -250 Punkte,5. QA_Bot_6798: -250 Punkte,back",
-      "ESCAPE": "Menu|0|stereo_catch,sound_memo,beat_reaktor,bomb_defuser,key_storm,simon_says,number_guess,safe_cracker,math_blitz,golden_mic,audio_maze,echolot,blind_farm,space_flight,word_snake,sound_quiz,letter_salad,capital_hunter,audio_bowling,rps_extreme,back"
-    },
-    "visit_count": 8,
-    "tts_history": [
-      "1. lauju: 340 Punkte",
-      "2. lauju: 0 Punkte"
-    ]
-  },
-  "Menu|2|vol_sfx,vol_music,speech_rate,language,back": {
-    "actions": {
-      "DOWN": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "LEFT": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "4": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "5": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "UP": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "RETURN": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "3": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "RIGHT": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "1": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
-      "2": "Menu|2|vol_sfx,vol_music,speech_rate,language,back",
-      "SPACE": "Menu|2|vol_sfx,vol_music,speech_rate,language,back"
-    },
-    "visit_count": 22,
-    "tts_history": [
-      "Sfx Lautstärke: 100%",
-      "Musik Lautstärke: 50%",
-      "Sfx Lautstärke: 0%",
-      "Sfx Lautstärke: 10%",
-      "Musik Lautstärke: 60%"
-    ]
-  },
-  "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz": {
-    "actions": {
-      "ESCAPE": "Menu|0|action,logic,nav,speech,sim,back",
-      "1": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "3": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "SPACE": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "RETURN": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "LEFT": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "DOWN": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "5": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "RIGHT": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "4": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "UP": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz",
-      "2": "Menu|1|sound_memo,simon_says,number_guess,safe_cracker,math_blitz"
-    },
-    "visit_count": 24,
-    "tts_history": [
-      "Sound-Memo",
-      "Simon Says",
-      "Zahlen-Raten"
-    ]
-  },
-  "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight": {
-    "actions": {
-      "5": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight",
-      "ESCAPE": "Menu|0|action,logic,nav,speech,sim,back"
-    },
-    "visit_count": 2,
-    "tts_history": [
-      "Das Goldene Mikrofon"
-    ]
-  },
-  "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter": {
-    "actions": {
-      "5": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter",
-      "RETURN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "1": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter",
-      "UP": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter",
-      "DOWN": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter",
-      "2": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter",
-      "3": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter",
-      "LEFT": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter",
-      "RIGHT": "Menu|3|word_snake,sound_quiz,letter_salad,capital_hunter"
+      "LEFT": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "RIGHT": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "1": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "5": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "SPACE": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "UP": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "RETURN": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "2": "Menu|0|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit"
     },
     "visit_count": 9,
     "tts_history": [
-      "Wort-Schlange",
-      "Geräusche-Quiz"
+      "1 Player(s)",
+      "Name for player 1:",
+      "2"
+    ]
+  },
+  "Menu|1|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back": {
+    "actions": {
+      "DOWN": "Menu|1|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "UP": "Menu|1|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "LEFT": "Menu|1|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "3": "Menu|1|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "RETURN": "Menu|1|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "4": "Menu|1|1 Player(s),2 Player(s),3 Player(s),4 Player(s),back",
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit"
+    },
+    "visit_count": 7,
+    "tts_history": [
+      "1 Player(s)",
+      "2 Player(s)",
+      "Name for player 1:",
+      "4"
+    ]
+  },
+  "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back": {
+    "actions": {
+      "4": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "RETURN": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "DOWN": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "SPACE": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "RIGHT": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "2": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "3": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "1": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "UP": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "LEFT": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,back",
+      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back"
+    },
+    "visit_count": 11,
+    "tts_history": [
+      "The Golden Microphone - Top: Bot_3280 (500)",
+      "1. Bot_3280: 500 points",
+      "3. lauju: 500 points"
     ]
   }
 }

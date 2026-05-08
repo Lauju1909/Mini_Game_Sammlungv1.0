@@ -30,7 +30,7 @@ class MockAudio:
         self.last_speak_time = 0
         self.in_init = False
 
-    def speak(self, text, interrupt=True):
+    def speak(self, text, interrupt=True, **kwargs):
         now = time.time()
         if interrupt and now - self.last_speak_time < 0.1 and self.last_speak_time > 0:
             self.errors.append(f"SPEECH STOMPING in {self.current_game_id}: '{text}' unterbricht '{self.last_speech}' zu schnell!")

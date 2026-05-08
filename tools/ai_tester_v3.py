@@ -33,7 +33,7 @@ class MockAudio:
         self.in_init = False
         self.current_lang = "de"
 
-    def speak(self, text, interrupt=True):
+    def speak(self, text, interrupt=True, **kwargs):
         now = time.time()
         self.current_lang = localization.get_language()
         
@@ -191,7 +191,7 @@ class AITesterV3:
             # Audit highscore
             collection.highscores.load_highscores()
             found = False
-            for s in collection.highscores.get_top_scores(mock_audio.current_game_id):
+            for s in collection.highscores.get_scores(mock_audio.current_game_id):
                 if s["name"] == test_name and s["score"] == score:
                     found = True
                     break

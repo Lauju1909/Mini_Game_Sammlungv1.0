@@ -17,7 +17,7 @@ class StairsOfFate(BaseGame):
 
     def start(self):
         super().start()
-        self.audio.speak(self._("climb_the_stairs"))
+        self.audio.speak(self._("climb_the_stairs"), priority=2)
         self.bg_loop = self.audio.play_looping_sound("music_back")
         if self.bg_loop:
             self.audio.set_channel_volume(self.bg_loop, 0.1)
