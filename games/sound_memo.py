@@ -1,6 +1,7 @@
 import random
 import pygame
 import math
+import time
 from games.base_game import BaseGame
 
 class SoundMemo(BaseGame):
@@ -22,7 +23,6 @@ class SoundMemo(BaseGame):
 
     def start(self):
         super().start()
-        import time
         self.start_time = time.time()
         self.audio.speak(self._("grid_field", pos=self.pos + 1), interrupt=False)
 
@@ -77,7 +77,6 @@ class SoundMemo(BaseGame):
                 self.revealed[self.pos] = True
                 
                 # Bonus-Punkte für Geschwindigkeit
-                import time
                 elapsed = time.time() - self.start_time
                 time_bonus = max(0, int(50 - elapsed / 2))
                 self.score += 20 + time_bonus
@@ -135,7 +134,9 @@ class SoundMemo(BaseGame):
             
             # Glanzeffekt für alle Karten
             shine_rect = pygame.Rect(x, y, 140, 35)
-            pygame.draw.rect(screen, (255, 255, 255, 20), shine_rect, border_top_left_radius=15, border_top_right_radius=15)
+            shine_surf = pygame.Surface((140, 35), pygame.SRCALPHA)
+            pygame.draw.rect(shine_surf, (255, 255, 255, 20), (0, 0, 140, 35), border_top_left_radius=15, border_top_right_radius=15)
+            screen.blit(shine_surf, (x, y))
 
             pygame.draw.rect(screen, border_color, rect, width=4 if self.pos == i else 2, border_radius=15)
             
@@ -153,7 +154,12 @@ class SoundMemo(BaseGame):
                     # Glow pulsieren lassen
                     pulse = abs(pygame.time.get_ticks() % 1000 - 500) / 500.0
                     for r in range(1, 4):
-                        pygame.draw.rect(screen, (255, 255, 255, int(100 * pulse // r)), rect.inflate(r*4, r*4), border_radius=15, width=2)
+                        alpha = int(100 * pulse / r)
+                        if alpha > 0:
+                            inf_rect = rect.inflate(r*4, r*4)
+                            glow_s = pygame.Surface(inf_rect.size, pygame.SRCALPHA)
+                            pygame.draw.rect(glow_s, (255, 255, 255, alpha), (0, 0, inf_rect.width, inf_rect.height), border_radius=15, width=2)
+                            screen.blit(glow_s, inf_rect.topleft)
                     screen.blit(solved_surf, (x + 70 - solved_surf.get_width()//2, y + 80))
                 
                 content_surf = font_small.render(sound_name, True, (255, 255, 255))
@@ -167,8 +173,10 @@ class SoundMemo(BaseGame):
                 if self.revealed[i]:
                     check_surf = font_large.render("✓", True, (0, 255, 0))
                     # Leuchteffekt um das Häkchen
-                    pulse = int(abs(math.sin(time.time() * 4)) * 5)
-                    pygame.draw.circle(screen, (0, 255, 100, 50), (x + 120, y + 20), 10 + pulse, width=1)
+                    pulse_val = int(abs(math.sin(time.time() * 4)) * 5)
+                    circ_surf = pygame.Surface((40, 40), pygame.SRCALPHA)
+                    pygame.draw.circle(circ_surf, (0, 255, 100, 50), (20, 20), 10 + pulse_val, width=1)
+                    screen.blit(circ_surf, (x + 120 - 20, y + 20 - 20))
                     screen.blit(check_surf, (x + 112, y + 5))
             else:
                 # Zeige nur die Nummer des Feldes
