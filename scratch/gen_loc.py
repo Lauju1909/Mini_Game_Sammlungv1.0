@@ -228,7 +228,7 @@ TRANSLATIONS_DE = {
     # Game Specifics: Stereo Catch
     "game_stereo_catch": "Stereo-Münzfang",
     "game_stereo_catch_desc": "Ein Geräusch wandert von links nach rechts. Schnapp es dir genau in der Mitte.",
-    "game_stereo_catch_instructions": "Das Geräusch bewegt sich links und rechts. Drücke Enter, wenn es genau in der Mitte ist!",
+    "game_stereo_catch_instructions": "Das Geräusch bewegt sich links und rechts. Drücke Enter oder die Leertaste, wenn es genau in der Mitte ist!",
 
     # Game Specifics: Space Flight
     "game_space_flight": "Weltraum-Flug",
@@ -238,7 +238,7 @@ TRANSLATIONS_DE = {
     # Game Specifics: Beat Reaktor
     "game_beat_reaktor": "Beat-Reaktor",
     "game_beat_reaktor_desc": "Drücke die Leertaste genau dann, wenn du das Becken hörst. Trainiere deine Reflexe!",
-    "game_beat_reaktor_instructions": "Drücke Enter, wenn du den Ton hörst. Sei präzise!",
+    "game_beat_reaktor_instructions": "Drücke Enter oder die Leertaste, wenn du den Ton hörst. Sei präzise!",
 
     # Game Specifics: Math Blitz
     "game_math_blitz": "Mathe-Blitz",
@@ -281,7 +281,7 @@ TRANSLATIONS_DE = {
     # Game Specifics: Bomb Defuser
     "game_bomb_defuser": "Bomben-Entschärfer",
     "game_bomb_defuser_desc": "Das Ticken wird immer schneller. Entschärfe die Bombe im letzten Moment!",
-    "game_bomb_defuser_instructions": "Entschärfe die Bombe! Drücke Leertaste im letzten Moment, bevor sie explodiert.",
+    "game_bomb_defuser_instructions": "Entschärfe die Bombe! Drücke Enter oder die Leertaste im letzten Moment, bevor sie explodiert.",
     "bomb_defused": "Bombe entschärft! Du hast {points} Punkte bekommen.",
     "bomb_exploded": "BOOM! Zu spät.",
     "bomb_defused_simple": "Entschärft!",
@@ -295,7 +295,7 @@ TRANSLATIONS_DE = {
     # Game Specifics: Audio Archery
     "game_audio_archery": "Audio-Bogenschießen",
     "game_audio_archery_desc": "Schieße den Pfeil genau in die Mitte des Ziels.",
-    "game_audio_archery_instructions": "Ein Ton bewegt sich von links nach rechts. Drücke die Leertaste genau dann, wenn der Ton perfekt in der Mitte ist, um ins Goldene zu treffen!",
+    "game_audio_archery_instructions": "Ein Ton bewegt sich von links nach rechts. Drücke Enter oder die Leertaste genau dann, wenn der Ton perfekt in der Mitte ist, um ins Goldene zu treffen!",
 
     # Game Specifics: Audio Slots
     "game_audio_slots": "Audio-Slots",
@@ -651,7 +651,7 @@ TRANSLATIONS_EN = {
     # Game Specifics: Stereo Catch
     "game_stereo_catch": "Stereo Coin Catch",
     "game_stereo_catch_desc": "A sound moves from left to right. Catch it exactly in the middle.",
-    "game_stereo_catch_instructions": "The sound moves left and right. Press Enter when it is exactly in the middle!",
+    "game_stereo_catch_instructions": "The sound moves left and right. Press Enter or Space when it is exactly in the middle!",
 
     # Game Specifics: Space Flight
     "game_space_flight": "Space Flight",
@@ -661,7 +661,7 @@ TRANSLATIONS_EN = {
     # Game Specifics: Beat Reaktor
     "game_beat_reaktor": "Beat Reactor",
     "game_beat_reaktor_desc": "Press Space exactly when you hear the cymbal. Train your reflexes!",
-    "game_beat_reaktor_instructions": "Press Enter when you hear the sound. Be precise!",
+    "game_beat_reaktor_instructions": "Press Enter or Space when you hear the sound. Be precise!",
 
     # Game Specifics: Math Blitz
     "game_math_blitz": "Math Blitz",
@@ -704,7 +704,7 @@ TRANSLATIONS_EN = {
     # Game Specifics: Bomb Defuser
     "game_bomb_defuser": "Bomb Defuser",
     "game_bomb_defuser_desc": "The ticking gets faster. Defuse the bomb at the last second!",
-    "game_bomb_defuser_instructions": "Defuse the bomb! Press Enter at the last moment before it explodes.",
+    "game_bomb_defuser_instructions": "Defuse the bomb! Press Enter or Space at the last moment before it explodes.",
     "bomb_defused": "Bomb defused! You got {points} points.",
     "bomb_exploded": "BOOM! Too late.",
     "bomb_defused_simple": "Defused!",
@@ -718,7 +718,7 @@ TRANSLATIONS_EN = {
     # Game Specifics: Audio Archery
     "game_audio_archery": "Audio Archery",
     "game_audio_archery_desc": "Shoot the arrow exactly into the center of the target.",
-    "game_audio_archery_instructions": "A sound moves from left to right. Press Space exactly when the sound is perfectly in the middle to hit the bullseye!",
+    "game_audio_archery_instructions": "A sound moves from left to right. Press Enter or Space exactly when the sound is perfectly in the middle to hit the bullseye!",
 
     # Game Specifics: Audio Slots
     "game_audio_slots": "Audio Slots",
