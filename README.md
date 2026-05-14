@@ -54,8 +54,14 @@ Dieses Projekt wurde mit dem **Agentic Tester V4** (autonomes KI-Testsystem) val
 Das Spiel basiert auf **Pygame** und nutzt eine benutzerdefinierte Audio-Engine für präzise Stereo-Positionierung und Sprachausgabe.
 
 - **Audio-Engine:** `core/audio.py` (Tolk/SAPI)
-- **Lokalisierung:** `core/localization.py`
+- **Lokalisierung:** `core/localization.py` (Generiert via `scratch/gen_loc.py`)
 - **Spiele-Logik:** `games/` Verzeichnis
+
+### Lokalisierung verwalten
+Alle Übersetzungen werden zentral in `scratch/gen_loc.py` gepflegt. Um Änderungen zu übernehmen:
+1. Bearbeite `TRANSLATIONS_DE` oder `TRANSLATIONS_EN` in `scratch/gen_loc.py`.
+2. Führe das Skript aus: `python scratch/gen_loc.py`.
+3. `core/localization.py` wird automatisch aktualisiert.
 
 ## 📄 Lizenz
 
