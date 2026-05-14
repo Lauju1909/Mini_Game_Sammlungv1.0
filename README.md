@@ -13,11 +13,11 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreie
 - **Screenreader-Integration:** Unterstützt NVDA, JAWS und andere via Tolk (SAPI Fallback).
 - **Zweisprachig:** Volle Unterstützung für **Deutsch** und **Englisch**.
 - **Vielseitige Kategorien:**
-  - **Action & Reaktion:** Beat-Reaktor, Stereo-Münzfang, Bomben-Entschärfer, Reaktions-Blitz, Tasten-Gewitter, Beat-Matcher.
-  - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Code-Knacker, Ton-Folge, Morse-Läufer, Klang-Weber.
-  - **Navigation & Erkundung:** Audio-Labyrinth, Echolot, Die blinde Farm, Echo-Jäger, Das goldene Mikrofon, Tier-Radar, Geheimnisvolle Türen.
-  - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Hauptstadt-Jäger, Zahlen-Raten, Buchstaben-Salat, Schnellwähler.
-  - **Simulation & Spezial:** Audio-Bowling, Schere-Stein-Papier, Audio-Slots, Tresor-Knacker, Mathe-Blitz, Tonhöhen-Meister, Frequenz-Jäger, Treppe des Schicksals, Audio-Balance.
+  - **Action & Reaktion:** Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
+  - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Code-Knacker, Zahlen-Raten, Tresor-Knacker, Mathe-Blitz, Tickende Uhren, Tonhöhen-Meister, Klang-Weber, Sound-Folge.
+  - **Navigation & Erkundung:** Das goldene Mikrofon, Audio-Labyrinth, Echolot, Die blinde Farm, Weltraum-Flug, Tier-Radar, Geheimnisvolle Türen, Frequenz-Jäger, Treppe des Schicksals.
+  - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Buchstaben-Salat, Hauptstadt-Jäger.
+  - **Simulation & Spezial:** Audio-Bowling, Schere-Stein-Papier Extreme, Audio-Slots, Echo-Jäger.
 - **Premium Design:** Moderne UI mit Glaseffekten, Partikelsystemen und flüssigen Animationen für sehende Mitspieler.
 - **Mehrspielermodus:** Lokal an einem PC mit bis zu 4 Spielern.
 
