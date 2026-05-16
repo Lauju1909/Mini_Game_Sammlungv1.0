@@ -14,12 +14,45 @@ class BeatReaktor(BaseGame):
         self.hits = 0
 
     def update(self):
+        if self.is_tutorial:
+            self.update_tutorial()
+            return
+
         if self.waiting_for_hit and time.time() >= self.next_hit:
             self.audio.play_sound("confirm")
             self.waiting_for_hit = False
             self.hit_time = time.time()
 
+    def update_tutorial(self):
+        if self.tutorial_step == 1:
+            # Willkommenstext wurde schon von BaseGame.start_tutorial gesprochen
+            self.audio.speak(self._("tut_br_1"), priority=1)
+            self.tutorial_step = 2
+        elif self.tutorial_step == 2:
+            if not self.audio.is_speaking():
+                self.audio.speak(self._("tut_br_2"), priority=1)
+                self.tutorial_step = 3
+        elif self.tutorial_step == 3:
+            if not self.audio.is_speaking():
+                self.audio.speak(self._("tut_br_3"), priority=1)
+                self.tutorial_step = 4
+                self.next_hit = time.time() + 2.0
+                self.waiting_for_hit = True
+        elif self.tutorial_step == 4:
+            # Warte auf den Beat im Tutorial
+            if self.waiting_for_hit and time.time() >= self.next_hit:
+                self.audio.play_sound("confirm")
+                self.waiting_for_hit = False
+                self.hit_time = time.time()
+        elif self.tutorial_step == 5:
+            if not self.audio.is_speaking():
+                self.finish_tutorial()
+
     def handle_input(self, event):
+        if self.is_tutorial:
+            self.handle_tutorial_input(event)
+            return
+
         if event.type == pygame.KEYDOWN:
             if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
                 if not self.waiting_for_hit:
@@ -49,6 +82,24 @@ class BeatReaktor(BaseGame):
                     self.score = max(0, self.score - 100)
             elif event.key == pygame.K_ESCAPE:
                 self.finish()
+
+    def handle_tutorial_input(self, event):
+        super().handle_tutorial_input(event)
+        if event.type == pygame.KEYDOWN:
+            if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
+                if self.tutorial_step == 4:
+                    if not self.waiting_for_hit:
+                        reaction = time.time() - self.hit_time
+                        if reaction < 0.8: # Großzügiger im Tutorial
+                            self.audio.play_sound("success")
+                            self.audio.speak(self._("tut_br_hit"), priority=2)
+                            self.tutorial_step = 5
+                        else:
+                            self.audio.speak(self._("tut_br_miss"), priority=2)
+                            self.next_hit = time.time() + 2.0
+                            self.waiting_for_hit = True
+                    else:
+                        self.audio.speak(self._("too_early"), priority=2)
 
     def draw(self, screen):
         # Hintergrund

@@ -238,8 +238,17 @@ class MiniGameCollection:
             self.current_player_idx = 0
             self.audio.speak(_("first_player", player=self.players[0]), priority=2)
             self.current_game = game_class(self.audio, self.highscores, self.settings, self.players[0])
-            self.state = "playing"
-            self.current_game.start()
+            
+            # Tutorial Check
+            completed = self.settings.get("completed_tutorials", [])
+            game_id = self.selected_game_item.get("id")
+            
+            if game_id not in completed:
+                self.state = "tutorial"
+                self.current_game.start_tutorial()
+            else:
+                self.state = "playing"
+                self.current_game.start()
 
     def setup_settings_menu(self):
         items = [
@@ -625,7 +634,7 @@ class MiniGameCollection:
             pygame.draw.circle(s, (100, 100, 255, 10), (150, 150), 150)
             self.screen.blit(s, (pos[0]-150, pos[1]-150))
         
-        if self.state in ["main_menu", "playing", "description", "name_input", "viewing_highscores"]:
+        if self.state in ["main_menu", "playing", "tutorial", "description", "name_input", "viewing_highscores"]:
             # Titel des aktuellen Menüs oder Zustands
             title_text = ""
             if self.state == "main_menu":
@@ -781,7 +790,7 @@ class MiniGameCollection:
                 val_surf = self.font_main.render(self.text_input.text + "_", True, (255, 215, 0))
                 self.screen.blit(val_surf, (220, 275))
         
-        elif self.state == "playing":
+        elif self.state in ["playing", "tutorial"]:
             # Während des Spiels zeigen wir ein einfaches "Playing..." UI
             play_rect = pygame.Rect(40, 120, 720, 440)
             self.draw_glass_rect(play_rect)
@@ -791,6 +800,9 @@ class MiniGameCollection:
                 self.current_game.draw(self.screen)
 
             game_name = self.selected_game_item["label"]
+            if self.state == "tutorial":
+                game_name += " (Tutorial)"
+                
             name_surf = self.font_main.render(game_name, True, (255, 215, 0))
             self.screen.blit(name_surf, (60, 530))
             
@@ -842,9 +854,12 @@ class MiniGameCollection:
             res = self.menu.handle_input(event)
             if res == "quit":
                 return "quit"
-        elif self.state == "playing" and self.current_game:
+        elif self.state in ["playing", "tutorial"] and self.current_game:
             self.current_game.handle_input(event)
-            if not self.current_game.active:
+            if self.state == "tutorial" and self.current_game.tutorial_finished:
+                self.state = "playing"
+                self.current_game.start()
+            elif self.state == "playing" and not self.current_game.active:
                 self.on_game_finished()
         return None
 
@@ -860,8 +875,11 @@ class MiniGameCollection:
                     self.running = False
                     running = False
                 
-            if self.state == "playing" and self.current_game:
+            if self.state in ["playing", "tutorial"] and self.current_game:
                 self.current_game.update()
+                if self.state == "tutorial" and self.current_game.tutorial_finished:
+                    self.state = "playing"
+                    self.current_game.start()
 
             self.render_ui()
             pygame.display.flip()

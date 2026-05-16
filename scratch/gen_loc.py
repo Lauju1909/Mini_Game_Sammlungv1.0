@@ -1,9 +1,14 @@
 
 import sys
 import os
+import re
+import json
+from deep_translator import GoogleTranslator
 
-# Define the translations dictionary as it should be
-# I'll merge the existing ones and add missing keys
+# =============================================================================
+# SINGLE SOURCE OF TRUTH: GERMAN TRANSLATIONS
+# Add new German texts here. English will be generated automatically.
+# =============================================================================
 
 TRANSLATIONS_DE = {
     # App & General
@@ -274,7 +279,7 @@ TRANSLATIONS_DE = {
 
     # Game Specifics: Number Guess
     "game_number_guess": "Zahlen-Raten",
-    "game_number_guess_desc": "Errate eine Zahl zwischen 1 und 100.",
+    "game_number_guess_desc": "Errate eine zahl zwischen 1 und 100.",
     "game_number_guess_instructions": "Errate eine Zahl zwischen 1 und 100. Nutze Pfeil hoch/runter zum Einstellen und Enter zum Bestätigen.",
     "correct_number": "Richtig! Die Zahl war {number}. Du hast {tries} Versuche gebraucht.",
 
@@ -426,211 +431,76 @@ TRANSLATIONS_DE = {
     # Additional Sounds/Items
     "sound_metalLatch": "Metallriegel",
     "sound_cloth1": "Stoff",
+
+    # Tutorials
+    "tutorial_welcome": "Willkommen zum Tutorial für {game}.",
+    "tutorial_step_complete": "Sehr gut! Nächster Schritt.",
+    "tutorial_finished": "Hervorragend! Du hast die Grundlagen verstanden. Viel Erfolg!",
+    "tutorial_skip": "Tutorial übersprungen.",
+    "tutorial_press_enter": "Drücke Enter zum Fortfahren.",
+    
+    # BeatReaktor Tutorial
+    "tut_br_1": "In diesem Spiel musst du im richtigen Moment reagieren.",
+    "tut_br_2": "Gleich hörst du einen Beckenschlag. Drücke die Leertaste genau dann, wenn du ihn hörst.",
+    "tut_br_3": "Probier es jetzt einmal aus. Warte auf den Ton...",
+    "tut_br_hit": "Treffer! Genau so funktioniert es.",
+    "tut_br_miss": "Das war noch nicht ganz richtig. Versuch es nochmal. Achte auf das Becken!",
 }
 
+# =============================================================================
+# AUTOMATED TRANSLATIONS: ENGLISH
+# These will be updated automatically by the script using deep-translator.
+# =============================================================================
+
 TRANSLATIONS_EN = {
-    # App & General
-    "app_title": "Audio Studio Tycoon: Game Pack v1.6",
-    "welcome": "Welcome to the Mini-Game Collection!",
-    "ready": "Mini-Game Collection ready. Main Menu.",
-    "main_menu": "Main Menu",
-    "play": "Play",
-    "highscores": "Highscores",
-    "settings": "Settings",
-    "language": "Language",
-    "exit": "Exit",
-    "back": "Back",
-    "instructions": "Instructions",
-    "instructions_base": "Press ESC to exit.",
-    "press_enter_to_start": "Press Enter to start.",
-    "game_desc_start": "Description: {desc}. Press Enter to start or ESC to abort.",
-    "select_category": "Select a category",
-    "select_game": "Select a game",
-    "score_entry": "{idx}. {name}: {score} points",
-    "category_rank_entry": "{rank}. {name}: {score} points",
-    "wait_for_it": "Wait for it...",
-    "good": "Good!",
-    "wrong": "Wrong!",
-    "time_up": "Time's up!",
-    "points": "Points",
-    "game_over": "Game Over!",
-    "final_score": "Your final score: {score} points.",
-    "new_highscore": "New Highscore!",
-    "highscore_for": "Highscores for {game}",
-    "highscore_category": "Highscore category: {cat}",
-    "no_highscores": "No highscores available yet.",
-    "no_highscores_in_category": "There are no highscores in this category yet.",
-    "player_name_prompt": "Please enter your name",
-    "name_input_prompt": "Name for player {idx}:",
-    "default_player_name": "Player",
-    "first_player": "First player: {player}",
-    "round_ended_next_player": "Round ended. Next player: {player}. Press Enter when you are ready.",
-    "all_players_finished": "All players finished. Returning to main menu.",
-    "player_count_title": "Player count for {game}",
-    "player_count_item": "{count} Player(s)",
     "aborted_main_menu": "Aborted. Main Menu.",
-    "input_empty_error": "Input cannot be empty.",
-    "input_cleared": "Empty",
-    "language_changed": "Language set to English.",
-    "no_desc_available": "No description available.",
-
-    # Categories
-    "cat_action": "Action & Reaction",
-    "cat_logic": "Logic & Memory",
-    "cat_nav": "Navigation & Exploration",
-    "cat_speech": "Language & Knowledge",
-    "cat_sim": "Simulation & Fun",
-    "cat_misc": "Miscellaneous",
-    "cat_all": "All Games",
-    "games_in_category": "Games in {cat}",
-
-    # Feedback & Common UI
-    "hit": "Hit!",
-    "hit_perfect": "Perfect hit!",
-    "hit_good": "Good job!",
-    "hit_ok": "Close!",
-    "miss": "Miss!",
-    "too_slow": "Too slow!",
-    "too_early": "Too early!",
-    "too_late": "Too late!",
-    "higher": "Higher",
-    "lower": "Lower",
-    "wall": "Wall",
-    "goal_reached": "Goal reached!",
-    "hit_obstacle": "Hit!",
-    "crash": "Crash!",
-    "distance_feedback": "You were {dist} meters away.",
-    "position_feedback": "Position {x}, {y}",
-    "round_number": "Round {idx}",
-    "reaction_result": "{ms} milliseconds!",
-
-    # Keys
-    "key_up": "Up",
-    "key_down": "Down",
-    "key_left": "Left",
-    "key_right": "Right",
-    "key_space": "Space",
-
-    # Simon / Sequence Common
-    "simon_listen": "Listen carefully...",
-    "simon_your_turn": "Your turn!",
-    "simon_up": "Up",
-    "simon_down": "Down",
-    "simon_left": "Left",
-    "simon_right": "Right",
-
-    # Math
-    "math_plus": "plus",
-    "math_minus": "minus",
-    "math_times": "times",
-    "what_is": "What is {a} {op} {b}?",
-
-    # RPS
-    "rps_scissors": "Scissors",
-    "rps_stone": "Stone",
-    "rps_paper": "Paper",
-    "rps_ai_has": "I have {choice}.",
-    "rps_draw": "Draw!",
-    "rps_win": "You win!",
-    "rps_lose": "I win!",
-    "rps_choose": "Choose your symbol!",
-
-    # Capital Hunter / Sound Quiz Countries/Options
-    "cap_germany": "Germany",
-    "cap_france": "France",
-    "cap_italy": "Italy",
+    "adjust_pitch_to_match": "Adjust your pitch to match the target.",
+    "all_players_finished": "All players finished. Returning to main menu.",
+    "already_revealed": "Already revealed",
+    "app_title": "Audio Studio Tycoon: Game Pack v1.6",
+    "back": "Back",
+    "beat_synced": "Perfectly synced!",
+    "bomb_defused": "Bomb defused! You got {points} points.",
+    "bomb_defused_simple": "Defused!",
+    "bomb_exploded": "BOOM! Too late.",
+    "bomb_too_early": "Too early!",
+    "bowl_pins": "You knocked down {pins} pins!",
     "cap_country": "Country: {country}.",
-    "sq_mouse": "Mouse",
-    "sq_car": "Car",
-    "sq_piano": "Piano",
-    "sq_bell": "Bell",
-    "sq_bird": "Bird",
-    "sq_thunder": "Thunder",
-    "sq_dog": "Dog",
-    "sq_alarm": "Alarm",
-    "sq_water": "Water",
+    "cap_france": "France",
+    "cap_germany": "Germany",
+    "cap_italy": "Italy",
+    "cat_action": "Action & Reaction",
+    "cat_all": "All Games",
+    "cat_logic": "Logic & Memory",
+    "cat_misc": "Miscellaneous",
+    "cat_nav": "Navigation & Exploration",
+    "cat_sim": "Simulation & Fun",
+    "cat_speech": "Language & Knowledge",
+    "category_rank_entry": "{rank}. {name}: {score} points",
     "ch_berlin": "Berlin",
-    "ch_vienna": "Vienna",
     "ch_bern": "Bern",
     "ch_london": "London",
-    "ch_paris": "Paris",
-    "ch_rome": "Rome",
     "ch_madrid": "Madrid",
     "ch_milan": "Milan",
-
-    # Settings
-    "settings_sfx_vol": "Sfx Volume: {vol}%",
-    "settings_music_vol": "Music Volume: {vol}%",
-    "settings_speech_rate": "Speech Rate: {rate}%",
-    "settings_speech_vol": "Speech Volume: {vol}%",
-    "settings_lang": "Language: {lang}",
-
-    # Game Specifics: Mole Master
-    "game_mole_master": "Mole Master",
-    "game_mole_master_desc": "Listen carefully to the direction the mole is coming from and press the corresponding arrow key.",
-    "game_mole_master_instructions": "If you hear the click on the left, press Left Arrow. Up, Up Arrow, etc. Be fast!",
-
-    # Game Specifics: Rhythm Master
-    "game_rhythm_master": "Rhythm King",
-    "game_rhythm_master_desc": "Press Space exactly in time with the metronome. Become the Rhythm King!",
-    "game_rhythm_master_instructions": "Listen to the beat. Press Space or Enter exactly when you hear the click. The speed increases!",
-
-    # Game Specifics: Echo Hunter
-    "game_echo_hunter": "Echo Hunter",
-    "game_echo_hunter_desc": "Find the invisible target using echoes.",
-    "game_echo_hunter_instructions": "Listen to the beep. Move with arrow keys. The beep gets faster and higher as you get closer.",
-
-    # Game Specifics: Audio Sequence
-    "game_audio_sequence": "Audio Sequence",
-    "game_audio_sequence_desc": "Remember the sequence of sounds and repeat it.",
-    "game_audio_sequence_instructions": "I will play a sequence of sounds. Repeat them using the arrow keys: Up, Down, Left, Right.",
-
-    # Game Specifics: Sound Memo
-    "game_sound_memo": "Sound Memo",
-    "game_sound_memo_desc": "Find the matching pairs of sounds in a hidden grid.",
-    "game_sound_memo_instructions": "Find the pairs. Use the arrow keys to navigate and Enter to reveal.",
-    "grid_field": "Field {pos}",
-    "grid_field_revealed": "Field {pos}: {item} (solved)",
-    "already_revealed": "Already revealed",
-    "pair_found": "Pair found!",
-    "no_pair": "No pair",
-
-    # Game Specifics: Safe Cracker
-    "game_safe_cracker": "Safe Cracker",
-    "game_safe_cracker_desc": "Turn the lock and listen for the clicks.",
-    "game_safe_cracker_instructions": "Find the 3 numbers of the combination. Turn with left/right arrows.",
-    "number_locked": "Number {idx} locked.",
-    "safe_open": "Safe open!",
-    "try_again": "Wrong, try again.",
-
-    # Game Specifics: Letter Salad
-    "game_letter_salad": "Letter Salad",
-    "game_letter_salad_desc": "I'll give you letters all mixed up. What word does it make?",
-    "game_letter_salad_instructions": "Letter salad! Guess the word. I will read the letters scrambled.",
-    "letters_shuffled": "Letters: {letters}",
-    "ls_word1": "Audio",
-    "ls_word2": "Studio",
-    "ls_word3": "Tycoon",
-    "ls_word4": "Blind",
-    "ls_word5": "Game",
-
-    # Game Specifics: Golden Mic
-    "game_golden_mic": "The Golden Microphone",
-    "game_golden_mic_desc": "Find the microphone in the room. The sound shows you if you are close.",
-    "game_golden_mic_instructions": "Find the Golden Microphone. Use the arrow keys. The sound gets higher the closer you get.",
-    "mic_found": "Found! The Golden Microphone is yours!",
-
-    # Game Specifics: Echolot
-    "game_echolot": "Sonar",
-    "game_echolot_desc": "Estimate the distance to the wall based on the echo of your ping.",
-    "game_echolot_instructions": "Press Enter for a ping. Estimate the distance to the wall. Press Space when you think you are 5 meters in front of it.",
-
-    # Game Specifics: Blind Farm
-    "game_blind_farm": "The Blind Farm",
-    "game_blind_farm_desc": "Find a specific animal sound in a field full of animals.",
-    "game_blind_farm_instructions": "Find the golden treasure chest in the barn! Use arrow keys to search, Enter to open.",
+    "ch_paris": "Paris",
+    "ch_rome": "Rome",
+    "ch_vienna": "Vienna",
+    "climb_the_stairs": "Climb the stairs. Watch out for creaks!",
+    "clock_number": "Clock {idx}",
+    "code_breaker_guess": "Checking combination...",
+    "code_not_in": "Not in code",
+    "code_pos_correct": "Correct at position {pos}",
+    "code_pos_wrong": "Wrong position",
+    "correct_number": "Correct! The number was {number}. It took you {tries} tries.",
+    "crash": "Crash!",
+    "default_player_name": "Player",
+    "distance_feedback": "You were {dist} meters away.",
+    "door_echo": "Echo",
+    "door_number": "Door {idx}",
+    "exit": "Exit",
     "farm_found": "Found! You found the animal!",
     "farm_item_1": "Old iron bar",
+    "farm_item_10": "Clay pot",
     "farm_item_2": "Wooden box",
     "farm_item_3": "Tin bucket",
     "farm_item_4": "Cloth bag",
@@ -639,241 +509,338 @@ TRANSLATIONS_EN = {
     "farm_item_7": "Treasure chest",
     "farm_item_8": "Firewood",
     "farm_item_9": "Bell",
-    "farm_item_10": "Clay pot",
-    "item_number": "Item {idx}",
-    "just_an_item": "Just a {item}.",
-
-    # Game Specifics: Audio Maze
-    "game_audio_maze": "Audio Maze",
-    "game_audio_maze_desc": "Find your way out of the maze using only sounds.",
-    "game_audio_maze_instructions": "Find the exit. Wind sound means wall. Arrow keys.",
-
-    # Game Specifics: Stereo Catch
-    "game_stereo_catch": "Stereo Coin Catch",
-    "game_stereo_catch_desc": "A sound moves from left to right. Catch it exactly in the middle.",
-    "game_stereo_catch_instructions": "The sound moves left and right. Press Enter or Space when it is exactly in the middle!",
-
-    # Game Specifics: Space Flight
-    "game_space_flight": "Space Flight",
-    "game_space_flight_desc": "Dodge asteroids by steering in the opposite direction.",
-    "game_space_flight_instructions": "Dodge asteroids! If you hear them on the left, press Right. If you hear them on the right, press Left.",
-
-    # Game Specifics: Beat Reaktor
-    "game_beat_reaktor": "Beat Reactor",
-    "game_beat_reaktor_desc": "Press Space exactly when you hear the cymbal. Train your reflexes!",
-    "game_beat_reaktor_instructions": "Press Enter or Space when you hear the sound. Be precise!",
-
-    # Game Specifics: Math Blitz
-    "game_math_blitz": "Math Blitz",
-    "game_math_blitz_desc": "Solve as many math problems as possible under time pressure.",
-    "game_math_blitz_instructions": "Solve the math problems as fast as possible!",
-    "game_math_blitz_instr": "Solve as many math problems as possible under time pressure.",
-
-    # Game Specifics: Key Storm
-    "game_key_storm": "Key Storm",
-    "game_key_storm_desc": "Press the announced keys as fast as possible within the time limit.",
-    "game_key_storm_instructions": "Hammer the keys I tell you! You have 20 seconds.",
-
-    # Game Specifics: Capital Hunter
-    "game_capital_hunter": "Capital Hunter",
-    "game_capital_hunter_desc": "A quiz about the world's capitals. Do you know them all?",
-    "game_capital_hunter_instructions": "A quiz about the world's capitals. Press 1, 2 or 3 for the correct answer.",
-
-    # Game Specifics: Audio Bowling
-    "game_audio_bowling": "Audio Bowling",
-    "game_audio_bowling_desc": "Throw the ball when the swing is at its highest to clear all pins.",
-    "game_audio_bowling_instructions": "Audio Bowling! Press Space to throw when the swinging is loudest.",
-    "bowl_pins": "You knocked down {pins} pins!",
-
-    # Game Specifics: RPS Extreme
-    "game_rps_extreme": "Rock, Paper, Scissors Extreme",
-    "game_rps_extreme_desc": "The classic against the AI with dramatic sound effects.",
-    "game_rps_extreme_instructions": "Rock, Paper, Scissors! Press 1 for Scissors, 2 for Stone, 3 for Paper.",
-
-    # Game Specifics: Simon Says
-    "game_simon_says": "Simon Says",
-    "game_simon_says_desc": "Remember the tone sequence and repeat it.",
-    "game_simon_says_instructions": "Remember the tone sequence and repeat it with the arrow keys.",
-
-    # Game Specifics: Number Guess
-    "game_number_guess": "Number Guessing",
-    "game_number_guess_desc": "Guess a number between 1 and 100.",
-    "game_number_guess_instructions": "Guess a number between 1 and 100. Use arrow keys to adjust and Enter to confirm.",
-    "correct_number": "Correct! The number was {number}. It took you {tries} tries.",
-
-    # Game Specifics: Bomb Defuser
-    "game_bomb_defuser": "Bomb Defuser",
-    "game_bomb_defuser_desc": "The ticking gets faster. Defuse the bomb at the last second!",
-    "game_bomb_defuser_instructions": "Defuse the bomb! Press Enter or Space at the last moment before it explodes.",
-    "bomb_defused": "Bomb defused! You got {points} points.",
-    "bomb_exploded": "BOOM! Too late.",
-    "bomb_defused_simple": "Defused!",
-    "bomb_too_early": "Too early!",
-
-    # Game Specifics: Reaction Blitz
-    "game_reaction_blitz": "Reaction Blitz",
-    "game_reaction_blitz_desc": "Test your reflexes! React immediately to the sound.",
-    "game_reaction_blitz_instructions": "Reaction Blitz! Press any key as soon as you hear the lightning sound. Be as fast as possible!",
-
-    # Game Specifics: Audio Archery
-    "game_audio_archery": "Audio Archery",
-    "game_audio_archery_desc": "Shoot the arrow exactly into the center of the target.",
-    "game_audio_archery_instructions": "A sound moves from left to right. Press Enter or Space exactly when the sound is perfectly in the middle to hit the bullseye!",
-
-    # Game Specifics: Audio Slots
-    "game_audio_slots": "Audio Slots",
-    "game_audio_slots_desc": "A virtual slot machine. Try your luck!",
-    "game_audio_slots_instructions": "Press Space or Enter to spin the reels. ESC to exit.",
-    "jackpot": "JACKPOT!",
-    "slots_spinning": "Reels are spinning...",
-    "slots_result": "Result: {r1}, {r2}, {r3}",
-    "win_small": "Small win!",
-    "win_big": "Big win!",
-
-    # Game Specifics: Word Snake
-    "game_word_snake": "Word Snake",
-    "game_word_snake_desc": "Form a chain of words. The new word must start with the last letter of the old one.",
-    "game_word_snake_instructions": "Word Snake! I'll name a word, you type one that starts with the last letter.",
-    "word_snake_start": "Starting word: {word}",
-    "word_snake_next": "Next word! Last letter: {char}",
-    "word_snake_wrong": "Wrong! Must start with {char}.",
-
-    # Game Specifics: Sound Quiz
-    "game_sound_quiz": "Sound Quiz",
-    "game_sound_quiz_desc": "Do you recognize what sound that was? Choose from three options.",
-    "game_sound_quiz_instructions": "Identify the sound! Press 1, 2, or 3 for the correct answer.",
-    "sound_quiz_question": "What is this? 1: {opt1}, 2: {opt2}, 3: {opt3}",
-
-    # Game Specifics: Code Breaker
-    "game_code_breaker": "Code Breaker",
-    "game_code_breaker_desc": "Guess the correct combination of sounds.",
-    "game_code_breaker_instructions": "Find the 3-tone sequence. Select a tone for each position using Up/Down and press Enter. High tone = Correct, Medium tone = Wrong position, Low tone = Not in code.",
-    "code_breaker_guess": "Checking combination...",
-    "code_pos_correct": "Correct at position {pos}",
-    "code_pos_wrong": "Wrong position",
-    "code_not_in": "Not in code",
-
-    # Game Specifics: Sound Catch
-    "game_sound_catch": "Sound Hunter",
-    "game_sound_catch_desc": "Catch the sound when it is exactly in the middle.",
-    "game_sound_catch_instructions": "A sound moves between your ears. Press Enter or Space when it is exactly in the middle.",
-
-    # Game Specifics: Speed Dial
-    "game_speed_dial": "Speed Dial",
-    "game_speed_dial_desc": "Type the announced numbers as fast as possible.",
-    "game_speed_dial_instructions": "I will tell you a sequence of numbers. Type them as fast as you can on your keyboard.",
-    "speed_dial_next": "Next number: {num}",
-
-    # Game Specifics: Animal Radar
+    "fell_down": "You fell down!",
+    "final_score": "Your final score: {score} points.",
+    "find_the_door_with": "Find the door with the sound: {sound}.",
+    "find_the_sound": "Find the animal!",
+    "first_player": "First player: {player}",
+    "frequency_found": "Station found!",
     "game_animal_radar": "Animal Radar",
     "game_animal_radar_desc": "Find the animal in the room based on its call.",
     "game_animal_radar_instructions": "Listen to the animal sound. Use the arrow keys to turn in that direction. Press Enter when you think you have the animal directly in front of you.",
-    "radar_distance": "Distance: {dist} meters.",
-    "find_the_sound": "Find the animal!",
-
-    # Game Specifics: Morse Runner
+    "game_audio_archery": "Audio Archery",
+    "game_audio_archery_desc": "Shoot the arrow exactly into the center of the target.",
+    "game_audio_archery_instructions": "A sound moves from left to right. Press Enter or Space exactly when the sound is perfectly in the middle to hit the bullseye!",
+    "game_audio_balance": "Audio Balance",
+    "game_audio_balance_desc": "Keep the sound centered.",
+    "game_audio_balance_instructions": "The sound drifts left or right. Use arrow keys to keep it in the center.",
+    "game_audio_bowling": "Audio Bowling",
+    "game_audio_bowling_desc": "Throw the ball when the swing is at its highest to clear all pins.",
+    "game_audio_bowling_instructions": "Audio Bowling! Press Space to throw when the swinging is loudest.",
+    "game_audio_maze": "Audio Maze",
+    "game_audio_maze_desc": "Find your way out of the maze using only sounds.",
+    "game_audio_maze_instructions": "Find the exit. Wind sound means wall. Arrow keys.",
+    "game_audio_sequence": "Audio Sequence",
+    "game_audio_sequence_desc": "Remember the sequence of sounds and repeat it.",
+    "game_audio_sequence_instructions": "I will play a sequence of sounds. Repeat them using the arrow keys: Up, Down, Left, Right.",
+    "game_audio_slots": "Audio Slots",
+    "game_audio_slots_desc": "A virtual slot machine. Try your luck!",
+    "game_audio_slots_instructions": "Press Space or Enter to spin the reels. ESC to exit.",
+    "game_beat_matcher": "Beat Matcher",
+    "game_beat_matcher_desc": "Hit the rhythm perfectly.",
+    "game_beat_matcher_instructions": "Press Space exactly on the beat of the kick.",
+    "game_beat_reaktor": "Beat Reactor",
+    "game_beat_reaktor_desc": "Press Space exactly when you hear the cymbal. Train your reflexes!",
+    "game_beat_reaktor_instructions": "Press Enter or Space when you hear the sound. Be precise!",
+    "game_blind_farm": "The Blind Farm",
+    "game_blind_farm_desc": "Find a specific animal sound in a field full of animals.",
+    "game_blind_farm_instructions": "Find the golden treasure chest in the barn! Use arrow keys to search, Enter to open.",
+    "game_bomb_defuser": "Bomb Defuser",
+    "game_bomb_defuser_desc": "The ticking gets faster. Defuse the bomb at the last second!",
+    "game_bomb_defuser_instructions": "Defuse the bomb! Press Enter or Space at the last moment before it explodes.",
+    "game_capital_hunter": "Capital Hunter",
+    "game_capital_hunter_desc": "A quiz about the world's capitals. Do you know them all?",
+    "game_capital_hunter_instructions": "A quiz about the world's capitals. Press 1, 2 or 3 for the correct answer.",
+    "game_code_breaker": "Code Breaker",
+    "game_code_breaker_desc": "Guess the correct combination of sounds.",
+    "game_code_breaker_instructions": "Find the 3-tone sequence. Select a tone for each position using Up/Down and press Enter. High tone = Correct, Medium tone = Wrong position, Low tone = Not in code.",
+    "game_desc_start": "Description: {desc}. Press Enter to start or ESC to abort.",
+    "game_echo_hunter": "Echo Hunter",
+    "game_echo_hunter_desc": "Find the invisible target using echoes.",
+    "game_echo_hunter_instructions": "Listen to the beep. Move with arrow keys. The beep gets faster and higher as you get closer.",
+    "game_echolot": "Sonar",
+    "game_echolot_desc": "Estimate the distance to the wall based on the echo of your ping.",
+    "game_echolot_instructions": "Press Enter for a ping. Estimate the distance to the wall. Press Space when you think you are 5 meters in front of it.",
+    "game_frequency_jammer": "Frequency Jammer",
+    "game_frequency_jammer_desc": "Find the signal in the noise.",
+    "game_frequency_jammer_instructions": "Turn the frequency dial (Left/Right) until the noise disappears and the signal becomes clear.",
+    "game_golden_mic": "The Golden Microphone",
+    "game_golden_mic_desc": "Find the microphone in the room. The sound shows you if you are close.",
+    "game_golden_mic_instructions": "Find the Golden Microphone. Use the arrow keys. The sound gets higher the closer you get.",
+    "game_key_storm": "Key Storm",
+    "game_key_storm_desc": "Press the announced keys as fast as possible within the time limit.",
+    "game_key_storm_instructions": "Hammer the keys I tell you! You have 20 seconds.",
+    "game_letter_salad": "Letter Salad",
+    "game_letter_salad_desc": "I'll give you letters all mixed up. What word does it make?",
+    "game_letter_salad_instructions": "Letter salad! Guess the word. I will read the letters scrambled.",
+    "game_math_blitz": "Math Blitz",
+    "game_math_blitz_desc": "Solve as many math problems as possible under time pressure.",
+    "game_math_blitz_instr": "Solve as many math problems as possible under time pressure.",
+    "game_math_blitz_instructions": "Solve the math problems as fast as possible!",
+    "game_mole_master": "Mole Master",
+    "game_mole_master_desc": "Listen carefully to the direction the mole is coming from and press the corresponding arrow key.",
+    "game_mole_master_instructions": "If you hear the click on the left, press Left Arrow. Up, Up Arrow, etc. Be fast!",
     "game_morse_runner": "Morse Runner",
     "game_morse_runner_desc": "Decode the Morse codes as fast as possible.",
     "game_morse_runner_instructions": "I'll play a Morse code. Press 1, 2 or 3 for the correct letter.",
+    "game_mystery_door": "Mystery Doors",
+    "game_mystery_door_desc": "Find the correct door based on the echo.",
+    "game_mystery_door_instructions": "Three doors to choose from. Knock on them (Arrow keys) and listen to the echo. Select the door with the special sound.",
+    "game_number_guess": "Number Guessing",
+    "game_number_guess_desc": "Guess a number between 1 and 100.",
+    "game_number_guess_instructions": "Guess a number between 1 and 100. Use arrow keys to adjust and Enter to confirm.",
+    "game_over": "Game Over!",
+    "game_pitch_perfect": "Pitch Perfect",
+    "game_pitch_perfect_desc": "Match your pitch to the target tone.",
+    "game_pitch_perfect_instructions": "Use Up/Down arrows to change your pitch. Try to match the target tone exactly.",
+    "game_reaction_blitz": "Reaction Blitz",
+    "game_reaction_blitz_desc": "Test your reflexes! React immediately to the sound.",
+    "game_reaction_blitz_instructions": "Reaction Blitz! Press any key as soon as you hear the lightning sound. Be as fast as possible!",
+    "game_rhythm_master": "Rhythm King",
+    "game_rhythm_master_desc": "Press Space exactly in time with the metronome. Become the Rhythm King!",
+    "game_rhythm_master_instructions": "Listen to the beat. Press Space or Enter exactly when you hear the click. The speed increases!",
+    "game_rps_extreme": "Rock, Paper, Scissors Extreme",
+    "game_rps_extreme_desc": "The classic against the AI with dramatic sound effects.",
+    "game_rps_extreme_instructions": "Rock, Paper, Scissors! Press 1 for Scissors, 2 for Stone, 3 for Paper.",
+    "game_safe_cracker": "Safe Cracker",
+    "game_safe_cracker_desc": "Turn the lock and listen for the clicks.",
+    "game_safe_cracker_instructions": "Find the 3 numbers of the combination. Turn with left/right arrows.",
+    "game_simon_says": "Simon Says",
+    "game_simon_says_desc": "Remember the tone sequence and repeat it.",
+    "game_simon_says_instructions": "Remember the tone sequence and repeat it with the arrow keys.",
+    "game_sound_catch": "Sound Hunter",
+    "game_sound_catch_desc": "Catch the sound when it is exactly in the middle.",
+    "game_sound_catch_instructions": "A sound moves between your ears. Press Enter or Space when it is exactly in the middle.",
+    "game_sound_memo": "Sound Memo",
+    "game_sound_memo_desc": "Find the matching pairs of sounds in a hidden grid.",
+    "game_sound_memo_instructions": "Find the pairs. Use the arrow keys to navigate and Enter to reveal.",
+    "game_sound_quiz": "Sound Quiz",
+    "game_sound_quiz_desc": "Do you recognize what sound that was? Choose from three options.",
+    "game_sound_quiz_instructions": "Identify the sound! Press 1, 2, or 3 for the correct answer.",
+    "game_sound_weaver": "Sound Weaver",
+    "game_sound_weaver_desc": "Put the notes of the melody in the correct order.",
+    "game_sound_weaver_instructions": "Listen to the melody. Reorder the notes using the arrow keys and Enter.",
+    "game_space_flight": "Space Flight",
+    "game_space_flight_desc": "Dodge asteroids by steering in the opposite direction.",
+    "game_space_flight_instructions": "Dodge asteroids! If you hear them on the left, press Right. If you hear them on the right, press Left.",
+    "game_speed_dial": "Speed Dial",
+    "game_speed_dial_desc": "Type the announced numbers as fast as possible.",
+    "game_speed_dial_instructions": "I will tell you a sequence of numbers. Type them as fast as you can on your keyboard.",
+    "game_stairs_of_fate": "Stairs of Fate",
+    "game_stairs_of_fate_desc": "Climb the stairs without them creaking.",
+    "game_stairs_of_fate_instructions": "Press Up to climb. If it creaks, jump with Space! If you walk while it creaks, you fall.",
+    "game_stereo_catch": "Stereo Coin Catch",
+    "game_stereo_catch_desc": "A sound moves from left to right. Catch it exactly in the middle.",
+    "game_stereo_catch_instructions": "The sound moves left and right. Press Enter or Space when it is exactly in the middle!",
+    "game_ticking_clock": "Ticking Clocks",
+    "game_ticking_clock_desc": "Find the clock that ticks differently.",
+    "game_ticking_clock_instructions": "Three clocks are ticking. One of them is different. Press 1, 2 or 3 to select it.",
+    "game_word_snake": "Word Snake",
+    "game_word_snake_desc": "Form a chain of words. The new word must start with the last letter of the old one.",
+    "game_word_snake_instructions": "Word Snake! I'll name a word, you type one that starts with the last letter.",
+    "games_in_category": "Games in {cat}",
+    "goal_reached": "Goal reached!",
+    "good": "Good!",
+    "grid_field": "Field {pos}",
+    "grid_field_revealed": "Field {pos}: {item} (solved)",
+    "higher": "Higher",
+    "highscore_category": "Highscore category: {cat}",
+    "highscore_for": "Highscores for {game}",
+    "highscores": "Highscores",
+    "hit": "Hit!",
+    "hit_good": "Good job!",
+    "hit_obstacle": "Hit!",
+    "hit_ok": "Close!",
+    "hit_perfect": "Perfect hit!",
+    "hit_the_beat": "Press Space exactly on the beat!",
+    "input_cleared": "Empty",
+    "input_empty_error": "Input cannot be empty.",
+    "instructions": "Instructions",
+    "instructions_base": "Press ESC to exit.",
+    "item_number": "Item {idx}",
+    "jackpot": "JACKPOT!",
+    "just_an_item": "Just a {item}.",
+    "key_down": "Down",
+    "key_left": "Left",
+    "key_right": "Right",
+    "key_space": "Space",
+    "key_up": "Up",
+    "language": "Language",
+    "language_changed": "Language set to English.",
+    "letters_shuffled": "Letters: {letters}",
+    "lower": "Lower",
+    "ls_word1": "Audio",
+    "ls_word2": "Studio",
+    "ls_word3": "Tycoon",
+    "ls_word4": "Blind",
+    "ls_word5": "Game",
+    "main_menu": "Main Menu",
+    "math_minus": "minus",
+    "math_plus": "plus",
+    "math_times": "times",
+    "mic_found": "Found! The Golden Microphone is yours!",
+    "miss": "Miss!",
     "morse_a": "Letter A",
     "morse_b": "Letter B",
     "morse_c": "Letter C",
     "morse_d": "Letter D",
     "morse_e": "Letter E",
-    "morse_s": "Letter S",
     "morse_o": "Letter O",
+    "morse_s": "Letter S",
     "morse_t": "Letter T",
-
-    # Game Specifics: Ticking Clocks
-    "game_ticking_clock": "Ticking Clocks",
-    "game_ticking_clock_desc": "Find the clock that ticks differently.",
-    "game_ticking_clock_instructions": "Three clocks are ticking. One of them is different. Press 1, 2 or 3 to select it.",
-    "clock_number": "Clock {idx}",
-    "select_different_clock": "Select the clock that ticks differently (1, 2, or 3).",
-
-    # Game Specifics: Pitch Perfect
-    "game_pitch_perfect": "Pitch Perfect",
-    "game_pitch_perfect_desc": "Match your pitch to the target tone.",
-    "game_pitch_perfect_instructions": "Use Up/Down arrows to change your pitch. Try to match the target tone exactly.",
-    "adjust_pitch_to_match": "Adjust your pitch to match the target.",
-
-    # Game Specifics: Mystery Doors
-    "game_mystery_door": "Mystery Doors",
-    "game_mystery_door_desc": "Find the correct door based on the echo.",
-    "game_mystery_door_instructions": "Three doors to choose from. Knock on them (Arrow keys) and listen to the echo. Select the door with the special sound.",
-    "find_the_door_with": "Find the door with the sound: {sound}.",
-    "sound_wind": "Wind",
-    "sound_water": "Water",
-    "sound_fire": "Fire",
-    "door_number": "Door {idx}",
-    "door_echo": "Echo",
-
-    # Game Specifics: Frequency Jammer
-    "game_frequency_jammer": "Frequency Jammer",
-    "game_frequency_jammer_desc": "Find the signal in the noise.",
-    "game_frequency_jammer_instructions": "Turn the frequency dial (Left/Right) until the noise disappears and the signal becomes clear.",
-    "tune_to_clear_signal": "Find the clear frequency.",
-    "frequency_found": "Station found!",
-
-    # Game Specifics: Stairs of Fate
-    "game_stairs_of_fate": "Stairs of Fate",
-    "game_stairs_of_fate_desc": "Climb the stairs without them creaking.",
-    "game_stairs_of_fate_instructions": "Press Up to climb. If it creaks, jump with Space! If you walk while it creaks, you fall.",
-    "climb_the_stairs": "Climb the stairs. Watch out for creaks!",
-    "step_safe": "Safe",
-    "step_creak": "Creak!",
-    "fell_down": "You fell down!",
-    "sound_creak1": "Creaking",
-
-    # Game Specifics: Sound Weaver
-    "game_sound_weaver": "Sound Weaver",
-    "game_sound_weaver_desc": "Put the notes of the melody in the correct order.",
-    "game_sound_weaver_instructions": "Listen to the melody. Reorder the notes using the arrow keys and Enter.",
-    "restore_the_melody": "Put the notes in the correct order.",
-
-    # Game Specifics: Beat Matcher
-    "game_beat_matcher": "Beat Matcher",
-    "game_beat_matcher_desc": "Hit the rhythm perfectly.",
-    "game_beat_matcher_instructions": "Press Space exactly on the beat of the kick.",
-    "hit_the_beat": "Press Space exactly on the beat!",
-    "beat_synced": "Perfectly synced!",
-
-    # Game Specifics: Audio Balance
-    "game_audio_balance": "Audio Balance",
-    "game_audio_balance_desc": "Keep the sound centered.",
-    "game_audio_balance_instructions": "The sound drifts left or right. Use arrow keys to keep it in the center.",
+    "name_input_prompt": "Name for player {idx}:",
+    "new_highscore": "New Highscore!",
+    "no_desc_available": "No description available.",
+    "no_highscores": "No highscores available yet.",
+    "no_highscores_in_category": "There are no highscores in this category yet.",
+    "no_pair": "No pair",
+    "number_locked": "Number {idx} locked.",
+    "out_of_balance": "You fell out of balance!",
+    "pair_found": "Pair found!",
     "pan_left": "To the left!",
     "pan_right": "To the right!",
-    "out_of_balance": "You fell out of balance!",
-
-    # Additional Sounds/Items
-    "sound_metalLatch": "Metal Latch",
+    "play": "Play",
+    "player_count_item": "{count} Player(s)",
+    "player_count_title": "Player count for {game}",
+    "player_name_prompt": "Please enter your name",
+    "points": "Points",
+    "position_feedback": "Position {x}, {y}",
+    "press_enter_to_start": "Press Enter to start.",
+    "radar_distance": "Distance: {dist} meters.",
+    "reaction_result": "{ms} milliseconds!",
+    "ready": "Mini-Game Collection ready. Main Menu.",
+    "restore_the_melody": "Put the notes in the correct order.",
+    "round_ended_next_player": "Round ended. Next player: {player}. Press Enter when you are ready.",
+    "round_number": "Round {idx}",
+    "rps_ai_has": "I have {choice}.",
+    "rps_choose": "Choose your symbol!",
+    "rps_draw": "Draw!",
+    "rps_lose": "I win!",
+    "rps_paper": "Paper",
+    "rps_scissors": "Scissors",
+    "rps_stone": "Stone",
+    "rps_win": "You win!",
+    "safe_open": "Safe open!",
+    "score_entry": "{idx}. {name}: {score} points",
+    "select_category": "Select a category",
+    "select_different_clock": "Select the clock that ticks differently (1, 2, or 3).",
+    "select_game": "Select a game",
+    "settings": "Settings",
+    "settings_lang": "Language: {lang}",
+    "settings_music_vol": "Music Volume: {vol}%",
+    "settings_sfx_vol": "Sfx Volume: {vol}%",
+    "settings_speech_rate": "Speech Rate: {rate}%",
+    "settings_speech_vol": "Speech Volume: {vol}%",
+    "simon_down": "Down",
+    "simon_left": "Left",
+    "simon_listen": "Listen carefully...",
+    "simon_right": "Right",
+    "simon_up": "Up",
+    "simon_your_turn": "Your turn!",
+    "slots_result": "Result: {r1}, {r2}, {r3}",
+    "slots_spinning": "Reels are spinning...",
     "sound_cloth1": "Cloth",
+    "sound_creak1": "Creaking",
+    "sound_fire": "Fire",
+    "sound_metalLatch": "Metal Latch",
+    "sound_quiz_question": "What is this? 1: {opt1}, 2: {opt2}, 3: {opt3}",
+    "sound_water": "Water",
+    "sound_wind": "Wind",
+    "speed_dial_next": "Next number: {num}",
+    "sq_alarm": "Alarm",
+    "sq_bell": "Bell",
+    "sq_bird": "Bird",
+    "sq_car": "Car",
+    "sq_dog": "Dog",
+    "sq_mouse": "Mouse",
+    "sq_piano": "Piano",
+    "sq_thunder": "Thunder",
+    "sq_water": "Water",
+    "step_creak": "Creak!",
+    "step_safe": "Safe",
+    "time_up": "Time's up!",
+    "too_early": "Too early!",
+    "too_late": "Too late!",
+    "too_slow": "Too slow!",
+    "try_again": "Wrong, try again.",
+    "tune_to_clear_signal": "Find the clear frequency.",
+    "tut_br_1": "In this game you have to react at the right moment.",
+    "tut_br_2": "You'll immediately hear a cymbal hit. Press the spacebar right when you hear him.",
+    "tut_br_3": "Try it now. Wait for the sound...",
+    "tut_br_hit": "Hit! That's exactly how it works.",
+    "tut_br_miss": "That wasn't quite right. Try again. Pay attention to the pool!",
+    "tutorial_finished": "Terrific! You've got the basics down. Good luck!",
+    "tutorial_press_enter": "Press Enter to continue.",
+    "tutorial_skip": "Skipped tutorial.",
+    "tutorial_step_complete": "Very good! Next step.",
+    "tutorial_welcome": "Welcome to the tutorial for {game}.",
+    "wait_for_it": "Wait for it...",
+    "wall": "Wall",
+    "welcome": "Welcome to the Mini-Game Collection!",
+    "what_is": "What is {a} {op} {b}?",
+    "win_big": "Big win!",
+    "win_small": "Small win!",
+    "word_snake_next": "Next word! Last letter: {char}",
+    "word_snake_start": "Starting word: {word}",
+    "word_snake_wrong": "Wrong! Must start with {char}.",
+    "wrong": "Wrong!",
 }
 
-# Verify consistency
-keys_de = set(TRANSLATIONS_DE.keys())
-keys_en = set(TRANSLATIONS_EN.keys())
+# =============================================================================
+# LOGIC
+# =============================================================================
 
-missing_in_en = keys_de - keys_en
-missing_in_de = keys_en - keys_de
+def translate_missing():
+    """Finds keys in DE missing in EN and translates them."""
+    global TRANSLATIONS_EN
+    keys_de = set(TRANSLATIONS_DE.keys())
+    keys_en = set(TRANSLATIONS_EN.keys())
+    missing = keys_de - keys_en
+    
+    if not missing:
+        return False
+    
+    print(f"Translating {len(missing)} missing keys to English...")
+    translator = GoogleTranslator(source='de', target='en')
+    
+    for key in missing:
+        text_de = TRANSLATIONS_DE[key]
+        # Preserve placeholders like {name}
+        try:
+            text_en = translator.translate(text_de)
+            TRANSLATIONS_EN[key] = text_en
+            print(f"  [Auto] {key}: {text_en}")
+        except Exception as e:
+            print(f"  [Error] Failed to translate {key}: {e}")
+            TRANSLATIONS_EN[key] = text_de # Fallback to DE
+            
+    return True
 
-if missing_in_en:
-    print(f"Missing in EN: {missing_in_en}")
-if missing_in_de:
-    print(f"Missing in DE: {missing_in_de}")
+def update_self():
+    """Updates the TRANSLATIONS_EN dictionary in this script's source code."""
+    script_path = __file__
+    with open(script_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    # Format the dictionary nicely
+    new_en_content = "TRANSLATIONS_EN = {\n"
+    for k in sorted(TRANSLATIONS_DE.keys()): # Keep order consistent with DE if possible, but sorted is safer
+        if k in TRANSLATIONS_EN:
+            v = TRANSLATIONS_EN[k].replace('"', '\\"')
+            new_en_content += f'    "{k}": "{v}",\n'
+    new_en_content += "}"
+    
+    # Replace the old block
+    pattern = r"TRANSLATIONS_EN = \{.*?\}\n"
+    new_content = re.sub(pattern, new_en_content + "\n", content, flags=re.DOTALL)
+    
+    with open(script_path, "w", encoding="utf-8") as f:
+        f.write(new_content)
+    print("gen_loc.py updated with new translations.")
 
-# Output formatted dictionary
-def format_dict(d, name):
-    lines = [f'    "{name}": {{']
-    for k, v in d.items():
-        v_esc = v.replace('"', '\\"')
-        lines.append(f'        "{k}": "{v_esc}",')
-    lines.append('    },')
-    return "\n".join(lines)
-
-# Complete core/localization.py content
-header = """\"\"\"
+def generate_localization_file():
+    """Generates the core/localization.py file."""
+    header = """\"\"\"
 Localization Manager for Mini-Game-Sammlung.
 Supports German (de) and English (en).
 Generated by scratch/gen_loc.py - DO NOT EDIT MANUALLY
@@ -914,16 +881,28 @@ def get_text(key, **kwargs):
     return text
 
 """
+    
+    def format_dict(d, name):
+        lines = [f'TRANSLATIONS["{name}"] = {{']
+        for k, v in d.items():
+            v_esc = v.replace('"', '\\"')
+            lines.append(f'    "{k}": "{v_esc}",')
+        lines.append('}')
+        return "\n".join(lines)
 
-output = header
-output += 'TRANSLATIONS = {\n'
-output += format_dict(TRANSLATIONS_DE, "de") + "\n"
-output += format_dict(TRANSLATIONS_EN, "en") + "\n"
-output += '}\n'
+    output = header
+    output += 'TRANSLATIONS = {}\n'
+    output += format_dict(TRANSLATIONS_DE, "de") + "\n\n"
+    output += format_dict(TRANSLATIONS_EN, "en") + "\n"
 
-# Write to core/localization.py
-output_path = os.path.join(os.path.dirname(__file__), "..", "core", "localization.py")
-with open(output_path, "w", encoding="utf-8") as f:
-    f.write(output)
+    output_path = os.path.join(os.path.dirname(__file__), "..", "core", "localization.py")
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(output)
+    print(f"Localization file generated in {output_path}")
 
-print(f"Localization file generated in {output_path}")
+if __name__ == "__main__":
+    updated = translate_missing()
+    if updated:
+        update_self()
+    generate_localization_file()

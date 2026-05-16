@@ -10,6 +10,7 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreie
 ## 🌟 Features
 
 - **Vollständige Barrierefreiheit:** 100% spielbar ohne visuelles Feedback.
+- **Interaktive Tutorials:** Sprachgeführte Einführungen für jedes Spiel beim ersten Start.
 - **Screenreader-Integration:** Unterstützt NVDA, JAWS und andere via Tolk (SAPI Fallback).
 - **Zweisprachig:** Volle Unterstützung für **Deutsch** und **Englisch**.
 - **Vielseitige Kategorien:**
