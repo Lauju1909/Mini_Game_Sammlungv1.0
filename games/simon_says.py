@@ -27,6 +27,10 @@ class SimonSays(BaseGame):
         self.audio.speak(self._("simon_listen"), interrupt=interrupt)
 
     def update(self):
+        if self.is_tutorial:
+            self.update_tutorial()
+            return
+
         if self.active_timer > 0:
             self.active_timer -= 1
             if self.active_timer == 0: self.active_key = None
@@ -51,7 +55,31 @@ class SimonSays(BaseGame):
                     self.is_playing_sequence = False
                     self.audio.speak(self._("simon_your_turn"))
 
+    def update_tutorial(self):
+        if self.tutorial_step == 1:
+            self.audio.speak(self._("tut_ss_1"), priority=1)
+            self.tutorial_step = 2
+        elif self.tutorial_step == 2:
+            if not self.audio.is_speaking():
+                self.audio.speak(self._("tut_ss_2"), priority=1)
+                self.tutorial_step = 3
+        elif self.tutorial_step == 3:
+            if not self.audio.is_speaking():
+                self.audio.speak(self._("tut_ss_3"), priority=1)
+                self.tutorial_step = 4
+        elif self.tutorial_step == 4:
+            if not self.audio.is_speaking():
+                self.audio.speak(self._("tut_ss_4"), priority=1)
+                self.tutorial_step = 5
+        elif self.tutorial_step == 6:
+            if not self.audio.is_speaking():
+                self.finish_tutorial()
+
     def handle_input(self, event):
+        if self.is_tutorial:
+            self.handle_tutorial_input(event)
+            return
+
         if self.is_playing_sequence: return
         if event.type == pygame.KEYDOWN:
             if event.key in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]:
@@ -70,6 +98,18 @@ class SimonSays(BaseGame):
                     self.finish()
             elif event.key == pygame.K_ESCAPE:
                 self.finish()
+
+    def handle_tutorial_input(self, event):
+        super().handle_tutorial_input(event)
+        if event.type == pygame.KEYDOWN:
+            if self.tutorial_step == 5:
+                if event.key == pygame.K_UP:
+                    self.audio.play_sound("success")
+                    self.audio.speak(self._("good"), priority=2)
+                    self.tutorial_step = 6
+                elif event.key in [pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]:
+                    self.audio.speak(self._("wrong"), priority=2)
+                    self.audio.speak(self._("tut_ss_4"), priority=2)
 
     def draw(self, screen):
         # Zeichne das klassische 4-Farben-Kreuz

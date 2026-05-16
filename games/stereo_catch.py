@@ -15,6 +15,10 @@ class StereoCatch(BaseGame):
         self.last_beep = 0
 
     def update(self):
+        if self.is_tutorial:
+            self.update_tutorial()
+            return
+
         now = time.time()
         dt = now - self.last_tick
         self.last_tick = now
@@ -34,7 +38,44 @@ class StereoCatch(BaseGame):
             self.audio.play_panned_sound("blip", self.pan)
             self.last_beep = now
 
+    def update_tutorial(self):
+        if self.tutorial_step == 1:
+            self.audio.speak(self._("tut_sc_1"), priority=1)
+            self.tutorial_step = 2
+        elif self.tutorial_step == 2:
+            if not self.audio.is_speaking():
+                self.audio.speak(self._("tut_sc_2"), priority=1)
+                self.tutorial_step = 3
+        elif self.tutorial_step == 3:
+            if not self.audio.is_speaking():
+                self.audio.speak(self._("tut_sc_3"), priority=1)
+                self.tutorial_step = 4
+        elif self.tutorial_step == 4:
+            # Bewege die Münze im Tutorial
+            now = time.time()
+            dt = now - self.last_tick
+            self.last_tick = now
+            self.pan += self.direction * (self.speed * 0.5) * (dt / 0.016) # Langsamer im Tutorial
+            if self.pan >= 1.0:
+                self.pan = 1.0
+                self.direction = -1
+                self.audio.play_sound("bump")
+            elif self.pan <= -1.0:
+                self.pan = -1.0
+                self.direction = 1
+                self.audio.play_sound("bump")
+            if now - self.last_beep > 0.2:
+                self.audio.play_panned_sound("blip", self.pan)
+                self.last_beep = now
+        elif self.tutorial_step == 5:
+            if not self.audio.is_speaking():
+                self.finish_tutorial()
+
     def handle_input(self, event):
+        if self.is_tutorial:
+            self.handle_tutorial_input(event)
+            return
+
         if event.type == pygame.KEYDOWN:
             if event.key in [pygame.K_RETURN, pygame.K_SPACE]:
                 accuracy = abs(self.pan)
@@ -59,6 +100,19 @@ class StereoCatch(BaseGame):
                 self.finish()
             elif event.key == pygame.K_ESCAPE:
                 self.finish()
+
+    def handle_tutorial_input(self, event):
+        super().handle_tutorial_input(event)
+        if event.type == pygame.KEYDOWN:
+            if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
+                if self.tutorial_step == 4:
+                    accuracy = abs(self.pan)
+                    if accuracy < 0.25: # Großzügig im Tutorial
+                        self.audio.play_sound("success")
+                        self.audio.speak(self._("good"), priority=2)
+                        self.tutorial_step = 5
+                    else:
+                        self.audio.speak(self._("miss"), priority=2)
 
     def draw(self, screen):
         # Hintergrund-Elemente

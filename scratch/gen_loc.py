@@ -445,6 +445,17 @@ TRANSLATIONS_DE = {
     "tut_br_3": "Probier es jetzt einmal aus. Warte auf den Ton...",
     "tut_br_hit": "Treffer! Genau so funktioniert es.",
     "tut_br_miss": "Das war noch nicht ganz richtig. Versuch es nochmal. Achte auf das Becken!",
+
+    # StereoCatch Tutorial
+    "tut_sc_1": "In diesem Spiel bewegt sich ein Geräusch zwischen deinen Ohren von links nach rechts.",
+    "tut_sc_2": "Deine Aufgabe ist es, die Münze genau dann zu fangen, wenn sie direkt in der Mitte vor dir ist.",
+    "tut_sc_3": "Du hörst jetzt die Münze wandern. Drücke die Leertaste, wenn sie exakt in der Mitte ist.",
+
+    # SimonSays Tutorial
+    "tut_ss_1": "In Simon Says musst du dir eine Tonfolge merken und sie dann mit den Pfeiltasten wiederholen.",
+    "tut_ss_2": "Simon sagt dir die Richtungen an. Achte genau darauf!",
+    "tut_ss_3": "Wir probieren es mit einem einzelnen Ton. Simon sagt: Oben.",
+    "tut_ss_4": "Drücke jetzt die Taste Oben.",
 }
 
 # =============================================================================
@@ -769,6 +780,13 @@ TRANSLATIONS_EN = {
     "tut_br_3": "Try it now. Wait for the sound...",
     "tut_br_hit": "Hit! That's exactly how it works.",
     "tut_br_miss": "That wasn't quite right. Try again. Pay attention to the pool!",
+    "tut_sc_1": "In this game, a sound moves between your ears from left to right.",
+    "tut_sc_2": "Your job is to catch the coin exactly when it is directly in the middle in front of you.",
+    "tut_sc_3": "You can now hear the coin moving. Press the spacebar when it's exactly in the middle.",
+    "tut_ss_1": "In Simon Says you have to memorize a sequence of sounds and then repeat them using the arrow keys.",
+    "tut_ss_2": "Simon will give you directions. Pay close attention!",
+    "tut_ss_3": "We'll try a single tone. Simon says: Upstairs.",
+    "tut_ss_4": "Now press the Up button.",
     "tutorial_finished": "Terrific! You've got the basics down. Good luck!",
     "tutorial_press_enter": "Press Enter to continue.",
     "tutorial_skip": "Skipped tutorial.",
