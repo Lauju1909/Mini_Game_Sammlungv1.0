@@ -16,6 +16,7 @@ class KeyStorm(BaseGame):
             pygame.K_SPACE: self._("key_space")
         }
         self.end_time = time.time() + 20
+        self.target_key = None
 
     def start(self):
         super().start()
@@ -56,7 +57,10 @@ class KeyStorm(BaseGame):
         screen.blit(title, (400 - title.get_width()//2, 80))
         
         # Die gesuchte Taste groß anzeigen
-        key_name = self.keys[self.target_key].upper()
+        if self.target_key is not None and self.target_key in self.keys:
+            key_name = self.keys[self.target_key].upper()
+        else:
+            key_name = "?"
         font_key = pygame.font.SysFont("Arial", 100, bold=True)
         key_surf = font_key.render(key_name, True, (255, 255, 0))
         screen.blit(key_surf, (400 - key_surf.get_width()//2, 230))

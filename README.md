@@ -1,9 +1,9 @@
-# Audio Studio Tycoon: Mini-Game-Sammlung v1.6
+# Audio Studio Tycoon: Mini-Game-Sammlung v1.7
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.6-green.svg)
+![Version](https://img.shields.io/badge/version-1.7-green.svg)
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
-![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V4)-brightgreen.svg)
+![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V5)-brightgreen.svg)
 
 Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
@@ -45,10 +45,19 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreie
 
 ## ✅ Quality Assurance
 
-Dieses Projekt wurde mit dem **Agentic Tester V4** (autonomes KI-Testsystem) validiert:
-- **Test-Umfang:** 1000+ automatisierte Aktionen in DE/EN Sessions.
+Dieses Projekt wurde mit dem **Agentic Tester V5** (autonomes KI-Testsystem) validiert:
+- **Test-Umfang:** 1000+ automatisierte Aktionen in DE/EN Sessions sowie Grafik-Rendering-Simulation aller 40 Mini-Games.
 - **Status:** 0 Crashes, stabile Audio-Engine, korrekte Lokalisierung.
-- **Ergebnis:** Alle Menüpfade und Kernmechaniken sind stabil.
+- **Ergebnis:** Alle Menüpfade, Zeichenroutinen und Kernmechaniken sind stabil und verifiziert.
+
+## 📈 Changelog v1.7
+
+- **Kritische Fehlerbehebungen:**
+  - `bomb_defuser.py`: Behebung des `UnboundLocalError` bei der `progress`-Variable im Rendering.
+  - `key_storm.py`: Behebung des `AttributeError` durch korrekte Initialisierung von `self.target_key = None` vor Spielstart.
+  - `number_guess.py`: Behebung des `NameError` durch Verschieben des Pygame-Imports auf Modulebene.
+- **Code-Bereinigung:**
+  - Alle redundanten und rein lokalen Pygame-Importe in `letter_salad.py`, `rps_extreme.py`, `word_snake.py`, `capital_hunter.py` und `sound_quiz.py` wurden auf Modulebene konsolidiert, um Stabilitätsproblemen vorzubeugen.
 
 ## 🛠️ Entwicklung
 
@@ -71,7 +80,7 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert.
 ## 🔗 Links
 
 - **Repository:** [https://github.com/Lauju1909/Mini_Game_Sammlungv1.0](https://github.com/Lauju1909/Mini_Game_Sammlungv1.0)
-- **Releases:** [Download v1.6](https://github.com/Lauju1909/Mini_Game_Sammlungv1.0/releases)
+- **Releases:** [Download v1.7](https://github.com/Lauju1909/Mini_Game_Sammlungv1.0/releases)
 
 ---
 *Entwickelt für das Advanced Agentic Coding Team von Google Deepmind.*

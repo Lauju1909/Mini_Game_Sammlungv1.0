@@ -1,4 +1,5 @@
 import random
+import pygame
 from games.base_game import BaseGame
 
 class CapitalHunter(BaseGame):
@@ -25,7 +26,6 @@ class CapitalHunter(BaseGame):
         self.audio.speak(text)
 
     def handle_input(self, event):
-        import pygame
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1: self._check(0)
             elif event.key == pygame.K_2: self._check(1)

@@ -1,4 +1,5 @@
 import random
+import pygame
 from games.base_game import BaseGame
 
 class LetterSalad(BaseGame):
@@ -17,7 +18,6 @@ class LetterSalad(BaseGame):
         self.current_input = ""
 
     def handle_input(self, event):
-        import pygame
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 if self.current_input.lower() == self.target.lower():
@@ -35,7 +35,6 @@ class LetterSalad(BaseGame):
                     self.audio.speak(char)
 
     def draw(self, screen):
-        import pygame
         font = pygame.font.SysFont("Arial", 40, bold=True)
         # Salat-Hintergrund
         pygame.draw.rect(screen, (60, 40, 60), (100, 150, 600, 300), border_radius=20)

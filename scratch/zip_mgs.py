@@ -3,7 +3,7 @@ import zipfile
 
 def create_zip():
     mgs_dir = r"C:\Users\lauri\.gemini\antigravity\scratch\Mini_Game_Sammlung"
-    zip_name = os.path.join(mgs_dir, "Audio_Studio_Tycoon_v1.6.zip")
+    zip_name = os.path.join(mgs_dir, "Audio_Studio_Tycoon_v1.7.zip")
     
     include_files = [
         "main.py", "README.md", "Tolk.dll", "nvdaControllerClient64.dll", "run_game.bat"

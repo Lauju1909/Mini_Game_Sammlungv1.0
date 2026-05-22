@@ -1,4 +1,5 @@
 import random
+import pygame
 from games.base_game import BaseGame
 
 class WordSnake(BaseGame):
@@ -14,7 +15,6 @@ class WordSnake(BaseGame):
         self.audio.speak(self._("word_snake_start", word=self.last_word), interrupt=False)
 
     def handle_input(self, event):
-        import pygame
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 if self.current_input.lower().startswith(self.last_word[-1].lower()):
@@ -36,7 +36,6 @@ class WordSnake(BaseGame):
                     self.audio.speak(char)
 
     def draw(self, screen):
-        import pygame
         font = pygame.font.SysFont("Arial", 40, bold=True)
         # Snake-Körper-Hintergrund
         pygame.draw.rect(screen, (40, 60, 40), (100, 150, 600, 300), border_radius=20)

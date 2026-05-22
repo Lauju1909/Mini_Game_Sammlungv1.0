@@ -1,4 +1,5 @@
 import random
+import pygame
 from games.base_game import BaseGame
 
 class RPS_Extreme(BaseGame):
@@ -12,7 +13,6 @@ class RPS_Extreme(BaseGame):
         self.audio.speak(self._("rps_choose"))
 
     def handle_input(self, event):
-        import pygame
         if event.type == pygame.KEYDOWN:
             if event.key in [pygame.K_1, pygame.K_2, pygame.K_3]:
                 choices = [self._("rps_scissors"), self._("rps_stone"), self._("rps_paper")]
@@ -39,7 +39,6 @@ class RPS_Extreme(BaseGame):
             elif event.key == pygame.K_ESCAPE: self.finish()
 
     def draw(self, screen):
-        import pygame
         font = pygame.font.SysFont("Arial", 40, bold=True)
         title = font.render("SCHERE-STEIN-PAPIER", True, (255, 255, 255))
         screen.blit(title, (400 - title.get_width()//2, 80))

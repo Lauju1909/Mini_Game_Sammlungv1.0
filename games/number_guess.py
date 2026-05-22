@@ -1,4 +1,5 @@
 import random
+import pygame
 from games.base_game import BaseGame
 
 class NumberGuess(BaseGame):
@@ -11,7 +12,6 @@ class NumberGuess(BaseGame):
         self.instructions = self._("game_number_guess_instructions")
 
     def handle_input(self, event):
-        import pygame
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 if self.current_guess < 100:

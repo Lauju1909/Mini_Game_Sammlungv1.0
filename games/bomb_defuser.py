@@ -50,6 +50,9 @@ class BombDefuser(BaseGame):
                 self.finish()
 
     def draw(self, screen):
+        # Fortschrittsbalken (Gefahr)
+        progress = (self.speed - 1.0) / (self.max_speed - 1.0)
+
         # Zeichne Bombe
         center = (400, 300)
         # Bombenkörper
@@ -69,9 +72,6 @@ class BombDefuser(BaseGame):
         if int(time.time() * 10) % 2 == 0:
             pygame.draw.circle(screen, (255, 200, 0), (int(spark_x), int(spark_y)), 15)
             pygame.draw.circle(screen, (255, 50, 0), (int(spark_x), int(spark_y)), 8)
-
-        # Fortschrittsbalken (Gefahr)
-        progress = (self.speed - 1.0) / (self.max_speed - 1.0)
         width = int(progress * 600)
         bar_color = (int(progress * 255), int((1-progress) * 255), 0)
         
