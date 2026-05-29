@@ -10,16 +10,21 @@ class SpaceFlight(BaseGame):
         self.instructions = self._("game_space_flight_instructions")
         self.next_asteroid = time.time() + 2
         self.asteroids_passed = 0
+        self.waiting_for_dodge = False
 
     def update(self):
-        if time.time() > self.next_asteroid:
+        now = time.time()
+        if self.waiting_for_dodge:
+            if now > self.hit_deadline:
+                self._fail()
+        elif now > self.next_asteroid:
             self.side = random.choice(["links", "rechts"])
             pan = -1.0 if self.side == "links" else 1.0
             self.audio.play_panned_sound("warn", pan)
             # Nutze lokalisierte Richtungsansage
             self.audio.speak(self._("key_left" if self.side == "links" else "key_right"))
-            self.hit_deadline = time.time() + 1.5
-            self.next_asteroid = time.time() + 3
+            self.hit_deadline = now + 1.5
+            self.next_asteroid = now + 3
             self.waiting_for_dodge = True
 
     def handle_input(self, event):

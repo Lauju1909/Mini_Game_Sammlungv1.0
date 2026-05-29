@@ -29,6 +29,10 @@ class WordSnake(BaseGame):
                     self.current_input = ""
             elif event.key == pygame.K_ESCAPE:
                 self.finish()
+            elif event.key == pygame.K_BACKSPACE:
+                if len(self.current_input) > 0:
+                    self.current_input = self.current_input[:-1]
+                    self.audio.play_sound("select") # fallback feedback
             else:
                 char = event.unicode
                 if char.isalpha():

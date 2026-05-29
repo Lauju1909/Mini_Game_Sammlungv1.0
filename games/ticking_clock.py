@@ -64,8 +64,13 @@ class TickingClock(BaseGame):
         super().handle_input(event)
         if event.type == pygame.KEYDOWN:
             if self.state == "waiting_input":
-                if event.key in [pygame.K_1, pygame.K_2, pygame.K_3]:
-                    idx = event.key - pygame.K_1
+                if event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_KP1, pygame.K_KP2, pygame.K_KP3]:
+                    if event.key in [pygame.K_1, pygame.K_KP1]:
+                        idx = 0
+                    elif event.key in [pygame.K_2, pygame.K_KP2]:
+                        idx = 1
+                    else:
+                        idx = 2
                     if idx == self.correct_clock:
                         self.score += 33
                         self.audio.play_sound("success")
