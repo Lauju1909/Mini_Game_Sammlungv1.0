@@ -584,7 +584,8 @@ class MiniGameCollection:
         self.current_highscore_data = {
             "game_name": item.get("game_title", item["label"]),
             "scores": scores,
-            "id": item["id"]
+            "id": item["id"],
+            "index": 0
         }
         self.audio.speak(_("highscore_for", game=self.current_highscore_data["game_name"]), interrupt=True, priority=1)
         if not scores:
@@ -850,6 +851,30 @@ class MiniGameCollection:
                     self.state = "main_menu"
                     self.menu.pop_menu() # Gehe zurück zur Spieleliste in der Highscore-Kategorie
                     return None
+                elif event.key == pygame.K_UP:
+                    scores = self.current_highscore_data["scores"]
+                    if not scores:
+                        self.audio.play_sound("bump")
+                    elif self.current_highscore_data["index"] > 0:
+                        self.current_highscore_data["index"] -= 1
+                        idx = self.current_highscore_data["index"]
+                        s = scores[idx]
+                        self.audio.play_sound("click")
+                        self.audio.speak(_("score_entry", idx=idx+1, name=s['name'], score=s['score']), interrupt=True)
+                    else:
+                        self.audio.play_sound("bump")
+                elif event.key == pygame.K_DOWN:
+                    scores = self.current_highscore_data["scores"]
+                    if not scores:
+                        self.audio.play_sound("bump")
+                    elif self.current_highscore_data["index"] < len(scores) - 1:
+                        self.current_highscore_data["index"] += 1
+                        idx = self.current_highscore_data["index"]
+                        s = scores[idx]
+                        self.audio.play_sound("click")
+                        self.audio.speak(_("score_entry", idx=idx+1, name=s['name'], score=s['score']), interrupt=True)
+                    else:
+                        self.audio.play_sound("bump")
         elif self.state == "main_menu":
             res = self.menu.handle_input(event)
             if res == "quit":
