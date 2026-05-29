@@ -13,6 +13,9 @@ class SoundQuiz(BaseGame):
             {"sound": "error", "options": [self._("sq_dog"), self._("sq_alarm"), self._("sq_water")], "correct": 1}
         ]
         self.idx = 0
+        
+    def start(self):
+        super().start()
         self._ask()
 
     def _ask(self):

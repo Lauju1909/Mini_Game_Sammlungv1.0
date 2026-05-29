@@ -45,7 +45,7 @@ class MoleMaster(BaseGame):
                 pan = [-1.0, 0.0, 1.0, 0.0][self.active_mole]
                 self.audio.play_panned_sound("click", pan)
                 # Ansage optional, aber für Blindheit wichtig
-                # self.audio.speak(self._(directions[self.active_mole]))
+                self.audio.speak(self._(directions[self.active_mole]))
         
         # Maulwurf verschwindet, wenn zu langsam
         elif current_time - self.mole_timer > 1.2:
@@ -54,6 +54,7 @@ class MoleMaster(BaseGame):
             self.audio.play_sound("bump")
 
     def handle_input(self, event):
+        super().handle_input(event)
         if not self.active: return
         if event.type == pygame.KEYDOWN:
             hit = False

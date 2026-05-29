@@ -15,11 +15,13 @@ class KeyStorm(BaseGame):
             pygame.K_RIGHT: self._("key_right"),
             pygame.K_SPACE: self._("key_space")
         }
-        self.end_time = time.time() + 20
+        self.end_time = 0
         self.target_key = None
 
     def start(self):
         super().start()
+        self.end_time = time.time() + 20
+        self.score = 0
         self._next_key(interrupt=False)
 
     def _next_key(self, interrupt=True):
@@ -53,7 +55,9 @@ class KeyStorm(BaseGame):
         
         # Titel
         font_title = pygame.font.SysFont("Arial", 40, bold=True)
-        title = font_title.render("TASTEN-GEWITTER!", True, (255, 255, 255))
+        title_text = self._("game_key_storm_title")
+        if title_text == "game_key_storm_title": title_text = "TASTEN-GEWITTER!"
+        title = font_title.render(title_text, True, (255, 255, 255))
         screen.blit(title, (400 - title.get_width()//2, 80))
         
         # Die gesuchte Taste groß anzeigen
@@ -73,5 +77,7 @@ class KeyStorm(BaseGame):
         
         # Punkte
         font_info = pygame.font.SysFont("Arial", 30)
-        score_surf = font_info.render(f"Treffer: {self.score}", True, (255, 255, 255))
+        score_text = self._("score")
+        if score_text == "score": score_text = "Score"
+        score_surf = font_info.render(f"{score_text}: {self.score}", True, (255, 255, 255))
         screen.blit(score_surf, (100, 110))

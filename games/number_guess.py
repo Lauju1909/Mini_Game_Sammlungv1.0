@@ -12,6 +12,7 @@ class NumberGuess(BaseGame):
         self.instructions = self._("game_number_guess_instructions")
 
     def handle_input(self, event):
+        super().handle_input(event)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 if self.current_guess < 100:
@@ -48,8 +49,7 @@ class NumberGuess(BaseGame):
                     self.audio.speak(self._("higher"))
                 else:
                     self.audio.speak(self._("lower"))
-            elif event.key == pygame.K_ESCAPE:
-                self.finish()
+
 
     def draw(self, screen):
         font_large = pygame.font.SysFont("Arial", 48, bold=True)
@@ -74,6 +74,6 @@ class NumberGuess(BaseGame):
         pygame.draw.circle(screen, (255, 215, 0), (pos_x, 320), 10)
         
         # Versuche
-        attempts_text = f"Versuche: {self.attempts}"
+        attempts_text = self._("attempts", count=self.attempts)
         attempts_surf = font_medium.render(attempts_text, True, (200, 200, 200))
         screen.blit(attempts_surf, (400 - attempts_surf.get_width()//2, 380))

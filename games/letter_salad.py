@@ -11,6 +11,12 @@ class LetterSalad(BaseGame):
             self._("ls_word1"), self._("ls_word2"), self._("ls_word3"), 
             self._("ls_word4"), self._("ls_word5")
         ]
+        self.target = ""
+        self.shuffled = []
+        self.current_input = ""
+
+    def start(self):
+        super().start()
         self.target = random.choice(self.words)
         self.shuffled = list(self.target.lower())
         random.shuffle(self.shuffled)
@@ -25,9 +31,14 @@ class LetterSalad(BaseGame):
                     self.score = 500
                     self.finish()
                 else:
+                    self.audio.play_sound("error")
                     self.audio.speak(self._("try_again"))
                     self.current_input = ""
-            elif event.key == pygame.K_ESCAPE: self.finish()
+            elif event.key == pygame.K_BACKSPACE:
+                self.current_input = self.current_input[:-1]
+                self.audio.speak(self._("input_cleared") if not self.current_input else self.current_input[-1])
+            elif event.key == pygame.K_ESCAPE:
+                self.finish()
             else:
                 char = event.unicode
                 if char.isalpha():

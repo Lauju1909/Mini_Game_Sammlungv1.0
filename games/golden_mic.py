@@ -13,6 +13,15 @@ class GoldenMic(BaseGame):
         self.target_y = random.randint(0, 10)
         self.player_x = 5
         self.player_y = 5
+
+    def start(self):
+        super().start()
+        self.target_x = random.randint(0, 10)
+        self.target_y = random.randint(0, 10)
+        self.player_x = 5
+        self.player_y = 5
+        self.score = 0
+        self.last_beep = 0
     def update(self):
         now = time.time()
         dist = math.sqrt((self.target_x - self.player_x)**2 + (self.target_y - self.player_y)**2)

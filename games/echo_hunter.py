@@ -12,6 +12,7 @@ class EchoHunter(BaseGame):
     def __init__(self, audio, highscore, settings, player):
         super().__init__(audio, highscore, settings, player)
         self.game_id = "echo_hunter"
+        self.instructions = self._("game_echo_hunter_instructions")
         self.target_x = random.uniform(-1, 1)
         self.target_y = random.uniform(-1, 1)
         self.player_x = 0
@@ -25,6 +26,9 @@ class EchoHunter(BaseGame):
         self.last_pulse_time = 0
 
     def update(self):
+        super().update()
+        if not self.active or self.is_tutorial: return
+        
         dist = math.sqrt((self.target_x - self.player_x)**2 + (self.target_y - self.player_y)**2)
         
         # Rate skaliert von 1.5s (weit weg) bis 0.1s (nah dran)
@@ -49,6 +53,9 @@ class EchoHunter(BaseGame):
                 self.finish_game()
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if not self.active or self.is_tutorial: return
+        
         if event.type == pygame.KEYDOWN:
             step = 0.05
             if event.key == pygame.K_LEFT:
@@ -63,8 +70,6 @@ class EchoHunter(BaseGame):
             elif event.key == pygame.K_DOWN:
                 self.player_y = min(1, self.player_y + step)
                 self.audio.play_sound("click")
-            elif event.key == pygame.K_ESCAPE:
-                self.finish()
 
     def finish_game(self):
         self.audio.play_sound("success")

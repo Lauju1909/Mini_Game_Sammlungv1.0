@@ -282,6 +282,7 @@ TRANSLATIONS_DE = {
     "game_number_guess_desc": "Errate eine zahl zwischen 1 und 100.",
     "game_number_guess_instructions": "Errate eine Zahl zwischen 1 und 100. Nutze Pfeil hoch/runter zum Einstellen und Enter zum Bestätigen.",
     "correct_number": "Richtig! Die Zahl war {number}. Du hast {tries} Versuche gebraucht.",
+    "attempts": "Versuche: {count}",
 
     # Game Specifics: Bomb Defuser
     "game_bomb_defuser": "Bomben-Entschärfer",
@@ -471,6 +472,7 @@ TRANSLATIONS_EN = {
     "app_title": "Audio Studio Tycoon: Game Pack v1.6",
     "back": "Back",
     "beat_synced": "Perfectly synced!",
+    "attempts": "Attempts: {count}",
     "bomb_defused": "Bomb defused! You got {points} points.",
     "bomb_defused_simple": "Defused!",
     "bomb_exploded": "BOOM! Too late.",

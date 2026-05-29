@@ -9,22 +9,24 @@ class MathBlitz(BaseGame):
         self.game_id = "math_blitz"
         self.instructions = self._("game_math_blitz_instructions")
         self.current_answer = ""
-        self.start_time = time.time()
         self.questions = 0
         self.time_limit = 30
-        self.end_time = time.time() + self.time_limit
+        self.start_time = 0
+        self.end_time = 0
         self.a = 0
         self.b = 0
         self.op_char = "+"
         self.target = 0
 
     def update(self):
-        if time.time() > self.end_time:
+        if self.end_time > 0 and time.time() > self.end_time:
             self.audio.speak(self._("time_up"))
             self.finish()
 
     def start(self):
         super().start()
+        self.start_time = time.time()
+        self.end_time = self.start_time + self.time_limit
         self._next_question(interrupt=False)
 
     def _next_question(self, interrupt=True):

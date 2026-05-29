@@ -1,160 +1,210 @@
 {
   "Menu|Unknown|play,highscores,settings,quit": {
     "actions": {
-      "5": "Menu|Unknown|play,highscores,settings,quit",
-      "LEFT": "Menu|Unknown|play,highscores,settings,quit",
-      "3": "Menu|Unknown|play,highscores,settings,quit",
+      "RETURN": "Menu|0|action,logic,nav,speech,sim,all,back",
       "RIGHT": "Menu|Unknown|play,highscores,settings,quit",
-      "4": "Menu|Unknown|play,highscores,settings,quit",
+      "LEFT": "Menu|Unknown|play,highscores,settings,quit",
+      "5": "Menu|Unknown|play,highscores,settings,quit",
+      "3": "Menu|Unknown|play,highscores,settings,quit",
       "1": "Menu|Unknown|play,highscores,settings,quit",
       "UP": "Menu|Unknown|play,highscores,settings,quit",
-      "2": "Menu|Unknown|play,highscores,settings,quit",
-      "SPACE": "Menu|Unknown|play,highscores,settings,quit",
       "DOWN": "Menu|Unknown|play,highscores,settings,quit",
+      "2": "Menu|Unknown|play,highscores,settings,quit",
       "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
-      "RETURN": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back"
+      "SPACE": "Menu|Unknown|play,highscores,settings,quit",
+      "4": "Menu|Unknown|play,highscores,settings,quit"
     },
-    "visit_count": 595,
+    "visit_count": 426,
     "tts_history": [
-      "",
+      "Hauptmenü",
       "Spielen",
-      "Mini-Game-Sammlung bereit. Hauptmenü.",
       "Ranglisten",
       "Einstellungen",
-      "Beenden"
-    ]
-  },
-  "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back": {
-    "actions": {
-      "5": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "RIGHT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "RETURN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "DOWN": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "SPACE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
-      "LEFT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "4": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "UP": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "3": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "1": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "2": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back"
-    },
-    "visit_count": 64,
-    "tts_history": [
-      "Action & Reaktion",
-      "Logik & Gedächtnis"
-    ]
-  },
-  "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back": {
-    "actions": {
-      "3": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "5": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "2": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "RIGHT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "DOWN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "4": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "RETURN": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
-      "LEFT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "SPACE": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "UP": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
-      "1": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back"
-    },
-    "visit_count": 54,
-    "tts_history": [
-      "Beat-Reaktor - Top: lauju (340)",
-      "Stereo-Münzfang - Top: lauju (100)",
-      "1. lauju: 100 Punkte",
-      "3. lauju: 0 Punkte"
-    ]
-  },
-  "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back": {
-    "actions": {
-      "2": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "3": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "SPACE": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "DOWN": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "LEFT": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "5": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
-      "UP": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "1": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "RETURN": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "4": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
-      "RIGHT": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back"
-    },
-    "visit_count": 231,
-    "tts_history": [
-      "Sfx Lautstärke: 100%",
-      "Musik Lautstärke: 100%",
-      "Musik Lautstärke: 90%",
-      "Musik Lautstärke: 80%",
-      "Sfx Lautstärke: 90%",
-      "Sfx Lautstärke: 80%",
-      "Sprach-Geschwindigkeit: 30%",
-      "Musik Lautstärke: 70%",
-      "Musik Lautstärke: 60%",
-      "Musik Lautstärke: 50%",
-      "Musik Lautstärke: 40%",
-      "Sprach-Geschwindigkeit: 40%"
-    ]
-  },
-  "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back": {
-    "actions": {
-      "5": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
-      "4": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
-      "UP": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,sound_weaver,audio_sequence,back",
-      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back"
-    },
-    "visit_count": 4,
-    "tts_history": [
-      "Sound-Memo - Top: Tester (414)"
+      "Beenden",
+      "Abgebrochen. Hauptmenü.",
+      ""
     ]
   },
   "Menu|0|action,logic,nav,speech,sim,all,back": {
     "actions": {
-      "4": "Menu|0|action,logic,nav,speech,sim,all,back",
-      "DOWN": "Menu|0|action,logic,nav,speech,sim,all,back",
-      "RETURN": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
       "RIGHT": "Menu|0|action,logic,nav,speech,sim,all,back",
       "LEFT": "Menu|0|action,logic,nav,speech,sim,all,back",
-      "5": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "UP": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
+      "4": "Menu|0|action,logic,nav,speech,sim,all,back",
       "SPACE": "Menu|0|action,logic,nav,speech,sim,all,back",
-      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit"
+      "1": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "5": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "3": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "RETURN": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back",
+      "DOWN": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "2": "Menu|0|action,logic,nav,speech,sim,all,back"
     },
-    "visit_count": 9,
+    "visit_count": 104,
+    "tts_history": [
+      "Mini-Game-Sammlung bereit. Hauptmenü.",
+      "Wähle eine Kategorie",
+      "Action & Reaktion",
+      "Logik & Gedächtnis",
+      "Navigation & Erkundung"
+    ]
+  },
+  "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back": {
+    "actions": {
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
+      "RETURN": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "5": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "LEFT": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "4": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "DOWN": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "3": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "UP": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "SPACE": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "2": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "RIGHT": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
+      "1": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back"
+    },
+    "visit_count": 42,
+    "tts_history": [
+      "Sfx Lautstärke: 100%",
+      "Sfx Lautstärke: 90%",
+      "Musik Lautstärke: 50%",
+      "Sfx Lautstärke: 80%",
+      "Musik Lautstärke: 40%"
+    ]
+  },
+  "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back": {
+    "actions": {
+      "2": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "1": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
+      "5": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "DOWN": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "RIGHT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "UP": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "3": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "RETURN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "SPACE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "4": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "LEFT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back"
+    },
+    "visit_count": 80,
     "tts_history": [
       "Action & Reaktion",
       "Logik & Gedächtnis"
     ]
   },
+  "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back": {
+    "actions": {
+      "2": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "UP": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "SPACE": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "5": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "4": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "1": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "DOWN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "LEFT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "ESCAPE": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "RIGHT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "RETURN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "3": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back"
+    },
+    "visit_count": 48,
+    "tts_history": [
+      "Beat-Reaktor",
+      "Stereo-Münzfang"
+    ]
+  },
   "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back": {
     "actions": {
-      "UP": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
-      "4": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "3": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
       "RETURN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "4": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "UP": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
       "RIGHT": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
-      "2": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
-      "5": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
       "LEFT": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
-      "SPACE": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
-      "DOWN": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
-      "ESCAPE": "Menu|0|action,logic,nav,speech,sim,all,back"
+      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back"
     },
-    "visit_count": 11,
+    "visit_count": 8,
     "tts_history": [
       "Sound-Memo",
-      "Simon Says"
+      "Sound-Memo - Top: Tester (414)"
     ]
   },
   "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back": {
     "actions": {
-      "UP": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "3": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "LEFT": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "RIGHT": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "4": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "2": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "5": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "ESCAPE": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back"
+      "ESCAPE": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "LEFT": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "3": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "SPACE": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "1": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "UP": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "DOWN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "RETURN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back"
+    },
+    "visit_count": 25,
+    "tts_history": [
+      "1 Spieler",
+      "2 Spieler",
+      "Name für Spieler 1:",
+      "5",
+      "4"
+    ]
+  },
+  "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back": {
+    "actions": {
+      "2": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "RIGHT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "UP": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "5": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "RETURN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "3": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "LEFT": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "DOWN": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "1": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "SPACE": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
+      "4": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back"
+    },
+    "visit_count": 37,
+    "tts_history": [
+      "Beat-Reaktor - Top: lauju (340)",
+      "1. lauju: 340 Punkte",
+      "3. QA_Bot_4709: 0 Punkte",
+      "Stereo-Münzfang - Top: lauju (100)",
+      "1. lauju: 100 Punkte",
+      "3. lauju: 0 Punkte",
+      "2. lauju: 100 Punkte"
+    ]
+  },
+  "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back": {
+    "actions": {
+      "4": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back",
+      "3": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back",
+      "SPACE": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back",
+      "DOWN": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back",
+      "RIGHT": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back",
+      "RETURN": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "ESCAPE": "Menu|0|action,logic,nav,speech,sim,all,back"
+    },
+    "visit_count": 7,
+    "tts_history": [
+      "Das Goldene Mikrofon",
+      "Audio-Labyrinth"
+    ]
+  },
+  "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back": {
+    "actions": {
+      "3": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "4": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "SPACE": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "5": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "1": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "ESCAPE": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back"
     },
     "visit_count": 6,
     "tts_history": [

@@ -34,6 +34,8 @@ class FrequencyJammer(BaseGame):
         self.update_volumes()
 
     def update(self):
+        super().update()
+        if not self.active or self.is_tutorial: return
         self.update_volumes()
 
     def update_volumes(self):
@@ -57,6 +59,7 @@ class FrequencyJammer(BaseGame):
 
     def handle_input(self, event):
         super().handle_input(event)
+        if not self.active or self.is_tutorial: return
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 self.current_freq -= 0.1

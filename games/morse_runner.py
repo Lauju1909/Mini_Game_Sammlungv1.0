@@ -71,6 +71,7 @@ class MorseRunner(BaseGame):
 
     def handle_input(self, event):
         super().handle_input(event)
+        if not self.active: return
         if event.type == pygame.KEYDOWN:
             if self.state == "giving_options":
                 if event.key in [pygame.K_1, pygame.K_2, pygame.K_3]:

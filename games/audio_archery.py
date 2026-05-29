@@ -50,6 +50,12 @@ class AudioArchery(BaseGame):
                 self.round += 1
                 self.next_arrow()
 
+    def handle_input(self, event):
+        super().handle_input(event)
+        if event.type == pygame.KEYDOWN and self.state == "aiming":
+            if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
+                self.shoot()
+
     def shoot(self):
         self.arrow_pos = self.pan
         diff = abs(self.pan)
