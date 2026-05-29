@@ -27,7 +27,8 @@ class SoundWeaver(BaseGame):
         now = pygame.time.get_ticks()
         if self.state == "playing_melody":
             if now - self.last_action_time > 1000:
-                # self.audio.play_sound(f"note_{self.melody[self.preview_idx]}")
+                sounds = ["click", "confirm", "select", "bump"]
+                self.audio.play_sound(sounds[self.melody[self.preview_idx]])
                 self.preview_idx += 1
                 if self.preview_idx >= 4:
                     self.state = "arranging"
@@ -38,21 +39,29 @@ class SoundWeaver(BaseGame):
         super().handle_input(event)
         if event.type == pygame.KEYDOWN:
             if self.state == "arranging":
+                sounds = ["click", "confirm", "select", "bump"]
                 if event.key == pygame.K_LEFT:
                     if self.selected_idx > 0:
                         self.current_order[self.selected_idx], self.current_order[self.selected_idx-1] = \
                             self.current_order[self.selected_idx-1], self.current_order[self.selected_idx]
                         self.selected_idx -= 1
                         self.audio.play_sound("click")
+                        self.audio.speak(f"Position {self.selected_idx + 1}")
+                    else:
+                        self.audio.play_sound("bump")
                 elif event.key == pygame.K_RIGHT:
                     if self.selected_idx < 3:
                         self.current_order[self.selected_idx], self.current_order[self.selected_idx+1] = \
                             self.current_order[self.selected_idx+1], self.current_order[self.selected_idx]
                         self.selected_idx += 1
                         self.audio.play_sound("click")
+                        self.audio.speak(f"Position {self.selected_idx + 1}")
+                    else:
+                        self.audio.play_sound("bump")
                 elif event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]:
                     self.selected_idx = event.key - pygame.K_1
-                    # self.audio.play_sound(f"note_{self.current_order[self.selected_idx]}")
+                    self.audio.play_sound(sounds[self.current_order[self.selected_idx]])
+                    self.audio.speak(f"Position {self.selected_idx + 1}")
                 elif event.key == pygame.K_RETURN:
                     if self.current_order == self.melody:
                         self.score += 100
@@ -63,7 +72,7 @@ class SoundWeaver(BaseGame):
                 elif event.key == pygame.K_r: # Replay melody
                     self.state = "playing_melody"
                     self.preview_idx = 0
-                    self.last_action_time = now
+                    self.last_action_time = pygame.time.get_ticks()
 
     def draw(self, screen):
         screen.fill((50, 30, 50))

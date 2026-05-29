@@ -50,17 +50,23 @@ class PitchPerfect(BaseGame):
         super().handle_input(event)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                self.player_freq += 10
-                if not self.playing_reference:
-                    if self.current_channel:
-                        self.audio.stop_sound(self.current_channel)
-                    self.current_channel = self.audio.create_tone_loop(self.player_freq)
+                if self.player_freq < 2000:
+                    self.player_freq += 10
+                    if not self.playing_reference:
+                        if self.current_channel:
+                            self.audio.stop_sound(self.current_channel)
+                        self.current_channel = self.audio.create_tone_loop(self.player_freq)
+                else:
+                    self.audio.play_sound("bump")
             elif event.key == pygame.K_DOWN:
-                self.player_freq -= 10
-                if not self.playing_reference:
-                    if self.current_channel:
-                        self.audio.stop_sound(self.current_channel)
-                    self.current_channel = self.audio.create_tone_loop(self.player_freq)
+                if self.player_freq > 50:
+                    self.player_freq -= 10
+                    if not self.playing_reference:
+                        if self.current_channel:
+                            self.audio.stop_sound(self.current_channel)
+                        self.current_channel = self.audio.create_tone_loop(self.player_freq)
+                else:
+                    self.audio.play_sound("bump")
             elif event.key == pygame.K_RETURN:
                 diff = abs(self.player_freq - self.reference_freq)
                 if diff < self.diff_threshold:
