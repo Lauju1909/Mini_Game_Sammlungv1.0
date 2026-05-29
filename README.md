@@ -1,9 +1,9 @@
-# Audio Studio Tycoon: Mini-Game-Sammlung v1.7
+# Audio Studio Tycoon: Mini-Game-Sammlung v1.8
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.7-green.svg)
+![Version](https://img.shields.io/badge/version-1.8-green.svg)
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
-![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V5)-brightgreen.svg)
+![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V6)-brightgreen.svg)
 
 Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
@@ -45,10 +45,18 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreie
 
 ## ✅ Quality Assurance
 
-Dieses Projekt wurde mit dem **Agentic Tester V5** (autonomes KI-Testsystem) validiert:
+Dieses Projekt wurde mit dem **Agentic Tester V6** (autonomes KI-Testsystem) validiert:
 - **Test-Umfang:** 1000+ automatisierte Aktionen in DE/EN Sessions sowie Grafik-Rendering-Simulation aller 40 Mini-Games.
 - **Status:** 0 Crashes, stabile Audio-Engine, korrekte Lokalisierung.
 - **Ergebnis:** Alle Menüpfade, Zeichenroutinen und Kernmechaniken sind stabil und verifiziert.
+
+## 📈 Changelog v1.8
+
+- **Playability QA (11 Spiele):** Umfassende Fehlerbehebungen und Qualitätskontrollen in `echo_hunter.py`, `echolot.py`, `frequency_jammer.py`, `golden_mic.py`, `key_storm.py`, `letter_salad.py`, `math_blitz.py`, `mole_master.py`, `morse_runner.py`, `mystery_door.py`, `number_guess.py`.
+  - Konsistente ESC-Steuerung durch Aufruf von `super().handle_input()` in allen Spielen sichergestellt.
+  - Lokalisierungs-Strings (`self._()`) anstelle fest codierter Texte implementiert.
+  - Timer-Logik korrigiert (Start- und Endzeitpunkt auf Spielbeginn `start()` anstatt Objekt-Initialisierung verlegt).
+  - Screenreader-Ausgaben für Menügrenzen und Spiele-Feedback reaktiviert und verfeinert.
 
 ## 📈 Changelog v1.7
 
