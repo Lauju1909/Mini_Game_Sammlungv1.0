@@ -15,7 +15,7 @@ class Echolot(BaseGame):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 # Simuliere Ping-Verzögerung
-                delay = self.current_dist / 50.0
+                delay = max(0.0, self.current_dist / 50.0)
                 time.sleep(delay)
                 self.audio.play_sound("click")
             elif event.key == pygame.K_SPACE:
