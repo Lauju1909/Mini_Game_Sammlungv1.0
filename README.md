@@ -1,7 +1,7 @@
-# Audio Studio Tycoon: Mini-Game-Sammlung v1.8
+# Audio Studio Tycoon: Mini-Game-Sammlung v1.9
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.8-green.svg)
+![Version](https://img.shields.io/badge/version-1.9-green.svg)
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
 ![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V6)-brightgreen.svg)
 
@@ -49,6 +49,14 @@ Dieses Projekt wurde mit dem **Agentic Tester V6** (autonomes KI-Testsystem) val
 - **Test-Umfang:** 1000+ automatisierte Aktionen in DE/EN Sessions sowie Grafik-Rendering-Simulation aller 40 Mini-Games.
 - **Status:** 0 Crashes, stabile Audio-Engine, korrekte Lokalisierung.
 - **Ergebnis:** Alle Menüpfade, Zeichenroutinen und Kernmechaniken sind stabil und verifiziert.
+
+## 📈 Changelog v1.9
+
+- **Mehrspieler-Optimierung (Hotseat):**
+  - Bestätigte reibungslose Hotseat-Rotation für Spiele in der ersten Alphabethälfte (A-M).
+  - Fehlende Lokalisierungen für Rundenübergänge und finale Auswertungen (`all_players_finished_winner`, `all_players_finished_tie`) hinzugefügt.
+  - Gewährleistet, dass Spieleinstanzen bei jedem Spielerwechsel korrekt zurückgesetzt und ohne globale Statuskonflikte geladen werden.
+  - Akustische Barrierefreiheit der Namensansagen (Turn-Switch) und UI-Einbindung gesichert.
 
 ## 📈 Changelog v1.8
 
