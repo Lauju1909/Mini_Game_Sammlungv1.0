@@ -20,13 +20,24 @@ class AudioSlots(BaseGame):
         self.audio.speak(self._("game_audio_slots_desc"), interrupt=True)
 
     def update(self):
+        now = time.time()
         if self.is_spinning:
-            if time.time() > self.spin_timer:
+            if now > self.spin_timer:
                 self.is_spinning = False
-                self._resolve_spin()
+                self.resolve_step = 0
+                self.resolve_timer = now
+        elif hasattr(self, 'resolve_step') and self.resolve_step < 3:
+            if now > self.resolve_timer:
+                self.audio.play_sound(self.reels[self.resolve_step])
+                self.resolve_step += 1
+                self.resolve_timer = now + 0.3
+                if self.resolve_step == 3:
+                    self._finalize_spin()
 
     def handle_input(self, event):
-        if self.is_spinning: return
+        super().handle_input(event)
+        if self.is_tutorial: return
+        if self.is_spinning or (hasattr(self, 'resolve_step') and self.resolve_step < 3): return
         
         if event.type == pygame.KEYDOWN:
             if event.key in [pygame.K_RETURN, pygame.K_SPACE]:
@@ -47,14 +58,9 @@ class AudioSlots(BaseGame):
         # Vorab Ergebnis bestimmen
         self.reels = [random.choice(self.symbols) for _ in range(3)]
 
-    def _resolve_spin(self):
+    def _finalize_spin(self):
         r1, r2, r3 = self.reels
         
-        # Sounds abspielen
-        for sym in self.reels:
-            self.audio.play_sound(sym)
-            time.sleep(0.3)
-            
         res_text = self._("slots_result", r1=r1, r2=r2, r3=r3)
         self.audio.speak(res_text, interrupt=False)
         

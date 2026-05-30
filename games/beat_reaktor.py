@@ -49,6 +49,8 @@ class BeatReaktor(BaseGame):
                 self.finish_tutorial()
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if self.is_tutorial: return
         if self.is_tutorial:
             self.handle_tutorial_input(event)
             return

@@ -26,6 +26,8 @@ class CapitalHunter(BaseGame):
         self.audio.speak(text)
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if self.is_tutorial: return
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1: self._check(0)
             elif event.key == pygame.K_2: self._check(1)

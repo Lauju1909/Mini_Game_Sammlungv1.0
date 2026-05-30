@@ -69,6 +69,8 @@ class AudioSequence(BaseGame):
                     self.audio.speak(self._("simon_your_turn"))
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if self.is_tutorial: return
         if self.is_playing_sequence: return
         if event.type == pygame.KEYDOWN:
             if event.key in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]:

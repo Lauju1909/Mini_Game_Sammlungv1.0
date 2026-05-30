@@ -52,6 +52,7 @@ class AudioArchery(BaseGame):
 
     def handle_input(self, event):
         super().handle_input(event)
+        if self.is_tutorial: return
         if event.type == pygame.KEYDOWN and self.state == "aiming":
             if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
                 self.shoot()

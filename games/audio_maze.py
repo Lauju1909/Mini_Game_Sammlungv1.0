@@ -17,6 +17,9 @@ class AudioMaze(BaseGame):
         self.px, self.py = 1, 1
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if self.is_tutorial: return
+        
         if event.type == pygame.KEYDOWN:
             nx, ny = self.px, self.py
             if event.key == pygame.K_UP:
@@ -31,7 +34,6 @@ class AudioMaze(BaseGame):
             elif event.key == pygame.K_RIGHT:
                 if nx < len(self.maze[0]) - 1: nx += 1
                 else: self.audio.play_sound("bump")
-            elif event.key == pygame.K_ESCAPE: self.finish()
 
             if self.maze[ny][nx] == 1:
                 self.audio.play_sound("bump")

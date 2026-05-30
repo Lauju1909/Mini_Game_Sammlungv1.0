@@ -14,6 +14,8 @@ class BlindFarm(BaseGame):
         self.target_key = "farm_item_7" # Schatzkiste
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if self.is_tutorial: return
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 if self.pos < len(self.item_keys) - 1:

@@ -31,6 +31,7 @@ class BeatMatcher(BaseGame):
 
     def handle_input(self, event):
         super().handle_input(event)
+        if self.is_tutorial: return
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 now = pygame.time.get_ticks()

@@ -30,6 +30,7 @@ class AudioBalance(BaseGame):
 
     def handle_input(self, event):
         super().handle_input(event)
+        if self.is_tutorial: return
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 self.balance -= 0.15

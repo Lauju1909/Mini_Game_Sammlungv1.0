@@ -33,20 +33,33 @@ class CodeBreaker(BaseGame):
         self.audio.play_sound(self.tones[self.current_guess[self.selected_slot]])
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if self.is_tutorial: return
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                self.current_guess[self.selected_slot] = (self.current_guess[self.selected_slot] % 4) + 1
-                self._announce_current_slot()
+                if self.current_guess[self.selected_slot] < 4:
+                    self.current_guess[self.selected_slot] += 1
+                    self._announce_current_slot()
+                else:
+                    self.audio.play_sound("bump")
             elif event.key == pygame.K_DOWN:
-                self.current_guess[self.selected_slot] = self.current_guess[self.selected_slot] - 1
-                if self.current_guess[self.selected_slot] < 1: self.current_guess[self.selected_slot] = 4
-                self._announce_current_slot()
+                if self.current_guess[self.selected_slot] > 1:
+                    self.current_guess[self.selected_slot] -= 1
+                    self._announce_current_slot()
+                else:
+                    self.audio.play_sound("bump")
             elif event.key == pygame.K_RIGHT:
-                self.selected_slot = (self.selected_slot + 1) % 3
-                self._announce_current_slot()
+                if self.selected_slot < 2:
+                    self.selected_slot += 1
+                    self._announce_current_slot()
+                else:
+                    self.audio.play_sound("bump")
             elif event.key == pygame.K_LEFT:
-                self.selected_slot = (self.selected_slot - 1) % 3
-                self._announce_current_slot()
+                if self.selected_slot > 0:
+                    self.selected_slot -= 1
+                    self._announce_current_slot()
+                else:
+                    self.audio.play_sound("bump")
             elif event.key == pygame.K_RETURN:
                 self._check_combination()
             elif event.key == pygame.K_ESCAPE:

@@ -15,8 +15,22 @@ class AudioBowling(BaseGame):
         self.swing += self.dir * 0.05
         if self.swing >= 1.0 or self.swing <= 0:
             self.dir *= -1
+            if self.swing >= 1.0:
+                self.audio.play_sound("bump")
+            else:
+                self.audio.play_sound("click_002")
+                
+        now = pygame.time.get_ticks()
+        if not hasattr(self, 'last_tick'): self.last_tick = 0
+        interval = max(50, 300 - int(self.swing * 250))
+        if now - self.last_tick > interval:
+            self.audio.play_sound("click")
+            self.last_tick = now
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if self.is_tutorial: return
+        
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 # Höherer Swing-Wert = besserer Wurf
@@ -25,7 +39,6 @@ class AudioBowling(BaseGame):
                 self.audio.play_sound("confirm")
                 self.audio.speak(self._("bowl_pins", pins=pins))
                 self.finish()
-            elif event.key == pygame.K_ESCAPE: self.finish()
 
     def draw(self, screen):
         font_medium = pygame.font.SysFont("Arial", 32)

@@ -26,6 +26,8 @@ class BombDefuser(BaseGame):
                 self.finish()
 
     def handle_input(self, event):
+        super().handle_input(event)
+        if self.is_tutorial: return
         if event.type == pygame.KEYDOWN:
             if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
                 # Je näher an 5.0, desto besser. Aber ab 5.0 explodiert sie.
