@@ -236,6 +236,7 @@ class MiniGameCollection:
         game_class = self.selected_game_item.get("class")
         if game_class:
             self.current_player_idx = 0
+            self.session_scores = {}
             self.audio.speak(_("first_player", player=self.players[0]), priority=2)
             self.current_game = game_class(self.audio, self.highscores, self.settings, self.players[0])
             
@@ -814,12 +815,29 @@ class MiniGameCollection:
             self.screen.blit(hint_surf, (40, 570))
 
     def on_game_finished(self):
+        if not hasattr(self, 'session_scores'):
+            self.session_scores = {}
+        if self.current_game:
+            self.session_scores[self.players[self.current_player_idx]] = self.current_game.score
+            
         self.current_player_idx += 1
         if self.current_player_idx < len(self.players):
             self.state = "waiting_for_next_player"
             self.audio.speak(_("round_ended_next_player", player=self.players[self.current_player_idx]))
         else:
-            self.audio.speak(_("all_players_finished"))
+            if len(self.players) > 1 and self.session_scores:
+                max_score = max(self.session_scores.values())
+                winners = [p for p, s in self.session_scores.items() if s == max_score]
+                if len(winners) > 1:
+                    import localization
+                    lang = localization.get_language()
+                    winners_str = " und ".join(winners) if lang == "de" else " and ".join(winners)
+                    self.audio.speak(_("all_players_finished_tie", players=winners_str, score=max_score))
+                else:
+                    self.audio.speak(_("all_players_finished_winner", player=winners[0], score=max_score))
+            else:
+                self.audio.speak(_("all_players_finished"))
+                
             self.state = "main_menu"
             self.current_game = None
             self.setup_main_menu()

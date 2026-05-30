@@ -155,6 +155,17 @@ class AudioManager:
             except queue.Empty:
                 break
 
+    def is_speaking(self):
+        """Gibt zurück ob gerade gesprochen wird oder noch Text in der Queue ist."""
+        if not self.speech_queue.empty():
+            return True
+        if self.tolk_active and self.tolk:
+            try:
+                return self.tolk.Tolk_IsSpeaking()
+            except:
+                pass
+        return False
+
     def speak(self, text, interrupt=True, priority=1):
         """
         Fügt Text zur Sprach-Queue hinzu oder unterbricht sofort.

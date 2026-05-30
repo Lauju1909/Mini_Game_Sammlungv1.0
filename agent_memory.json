@@ -1,7 +1,7 @@
 {
   "Menu|Unknown|play,highscores,settings,quit": {
     "actions": {
-      "RETURN": "Menu|0|action,logic,nav,speech,sim,all,back",
+      "RETURN": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
       "RIGHT": "Menu|Unknown|play,highscores,settings,quit",
       "LEFT": "Menu|Unknown|play,highscores,settings,quit",
       "5": "Menu|Unknown|play,highscores,settings,quit",
@@ -14,7 +14,7 @@
       "SPACE": "Menu|Unknown|play,highscores,settings,quit",
       "4": "Menu|Unknown|play,highscores,settings,quit"
     },
-    "visit_count": 426,
+    "visit_count": 530,
     "tts_history": [
       "Hauptmenü",
       "Spielen",
@@ -36,11 +36,11 @@
       "1": "Menu|0|action,logic,nav,speech,sim,all,back",
       "5": "Menu|0|action,logic,nav,speech,sim,all,back",
       "3": "Menu|0|action,logic,nav,speech,sim,all,back",
-      "RETURN": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back",
+      "RETURN": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
       "DOWN": "Menu|0|action,logic,nav,speech,sim,all,back",
       "2": "Menu|0|action,logic,nav,speech,sim,all,back"
     },
-    "visit_count": 104,
+    "visit_count": 134,
     "tts_history": [
       "Mini-Game-Sammlung bereit. Hauptmenü.",
       "Wähle eine Kategorie",
@@ -64,7 +64,7 @@
       "RIGHT": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back",
       "1": "Menu|2|vol_sfx,vol_music,speech_rate,language,speech_vol,back"
     },
-    "visit_count": 42,
+    "visit_count": 55,
     "tts_history": [
       "Sfx Lautstärke: 100%",
       "Sfx Lautstärke: 90%",
@@ -88,7 +88,7 @@
       "4": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
       "LEFT": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back"
     },
-    "visit_count": 80,
+    "visit_count": 93,
     "tts_history": [
       "Action & Reaktion",
       "Logik & Gedächtnis"
@@ -109,7 +109,7 @@
       "RETURN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "3": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,rhythm_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back"
     },
-    "visit_count": 48,
+    "visit_count": 52,
     "tts_history": [
       "Beat-Reaktor",
       "Stereo-Münzfang"
@@ -118,17 +118,23 @@
   "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back": {
     "actions": {
       "3": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
-      "RETURN": "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "RETURN": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "4": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
       "UP": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
       "RIGHT": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
       "LEFT": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
-      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back"
+      "ESCAPE": "Menu|1|h_action,h_logic,h_nav,h_speech,h_sim,h_all,back",
+      "5": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "2": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "SPACE": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "1": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back",
+      "DOWN": "Menu|1|sound_memo,simon_says,code_breaker,number_guess,safe_cracker,math_blitz,ticking_clock,pitch_perfect,sound_weaver,audio_sequence,back"
     },
-    "visit_count": 8,
+    "visit_count": 15,
     "tts_history": [
       "Sound-Memo",
-      "Sound-Memo - Top: Tester (414)"
+      "Sound-Memo - Top: Tester (414)",
+      "Simon Says"
     ]
   },
   "Menu|0|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back": {
@@ -170,7 +176,7 @@
       "SPACE": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back",
       "4": "Menu|0|beat_reaktor,stereo_catch,sound_catch,bomb_defuser,key_storm,speed_dial,mole_master,reaction_blitz,audio_archery,beat_matcher,audio_balance,morse_runner,back"
     },
-    "visit_count": 37,
+    "visit_count": 50,
     "tts_history": [
       "Beat-Reaktor - Top: lauju (340)",
       "1. lauju: 340 Punkte",
@@ -204,11 +210,23 @@
       "SPACE": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "5": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
       "1": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
-      "ESCAPE": "Menu|2|golden_mic,audio_maze,echolot,blind_farm,space_flight,animal_radar,mystery_door,frequency_jammer,stairs_of_fate,back"
+      "ESCAPE": "Menu|Unknown|play,highscores,settings,quit",
+      "2": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "UP": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "RIGHT": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "LEFT": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "DOWN": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back",
+      "RETURN": "Menu|1|1 Spieler,2 Spieler,3 Spieler,4 Spieler,back"
     },
-    "visit_count": 6,
+    "visit_count": 20,
     "tts_history": [
-      "1 Spieler"
+      "1 Spieler",
+      "2 Spieler",
+      "Name für Spieler 1:",
+      "3",
+      "5",
+      "4",
+      "1"
     ]
   }
 }
