@@ -71,6 +71,10 @@ class MenuManager:
                 if self.on_select_callback:
                     self.audio.play_sound("confirm")
                     self.on_select_callback(self.current_menu[self.index])
+            elif event.key == pygame.K_SPACE:
+                if hasattr(self, 'on_toggle_callback') and self.on_toggle_callback:
+                    self.audio.play_sound("blip")
+                    self.on_toggle_callback(self.current_menu[self.index])
             elif event.key == pygame.K_ESCAPE:
                 if not self.pop_menu():
                     return "quit"

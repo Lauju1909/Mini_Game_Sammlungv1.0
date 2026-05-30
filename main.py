@@ -127,6 +127,8 @@ class MiniGameCollection:
         self.ui_time = 0
         self.score_bars_anim = {}
         self.running = True
+        self.game_queue = []
+        self.current_queue_index = 0
         self.setup_main_menu()
         self.audio.speak(_("ready"), interrupt=False, priority=2)
 
@@ -180,13 +182,39 @@ class MiniGameCollection:
         
         self.menu.push_menu(game_list, _("games_in_category", cat=item['label']))
         self.menu.on_select_callback = self.on_game_select
+        self.menu.on_toggle_callback = self.on_game_toggle
+
+    def on_game_toggle(self, item):
+        if item.get("id") == "back":
+            return
+        
+        if not hasattr(self, 'game_queue'):
+            self.game_queue = []
+            
+        if item in self.game_queue:
+            self.game_queue.remove(item)
+            self.audio.speak(item['label'] + " entfernt", interrupt=True)
+        else:
+            self.game_queue.append(item)
+            self.audio.speak(item['label'] + " zur Playlist hinzugefügt", interrupt=True)
 
     def on_game_select(self, item):
         if item.get("id") == "back":
             self.menu.pop_menu()
             return
 
-        self.selected_game_item = item
+        if not hasattr(self, 'game_queue'):
+            self.game_queue = []
+
+        if not self.game_queue:
+            self.game_queue = [item]
+        elif item not in self.game_queue:
+            # If they just hit ENTER on a game not in queue, clear queue and play this one
+            self.game_queue = [item]
+            
+        self.current_queue_index = 0
+        self.selected_game_item = self.game_queue[0]
+
         # Frage nach Spieleranzahl
         items = [
             {"label": _("player_count_item", count=1), "count": 1},
@@ -195,8 +223,9 @@ class MiniGameCollection:
             {"label": _("player_count_item", count=4), "count": 4},
             {"label": _("back"), "id": "back"}
         ]
-        self.menu.push_menu(items, _("player_count_title", game=item['label']))
+        self.menu.push_menu(items, _("player_count_title", game=self.selected_game_item['label']))
         self.menu.on_select_callback = self.on_player_count_selected
+        self.menu.on_toggle_callback = None
 
     def on_player_count_selected(self, item):
         if item.get("id") == "back":
@@ -838,9 +867,16 @@ class MiniGameCollection:
             else:
                 self.audio.speak(_("all_players_finished"))
                 
-            self.state = "main_menu"
-            self.current_game = None
-            self.setup_main_menu()
+            if hasattr(self, 'game_queue') and self.current_queue_index + 1 < len(self.game_queue):
+                self.current_queue_index += 1
+                self.selected_game_item = self.game_queue[self.current_queue_index]
+                self.state = "waiting_for_next_game"
+                self.audio.speak(_("press_enter_to_start") + " " + self.selected_game_item["label"], interrupt=False)
+            else:
+                self.state = "main_menu"
+                self.current_game = None
+                self.game_queue = []
+                self.setup_main_menu()
 
     def start_next_player_round(self):
         game_class = self.selected_game_item.get("class")
@@ -856,12 +892,21 @@ class MiniGameCollection:
                 self.start_selected_game()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 self.state = "main_menu"
+                self.game_queue = []
                 self.setup_main_menu()
         elif self.state == "waiting_for_next_player":
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 self.start_next_player_round()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 self.state = "main_menu"
+                self.game_queue = []
+                self.setup_main_menu()
+        elif self.state == "waiting_for_next_game":
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                self.start_selected_game()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                self.state = "main_menu"
+                self.game_queue = []
                 self.setup_main_menu()
         elif self.state == "viewing_highscores":
             if event.type == pygame.KEYDOWN:
