@@ -464,6 +464,11 @@ TRANSLATIONS["de"] = {
     "game_audio_bouncer_instructions": "Du bist der Türsteher! Zu Beginn jeder Schicht wird dir das gültige Passwort (eine Melodie) laut vorgespielt. Danach kommen Gäste und flüstern ihr Passwort. Drücke Pfeil Oben, um sie hereinzulassen, wenn die Melodie exakt stimmt. Drücke Pfeil Unten, um sie abzuweisen, falls ein Ton falsch ist. Drücke R, um das Passwort erneut anzuhören.",
     "bouncer_gameover": "Zu viele Fehler! Der Club-Besitzer hat dich gefeuert.",
     "bouncer_new_shift": "Schicht {level} beginnt!",
+    "game_audio_darts": "Audio-Dart",
+    "game_audio_darts_desc": "Wirf den Pfeil genau ins akustische Bullseye.",
+    "game_audio_darts_instructions": "Ein Ticken wandert von links nach rechts über die Dartscheibe. Je näher es der Mitte kommt, desto schneller tickt es. Wenn es die Mitte überquert, hörst du einen hellen Ping. Drücke die Leertaste in genau diesem Moment! Triffst du daneben, verlierst du ein Leben.",
+    "darts_miss": "Daneben!",
+    "darts_gameover": "3 Pfeile verfehlt! Das Spiel ist aus.",
 }
 
 TRANSLATIONS["en"] = {
@@ -891,4 +896,9 @@ TRANSLATIONS["en"] = {
     "game_audio_bouncer_instructions": "You are the bouncer! At the start of each shift, the valid password (a melody) is played loudly. Then guests arrive and whisper their password. Press Up arrow to let them in if the melody is exactly right. Press Down arrow to reject them if even one tone is wrong. Press R to repeat the password.",
     "bouncer_gameover": "Too many mistakes! The club owner fired you.",
     "bouncer_new_shift": "Shift {level} begins!",
+    "game_audio_darts": "Acoustic Darts",
+    "game_audio_darts_desc": "Throw the dart exactly into the acoustic bullseye.",
+    "game_audio_darts_instructions": "A tick moves from left to right across the dartboard. The closer it gets to the center, the faster it ticks. When it crosses the center, you hear a high ping. Press Space at that exact moment! If you miss completely, you lose a life.",
+    "darts_miss": "Miss!",
+    "darts_gameover": "3 darts missed! Game over.",
 }
