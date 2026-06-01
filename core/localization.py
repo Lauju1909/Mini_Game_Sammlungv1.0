@@ -424,6 +424,13 @@ TRANSLATIONS["de"] = {
     "game_audio_defense": "Audio-Verteidigung",
     "game_audio_defense_desc": "Verteidige dich gegen Angreifer aus 4 Richtungen.",
     "game_audio_defense_instructions": "Gegner nähern sich aus 4 Richtungen. Links und Rechts hörst du auf dem jeweiligen Ohr. Vorne (Oben) ist ein heller Ton, Hinten (Unten) ein tiefer Ton. Drücke die entsprechende Pfeiltaste, kurz bevor dich der Gegner erreicht. Zu früh oder falsch gedrückt kostet ein Leben!",
+    "game_audio_boss": "Audio-Bosskampf",
+    "game_audio_boss_desc": "Besiege den ultimativen Sound-Boss.",
+    "game_audio_boss_instructions": "Der Boss nutzt 3 Attacken: 1. Projektil (Ping-Pong-Sound von links oder rechts): Drücke Pfeil Links/Rechts, wenn es nah ist. 2. Nahkampf (Ton von einer Seite): Drücke die entsprechende Pfeiltaste, wenn er zuschlägt. 3. Flächenangriff (Heulende Sirene): Hämmere die Leertaste, um einen Schild aufzubauen! Besiege ihn!",
+    "boss_intro": "Der Bosskampf beginnt! Mach dich bereit.",
+    "boss_hit": "Treffer kassiert! Noch {hp} Leben.",
+    "boss_defeat": "Du wurdest besiegt!",
+    "boss_victory": "Du hast den Boss besiegt! Glückwunsch!",
 }
 
 TRANSLATIONS["en"] = {
@@ -811,4 +818,11 @@ TRANSLATIONS["en"] = {
     "game_audio_defense": "Audio Defense",
     "game_audio_defense_desc": "Defend against attackers from 4 directions.",
     "game_audio_defense_instructions": "Enemies approach from 4 directions. Left and Right are panned. Front (Up) is a high-pitched tone, Back (Down) is a low-pitched tone. Press the corresponding arrow key just before they reach you. Pressing too early or the wrong key costs a life!",
+    "game_audio_boss": "Acoustic Boss Fight",
+    "game_audio_boss_desc": "Defeat the ultimate sound boss.",
+    "game_audio_boss_instructions": "The boss uses 3 attacks: 1. Projectile (Ping-Pong sound from left/right): Press Left/Right arrow when it's near. 2. Melee (Tone from one direction): Press the corresponding arrow key when it strikes. 3. Area of Effect (Howling siren): Mash Space to build a shield! Defeat him!",
+    "boss_intro": "The boss fight begins! Get ready.",
+    "boss_hit": "You got hit! {hp} lives remaining.",
+    "boss_defeat": "You were defeated!",
+    "boss_victory": "You defeated the boss! Congratulations!",
 }
