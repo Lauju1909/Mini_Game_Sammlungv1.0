@@ -413,6 +413,9 @@ TRANSLATIONS["de"] = {
     "game_audio_ping_pong_desc": "Schlage den unsichtbaren Ball per Gehör zurück.",
     "game_audio_ping_pong_instructions": "Ein Ball kommt von links oder rechts auf dich zu. Er wird lauter und höher, je näher er ist. Drücke Pfeil Links oder Rechts im perfekten Moment, um ihn zurückzuschlagen!",
     "ping_pong_miss": "Verfehlt! Noch {lives} Leben.",
+    "game_audio_archery_pro": "Audio-Bogenschießen Pro",
+    "game_audio_archery_pro_desc": "Triff die Zielscheibe und beachte den Wind.",
+    "game_audio_archery_pro_instructions": "Die Zielscheibe bewegt sich hörbar. Drücke Leertaste, wenn sie genau in der Mitte ist. Ab Runde 2 kommt Wind (tiefes Rauschen auf einer Seite) hinzu. Du musst den Wind ausgleichen und etwas neben die Mitte zielen!",
 }
 
 TRANSLATIONS["en"] = {
@@ -789,4 +792,7 @@ TRANSLATIONS["en"] = {
     "game_audio_ping_pong_desc": "Hit back the invisible ball using only your hearing.",
     "game_audio_ping_pong_instructions": "A ball approaches from the left or right. It gets louder and higher in pitch as it gets closer. Press Left or Right arrow at the perfect moment to hit it back!",
     "ping_pong_miss": "Missed! {lives} lives remaining.",
+    "game_audio_archery_pro": "Acoustic Archery Pro",
+    "game_audio_archery_pro_desc": "Hit the moving target and compensate for the wind.",
+    "game_audio_archery_pro_instructions": "The target moves audibly. Press Space when it is exactly in the middle. From round 2, wind (low rumble on one side) is added. You must compensate for the wind and aim slightly off-center!",
 }
