@@ -421,6 +421,9 @@ TRANSLATIONS["de"] = {
     "game_rhythm_blacksmith_instructions": "Du hörst ein tiefes Hämmern im Hintergrund, das den Takt vorgibt. Drücke die Leertaste exakt auf den Beat, um auf den Amboss zu schlagen. Wenn du den Takt triffst, wird der Klang heller. Schmiede 3 Schwerter!",
     "blacksmith_sword_done": "Schwert {count} geschmiedet!",
     "blacksmith_all_done": "Meisterhaft geschmiedet!",
+    "game_audio_defense": "Audio-Verteidigung",
+    "game_audio_defense_desc": "Verteidige dich gegen Angreifer aus 4 Richtungen.",
+    "game_audio_defense_instructions": "Gegner nähern sich aus 4 Richtungen. Links und Rechts hörst du auf dem jeweiligen Ohr. Vorne (Oben) ist ein heller Ton, Hinten (Unten) ein tiefer Ton. Drücke die entsprechende Pfeiltaste, kurz bevor dich der Gegner erreicht. Zu früh oder falsch gedrückt kostet ein Leben!",
 }
 
 TRANSLATIONS["en"] = {
@@ -805,4 +808,7 @@ TRANSLATIONS["en"] = {
     "game_rhythm_blacksmith_instructions": "You will hear a deep hammering setting the rhythm. Press Space exactly on the beat to strike the anvil. Hitting the beat will make the sound brighter. Forge 3 swords!",
     "blacksmith_sword_done": "Sword {count} forged!",
     "blacksmith_all_done": "Masterfully forged!",
+    "game_audio_defense": "Audio Defense",
+    "game_audio_defense_desc": "Defend against attackers from 4 directions.",
+    "game_audio_defense_instructions": "Enemies approach from 4 directions. Left and Right are panned. Front (Up) is a high-pitched tone, Back (Down) is a low-pitched tone. Press the corresponding arrow key just before they reach you. Pressing too early or the wrong key costs a life!",
 }
