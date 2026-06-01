@@ -59,6 +59,7 @@ from games.audio_balance import AudioBalance
 from games.audio_runner import AudioRunner
 from games.submarine_sonar import SubmarineSonar
 from games.audio_factory import AudioFactory
+from games.dial_master import DialMaster
 
 class Particle:
     def __init__(self, x, y):
@@ -455,6 +456,7 @@ class MiniGameCollection:
                 {"label": _("game_code_breaker"), "id": "code_breaker", "class": CodeBreaker, "desc": _("game_code_breaker_desc")},
                 {"label": _("game_number_guess"), "id": "number_guess", "class": NumberGuess, "desc": _("game_number_guess_desc")},
                 {"label": _("game_safe_cracker"), "id": "safe_cracker", "class": SafeCracker, "desc": _("game_safe_cracker_desc")},
+                {"label": _("game_dial_master"), "id": "dial_master", "class": DialMaster, "desc": _("game_dial_master_desc")},
                 {"label": _("game_math_blitz"), "id": "math_blitz", "class": MathBlitz, "desc": _("game_math_blitz_desc")},
                 {"label": _("game_ticking_clock"), "id": "ticking_clock", "class": TickingClock, "desc": _("game_ticking_clock_desc")},
                 {"label": _("game_pitch_perfect"), "id": "pitch_perfect", "class": PitchPerfect, "desc": _("game_pitch_perfect_desc")},
@@ -502,6 +504,7 @@ class MiniGameCollection:
                 {"label": _("game_code_breaker"), "id": "code_breaker", "class": CodeBreaker, "desc": _("game_code_breaker_desc")},
                 {"label": _("game_number_guess"), "id": "number_guess", "class": NumberGuess, "desc": _("game_number_guess_desc")},
                 {"label": _("game_safe_cracker"), "id": "safe_cracker", "class": SafeCracker, "desc": _("game_safe_cracker_desc")},
+                {"label": _("game_dial_master"), "id": "dial_master", "class": DialMaster, "desc": _("game_dial_master_desc")},
                 {"label": _("game_math_blitz"), "id": "math_blitz", "class": MathBlitz, "desc": _("game_math_blitz_desc")},
                 {"label": _("game_golden_mic"), "id": "golden_mic", "class": GoldenMic, "desc": _("game_golden_mic_desc")},
                 {"label": _("game_audio_maze"), "id": "audio_maze", "class": AudioMaze, "desc": _("game_audio_maze_desc")},

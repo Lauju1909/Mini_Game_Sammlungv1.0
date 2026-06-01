@@ -400,6 +400,11 @@ TRANSLATIONS["de"] = {
     "factory_missed_broken": "Defektes Teil durchgelassen! Noch {lives} Leben.",
     "factory_wrong_sort": "Gutes Teil zerstört! Noch {lives} Leben.",
     "factory_sorted": "Aussortiert!",
+    "game_dial_master": "Audio-Schlossknacker",
+    "game_dial_master_desc": "Knacke das Schloss durch feine Tonhöhen-Unterschiede beim Drehen.",
+    "game_dial_master_instructions": "Drehe das Schlossrad mit Links und Rechts. Wenn du auf der korrekten Zahl bist, klingt das Klicken minimal heller. Drücke Leertaste, um die Zahl einzuloggen. Finde 3 Zahlen!",
+    "dial_locked": "Zahl {stage} eingerastet!",
+    "dial_error": "Falsche Zahl! Noch {lives} Leben.",
 }
 
 TRANSLATIONS["en"] = {
@@ -763,4 +768,9 @@ TRANSLATIONS["en"] = {
     "factory_missed_broken": "Broken part passed! {lives} lives remaining.",
     "factory_wrong_sort": "Good part destroyed! {lives} lives remaining.",
     "factory_sorted": "Sorted out!",
+    "game_dial_master": "Audio Lockpicker",
+    "game_dial_master_desc": "Pick the lock by listening to subtle pitch changes while turning the dial.",
+    "game_dial_master_instructions": "Turn the dial with Left and Right. When you hit the correct number, the click sounds slightly higher pitched. Press Space to lock it in. Find 3 numbers!",
+    "dial_locked": "Number {stage} locked in!",
+    "dial_error": "Wrong number! {lives} lives remaining.",
 }
