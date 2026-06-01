@@ -5,7 +5,7 @@
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
 ![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V6)-brightgreen.svg)
 
-Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **45 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
+Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **46 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
 ## 🌟 Features
 
@@ -14,7 +14,7 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **45 barrierefreie
 - **Screenreader-Integration:** Unterstützt NVDA, JAWS und andere via Tolk (SAPI Fallback).
 - **Zweisprachig:** Volle Unterstützung für **Deutsch** und **Englisch**.
 - **Vielseitige Kategorien:**
-  - **Action & Reaktion:** Qualitätskontrolle, Audio-Hürdenlauf, Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
+  - **Action & Reaktion:** Audio-Ping-Pong, Qualitätskontrolle, Audio-Hürdenlauf, Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
   - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Audio-Kompass-Memory, Code-Knacker, Zahlen-Raten, Tresor-Knacker, Audio-Schlossknacker, Mathe-Blitz, Tickende Uhren, Tonhöhen-Meister, Klang-Weber, Sound-Folge.
   - **Navigation & Erkundung:** Das goldene Mikrofon, Audio-Labyrinth, Echolot, Die blinde Farm, Weltraum-Flug, Tier-Radar, Geheimnisvolle Türen, Frequenz-Jäger, Treppe des Schicksals, Sonar-U-Boot.
   - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Buchstaben-Salat, Hauptstadt-Jäger.
@@ -52,6 +52,8 @@ Dieses Projekt wurde mit dem **Agentic Tester V6** (autonomes KI-Testsystem) val
 
 ## 📈 Changelog v2.0
 
+- **Neues Minispiel hinzugefügt:** "Audio-Ping-Pong" (Acoustic Tennis)
+  - Ein auditives Tennis! Schlage den Ball zurück, indem du auf die richtige Seite und die zunehmende Lautstärke/Tonhöhe achierst.
 - **Neues Minispiel hinzugefügt:** "Audio-Kompass-Memory" (Spatial Audio Memory)
   - Ein räumliches Simon-Says. Merke dir Sequenzen aus Tönen von Vorne, Hinten, Links und Rechts!
 - **Neues Minispiel hinzugefügt:** "Audio-Schlossknacker" (Dial Master)

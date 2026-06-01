@@ -409,6 +409,10 @@ TRANSLATIONS["de"] = {
     "game_spatial_memory_desc": "Spiele Tonfolgen aus verschiedenen Himmelsrichtungen nach.",
     "game_spatial_memory_instructions": "Höre dir die Tonfolge genau an: Oben, Unten, Links oder Rechts. Wiederhole sie anschließend mit den Pfeiltasten in der gleichen Reihenfolge. Mit jedem Erfolg wird die Sequenz länger!",
     "spatial_error": "Falsche Richtung! Noch {lives} Leben.",
+    "game_audio_ping_pong": "Audio-Ping-Pong",
+    "game_audio_ping_pong_desc": "Schlage den unsichtbaren Ball per Gehör zurück.",
+    "game_audio_ping_pong_instructions": "Ein Ball kommt von links oder rechts auf dich zu. Er wird lauter und höher, je näher er ist. Drücke Pfeil Links oder Rechts im perfekten Moment, um ihn zurückzuschlagen!",
+    "ping_pong_miss": "Verfehlt! Noch {lives} Leben.",
 }
 
 TRANSLATIONS["en"] = {
@@ -781,4 +785,8 @@ TRANSLATIONS["en"] = {
     "game_spatial_memory_desc": "Repeat sound sequences played from different directions.",
     "game_spatial_memory_instructions": "Listen carefully to the sound sequence: Up, Down, Left, or Right. Repeat the sequence using the arrow keys. It gets longer with every success!",
     "spatial_error": "Wrong direction! {lives} lives remaining.",
+    "game_audio_ping_pong": "Acoustic Tennis",
+    "game_audio_ping_pong_desc": "Hit back the invisible ball using only your hearing.",
+    "game_audio_ping_pong_instructions": "A ball approaches from the left or right. It gets louder and higher in pitch as it gets closer. Press Left or Right arrow at the perfect moment to hit it back!",
+    "ping_pong_miss": "Missed! {lives} lives remaining.",
 }
