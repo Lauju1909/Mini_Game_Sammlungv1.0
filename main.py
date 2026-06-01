@@ -60,6 +60,7 @@ from games.audio_runner import AudioRunner
 from games.submarine_sonar import SubmarineSonar
 from games.audio_factory import AudioFactory
 from games.dial_master import DialMaster
+from games.spatial_memory import SpatialMemory
 
 class Particle:
     def __init__(self, x, y):
@@ -453,6 +454,7 @@ class MiniGameCollection:
             {"label": _("cat_logic"), "id": "logic", "games": [
                 {"label": _("game_sound_memo"), "id": "sound_memo", "class": SoundMemo, "desc": _("game_sound_memo_desc")},
                 {"label": _("game_simon_says"), "id": "simon_says", "class": SimonSays, "desc": _("game_simon_says_desc")},
+                {"label": _("game_spatial_memory"), "id": "spatial_memory", "class": SpatialMemory, "desc": _("game_spatial_memory_desc")},
                 {"label": _("game_code_breaker"), "id": "code_breaker", "class": CodeBreaker, "desc": _("game_code_breaker_desc")},
                 {"label": _("game_number_guess"), "id": "number_guess", "class": NumberGuess, "desc": _("game_number_guess_desc")},
                 {"label": _("game_safe_cracker"), "id": "safe_cracker", "class": SafeCracker, "desc": _("game_safe_cracker_desc")},
@@ -500,6 +502,7 @@ class MiniGameCollection:
                 {"label": _("game_audio_archery"), "id": "audio_archery", "class": AudioArchery, "desc": _("game_audio_archery_desc")},
                 {"label": _("game_sound_memo"), "id": "sound_memo", "class": SoundMemo, "desc": _("game_sound_memo_desc")},
                 {"label": _("game_simon_says"), "id": "simon_says", "class": SimonSays, "desc": _("game_simon_says_desc")},
+                {"label": _("game_spatial_memory"), "id": "spatial_memory", "class": SpatialMemory, "desc": _("game_spatial_memory_desc")},
                 {"label": _("game_audio_sequence"), "id": "audio_sequence", "class": AudioSequence, "desc": _("game_audio_sequence_desc")},
                 {"label": _("game_code_breaker"), "id": "code_breaker", "class": CodeBreaker, "desc": _("game_code_breaker_desc")},
                 {"label": _("game_number_guess"), "id": "number_guess", "class": NumberGuess, "desc": _("game_number_guess_desc")},

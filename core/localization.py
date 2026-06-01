@@ -405,6 +405,10 @@ TRANSLATIONS["de"] = {
     "game_dial_master_instructions": "Drehe das Schlossrad mit Links und Rechts. Wenn du auf der korrekten Zahl bist, klingt das Klicken minimal heller. Drücke Leertaste, um die Zahl einzuloggen. Finde 3 Zahlen!",
     "dial_locked": "Zahl {stage} eingerastet!",
     "dial_error": "Falsche Zahl! Noch {lives} Leben.",
+    "game_spatial_memory": "Audio-Kompass-Memory",
+    "game_spatial_memory_desc": "Spiele Tonfolgen aus verschiedenen Himmelsrichtungen nach.",
+    "game_spatial_memory_instructions": "Höre dir die Tonfolge genau an: Oben, Unten, Links oder Rechts. Wiederhole sie anschließend mit den Pfeiltasten in der gleichen Reihenfolge. Mit jedem Erfolg wird die Sequenz länger!",
+    "spatial_error": "Falsche Richtung! Noch {lives} Leben.",
 }
 
 TRANSLATIONS["en"] = {
@@ -773,4 +777,8 @@ TRANSLATIONS["en"] = {
     "game_dial_master_instructions": "Turn the dial with Left and Right. When you hit the correct number, the click sounds slightly higher pitched. Press Space to lock it in. Find 3 numbers!",
     "dial_locked": "Number {stage} locked in!",
     "dial_error": "Wrong number! {lives} lives remaining.",
+    "game_spatial_memory": "Spatial Audio Memory",
+    "game_spatial_memory_desc": "Repeat sound sequences played from different directions.",
+    "game_spatial_memory_instructions": "Listen carefully to the sound sequence: Up, Down, Left, or Right. Repeat the sequence using the arrow keys. It gets longer with every success!",
+    "spatial_error": "Wrong direction! {lives} lives remaining.",
 }
