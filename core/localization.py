@@ -435,6 +435,10 @@ TRANSLATIONS["de"] = {
     "game_audio_racer_desc": "Schalte im perfekten Moment und weiche dem Gegenverkehr aus.",
     "game_audio_racer_instructions": "Die Motor-Tonhöhe steigt stetig an. Drücke Pfeil Oben, um bei hohem Ton perfekt zu schalten! Weiche gleichzeitig dem Gegenverkehr (Tiefes Brummen) mit Pfeil Links oder Rechts aus!",
     "racer_crash_gameover": "Totalschaden! Du bist ausgeschieden.",
+    "game_audio_minesweeper": "Audio-Minenräumer",
+    "game_audio_minesweeper_desc": "Finde und entschärfe Minen anhand des Geigerzählers.",
+    "game_audio_minesweeper_instructions": "Bewege dich mit Links/Rechts auf dem Minenfeld. Ein Geigerzähler verrät dir die Distanz zur Mine: Je schneller es klickt, desto näher bist du. Das Panning zeigt die Richtung. Bei maximaler Geschwindigkeit stehst du direkt darauf! Drücke schnell die Leertaste zum Entschärfen. Drückst du falsch, explodiert die Mine!",
+    "minesweeper_boom": "Bumm! Du hast die Mine ausgelöst.",
 }
 
 TRANSLATIONS["en"] = {
@@ -833,4 +837,8 @@ TRANSLATIONS["en"] = {
     "game_audio_racer_desc": "Shift gears perfectly and dodge oncoming traffic.",
     "game_audio_racer_instructions": "The engine pitch rises steadily. Press Up arrow to shift gears perfectly at a high pitch! Simultaneously, dodge oncoming traffic (deep rumble) with Left or Right arrows!",
     "racer_crash_gameover": "Totaled! You are out.",
+    "game_audio_minesweeper": "Acoustic Minesweeper",
+    "game_audio_minesweeper_desc": "Find and defuse mines using the Geiger counter.",
+    "game_audio_minesweeper_instructions": "Move Left/Right on the minefield. A Geiger counter reveals the distance to the mine: the faster it clicks, the closer you are. Panning shows the direction. At max speed, you are right on it! Quickly press Space to defuse. If you press Space elsewhere, you explode!",
+    "minesweeper_boom": "Boom! You triggered the mine.",
 }

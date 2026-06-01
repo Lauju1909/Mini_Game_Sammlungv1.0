@@ -5,7 +5,7 @@
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
 ![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V6)-brightgreen.svg)
 
-Willkommen bei der **Mini-Game-Sammlung**, einer massiven Sammlung von **51 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
+Willkommen bei der **Mini-Game-Sammlung**, einer massiven Sammlung von **52 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
 ## 🌟 Features
 
@@ -15,7 +15,7 @@ Willkommen bei der **Mini-Game-Sammlung**, einer massiven Sammlung von **51 barr
 - **Zweisprachig:** Volle Unterstützung für **Deutsch** und **Englisch**.
 - **Vielseitige Kategorien:**
   - **Action & Reaktion:** Audio-Rennfahrer, Audio-Bosskampf, Audio-Verteidigung, Audio-Schmiede, Audio-Bogenschießen Pro, Audio-Ping-Pong, Qualitätskontrolle, Audio-Hürdenlauf, Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
-  - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Audio-Kompass-Memory, Code-Knacker, Zahlen-Raten, Tresor-Knacker, Audio-Schlossknacker, Mathe-Blitz, Tickende Uhren, Tonhöhen-Meister, Klang-Weber, Sound-Folge.
+  - **Logik & Gedächtnis:** Audio-Minenräumer, Sound-Memo, Simon Says, Audio-Kompass-Memory, Code-Knacker, Zahlen-Raten, Tresor-Knacker, Audio-Schlossknacker, Mathe-Blitz, Tickende Uhren, Tonhöhen-Meister, Klang-Weber, Sound-Folge.
   - **Navigation & Erkundung:** Das goldene Mikrofon, Audio-Labyrinth, Echolot, Die blinde Farm, Weltraum-Flug, Tier-Radar, Geheimnisvolle Türen, Frequenz-Jäger, Treppe des Schicksals, Sonar-U-Boot.
   - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Buchstaben-Salat, Hauptstadt-Jäger.
   - **Simulation & Spezial:** Audio-Bowling, Schere-Stein-Papier Extreme, Audio-Slots, Echo-Jäger.
@@ -52,6 +52,8 @@ Dieses Projekt wurde mit dem **Agentic Tester V6** (autonomes KI-Testsystem) val
 
 ## 📈 Changelog v2.0
 
+- **Neues Minispiel hinzugefügt:** "Audio-Minenräumer" (Acoustic Minesweeper)
+  - Finde Minen per akustischem Geigerzähler und entschärfe sie punktgenau!
 - **Neues Minispiel hinzugefügt:** "Audio-Rennfahrer" (Acoustic Racer)
   - Beschleunige, weiche Gegenverkehr auf verschiedenen Spuren aus und schalte genau im richtigen Moment!
 - **Neues Minispiel hinzugefügt:** "Audio-Bosskampf" (Acoustic Boss Fight)
