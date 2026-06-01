@@ -469,6 +469,12 @@ TRANSLATIONS["de"] = {
     "game_audio_darts_instructions": "Ein Ticken wandert von links nach rechts über die Dartscheibe. Je näher es der Mitte kommt, desto schneller tickt es. Wenn es die Mitte überquert, hörst du einen hellen Ping. Drücke die Leertaste in genau diesem Moment! Triffst du daneben, verlierst du ein Leben.",
     "darts_miss": "Daneben!",
     "darts_gameover": "3 Pfeile verfehlt! Das Spiel ist aus.",
+    "game_audio_morse_code": "Audio-Morsen",
+    "game_audio_morse_code_desc": "Präge dir Morse-Codes ein und tippe sie nach.",
+    "game_audio_morse_code_instructions": "Höre dir die Tonfolge aus kurzen Pieptönen (Punkten) und langen Pieptönen (Strichen) an. Danach bist du dran! Tippe die Leertaste kurz für einen Punkt, halte sie länger für einen Strich. Ein falsches Zeichen kostet ein Leben. Drücke R, um dir die Sequenz nochmal anzuhören.",
+    "morse_code_wrong": "Falsch! Höre noch einmal zu.",
+    "morse_code_gameover": "Zu viele Fehler! Spiel vorbei.",
+    "morse_code_level_up": "Richtig! Level {level}.",
 }
 
 TRANSLATIONS["en"] = {
@@ -901,4 +907,10 @@ TRANSLATIONS["en"] = {
     "game_audio_darts_instructions": "A tick moves from left to right across the dartboard. The closer it gets to the center, the faster it ticks. When it crosses the center, you hear a high ping. Press Space at that exact moment! If you miss completely, you lose a life.",
     "darts_miss": "Miss!",
     "darts_gameover": "3 darts missed! Game over.",
+    "game_audio_morse_code": "Acoustic Morse Code",
+    "game_audio_morse_code_desc": "Memorize and tap out morse code sequences.",
+    "game_audio_morse_code_instructions": "Listen to the sequence of short beeps (dots) and long beeps (dashes). Then it's your turn! Tap Space quickly for a dot, hold it longer for a dash. A wrong character costs a life. Press R to listen to the sequence again.",
+    "morse_code_wrong": "Wrong! Listen again.",
+    "morse_code_gameover": "Too many mistakes! Game over.",
+    "morse_code_level_up": "Correct! Level {level}.",
 }
