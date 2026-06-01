@@ -450,6 +450,10 @@ TRANSLATIONS["de"] = {
     "battleship_hit": "Treffer!",
     "battleship_miss": "Wasser!",
     "battleship_win": "Gewonnen! Du hast {shots} Schüsse benötigt.",
+    "game_audio_mosquito": "Audio-Mückenjagd",
+    "game_audio_mosquito_desc": "Klatsche die summende Mücke ab.",
+    "game_audio_mosquito_instructions": "Eine Mücke summt um deinen Kopf! Das Panning verrät dir Links/Rechts, die Lautstärke die Entfernung. Drücke die Leertaste zum Klatschen, wenn die Mücke direkt vor deiner Nase ist (Mitte und sehr laut). Erwische 5 Mücken, um zu gewinnen!",
+    "mosquito_win": "Alle Mücken erledigt! Endlich Ruhe.",
 }
 
 TRANSLATIONS["en"] = {
@@ -863,4 +867,8 @@ TRANSLATIONS["en"] = {
     "battleship_hit": "Hit!",
     "battleship_miss": "Miss!",
     "battleship_win": "Victory! You needed {shots} shots.",
+    "game_audio_mosquito": "Acoustic Mosquito Hunt",
+    "game_audio_mosquito_desc": "Clap the buzzing mosquito.",
+    "game_audio_mosquito_instructions": "A mosquito is buzzing around your head! Panning indicates Left/Right, volume indicates distance. Press Space to clap exactly when the mosquito is right in front of your nose (center and very loud). Catch 5 mosquitoes to win!",
+    "mosquito_win": "All mosquitoes squashed! Finally, some peace.",
 }
