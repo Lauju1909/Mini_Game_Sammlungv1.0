@@ -459,6 +459,11 @@ TRANSLATIONS["de"] = {
     "game_audio_waiter_instructions": "Bewege dich auf einem 5x5 Raster mit den Pfeiltasten. Gäste rufen nach Getränken (Klirren). Das Panning (Links/Rechts) und die Tonhöhe (Vorne/Hinten) verraten dir die Position. Finde den Gast und drücke die Leertaste, um ihn zu bedienen, bevor das Zeitlimit abläuft! Achte auf Hindernisse im Weg (Bumpsound).",
     "waiter_too_late": "Der Gast ist wütend gegangen!",
     "waiter_gameover": "Zu viele Beschwerden! Du bist gefeuert.",
+    "game_audio_bouncer": "Audio-Türsteher",
+    "game_audio_bouncer_desc": "Prüfe akustische Passwörter an der Clubtür.",
+    "game_audio_bouncer_instructions": "Du bist der Türsteher! Zu Beginn jeder Schicht wird dir das gültige Passwort (eine Melodie) laut vorgespielt. Danach kommen Gäste und flüstern ihr Passwort. Drücke Pfeil Oben, um sie hereinzulassen, wenn die Melodie exakt stimmt. Drücke Pfeil Unten, um sie abzuweisen, falls ein Ton falsch ist. Drücke R, um das Passwort erneut anzuhören.",
+    "bouncer_gameover": "Zu viele Fehler! Der Club-Besitzer hat dich gefeuert.",
+    "bouncer_new_shift": "Schicht {level} beginnt!",
 }
 
 TRANSLATIONS["en"] = {
@@ -881,4 +886,9 @@ TRANSLATIONS["en"] = {
     "game_audio_waiter_instructions": "Move on a 5x5 grid with the arrow keys. Guests call for drinks (clinking sound). Panning indicates Left/Right, pitch indicates Front/Back. Find the guest and press Space to serve them before the time runs out! Watch out for obstacles in the way (bump sound).",
     "waiter_too_late": "The guest left in anger!",
     "waiter_gameover": "Too many complaints! You are fired.",
+    "game_audio_bouncer": "Acoustic Bouncer",
+    "game_audio_bouncer_desc": "Check acoustic passwords at the club door.",
+    "game_audio_bouncer_instructions": "You are the bouncer! At the start of each shift, the valid password (a melody) is played loudly. Then guests arrive and whisper their password. Press Up arrow to let them in if the melody is exactly right. Press Down arrow to reject them if even one tone is wrong. Press R to repeat the password.",
+    "bouncer_gameover": "Too many mistakes! The club owner fired you.",
+    "bouncer_new_shift": "Shift {level} begins!",
 }
