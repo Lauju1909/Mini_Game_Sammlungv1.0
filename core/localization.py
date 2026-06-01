@@ -389,6 +389,11 @@ TRANSLATIONS["de"] = {
     "game_audio_runner_instructions": "Audio Hürdenlauf! Du läufst auf 3 Spuren. Ein Signalton warnt dich vor einem Hindernis auf einer Spur. Wechsle mit Pfeil Links und Rechts die Spur, bevor es kracht!",
     "start_go": "Los geht's!",
     "crash_lives": "Crash! Noch {lives} Leben.",
+    "game_submarine_sonar": "Sonar-U-Boot",
+    "game_submarine_sonar_desc": "Zerstöre feindliche U-Boote durch Echopeilung.",
+    "game_submarine_sonar_instructions": "Drehe dein U-Boot mit Links und Rechts. Feinde senden ein Sonar-Ping. Hoher Ton = Vorne, Tiefer Ton = Hinten. Ist der Feind genau vor dir (Mitte), drücke Leertaste zum Feuern!",
+    "submarine_hit": "Treffer kassiert! Noch {lives} Leben.",
+    "submarine_destroyed": "Feind zerstört!",
 }
 
 TRANSLATIONS["en"] = {
@@ -741,4 +746,9 @@ TRANSLATIONS["en"] = {
     "game_audio_runner_instructions": "Audio Runner! You run on 3 lanes. A beep warns you of an obstacle on a lane. Change lanes with Left and Right arrows before it crashes!",
     "start_go": "Go!",
     "crash_lives": "Crash! {lives} lives remaining.",
+    "game_submarine_sonar": "Submarine Sonar",
+    "game_submarine_sonar_desc": "Destroy enemy submarines using echo location.",
+    "game_submarine_sonar_instructions": "Turn your submarine with Left and Right. Enemies send a sonar ping. High pitch = Front, Low pitch = Behind. When the enemy is exactly in front of you (center), press Space to fire!",
+    "submarine_hit": "Hit taken! {lives} lives remaining.",
+    "submarine_destroyed": "Enemy destroyed!",
 }

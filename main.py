@@ -57,6 +57,7 @@ from games.sound_weaver import SoundWeaver
 from games.beat_matcher import BeatMatcher
 from games.audio_balance import AudioBalance
 from games.audio_runner import AudioRunner
+from games.submarine_sonar import SubmarineSonar
 
 class Particle:
     def __init__(self, x, y):
@@ -467,7 +468,8 @@ class MiniGameCollection:
                 {"label": _("game_animal_radar"), "id": "animal_radar", "class": AnimalRadar, "desc": _("game_animal_radar_desc")},
                 {"label": _("game_mystery_door"), "id": "mystery_door", "class": MysteryDoor, "desc": _("game_mystery_door_desc")},
                 {"label": _("game_frequency_jammer"), "id": "frequency_jammer", "class": FrequencyJammer, "desc": _("game_frequency_jammer_desc")},
-                {"label": _("game_stairs_of_fate"), "id": "stairs_of_fate", "class": StairsOfFate, "desc": _("game_stairs_of_fate_desc")}
+                {"label": _("game_stairs_of_fate"), "id": "stairs_of_fate", "class": StairsOfFate, "desc": _("game_stairs_of_fate_desc")},
+                {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")}
             ]},
             {"label": _("cat_speech"), "id": "speech", "games": [
                 {"label": _("game_word_snake"), "id": "word_snake", "class": WordSnake, "desc": _("game_word_snake_desc")},
@@ -521,6 +523,7 @@ class MiniGameCollection:
                 {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
                 {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
                 {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
+                {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")},
                 {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")}
             ]},
             {"label": _("back"), "id": "back"}

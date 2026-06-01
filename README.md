@@ -5,7 +5,7 @@
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
 ![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V6)-brightgreen.svg)
 
-Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **41 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
+Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **42 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
 ## 🌟 Features
 
@@ -16,7 +16,7 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **41 barrierefreie
 - **Vielseitige Kategorien:**
   - **Action & Reaktion:** Audio-Hürdenlauf, Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
   - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Code-Knacker, Zahlen-Raten, Tresor-Knacker, Mathe-Blitz, Tickende Uhren, Tonhöhen-Meister, Klang-Weber, Sound-Folge.
-  - **Navigation & Erkundung:** Das goldene Mikrofon, Audio-Labyrinth, Echolot, Die blinde Farm, Weltraum-Flug, Tier-Radar, Geheimnisvolle Türen, Frequenz-Jäger, Treppe des Schicksals.
+  - **Navigation & Erkundung:** Das goldene Mikrofon, Audio-Labyrinth, Echolot, Die blinde Farm, Weltraum-Flug, Tier-Radar, Geheimnisvolle Türen, Frequenz-Jäger, Treppe des Schicksals, Sonar-U-Boot.
   - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Buchstaben-Salat, Hauptstadt-Jäger.
   - **Simulation & Spezial:** Audio-Bowling, Schere-Stein-Papier Extreme, Audio-Slots, Echo-Jäger.
 - **Premium Design:** Moderne UI mit Glaseffekten, Partikelsystemen und flüssigen Animationen für sehende Mitspieler.
@@ -52,6 +52,9 @@ Dieses Projekt wurde mit dem **Agentic Tester V6** (autonomes KI-Testsystem) val
 
 ## 📈 Changelog v2.0
 
+- **Neues Minispiel hinzugefügt:** "Sonar-U-Boot" (Submarine Sonar)
+  - Ein 360-Grad Echo-Ortungsspiel. Ortet Feinde per Stereo-Pan und Tonhöhe.
+  - Volle Lokalisierung und barrierefreies Design integriert.
 - **Neues Minispiel hinzugefügt:** "Audio-Hürdenlauf" (Audio Runner)
   - Ein endloser Audio-Hindernisparcours über 3 Spuren.
   - Der Spieler muss durch akustische Hinweise in Form von Stereo-Signalen rechtzeitig die Spur wechseln.
