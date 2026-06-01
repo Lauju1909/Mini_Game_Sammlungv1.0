@@ -1,11 +1,11 @@
-# Audio Studio Tycoon: Mini-Game-Sammlung v1.9
+# Audio Studio Tycoon: Mini-Game-Sammlung v2.0
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.9-green.svg)
+![Version](https://img.shields.io/badge/version-2.0-green.svg)
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
 ![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V6)-brightgreen.svg)
 
-Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
+Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **41 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
 ## 🌟 Features
 
@@ -14,7 +14,7 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **40 barrierefreie
 - **Screenreader-Integration:** Unterstützt NVDA, JAWS und andere via Tolk (SAPI Fallback).
 - **Zweisprachig:** Volle Unterstützung für **Deutsch** und **Englisch**.
 - **Vielseitige Kategorien:**
-  - **Action & Reaktion:** Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
+  - **Action & Reaktion:** Audio-Hürdenlauf, Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
   - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Code-Knacker, Zahlen-Raten, Tresor-Knacker, Mathe-Blitz, Tickende Uhren, Tonhöhen-Meister, Klang-Weber, Sound-Folge.
   - **Navigation & Erkundung:** Das goldene Mikrofon, Audio-Labyrinth, Echolot, Die blinde Farm, Weltraum-Flug, Tier-Radar, Geheimnisvolle Türen, Frequenz-Jäger, Treppe des Schicksals.
   - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Buchstaben-Salat, Hauptstadt-Jäger.
@@ -49,6 +49,13 @@ Dieses Projekt wurde mit dem **Agentic Tester V6** (autonomes KI-Testsystem) val
 - **Test-Umfang:** 1000+ automatisierte Aktionen in DE/EN Sessions sowie Grafik-Rendering-Simulation aller 40 Mini-Games.
 - **Status:** 0 Crashes, stabile Audio-Engine, korrekte Lokalisierung.
 - **Ergebnis:** Alle Menüpfade, Zeichenroutinen und Kernmechaniken sind stabil und verifiziert.
+
+## 📈 Changelog v2.0
+
+- **Neues Minispiel hinzugefügt:** "Audio-Hürdenlauf" (Audio Runner)
+  - Ein endloser Audio-Hindernisparcours über 3 Spuren.
+  - Der Spieler muss durch akustische Hinweise in Form von Stereo-Signalen rechtzeitig die Spur wechseln.
+  - Volle DE/EN Lokalisierung und 100% Blindengerechtigkeit integriert.
 
 ## 📈 Changelog v1.9
 

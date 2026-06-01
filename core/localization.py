@@ -384,6 +384,11 @@ TRANSLATIONS["de"] = {
     "tut_ss_2": "Simon sagt dir die Richtungen an. Achte genau darauf!",
     "tut_ss_3": "Wir probieren es mit einem einzelnen Ton. Simon sagt: Oben.",
     "tut_ss_4": "Drücke jetzt die Taste Oben.",
+    "game_audio_runner": "Audio-Hürdenlauf",
+    "game_audio_runner_desc": "Weiche den Hindernissen aus, indem du die Spur wechselst.",
+    "game_audio_runner_instructions": "Audio Hürdenlauf! Du läufst auf 3 Spuren. Ein Signalton warnt dich vor einem Hindernis auf einer Spur. Wechsle mit Pfeil Links und Rechts die Spur, bevor es kracht!",
+    "start_go": "Los geht's!",
+    "crash_lives": "Crash! Noch {lives} Leben.",
 }
 
 TRANSLATIONS["en"] = {
@@ -731,4 +736,9 @@ TRANSLATIONS["en"] = {
     "wrong": "Wrong!",
     "all_players_finished_winner": "The winner is {player} with {score} points! Back to the main menu.",
     "all_players_finished_tie": "Draw between {players} with {score} points! Back to the main menu.",
+    "game_audio_runner": "Audio Runner",
+    "game_audio_runner_desc": "Dodge the obstacles by changing lanes.",
+    "game_audio_runner_instructions": "Audio Runner! You run on 3 lanes. A beep warns you of an obstacle on a lane. Change lanes with Left and Right arrows before it crashes!",
+    "start_go": "Go!",
+    "crash_lives": "Crash! {lives} lives remaining.",
 }
