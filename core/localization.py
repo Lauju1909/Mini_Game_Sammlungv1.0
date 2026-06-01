@@ -416,6 +416,11 @@ TRANSLATIONS["de"] = {
     "game_audio_archery_pro": "Audio-Bogenschießen Pro",
     "game_audio_archery_pro_desc": "Triff die Zielscheibe und beachte den Wind.",
     "game_audio_archery_pro_instructions": "Die Zielscheibe bewegt sich hörbar. Drücke Leertaste, wenn sie genau in der Mitte ist. Ab Runde 2 kommt Wind (tiefes Rauschen auf einer Seite) hinzu. Du musst den Wind ausgleichen und etwas neben die Mitte zielen!",
+    "game_rhythm_blacksmith": "Audio-Schmiede",
+    "game_rhythm_blacksmith_desc": "Schmiede Schwerter im perfekten Takt.",
+    "game_rhythm_blacksmith_instructions": "Du hörst ein tiefes Hämmern im Hintergrund, das den Takt vorgibt. Drücke die Leertaste exakt auf den Beat, um auf den Amboss zu schlagen. Wenn du den Takt triffst, wird der Klang heller. Schmiede 3 Schwerter!",
+    "blacksmith_sword_done": "Schwert {count} geschmiedet!",
+    "blacksmith_all_done": "Meisterhaft geschmiedet!",
 }
 
 TRANSLATIONS["en"] = {
@@ -795,4 +800,9 @@ TRANSLATIONS["en"] = {
     "game_audio_archery_pro": "Acoustic Archery Pro",
     "game_audio_archery_pro_desc": "Hit the moving target and compensate for the wind.",
     "game_audio_archery_pro_instructions": "The target moves audibly. Press Space when it is exactly in the middle. From round 2, wind (low rumble on one side) is added. You must compensate for the wind and aim slightly off-center!",
+    "game_rhythm_blacksmith": "Rhythm Blacksmith",
+    "game_rhythm_blacksmith_desc": "Forge swords to the perfect beat.",
+    "game_rhythm_blacksmith_instructions": "You will hear a deep hammering setting the rhythm. Press Space exactly on the beat to strike the anvil. Hitting the beat will make the sound brighter. Forge 3 swords!",
+    "blacksmith_sword_done": "Sword {count} forged!",
+    "blacksmith_all_done": "Masterfully forged!",
 }
