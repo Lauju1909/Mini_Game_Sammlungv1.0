@@ -5,7 +5,7 @@
 ![Accessibility](https://img.shields.io/badge/Accessibility-100%25%20Blind%20Accessible-brightgreen.svg)
 ![QA Status](https://img.shields.io/badge/QA%20Status-Passed%20(Agentic%20Tester%20V6)-brightgreen.svg)
 
-Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **42 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
+Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **43 barrierefreien Mini-Games**, die speziell für blinde und sehbehinderte Spieler sowie für Liebhaber von Audio-Spielen entwickelt wurden.
 
 ## 🌟 Features
 
@@ -14,7 +14,7 @@ Willkommen bei der **Mini-Game-Sammlung**, einer Sammlung von **42 barrierefreie
 - **Screenreader-Integration:** Unterstützt NVDA, JAWS und andere via Tolk (SAPI Fallback).
 - **Zweisprachig:** Volle Unterstützung für **Deutsch** und **Englisch**.
 - **Vielseitige Kategorien:**
-  - **Action & Reaktion:** Audio-Hürdenlauf, Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
+  - **Action & Reaktion:** Qualitätskontrolle, Audio-Hürdenlauf, Beat-Reaktor, Stereo-Münzfang, Ton-Jäger, Bomben-Entschärfer, Tasten-Gewitter, Schnellwähler, Maulwurf-Meister, Rhythmus-König, Reaktions-Blitz, Audio-Bogenschießen, Beat-Matcher, Audio-Balance, Morse-Läufer.
   - **Logik & Gedächtnis:** Sound-Memo, Simon Says, Code-Knacker, Zahlen-Raten, Tresor-Knacker, Mathe-Blitz, Tickende Uhren, Tonhöhen-Meister, Klang-Weber, Sound-Folge.
   - **Navigation & Erkundung:** Das goldene Mikrofon, Audio-Labyrinth, Echolot, Die blinde Farm, Weltraum-Flug, Tier-Radar, Geheimnisvolle Türen, Frequenz-Jäger, Treppe des Schicksals, Sonar-U-Boot.
   - **Sprache & Wissen:** Wort-Schlange, Geräusche-Quiz, Buchstaben-Salat, Hauptstadt-Jäger.
@@ -52,6 +52,8 @@ Dieses Projekt wurde mit dem **Agentic Tester V6** (autonomes KI-Testsystem) val
 
 ## 📈 Changelog v2.0
 
+- **Neues Minispiel hinzugefügt:** "Qualitätskontrolle" (Audio Factory)
+  - Ein Fließband-Sortierspiel. Unterscheide gute und defekte Teile anhand der Tonhöhe und sortiere defekte Teile rechtzeitig aus.
 - **Neues Minispiel hinzugefügt:** "Sonar-U-Boot" (Submarine Sonar)
   - Ein 360-Grad Echo-Ortungsspiel. Ortet Feinde per Stereo-Pan und Tonhöhe.
   - Volle Lokalisierung und barrierefreies Design integriert.

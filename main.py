@@ -58,6 +58,7 @@ from games.beat_matcher import BeatMatcher
 from games.audio_balance import AudioBalance
 from games.audio_runner import AudioRunner
 from games.submarine_sonar import SubmarineSonar
+from games.audio_factory import AudioFactory
 
 class Particle:
     def __init__(self, x, y):
@@ -445,6 +446,7 @@ class MiniGameCollection:
                 {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
                 {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
                 {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
+                {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
                 {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")}
             ]},
             {"label": _("cat_logic"), "id": "logic", "games": [
@@ -523,6 +525,7 @@ class MiniGameCollection:
                 {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
                 {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
                 {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
+                {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
                 {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")},
                 {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")}
             ]},

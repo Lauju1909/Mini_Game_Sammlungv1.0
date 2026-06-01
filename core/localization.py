@@ -394,6 +394,12 @@ TRANSLATIONS["de"] = {
     "game_submarine_sonar_instructions": "Drehe dein U-Boot mit Links und Rechts. Feinde senden ein Sonar-Ping. Hoher Ton = Vorne, Tiefer Ton = Hinten. Ist der Feind genau vor dir (Mitte), drücke Leertaste zum Feuern!",
     "submarine_hit": "Treffer kassiert! Noch {lives} Leben.",
     "submarine_destroyed": "Feind zerstört!",
+    "game_audio_factory": "Qualitätskontrolle",
+    "game_audio_factory_desc": "Sortiere defekte Teile auf dem Fließband aus.",
+    "game_audio_factory_instructions": "Teile fahren auf einem Fließband von links nach rechts. Gute Teile klingen hoch, defekte tief. Drücke Leertaste, wenn ein defektes Teil genau in der Mitte ist, um es auszusortieren!",
+    "factory_missed_broken": "Defektes Teil durchgelassen! Noch {lives} Leben.",
+    "factory_wrong_sort": "Gutes Teil zerstört! Noch {lives} Leben.",
+    "factory_sorted": "Aussortiert!",
 }
 
 TRANSLATIONS["en"] = {
@@ -751,4 +757,10 @@ TRANSLATIONS["en"] = {
     "game_submarine_sonar_instructions": "Turn your submarine with Left and Right. Enemies send a sonar ping. High pitch = Front, Low pitch = Behind. When the enemy is exactly in front of you (center), press Space to fire!",
     "submarine_hit": "Hit taken! {lives} lives remaining.",
     "submarine_destroyed": "Enemy destroyed!",
+    "game_audio_factory": "Quality Control",
+    "game_audio_factory_desc": "Sort out broken parts on the conveyor belt.",
+    "game_audio_factory_instructions": "Parts move on a conveyor belt from left to right. Good parts have a high pitch, broken ones a low pitch. Press Space when a broken part is exactly in the middle to sort it out!",
+    "factory_missed_broken": "Broken part passed! {lives} lives remaining.",
+    "factory_wrong_sort": "Good part destroyed! {lives} lives remaining.",
+    "factory_sorted": "Sorted out!",
 }
