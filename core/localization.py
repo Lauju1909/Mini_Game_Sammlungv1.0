@@ -454,6 +454,11 @@ TRANSLATIONS["de"] = {
     "game_audio_mosquito_desc": "Klatsche die summende Mücke ab.",
     "game_audio_mosquito_instructions": "Eine Mücke summt um deinen Kopf! Das Panning verrät dir Links/Rechts, die Lautstärke die Entfernung. Drücke die Leertaste zum Klatschen, wenn die Mücke direkt vor deiner Nase ist (Mitte und sehr laut). Erwische 5 Mücken, um zu gewinnen!",
     "mosquito_win": "Alle Mücken erledigt! Endlich Ruhe.",
+    "game_audio_waiter": "Audio-Kellner",
+    "game_audio_waiter_desc": "Bediene die durstigen Gäste auf Zuruf.",
+    "game_audio_waiter_instructions": "Bewege dich auf einem 5x5 Raster mit den Pfeiltasten. Gäste rufen nach Getränken (Klirren). Das Panning (Links/Rechts) und die Tonhöhe (Vorne/Hinten) verraten dir die Position. Finde den Gast und drücke die Leertaste, um ihn zu bedienen, bevor das Zeitlimit abläuft! Achte auf Hindernisse im Weg (Bumpsound).",
+    "waiter_too_late": "Der Gast ist wütend gegangen!",
+    "waiter_gameover": "Zu viele Beschwerden! Du bist gefeuert.",
 }
 
 TRANSLATIONS["en"] = {
@@ -871,4 +876,9 @@ TRANSLATIONS["en"] = {
     "game_audio_mosquito_desc": "Clap the buzzing mosquito.",
     "game_audio_mosquito_instructions": "A mosquito is buzzing around your head! Panning indicates Left/Right, volume indicates distance. Press Space to clap exactly when the mosquito is right in front of your nose (center and very loud). Catch 5 mosquitoes to win!",
     "mosquito_win": "All mosquitoes squashed! Finally, some peace.",
+    "game_audio_waiter": "Acoustic Waiter",
+    "game_audio_waiter_desc": "Serve thirsty guests by following their calls.",
+    "game_audio_waiter_instructions": "Move on a 5x5 grid with the arrow keys. Guests call for drinks (clinking sound). Panning indicates Left/Right, pitch indicates Front/Back. Find the guest and press Space to serve them before the time runs out! Watch out for obstacles in the way (bump sound).",
+    "waiter_too_late": "The guest left in anger!",
+    "waiter_gameover": "Too many complaints! You are fired.",
 }
