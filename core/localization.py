@@ -444,6 +444,12 @@ TRANSLATIONS["de"] = {
     "game_audio_frogger_instructions": "Du stehst sicher am Straßenrand. Du hörst die Autos der Spur direkt vor dir (mit Panning und Doppler-Effekt). Erkenne die Lücke im Verkehr und drücke Pfeil Oben, um im perfekten Moment über die Spur zu hüpfen! Schaffst du 10 Spuren, erreichst du das nächste Level.",
     "frogger_gameover": "Du wurdest überfahren! Spiel vorbei.",
     "frogger_level_up": "Level {level}! Der Verkehr wird dichter.",
+    "game_audio_battleship": "Audio-Schiffeversenken",
+    "game_audio_battleship_desc": "Finde und versenke unsichtbare Schiffe.",
+    "game_audio_battleship_instructions": "Bewege den Cursor mit den Pfeiltasten auf einem 5x5 Raster. Drücke die Leertaste, um zu schießen. Ein Platsch-Sound bedeutet Wasser, eine Explosion ist ein Treffer! Drücke S für das Sonar: Je höher der Ton, desto näher bist du am Schiff. Versenke alle Schiffe!",
+    "battleship_hit": "Treffer!",
+    "battleship_miss": "Wasser!",
+    "battleship_win": "Gewonnen! Du hast {shots} Schüsse benötigt.",
 }
 
 TRANSLATIONS["en"] = {
@@ -851,4 +857,10 @@ TRANSLATIONS["en"] = {
     "game_audio_frogger_instructions": "You stand safely on the curb. You hear the cars of the lane directly in front of you (with panning and doppler effect). Detect the gap in traffic and press Up arrow to jump across the lane at the perfect moment! Cross 10 lanes to reach the next level.",
     "frogger_gameover": "You were run over! Game over.",
     "frogger_level_up": "Level {level}! Traffic is getting heavier.",
+    "game_audio_battleship": "Acoustic Battleship",
+    "game_audio_battleship_desc": "Find and sink invisible ships.",
+    "game_audio_battleship_instructions": "Move the cursor with the arrow keys on a 5x5 grid. Press Space to shoot. A splash sound means water, an explosion means a hit! Press S for sonar: the higher the pitch, the closer you are. Sink all ships!",
+    "battleship_hit": "Hit!",
+    "battleship_miss": "Miss!",
+    "battleship_win": "Victory! You needed {shots} shots.",
 }
