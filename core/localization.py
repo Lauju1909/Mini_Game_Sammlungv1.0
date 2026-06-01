@@ -431,6 +431,10 @@ TRANSLATIONS["de"] = {
     "boss_hit": "Treffer kassiert! Noch {hp} Leben.",
     "boss_defeat": "Du wurdest besiegt!",
     "boss_victory": "Du hast den Boss besiegt! Glückwunsch!",
+    "game_audio_racer": "Audio-Rennfahrer",
+    "game_audio_racer_desc": "Schalte im perfekten Moment und weiche dem Gegenverkehr aus.",
+    "game_audio_racer_instructions": "Die Motor-Tonhöhe steigt stetig an. Drücke Pfeil Oben, um bei hohem Ton perfekt zu schalten! Weiche gleichzeitig dem Gegenverkehr (Tiefes Brummen) mit Pfeil Links oder Rechts aus!",
+    "racer_crash_gameover": "Totalschaden! Du bist ausgeschieden.",
 }
 
 TRANSLATIONS["en"] = {
@@ -825,4 +829,8 @@ TRANSLATIONS["en"] = {
     "boss_hit": "You got hit! {hp} lives remaining.",
     "boss_defeat": "You were defeated!",
     "boss_victory": "You defeated the boss! Congratulations!",
+    "game_audio_racer": "Acoustic Racer",
+    "game_audio_racer_desc": "Shift gears perfectly and dodge oncoming traffic.",
+    "game_audio_racer_instructions": "The engine pitch rises steadily. Press Up arrow to shift gears perfectly at a high pitch! Simultaneously, dodge oncoming traffic (deep rumble) with Left or Right arrows!",
+    "racer_crash_gameover": "Totaled! You are out.",
 }
