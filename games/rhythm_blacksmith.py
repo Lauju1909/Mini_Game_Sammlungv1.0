@@ -81,7 +81,7 @@ class RhythmBlacksmith(BaseGame):
                         
                         if self.swords_forged >= self.target_swords:
                             self.audio.speak(self._("blacksmith_all_done"), priority=1)
-                            time.sleep(1.0)
+                            self.sleep(1.0)
                             self.finish()
                         else:
                             self.audio.speak(self._("blacksmith_sword_done", count=self.swords_forged), priority=1)

@@ -117,7 +117,7 @@ class AudioFrogger(BaseGame):
                         
                         if self.lives <= 0:
                             self.audio.speak(self._("frogger_gameover"), priority=2)
-                            time.sleep(1.5)
+                            self.sleep(1.5)
                             self.finish()
                         else:
                             self.audio.speak(self._("lives_left", lives=self.lives), priority=1)

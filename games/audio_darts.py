@@ -108,9 +108,9 @@ class AudioDarts(BaseGame):
                         self.lives -= 1
                         
                     if self.lives <= 0:
-                        time.sleep(1)
+                        self.sleep(1)
                         self.audio.speak(self._("darts_gameover"), priority=2)
-                        time.sleep(1.5)
+                        self.sleep(1.5)
                         self.finish()
                     else:
                         # Reset cursor für den nächsten Wurf

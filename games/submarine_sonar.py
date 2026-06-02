@@ -91,7 +91,7 @@ class SubmarineSonar(BaseGame):
             # Spiele Ton
             self.audio.play_tone(frequency=freq, duration_ms=150, volume=vol_percent, pan=pan)
             # Kurze Pause zwischen mehreren Feinden
-            time.sleep(0.05)
+            self.sleep(0.05)
 
     def handle_input(self, event):
         if not self.active: return

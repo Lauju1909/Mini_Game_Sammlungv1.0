@@ -90,7 +90,7 @@ class AudioRacer(BaseGame):
                         
                         if self.lives <= 0:
                             self.audio.speak(self._("racer_crash_gameover"), priority=2)
-                            time.sleep(1)
+                            self.sleep(1)
                             self.finish()
                         else:
                             self.audio.speak(self._("lives_left", lives=self.lives), priority=1)

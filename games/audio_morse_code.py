@@ -116,7 +116,7 @@ class AudioMorseCode(BaseGame):
                         
                         if self.lives <= 0:
                             self.audio.speak(self._("morse_code_gameover"), priority=2)
-                            time.sleep(2)
+                            self.sleep(2)
                             self.finish()
                         else:
                             self.audio.speak(self._("morse_code_wrong"), priority=1)

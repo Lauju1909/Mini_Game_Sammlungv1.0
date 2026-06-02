@@ -74,7 +74,7 @@ class AudioSpaceship(BaseGame):
                     
                     if self.lives <= 0:
                         self.audio.speak(self._("spaceship_gameover"), priority=2)
-                        time.sleep(2)
+                        self.sleep(2)
                         self.finish()
                         return
                     else:

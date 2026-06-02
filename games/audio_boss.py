@@ -64,7 +64,7 @@ class AudioBoss(BaseGame):
         self.audio.play_sound("error")
         if self.player_hp <= 0:
             self.audio.speak(self._("boss_defeat"), priority=2)
-            time.sleep(1)
+            self.sleep(1)
             self.finish()
         else:
             self.audio.speak(self._("boss_hit", hp=self.player_hp), priority=1)
@@ -78,7 +78,7 @@ class AudioBoss(BaseGame):
             self.boss_hp = 0
             self.audio.speak(self._("boss_victory"), priority=2)
             self.score += self.player_hp * 500
-            time.sleep(2)
+            self.sleep(2)
             self.finish()
         else:
             if self.boss_hp in [75, 50, 25]:

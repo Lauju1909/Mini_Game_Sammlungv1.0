@@ -64,6 +64,17 @@ class BaseGame:
     def draw(self, screen):
         pass
 
+    def sleep(self, seconds):
+        import time
+        end_time = time.time() + seconds
+        while time.time() < end_time:
+            pygame.time.Clock().tick(60)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    import sys
+                    sys.exit()
+
     def finish(self):
         self.active = False
         msg = self._("final_score", score=self.score)

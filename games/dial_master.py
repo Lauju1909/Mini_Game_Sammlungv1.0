@@ -92,7 +92,7 @@ class DialMaster(BaseGame):
                 # Alle gefunden!
                 self.audio.play_sound("win")
                 self.audio.speak(self._("safe_open"))
-                time.sleep(0.5)
+                self.sleep(0.5)
                 self.finish()
         else:
             # Falsch!

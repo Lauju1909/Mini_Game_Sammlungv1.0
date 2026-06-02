@@ -99,7 +99,7 @@ class AudioBouncer(BaseGame):
     def next_guest(self):
         if self.lives <= 0:
             self.audio.speak(self._("bouncer_gameover"), priority=2)
-            time.sleep(1.5)
+            self.sleep(1.5)
             self.finish()
             return
 

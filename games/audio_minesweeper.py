@@ -33,7 +33,7 @@ class AudioMinesweeper(BaseGame):
     def game_over(self):
         self.audio.play_sound("error")
         self.audio.speak(self._("minesweeper_boom"), priority=2)
-        time.sleep(1.5)
+        self.sleep(1.5)
         self.finish()
 
     def update(self):

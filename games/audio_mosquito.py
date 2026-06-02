@@ -99,7 +99,7 @@ class AudioMosquito(BaseGame):
                         
                         if self.mosquitos_caught >= self.target_mosquitos:
                             self.audio.speak(self._("mosquito_win"), priority=2)
-                            time.sleep(2)
+                            self.sleep(2)
                             self.finish()
                         else:
                             self.audio.speak(str(self.mosquitos_caught), priority=1)

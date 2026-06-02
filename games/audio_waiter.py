@@ -79,7 +79,7 @@ class AudioWaiter(BaseGame):
                 
                 if self.lives <= 0:
                     self.audio.speak(self._("waiter_gameover"), priority=2)
-                    time.sleep(2)
+                    self.sleep(2)
                     self.finish()
                 else:
                     self.audio.speak(self._("waiter_too_late"), priority=1)
@@ -106,7 +106,7 @@ class AudioWaiter(BaseGame):
                     
                     # Gläser-Klirren simulieren (zwei schnelle helle Töne)
                     self.audio.play_tone(frequency=int(freq), duration_ms=80, volume=vol, pan=pan)
-                    time.sleep(0.1)
+                    self.sleep(0.1)
                     self.audio.play_tone(frequency=int(freq+150), duration_ms=100, volume=vol, pan=pan)
 
     def handle_input(self, event):

@@ -16,7 +16,6 @@ class RhythmMaster(BaseGame):
         self.combo = 0
         self.game_duration = 30 # seconds
         self.start_time = 0
-        self.active = False
         self.beats_hit = 0
         self.total_beats = 0
         self.visual_beats = [] # For drawing

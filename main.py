@@ -1028,6 +1028,8 @@ class MiniGameCollection:
                 if self.state == "tutorial" and self.current_game.tutorial_finished:
                     self.state = "playing"
                     self.current_game.start()
+                elif self.state == "playing" and not self.current_game.active:
+                    self.on_game_finished()
 
             self.render_ui()
             pygame.display.flip()

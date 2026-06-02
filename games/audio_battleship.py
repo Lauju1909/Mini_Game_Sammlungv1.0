@@ -130,7 +130,7 @@ class AudioBattleship(BaseGame):
                         if not self.ships:
                             # Gewonnen!
                             self.audio.speak(self._("battleship_win", shots=self.shots_taken), priority=2)
-                            time.sleep(2)
+                            self.sleep(2)
                             self.finish()
                     else:
                         # Wasser (Platsch)
