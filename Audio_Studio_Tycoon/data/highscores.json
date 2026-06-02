@@ -1,0 +1,1012 @@
+{
+    "stereo_catch": [
+        {
+            "name": "lauju",
+            "score": 100
+        },
+        {
+            "name": "lauju",
+            "score": 100
+        },
+        {
+            "name": "lauju",
+            "score": 0
+        },
+        {
+            "name": "lauju",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        }
+    ],
+    "sound_memo": [
+        {
+            "name": "Tester",
+            "score": 414
+        },
+        {
+            "name": "Tester",
+            "score": 414
+        },
+        {
+            "name": "Bot",
+            "score": 200
+        },
+        {
+            "name": "lauju",
+            "score": 140
+        },
+        {
+            "name": "Bot",
+            "score": 140
+        },
+        {
+            "name": "Bot",
+            "score": 140
+        },
+        {
+            "name": "Bot",
+            "score": 140
+        },
+        {
+            "name": "Bot",
+            "score": 140
+        },
+        {
+            "name": "lauju",
+            "score": 120
+        },
+        {
+            "name": "lauju",
+            "score": 120
+        }
+    ],
+    "beat_reaktor": [
+        {
+            "name": "lauju",
+            "score": 340
+        },
+        {
+            "name": "lauju",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_4709",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_1222",
+            "score": 0
+        },
+        {
+            "name": "43",
+            "score": 0
+        },
+        {
+            "name": "52",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_7565",
+            "score": -200
+        },
+        {
+            "name": "QA_Bot_6232",
+            "score": -250
+        },
+        {
+            "name": "QA_Bot_6798",
+            "score": -250
+        },
+        {
+            "name": "QA_Bot_1803",
+            "score": -350
+        }
+    ],
+    "bomb_defuser": [
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot_8483",
+            "score": 0
+        },
+        {
+            "name": "Bot_6687",
+            "score": 0
+        },
+        {
+            "name": "lauju",
+            "score": 0
+        }
+    ],
+    "key_storm": [
+        {
+            "name": "QA_Bot_2658",
+            "score": 2719
+        },
+        {
+            "name": "QA_Bot_9953",
+            "score": 2717
+        },
+        {
+            "name": "lauju",
+            "score": 1859
+        },
+        {
+            "name": "lauju",
+            "score": 1859
+        },
+        {
+            "name": "lauju",
+            "score": 1859
+        },
+        {
+            "name": "lauju",
+            "score": 1859
+        },
+        {
+            "name": "lauju",
+            "score": 1859
+        },
+        {
+            "name": "lauju",
+            "score": 1859
+        },
+        {
+            "name": "lauju",
+            "score": 1859
+        },
+        {
+            "name": "lauju",
+            "score": 1859
+        }
+    ],
+    "simon_says": [
+        {
+            "name": "lauju",
+            "score": 80
+        },
+        {
+            "name": "Bot_4923",
+            "score": 20
+        },
+        {
+            "name": "Bot",
+            "score": 10
+        },
+        {
+            "name": "Bot",
+            "score": 10
+        },
+        {
+            "name": "Bot_2298",
+            "score": 10
+        },
+        {
+            "name": "Bot_5189",
+            "score": 10
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        }
+    ],
+    "number_guess": [
+        {
+            "name": "Bot_1523",
+            "score": 95
+        },
+        {
+            "name": "lauju",
+            "score": 70
+        },
+        {
+            "name": "Bot",
+            "score": 55
+        },
+        {
+            "name": "lara",
+            "score": 50
+        },
+        {
+            "name": "Bot_4119",
+            "score": 10
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        }
+    ],
+    "safe_cracker": [
+        {
+            "name": "Bot",
+            "score": 500
+        },
+        {
+            "name": "Bot",
+            "score": 500
+        },
+        {
+            "name": "Bot_4160",
+            "score": 500
+        },
+        {
+            "name": "lauju",
+            "score": 500
+        },
+        {
+            "name": "Bot_3596",
+            "score": 500
+        },
+        {
+            "name": "Bot_2053",
+            "score": 500
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        }
+    ],
+    "math_blitz": [
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot_5312",
+            "score": 0
+        },
+        {
+            "name": "Bot_1134",
+            "score": 0
+        },
+        {
+            "name": "Bot_3619",
+            "score": 0
+        }
+    ],
+    "golden_mic": [
+        {
+            "name": "Bot_3280",
+            "score": 500
+        },
+        {
+            "name": "Bot_7447",
+            "score": 500
+        },
+        {
+            "name": "lauju",
+            "score": 500
+        },
+        {
+            "name": "QA_Bot_8761",
+            "score": 500
+        },
+        {
+            "name": "Bot",
+            "score": 100
+        },
+        {
+            "name": "Bot",
+            "score": 100
+        },
+        {
+            "name": "Bot",
+            "score": 100
+        },
+        {
+            "name": "Bot_9352",
+            "score": 100
+        },
+        {
+            "name": "Bot_5299",
+            "score": 100
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        }
+    ],
+    "audio_maze": [
+        {
+            "name": "Bot",
+            "score": 300
+        },
+        {
+            "name": "Bot",
+            "score": 300
+        },
+        {
+            "name": "Bot",
+            "score": 300
+        },
+        {
+            "name": "Bot",
+            "score": 300
+        },
+        {
+            "name": "Bot",
+            "score": 300
+        },
+        {
+            "name": "Bot",
+            "score": 300
+        },
+        {
+            "name": "Bot_3927",
+            "score": 300
+        },
+        {
+            "name": "Bot_3795",
+            "score": 300
+        },
+        {
+            "name": "Bot_4240",
+            "score": 300
+        },
+        {
+            "name": "Bot_8911",
+            "score": 300
+        }
+    ],
+    "echolot": [
+        {
+            "name": "QA_Bot_5974",
+            "score": 745
+        },
+        {
+            "name": "QA_Bot_7064",
+            "score": 273
+        },
+        {
+            "name": "Bot_2752",
+            "score": 216
+        },
+        {
+            "name": "Bot",
+            "score": 39
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        }
+    ],
+    "blind_farm": [
+        {
+            "name": "QA_Bot_8640",
+            "score": 500
+        },
+        {
+            "name": "lauju",
+            "score": 500
+        },
+        {
+            "name": "QA_Bot_4871",
+            "score": 500
+        },
+        {
+            "name": "QA_Bot_7786",
+            "score": 500
+        },
+        {
+            "name": "Bot",
+            "score": 200
+        },
+        {
+            "name": "Bot",
+            "score": 200
+        },
+        {
+            "name": "Bot",
+            "score": 200
+        },
+        {
+            "name": "Bot",
+            "score": 200
+        },
+        {
+            "name": "Bot",
+            "score": 200
+        },
+        {
+            "name": "Bot",
+            "score": 200
+        }
+    ],
+    "space_flight": [
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot_8045",
+            "score": 0
+        },
+        {
+            "name": "Bot_7444",
+            "score": 0
+        },
+        {
+            "name": "Bot_5500",
+            "score": 0
+        }
+    ],
+    "word_snake": [
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot_7677",
+            "score": 0
+        },
+        {
+            "name": "Bot_2653",
+            "score": 0
+        },
+        {
+            "name": "Bot_5665",
+            "score": 0
+        }
+    ],
+    "sound_quiz": [
+        {
+            "name": "QA_Bot_9871",
+            "score": 200
+        },
+        {
+            "name": "QA_Bot_5226",
+            "score": 100
+        },
+        {
+            "name": "QA_Bot_7037",
+            "score": 100
+        },
+        {
+            "name": "QA_Bot_7798",
+            "score": 100
+        },
+        {
+            "name": "QA_Bot_5131",
+            "score": 100
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        }
+    ],
+    "letter_salad": [
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot_8665",
+            "score": 0
+        },
+        {
+            "name": "Bot_5581",
+            "score": 0
+        },
+        {
+            "name": "Bot_7403",
+            "score": 0
+        }
+    ],
+    "capital_hunter": [
+        {
+            "name": "QA_Bot_7041",
+            "score": 100
+        },
+        {
+            "name": "QA_Bot_6809",
+            "score": 100
+        },
+        {
+            "name": "QA_Bot_2903",
+            "score": 100
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        }
+    ],
+    "audio_bowling": [
+        {
+            "name": "QA_Bot_5009",
+            "score": 450
+        },
+        {
+            "name": "Bot",
+            "score": 350
+        },
+        {
+            "name": "lauju",
+            "score": 350
+        },
+        {
+            "name": "QA_Bot_9827",
+            "score": 300
+        },
+        {
+            "name": "QA_Bot_4883",
+            "score": 300
+        },
+        {
+            "name": "Bot_5231",
+            "score": 250
+        },
+        {
+            "name": "Bot_7945",
+            "score": 250
+        },
+        {
+            "name": "QA_Bot_1662",
+            "score": 250
+        },
+        {
+            "name": "Bot",
+            "score": 200
+        },
+        {
+            "name": "Bot",
+            "score": 150
+        }
+    ],
+    "rps_extreme": [
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot",
+            "score": 0
+        },
+        {
+            "name": "Bot_6936",
+            "score": 0
+        },
+        {
+            "name": "Bot_6628",
+            "score": 0
+        },
+        {
+            "name": "Bot_9553",
+            "score": 0
+        }
+    ],
+    "sound_catch": [
+        {
+            "name": "aluju",
+            "score": 300
+        },
+        {
+            "name": "QA_Bot_8704",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_6737",
+            "score": 0
+        }
+    ],
+    "speed_dial": [
+        {
+            "name": "lauju",
+            "score": 0
+        },
+        {
+            "name": "lauju",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_3090",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_4015",
+            "score": 0
+        }
+    ],
+    "mole_master": [
+        {
+            "name": "lauju",
+            "score": 788
+        },
+        {
+            "name": "QA_Bot_7224",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_7902",
+            "score": 0
+        }
+    ],
+    "audio_archery": [
+        {
+            "name": "lauju",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_4262",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_4559",
+            "score": 0
+        }
+    ],
+    "audio_balance": [
+        {
+            "name": "lauju",
+            "score": 89
+        }
+    ],
+    "audio_sequence": [
+        {
+            "name": "lauju",
+            "score": 35
+        },
+        {
+            "name": "QA_Bot_1836",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_4026",
+            "score": 0
+        }
+    ],
+    "reaction_blitz": [
+        {
+            "name": "QA_Bot_1622",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_9937",
+            "score": 0
+        }
+    ],
+    "beat_matcher": [
+        {
+            "name": "QA_Bot_9119",
+            "score": 247
+        },
+        {
+            "name": "QA_Bot_5515",
+            "score": 193
+        }
+    ],
+    "morse_runner": [
+        {
+            "name": "QA_Bot_4461",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_9642",
+            "score": 0
+        }
+    ],
+    "code_breaker": [
+        {
+            "name": "QA_Bot_6834",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_2893",
+            "score": 0
+        }
+    ],
+    "ticking_clock": [
+        {
+            "name": "QA_Bot_8520",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_9101",
+            "score": 0
+        }
+    ],
+    "sound_weaver": [
+        {
+            "name": "QA_Bot_8194",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_2642",
+            "score": 0
+        }
+    ],
+    "animal_radar": [
+        {
+            "name": "QA_Bot_5128",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_7537",
+            "score": 0
+        }
+    ],
+    "mystery_door": [
+        {
+            "name": "QA_Bot_8938",
+            "score": 40
+        },
+        {
+            "name": "QA_Bot_8936",
+            "score": 20
+        }
+    ],
+    "audio_slots": [
+        {
+            "name": "QA_Bot_9885",
+            "score": 0
+        },
+        {
+            "name": "QA_Bot_5139",
+            "score": 0
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "volume_sfx": 100,
+    "volume_music": 50,
+    "speech_volume": 100,
+    "speech_rate": 40,
+    "language": "de",
+    "player_name": "Spieler",
+    "tts_engine": "auto"
+}

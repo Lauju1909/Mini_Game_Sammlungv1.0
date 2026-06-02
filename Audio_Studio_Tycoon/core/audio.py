@@ -67,7 +67,12 @@ class AudioManager:
 
         # SAPI Fallback initialisieren
         self.sapi = None
-        self.sapi = None
+        if not self.tolk_active and HAS_WIN32COM:
+            try:
+                self.sapi = win32com.client.Dispatch("SAPI.SpVoice")
+                print("SAPI Fallback aktiviert.")
+            except Exception as e:
+                print(f"SAPI Init Fehler: {e}")
 
         # Pygame Mixer initialisieren
         try:
@@ -86,15 +91,6 @@ class AudioManager:
 
     def _speech_worker(self):
         """Hintergrund-Thread zur Verarbeitung der Sprachausgabe."""
-        thread_sapi = None
-        if not self.tolk_active and HAS_WIN32COM:
-            try:
-                import ctypes
-                ctypes.windll.ole32.CoInitialize(None)
-                thread_sapi = win32com.client.Dispatch("SAPI.SpVoice")
-            except Exception as e:
-                print(f"SAPI Init Fehler im Worker: {e}")
-
         while not self.stop_worker:
             try:
                 # Warte auf neue Nachrichten in der Queue
@@ -121,21 +117,21 @@ class AudioManager:
                         time.sleep(0.05)
                     except Exception as e:
                         print(f"Tolk Worker Fehler: {e}")
-                elif thread_sapi:
+                elif self.sapi:
                     try:
                         if interrupt:
                             # SVSFPurgeBeforeSpeak (2) + Async (1) = 3
-                            thread_sapi.Speak("", 3)
+                            self.sapi.Speak("", 3)
                         
                         self.current_priority = priority
                         # Flags: Async (1)
-                        thread_sapi.Speak(text, 1)
+                        self.sapi.Speak(text, 1)
                         
                         if not interrupt:
                             # Warte bis SAPI fertig ist
                             elapsed = 0
                             while elapsed < 10000 and not self.interrupt_event.is_set():
-                                if thread_sapi.WaitUntilDone(100):
+                                if self.sapi.WaitUntilDone(100):
                                     break
                                 elapsed += 100
                                 if self.stop_worker: break
@@ -158,17 +154,6 @@ class AudioManager:
                 self.speech_queue.task_done()
             except queue.Empty:
                 break
-
-    def is_speaking(self):
-        """Gibt zurück ob gerade gesprochen wird oder noch Text in der Queue ist."""
-        if not self.speech_queue.empty():
-            return True
-        if self.tolk_active and self.tolk:
-            try:
-                return self.tolk.Tolk_IsSpeaking()
-            except:
-                pass
-        return False
 
     def speak(self, text, interrupt=True, priority=1):
         """
