@@ -475,6 +475,12 @@ TRANSLATIONS["de"] = {
     "morse_code_wrong": "Falsch! Höre noch einmal zu.",
     "morse_code_gameover": "Zu viele Fehler! Spiel vorbei.",
     "morse_code_level_up": "Richtig! Level {level}.",
+    "game_audio_spaceship": "Audio-Raumschiff-Schlacht",
+    "game_audio_spaceship_desc": "Verteidige dich im 360-Grad-Radar gegen Feinde.",
+    "game_audio_spaceship_instructions": "Steuere deinen Geschützturm! Feinde nähern sich von allen Seiten. Panning verrät Links/Rechts, Tonhöhe verrät Vorne/Hinten. Drehe dich mit den Pfeiltasten Links/Rechts in die richtige Richtung. Feuere mit der Leertaste schnelle Laser auf kleine Jäger (hohes Surren). Feuere mit der Taste M schwere Raketen auf gepanzerte Bomber (tiefes Brummen).",
+    "spaceship_gameover": "Dein Schiff wurde zerstört! Spiel vorbei.",
+    "spaceship_level_up": "Welle {level} erreicht!",
+    "lives_left": "Schild bei {lives}!",
 }
 
 TRANSLATIONS["en"] = {
@@ -913,4 +919,10 @@ TRANSLATIONS["en"] = {
     "morse_code_wrong": "Wrong! Listen again.",
     "morse_code_gameover": "Too many mistakes! Game over.",
     "morse_code_level_up": "Correct! Level {level}.",
+    "game_audio_spaceship": "Acoustic Spaceship Battle",
+    "game_audio_spaceship_desc": "Defend yourself in 360-degree radar against enemies.",
+    "game_audio_spaceship_instructions": "Control your turret! Enemies approach from all sides. Panning indicates Left/Right, pitch indicates Front/Back. Turn with Left/Right arrow keys. Press Space to fire fast lasers at small fighters (high buzz). Press M to fire heavy missiles at armored bombers (low hum).",
+    "spaceship_gameover": "Your ship has been destroyed! Game over.",
+    "spaceship_level_up": "Wave {level} reached!",
+    "lives_left": "Shields at {lives}!",
 }

@@ -75,6 +75,7 @@ from games.audio_waiter import AudioWaiter
 from games.audio_bouncer import AudioBouncer
 from games.audio_darts import AudioDarts
 from games.audio_morse_code import AudioMorseCode
+from games.audio_spaceship import AudioSpaceship
 
 class Particle:
     def __init__(self, x, y):
@@ -468,6 +469,7 @@ class MiniGameCollection:
                 {"label": _("game_audio_mosquito"), "id": "audio_mosquito", "class": AudioMosquito, "desc": _("game_audio_mosquito_desc")},
                 {"label": _("game_audio_waiter"), "id": "audio_waiter", "class": AudioWaiter, "desc": _("game_audio_waiter_desc")},
                 {"label": _("game_audio_darts"), "id": "audio_darts", "class": AudioDarts, "desc": _("game_audio_darts_desc")},
+                {"label": _("game_audio_spaceship"), "id": "audio_spaceship", "class": AudioSpaceship, "desc": _("game_audio_spaceship_desc")},
                 {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
                 {"label": _("game_audio_ping_pong"), "id": "audio_ping_pong", "class": AudioPingPong, "desc": _("game_audio_ping_pong_desc")},
                 {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
@@ -569,6 +571,7 @@ class MiniGameCollection:
                 {"label": _("game_audio_bouncer"), "id": "audio_bouncer", "class": AudioBouncer, "desc": _("game_audio_bouncer_desc")},
                 {"label": _("game_audio_darts"), "id": "audio_darts", "class": AudioDarts, "desc": _("game_audio_darts_desc")},
                 {"label": _("game_audio_morse_code"), "id": "audio_morse_code", "class": AudioMorseCode, "desc": _("game_audio_morse_code_desc")},
+                {"label": _("game_audio_spaceship"), "id": "audio_spaceship", "class": AudioSpaceship, "desc": _("game_audio_spaceship_desc")},
                 {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
                 {"label": _("game_audio_ping_pong"), "id": "audio_ping_pong", "class": AudioPingPong, "desc": _("game_audio_ping_pong_desc")},
                 {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
