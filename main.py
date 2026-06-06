@@ -76,6 +76,7 @@ from games.audio_bouncer import AudioBouncer
 from games.audio_darts import AudioDarts
 from games.audio_morse_code import AudioMorseCode
 from games.audio_spaceship import AudioSpaceship
+from games.audio_fishing import AudioFishing
 
 class Particle:
     def __init__(self, x, y):
@@ -519,7 +520,8 @@ class MiniGameCollection:
                 {"label": _("game_audio_bowling"), "id": "audio_bowling", "class": AudioBowling, "desc": _("game_audio_bowling_desc")},
                 {"label": _("game_rps_extreme"), "id": "rps_extreme", "class": RPS_Extreme, "desc": _("game_rps_extreme_desc")},
                 {"label": _("game_audio_slots"), "id": "audio_slots", "class": AudioSlots, "desc": _("game_audio_slots_desc")},
-                {"label": _("game_echo_hunter"), "id": "echo_hunter", "class": EchoHunter, "desc": _("game_echo_hunter_desc")}
+                {"label": _("game_echo_hunter"), "id": "echo_hunter", "class": EchoHunter, "desc": _("game_echo_hunter_desc")},
+                {"label": _("game_audio_fishing"), "id": "audio_fishing", "class": AudioFishing, "desc": _("game_audio_fishing_desc")}
             ]},
             {"label": _("cat_all"), "id": "all", "games": [
                 {"label": _("game_beat_reaktor"), "id": "beat_reaktor", "class": BeatReaktor, "desc": _("game_beat_reaktor_desc")},
@@ -580,7 +582,8 @@ class MiniGameCollection:
                 {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
                 {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
                 {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")},
-                {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")}
+                {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")},
+                {"label": _("game_audio_fishing"), "id": "audio_fishing", "class": AudioFishing, "desc": _("game_audio_fishing_desc")}
             ]},
             {"label": _("back"), "id": "back"}
         ]

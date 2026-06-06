@@ -481,6 +481,13 @@ TRANSLATIONS["de"] = {
     "spaceship_gameover": "Dein Schiff wurde zerstört! Spiel vorbei.",
     "spaceship_level_up": "Welle {level} erreicht!",
     "lives_left": "Schild bei {lives}!",
+    "game_audio_fishing": "Audio-Angeln",
+    "game_audio_fishing_desc": "Wirf deine Angel aus und reagiere im richtigen Moment, wenn ein Fisch anbeißt.",
+    "game_audio_fishing_instructions": "Drücke die Leertaste zum Auswerfen. Wenn du das laute Piepen hörst, hat ein Fisch angebissen. Drücke sofort nochmal die Leertaste, um ihn einzuholen!",
+    "press_space_to_cast": "Drücke die Leertaste, um die Angel auszuwerfen.",
+    "fish_escaped": "Der Fisch ist entkommen!",
+    "too_early": "Zu früh gezogen! Du hast den Fisch verscheucht.",
+    "fish_caught": "Du hast den Fisch gefangen! {points} Punkte.",
 }
 
 TRANSLATIONS["en"] = {
@@ -925,4 +932,11 @@ TRANSLATIONS["en"] = {
     "spaceship_gameover": "Your ship has been destroyed! Game over.",
     "spaceship_level_up": "Wave {level} reached!",
     "lives_left": "Shields at {lives}!",
+    "game_audio_fishing": "Audio Fishing",
+    "game_audio_fishing_desc": "Cast your line and react at the right moment when a fish bites.",
+    "game_audio_fishing_instructions": "Press Space to cast. When you hear the loud beep, a fish has bitten. Press Space again immediately to reel it in!",
+    "press_space_to_cast": "Press Space to cast your line.",
+    "fish_escaped": "The fish escaped!",
+    "too_early": "You pulled too early! You scared the fish away.",
+    "fish_caught": "You caught the fish! {points} points.",
 }
