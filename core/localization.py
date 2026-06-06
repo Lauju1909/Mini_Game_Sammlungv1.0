@@ -154,6 +154,13 @@ TRANSLATIONS["de"] = {
     "math_time_up": "Zeit abgelaufen! {lives} Leben übrig.",
     "math_wrong": "Falsche Antwort! {lives} Leben übrig.",
     "math_gameover": "Du hast zu viele Fehler gemacht!",
+    "game_audio_lockpicker": "Audio Lockpicker",
+    "game_audio_lockpicker_desc": "Hebe die Stifte mit Pfeil Hoch an und fixiere sie mit Leertaste, wenn es klickt!",
+    "game_audio_lockpicker_instructions": "Halte Pfeil Hoch gedrückt, um den Stift anzuheben. Wenn du ein metallisches Klicken hörst, drücke sofort Leertaste! Wenn du zu früh oder zu spät drückst oder loslässt, fällt der Stift herunter.",
+    "pin_set": "Stift {num} fixiert!",
+    "pin_failed": "Stift gefallen! {lives} Leben übrig.",
+    "lockpicker_gameover": "Dein Dietrich ist abgebrochen!",
+    "lock_opened": "Schloss geknackt! Du hast gewonnen!",
     "stats_title": "Statistiken",
     "cap_germany": "Deutschland",
     "cap_france": "Frankreich",
@@ -985,5 +992,12 @@ TRANSLATIONS["en"] = {
     "game_audio_math_instructions": "Listen to the math problem, type your answer, and press Enter! Hurry up!",
     "math_time_up": "Time's up! {lives} lives remaining.",
     "math_wrong": "Wrong answer! {lives} lives remaining.",
-    "math_gameover": "You made too many mistakes!"
+    "math_gameover": "You made too many mistakes!",
+    "game_audio_lockpicker": "Audio Lockpicker",
+    "game_audio_lockpicker_desc": "Lift the pins with Up Arrow and set them with Space when it clicks!",
+    "game_audio_lockpicker_instructions": "Hold Up Arrow to lift the pin. When you hear a metallic click, press Space immediately! If you press too early, too late, or release the key, the pin drops.",
+    "pin_set": "Pin {num} set!",
+    "pin_failed": "Pin dropped! {lives} lives remaining.",
+    "lockpicker_gameover": "Your lockpick broke!",
+    "lock_opened": "Lock picked! You won!"
 }

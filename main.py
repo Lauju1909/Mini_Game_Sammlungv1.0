@@ -81,6 +81,7 @@ from games.audio_train import AudioTrain
 from games.audio_juggler import AudioJuggler
 from games.audio_sniper import AudioSniper
 from games.audio_math import AudioMath
+from games.audio_lockpicker import AudioLockpicker
 
 class Particle:
     def __init__(self, x, y):
@@ -522,7 +523,8 @@ class MiniGameCollection:
                 {"label": _("game_sound_quiz"), "id": "sound_quiz", "class": SoundQuiz, "desc": _("game_sound_quiz_desc")},
                 {"label": _("game_letter_salad"), "id": "letter_salad", "class": LetterSalad, "desc": _("game_letter_salad_desc")},
                 {"label": _("game_capital_hunter"), "id": "capital_hunter", "class": CapitalHunter, "desc": _("game_capital_hunter_desc")},
-                {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")}
+                {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")},
+                {"label": _("game_audio_lockpicker"), "id": "audio_lockpicker", "class": AudioLockpicker, "desc": _("game_audio_lockpicker_desc")}
             ]},
             {"label": _("cat_sim"), "id": "sim", "games": [
                 {"label": _("game_audio_bowling"), "id": "audio_bowling", "class": AudioBowling, "desc": _("game_audio_bowling_desc")},
@@ -595,7 +597,8 @@ class MiniGameCollection:
                 {"label": _("game_audio_train"), "id": "audio_train", "class": AudioTrain, "desc": _("game_audio_train_desc")},
                 {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")},
                 {"label": _("game_audio_sniper"), "id": "audio_sniper", "class": AudioSniper, "desc": _("game_audio_sniper_desc")},
-                {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")}
+                {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")},
+                {"label": _("game_audio_lockpicker"), "id": "audio_lockpicker", "class": AudioLockpicker, "desc": _("game_audio_lockpicker_desc")}
             ]},
             {"label": _("back"), "id": "back"}
         ]
