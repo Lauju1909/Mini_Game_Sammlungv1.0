@@ -142,6 +142,12 @@ TRANSLATIONS["de"] = {
     "game_audio_juggler_instructions": "Du jonglierst! Wenn du ein Geräusch hörst, fällt ein Ball. Drücke Links für den linken Ball, Oben für den mittleren und Rechts für den rechten Ball. Fange sie, bevor sie den Boden berühren!",
     "ball_dropped": "Ball fallen gelassen! {lives} Leben übrig.",
     "juggler_gameover": "Du hast zu viele Bälle fallen gelassen!",
+    "game_audio_sniper": "Audio Sniper",
+    "game_audio_sniper_desc": "Visiere das Ziel mit Links/Rechts an, bis das Atmen genau in der Mitte ist, und schieße mit Leertaste!",
+    "game_audio_sniper_instructions": "Ziele mit den Links- und Rechtspfeilen. Du hörst das Ziel atmen. Wenn das Geräusch genau in der Mitte ist, drücke Leertaste zum Schießen! Beeil dich, bevor es flieht!",
+    "sniper_target_escaped": "Ziel entkommen! {lives} Leben übrig.",
+    "sniper_missed": "Daneben! {lives} Leben übrig.",
+    "sniper_gameover": "Mission gescheitert. Du hast keine Leben mehr.",
     "stats_title": "Statistiken",
     "cap_germany": "Deutschland",
     "cap_france": "Frankreich",
@@ -1154,5 +1160,11 @@ TRANSLATIONS["en"] = {
     "game_audio_juggler_desc": "Catch and throw the balls with Left, Up, and Right in rhythm!",
     "game_audio_juggler_instructions": "You are juggling! When you hear a sound, a ball is falling. Press Left for the left ball, Up for the center, and Right for the right ball. Catch them before they hit the ground!",
     "ball_dropped": "Ball dropped! {lives} lives remaining.",
-    "juggler_gameover": "You dropped too many balls!"
+    "juggler_gameover": "You dropped too many balls!",
+    "game_audio_sniper": "Audio Sniper",
+    "game_audio_sniper_desc": "Aim with Left/Right until the breathing is exactly centered, then shoot with Space!",
+    "game_audio_sniper_instructions": "Aim using the Left and Right arrows. You will hear the target breathing. When the sound is exactly centered, press Space to shoot! Hurry before it escapes!",
+    "sniper_target_escaped": "Target escaped! {lives} lives remaining.",
+    "sniper_missed": "Missed! {lives} lives remaining.",
+    "sniper_gameover": "Mission failed. You are out of lives."
 }

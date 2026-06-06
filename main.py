@@ -79,6 +79,7 @@ from games.audio_spaceship import AudioSpaceship
 from games.audio_fishing import AudioFishing
 from games.audio_train import AudioTrain
 from games.audio_juggler import AudioJuggler
+from games.audio_sniper import AudioSniper
 
 class Particle:
     def __init__(self, x, y):
@@ -481,6 +482,7 @@ class MiniGameCollection:
                 {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
                 {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
                 {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")},
+                {"label": _("game_audio_sniper"), "id": "audio_sniper", "class": AudioSniper, "desc": _("game_audio_sniper_desc")},
                 {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")}
             ]},
             {"label": _("cat_logic"), "id": "logic", "games": [
@@ -589,7 +591,8 @@ class MiniGameCollection:
                 {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")},
                 {"label": _("game_audio_fishing"), "id": "audio_fishing", "class": AudioFishing, "desc": _("game_audio_fishing_desc")},
                 {"label": _("game_audio_train"), "id": "audio_train", "class": AudioTrain, "desc": _("game_audio_train_desc")},
-                {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")}
+                {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")},
+                {"label": _("game_audio_sniper"), "id": "audio_sniper", "class": AudioSniper, "desc": _("game_audio_sniper_desc")}
             ]},
             {"label": _("back"), "id": "back"}
         ]
