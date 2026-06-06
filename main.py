@@ -83,9 +83,12 @@ class Particle:
         self.y = y
         self.vx = random.uniform(-0.5, 0.5)
         self.vy = random.uniform(-0.5, 0.5)
-        self.size = random.uniform(2, 5)
+        self.size = int(random.uniform(2, 5))
         self.color = [random.randint(150, 255), random.randint(150, 255), 255, random.randint(50, 150)]
         self.life = random.uniform(100, 200)
+        
+        self.surface = pygame.Surface((self.size*2, self.size*2), pygame.SRCALPHA)
+        pygame.draw.circle(self.surface, (self.color[0], self.color[1], self.color[2]), (self.size, self.size), self.size)
 
     def update(self):
         self.x += self.vx
@@ -95,9 +98,8 @@ class Particle:
             self.color[3] = int(max(0, self.color[3] - 2))
 
     def draw(self, screen):
-        s = pygame.Surface((self.size*2, self.size*2), pygame.SRCALPHA)
-        pygame.draw.circle(s, self.color, (self.size, self.size), self.size)
-        screen.blit(s, (self.x - self.size, self.y - self.size))
+        self.surface.set_alpha(self.color[3])
+        screen.blit(self.surface, (self.x - self.size, self.y - self.size))
 
 class ParticleSystem:
     def __init__(self, count=50):
@@ -211,8 +213,8 @@ class MiniGameCollection:
         if not hasattr(self, 'game_queue'):
             self.game_queue = []
             
-        if item in self.game_queue:
-            self.game_queue.remove(item)
+        if any(g.get("id") == item.get("id") for g in self.game_queue):
+            self.game_queue = [g for g in self.game_queue if g.get("id") != item.get("id")]
             self.audio.speak(item['label'] + " entfernt", interrupt=True)
         else:
             self.game_queue.append(item)
@@ -228,7 +230,7 @@ class MiniGameCollection:
 
         if not self.game_queue:
             self.game_queue = [item]
-        elif item not in self.game_queue:
+        elif not any(g.get("id") == item.get("id") for g in self.game_queue):
             # If they just hit ENTER on a game not in queue, clear queue and play this one
             self.game_queue = [item]
             
@@ -696,10 +698,15 @@ class MiniGameCollection:
 
     def draw_glass_rect(self, rect, color=(255, 255, 255, 30), border_color=(255, 255, 255, 100)):
         """Zeichnet ein halbtransparentes Rechteck mit Rahmen (Glas-Effekt)."""
-        shape_surf = pygame.Surface((rect.width, rect.height), pygame.SRCALPHA)
-        pygame.draw.rect(shape_surf, color, (0, 0, rect.width, rect.height), border_radius=15)
-        pygame.draw.rect(shape_surf, border_color, (0, 0, rect.width, rect.height), width=2, border_radius=15)
-        self.screen.blit(shape_surf, rect)
+        if not hasattr(self, '_glass_cache'):
+            self._glass_cache = {}
+        key = (rect.width, rect.height, color, border_color)
+        if key not in self._glass_cache:
+            shape_surf = pygame.Surface((rect.width, rect.height), pygame.SRCALPHA)
+            pygame.draw.rect(shape_surf, color, (0, 0, rect.width, rect.height), border_radius=15)
+            pygame.draw.rect(shape_surf, border_color, (0, 0, rect.width, rect.height), width=2, border_radius=15)
+            self._glass_cache[key] = shape_surf
+        self.screen.blit(self._glass_cache[key], rect)
 
     def render_ui(self):
         # Dynamischer Hintergrund
@@ -717,13 +724,15 @@ class MiniGameCollection:
         self.particles.draw(self.screen)
         
         # Ein paar abstrakte Formen für den "WOW"-Effekt
+        if not hasattr(self, 'wow_surface'):
+            self.wow_surface = pygame.Surface((300, 300), pygame.SRCALPHA)
+            pygame.draw.circle(self.wow_surface, (100, 100, 255, 10), (150, 150), 150)
+            
         for i in range(3):
             angle = t * (0.5 + i * 0.2)
             dist = 200 + 50 * math.sin(t + i)
             pos = (400 + math.cos(angle) * dist, 300 + math.sin(angle) * dist)
-            s = pygame.Surface((300, 300), pygame.SRCALPHA)
-            pygame.draw.circle(s, (100, 100, 255, 10), (150, 150), 150)
-            self.screen.blit(s, (pos[0]-150, pos[1]-150))
+            self.screen.blit(self.wow_surface, (pos[0]-150, pos[1]-150))
         
         if self.state in ["main_menu", "playing", "tutorial", "description", "name_input", "viewing_highscores"]:
             # Titel des aktuellen Menüs oder Zustands
