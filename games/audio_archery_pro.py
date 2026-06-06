@@ -1,7 +1,6 @@
 import pygame
 import random
 import time
-import math
 from games.base_game import BaseGame
 
 class AudioArcheryPro(BaseGame):

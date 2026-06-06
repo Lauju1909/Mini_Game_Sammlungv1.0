@@ -147,7 +147,7 @@ class AudioManager:
                 self.speech_queue.task_done()
             except Exception as e:
                 # queue.Empty ist okay bei timeout=0.1
-                if not "Empty" in str(type(e)):
+                if "Empty" not in str(type(e)):
                     print(f"Audio Worker Fehler: {e}")
                 
     def _clear_queue(self):

@@ -133,7 +133,7 @@ class SoundMemo(BaseGame):
                     screen.blit(glow_surf, (x - r*2, y - r*2))
             
             # Glanzeffekt für alle Karten
-            shine_rect = pygame.Rect(x, y, 140, 35)
+            pygame.Rect(x, y, 140, 35)
             shine_surf = pygame.Surface((140, 35), pygame.SRCALPHA)
             pygame.draw.rect(shine_surf, (255, 255, 255, 20), (0, 0, 140, 35), border_top_left_radius=15, border_top_right_radius=15)
             screen.blit(shine_surf, (x, y))

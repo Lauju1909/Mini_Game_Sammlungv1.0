@@ -1,6 +1,5 @@
 import pygame
 import random
-import math
 from .base_game import BaseGame
 
 class AudioArchery(BaseGame):

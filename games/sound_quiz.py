@@ -1,4 +1,3 @@
-import random
 import pygame
 from games.base_game import BaseGame
 
@@ -25,7 +24,7 @@ class SoundQuiz(BaseGame):
 
     def handle_input(self, event):
         if event.type == pygame.KEYDOWN:
-            q = self.questions[self.idx]
+            self.questions[self.idx]
             if event.key == pygame.K_1: self._check(0)
             elif event.key == pygame.K_2: self._check(1)
             elif event.key == pygame.K_3: self._check(2)

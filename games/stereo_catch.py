@@ -1,4 +1,3 @@
-import random
 import pygame
 import time
 from games.base_game import BaseGame

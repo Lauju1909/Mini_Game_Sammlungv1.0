@@ -1,6 +1,5 @@
 import pygame
 import random
-import math
 from games.base_game import BaseGame
 
 class AudioBalance(BaseGame):
@@ -87,7 +86,6 @@ class AudioBalance(BaseGame):
         self.is_running = False
 
     def draw(self, screen):
-        center = (400, 300)
         pygame.draw.line(screen, (100, 100, 100), (100, 300), (700, 300), 2)
         pygame.draw.circle(screen, (0, 255, 0), (400, 300), 10)
         

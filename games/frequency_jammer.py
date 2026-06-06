@@ -1,6 +1,5 @@
 import pygame
 import random
-import math
 from games.base_game import BaseGame
 
 class FrequencyJammer(BaseGame):

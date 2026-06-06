@@ -1,6 +1,5 @@
 import pygame
 import random
-import time
 from games.base_game import BaseGame
 
 class MorseRunner(BaseGame):

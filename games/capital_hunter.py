@@ -1,4 +1,3 @@
-import random
 import pygame
 from games.base_game import BaseGame
 

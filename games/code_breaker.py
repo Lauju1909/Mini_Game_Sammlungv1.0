@@ -69,7 +69,6 @@ class CodeBreaker(BaseGame):
         self.attempts += 1
         self.audio.speak(self._("code_breaker_guess"))
         
-        result_types = [] # 2 = Richtig, 1 = Falsche Stelle, 0 = Nicht dabei
         
         temp_target = list(self.target_code)
         temp_guess = list(self.current_guess)
