@@ -77,6 +77,8 @@ from games.audio_darts import AudioDarts
 from games.audio_morse_code import AudioMorseCode
 from games.audio_spaceship import AudioSpaceship
 from games.audio_fishing import AudioFishing
+from games.audio_train import AudioTrain
+from games.audio_juggler import AudioJuggler
 
 class Particle:
     def __init__(self, x, y):
@@ -478,6 +480,7 @@ class MiniGameCollection:
                 {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
                 {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
                 {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
+                {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")},
                 {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")}
             ]},
             {"label": _("cat_logic"), "id": "logic", "games": [
@@ -508,7 +511,8 @@ class MiniGameCollection:
                 {"label": _("game_mystery_door"), "id": "mystery_door", "class": MysteryDoor, "desc": _("game_mystery_door_desc")},
                 {"label": _("game_frequency_jammer"), "id": "frequency_jammer", "class": FrequencyJammer, "desc": _("game_frequency_jammer_desc")},
                 {"label": _("game_stairs_of_fate"), "id": "stairs_of_fate", "class": StairsOfFate, "desc": _("game_stairs_of_fate_desc")},
-                {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")}
+                {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")},
+                {"label": _("game_audio_train"), "id": "audio_train", "class": AudioTrain, "desc": _("game_audio_train_desc")}
             ]},
             {"label": _("cat_speech"), "id": "speech", "games": [
                 {"label": _("game_word_snake"), "id": "word_snake", "class": WordSnake, "desc": _("game_word_snake_desc")},
@@ -583,7 +587,9 @@ class MiniGameCollection:
                 {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
                 {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")},
                 {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")},
-                {"label": _("game_audio_fishing"), "id": "audio_fishing", "class": AudioFishing, "desc": _("game_audio_fishing_desc")}
+                {"label": _("game_audio_fishing"), "id": "audio_fishing", "class": AudioFishing, "desc": _("game_audio_fishing_desc")},
+                {"label": _("game_audio_train"), "id": "audio_train", "class": AudioTrain, "desc": _("game_audio_train_desc")},
+                {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")}
             ]},
             {"label": _("back"), "id": "back"}
         ]

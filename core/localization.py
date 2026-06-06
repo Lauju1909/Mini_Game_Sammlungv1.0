@@ -137,6 +137,12 @@ TRANSLATIONS["de"] = {
     "rps_win": "Du gewinnst!",
     "rps_lose": "Ich gewinne!",
     "rps_choose": "Wähle dein Symbol!",
+    "game_audio_juggler": "Audio Juggler",
+    "game_audio_juggler_desc": "Fange und wirf die Bälle mit Links, Oben und Rechts im Takt!",
+    "game_audio_juggler_instructions": "Du jonglierst! Wenn du ein Geräusch hörst, fällt ein Ball. Drücke Links für den linken Ball, Oben für den mittleren und Rechts für den rechten Ball. Fange sie, bevor sie den Boden berühren!",
+    "ball_dropped": "Ball fallen gelassen! {lives} Leben übrig.",
+    "juggler_gameover": "Du hast zu viele Bälle fallen gelassen!",
+    "stats_title": "Statistiken",
     "cap_germany": "Deutschland",
     "cap_france": "Frankreich",
     "cap_italy": "Italien",
@@ -1144,4 +1150,9 @@ TRANSLATIONS["en"] = {
     "game_audio_train_instructions": "If you hear a high tone, it's a fast train: press Up Arrow. If you hear a low tone, it's a slow freight train: press Down Arrow. Set the switch before the train arrives!",
     "train_success": "Train passed safely!",
     "train_crash": "Crash! {lives} lives left.",
+    "game_audio_juggler": "Audio Juggler",
+    "game_audio_juggler_desc": "Catch and throw the balls with Left, Up, and Right in rhythm!",
+    "game_audio_juggler_instructions": "You are juggling! When you hear a sound, a ball is falling. Press Left for the left ball, Up for the center, and Right for the right ball. Catch them before they hit the ground!",
+    "ball_dropped": "Ball dropped! {lives} lives remaining.",
+    "juggler_gameover": "You dropped too many balls!"
 }
