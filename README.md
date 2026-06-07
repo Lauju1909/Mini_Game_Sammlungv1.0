@@ -52,6 +52,10 @@ Dieses Projekt wurde mit dem **Agentic Tester V6** (autonomes KI-Testsystem) val
 
 ## 📈 Changelog v2.0
 
+- **Neues Minispiel hinzugefügt:** "Audio Holzfäller" (Audio Lumberjack)
+  - Fälle den Baum im Takt und weiche fallenden Bäumen durch genaues Hören (Links/Rechts Panning) aus!
+- **Neues Minispiel hinzugefügt:** "Audio Fechter" (Audio Fencer)
+  - Höre auf die Schritte und Schwertangriffe deines Gegners, blocke und kontere!
 - **Neues Minispiel hinzugefügt:** "Audio-Raumschiff-Schlacht" (Acoustic Spaceship Battle)
   - Epische 360°-Kämpfe gegen Jäger und Bomber mit Radar-Akustik!
 - **Neues Minispiel hinzugefügt:** "Audio-Morsen" (Acoustic Morse Code)
