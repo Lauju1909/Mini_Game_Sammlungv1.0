@@ -1,117 +1,166 @@
 import pygame
 import random
-from .base_game import BaseGame
+import time
+from games.base_game import BaseGame
 
 class AudioArchery(BaseGame):
-    def __init__(self, audio_manager, highscore_manager, settings_manager, player_name):
-        super().__init__(audio_manager, highscore_manager, settings_manager, player_name)
+    def __init__(self, audio, highscore, settings, player):
+        super().__init__(audio, highscore, settings, player)
         self.game_id = "audio_archery"
-        self.points = 0
+        self.instructions = self._("game_audio_archery_instructions")
+        
+        self.score = 0
+        self.lives = 3
         self.round = 1
-        self.max_rounds = 5
-        self.pan = -1.0
-        self.speed = 0.02
-        self.direction = 1
-        self.state = "aiming" # aiming, result, finished
-        self.last_result_time = 0
-        self.result_text = ""
-        self.arrow_pos = -1.0
+        
+        # Target state
+        self.target_distance = 0.0 # 0.3 to 1.0
+        self.target_pan = -1.0
+        self.target_dir = 1
+        self.target_speed = 0.02
+        
+        # Bow state
+        self.is_drawing = False
+        self.tension = 0.0
+        
+        self.state = "waiting_start" # waiting_start, playing, result, game_over
+        self.last_target_sound = 0
+        self.last_bow_sound = 0
+        
+        self._next_round()
         
     def start(self):
         super().start()
-        self.audio.speak(self._("game_audio_archery_instructions"))
-        self.next_arrow()
+        self.audio.speak(self.instructions, interrupt=False)
+        self.audio.speak(self._("press_enter_to_start"), interrupt=False)
+        self.state = "waiting_start"
 
-    def next_arrow(self):
-        self.state = "aiming"
-        self.pan = -1.0 if random.random() > 0.5 else 1.0
-        self.direction = 1 if self.pan < 0 else -1
-        # Geschwindigkeit leicht variieren
-        self.speed = 0.015 + random.random() * 0.02
-        self.audio.play_sound("click")
+    def _next_round(self):
+        self.target_distance = random.uniform(0.3, 1.0)
+        self.target_pan = random.choice([-1.0, 1.0])
+        self.target_dir = 1 if self.target_pan < 0 else -1
+        self.target_speed = random.uniform(0.01, 0.025)
         
-    def update(self):
-        if self.state == "aiming":
-            self.pan += self.direction * self.speed
-            if self.pan > 1.1 or self.pan < -1.1:
-                self.direction *= -1
-            
-            # Kontinuierliches Audio-Feedback
-            if pygame.time.get_ticks() % 150 < 20:
-                self.audio.play_panned_sound("click", self.pan)
-
-        # Timer-Events verarbeiten (simuliert durch Zeitabgleich)
-        now = pygame.time.get_ticks()
-        if self.state == "result" and now - self.last_result_time > 2000:
-            if self.round >= self.max_rounds:
-                self.finish()
-            else:
-                self.round += 1
-                self.next_arrow()
-
+        self.is_drawing = False
+        self.tension = 0.0
+        self.state = "playing"
+        self.round += 1
+        
     def handle_input(self, event):
         super().handle_input(event)
-        if self.is_tutorial: return
-        if event.type == pygame.KEYDOWN and self.state == "aiming":
-            if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
-                self.shoot()
-
-    def shoot(self):
-        self.arrow_pos = self.pan
-        diff = abs(self.pan)
-        
-        if diff < 0.05:
-            round_points = 100
-            self.result_text = self._("hit_perfect")
-            self.audio.play_sound("confirm")
-        elif diff < 0.15:
-            round_points = 70
-            self.result_text = self._("hit_good")
-            self.audio.play_sound("click_001")
-        elif diff < 0.3:
-            round_points = 40
-            self.result_text = self._("hit_ok")
-            self.audio.play_sound("click")
-        else:
-            round_points = 0
-            self.result_text = self._("miss")
-            self.audio.play_sound("bump")
+        if not self.active or self.is_tutorial:
+            return
             
-        self.score += round_points
-        self.state = "result"
-        self.last_result_time = pygame.time.get_ticks()
-        self.audio.speak(f"{self.result_text}. {round_points} {self._('points')}.")
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self.finish()
+                return
+                
+            if self.state == "waiting_start" and event.key == pygame.K_RETURN:
+                self.state = "playing"
+                
+            elif self.state == "playing" and event.key == pygame.K_SPACE:
+                if not self.is_drawing:
+                    self.is_drawing = True
+                    self.tension = 0.0
+                    
+        elif event.type == pygame.KEYUP:
+            if self.state == "playing" and event.key == pygame.K_SPACE and self.is_drawing:
+                self._shoot()
+                
+        elif event.type == pygame.USEREVENT + 1 and self.state == "result":
+            pygame.time.set_timer(pygame.USEREVENT + 1, 0)
+            self._next_round()
+            
+        elif event.type == pygame.USEREVENT + 2 and self.state == "game_over":
+            pygame.time.set_timer(pygame.USEREVENT + 2, 0)
+            self.finish()
+                
+    def _shoot(self):
+        self.is_drawing = False
+        
+        # Check pan error and tension error
+        pan_err = abs(self.target_pan)
+        tension_err = abs(self.tension - self.target_distance)
+        
+        # Perfect shot: pan within 0.15, tension within 0.15
+        if pan_err < 0.2 and tension_err < 0.2:
+            self.audio.play_sound("success")
+            # Thwack sound
+            self.audio.play_tone(150, duration_ms=100, volume=100)
+            
+            pts = int(100 * (1.0 - (pan_err + tension_err)))
+            self.score += pts
+            self.audio.speak(self._("hit_perfect"), interrupt=True)
+            self.state = "result"
+            pygame.time.set_timer(pygame.USEREVENT + 1, 1500)
+        else:
+            self.lives -= 1
+            self.audio.play_sound("error")
+            self.audio.speak(self._("miss"), interrupt=True)
+            
+            if self.lives <= 0:
+                self.state = "game_over"
+                self.audio.speak(self._("game_over"), interrupt=False)
+                self.audio.speak(self._("final_score", score=self.score), interrupt=False)
+                pygame.time.set_timer(pygame.USEREVENT + 2, 3000)
+            else:
+                self.state = "result"
+                pygame.time.set_timer(pygame.USEREVENT + 1, 1500)
+                
+    def update(self):
+        if not self.active or self.is_tutorial:
+            return
+            
+        current_time = time.time()
+        
+        if self.state == "playing":
+            # Move target
+            self.target_pan += self.target_dir * self.target_speed
+            if self.target_pan > 1.0 or self.target_pan < -1.0:
+                self.target_dir *= -1
+                
+            # Play target sound
+            if current_time - self.last_target_sound > 0.3:
+                # Frequency mapped to distance. 0.3 = near (high freq), 1.0 = far (low freq)
+                freq = 800 - ((self.target_distance - 0.3) / 0.7) * 500
+                self.audio.play_tone(int(freq), duration_ms=100, volume=20, pan=self.target_pan)
+                self.last_target_sound = current_time
+                
+            # Bow tension
+            if self.is_drawing:
+                # Tension increases over ~2 seconds
+                self.tension += 0.015
+                if self.tension > 1.0:
+                    self.tension = 1.0 # max draw
+                    
+                if current_time - self.last_bow_sound > 0.05:
+                    # Creaking sound -> rising tone
+                    bow_freq = 200 + self.tension * 400
+                    self.audio.play_tone(int(bow_freq), duration_ms=40, volume=40, pan=0.0)
+                    self.last_bow_sound = current_time
 
     def draw(self, screen):
-        # Hintergrund (Zielscheibe)
-        center = (400, 300)
-        colors = [(255, 255, 255), (0, 0, 0), (0, 0, 255), (255, 0, 0), (255, 215, 0)]
-        for i, color in enumerate(colors):
-            radius = 200 - i * 40
-            pygame.draw.circle(screen, color, center, radius)
-            pygame.draw.circle(screen, (100, 100, 100), center, radius, width=1)
-            
-        # Visuelle Hilfe für den Sound (Wandernder Punkt)
-        if self.state == "aiming":
-            x = 400 + self.pan * 350
-            pygame.draw.circle(screen, (0, 255, 0), (int(x), 300), 15)
-            # Glow
-            for r in range(5):
-                pygame.draw.circle(screen, (0, 255, 0, 50), (int(x), 300), 15 + r*5, width=1)
+        screen.fill((20, 20, 20))
+        font = pygame.font.SysFont("Arial", 40, bold=True)
+        title = font.render("AUDIO-BOGENSCHIESSEN", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width()//2, 50))
         
-        # Geschossener Pfeil
-        if self.state == "result":
-            x = 400 + self.arrow_pos * 350
-            pygame.draw.line(screen, (255, 255, 255), (int(x), 100), (int(x), 500), 5)
-            # Treffermarkierung
-            pygame.draw.circle(screen, (255, 255, 255), (int(x), 300), 10)
+        info_font = pygame.font.SysFont("Arial", 24)
+        info = info_font.render(f"Punkte: {self.score} | Leben: {self.lives}", True, (200, 200, 200))
+        screen.blit(info, (400 - info.get_width()//2, 100))
+        
+        # Visual cues for sighted players
+        if self.state == "playing":
+            # Target
+            tx = 400 + self.target_pan * 300
+            ty = 300 - (1.0 - self.target_distance) * 150
+            pygame.draw.circle(screen, (255, 0, 0), (int(tx), int(ty)), 15)
             
-            # Ergebnis-Text
-            font = pygame.font.SysFont("Arial", 48, bold=True)
-            text_surf = font.render(self.result_text, True, (255, 255, 255))
-            screen.blit(text_surf, (400 - text_surf.get_width()//2, 520))
-
-        # Status
-        font_small = pygame.font.SysFont("Arial", 24)
-        status = font_small.render(f"Pfeil: {self.round}/{self.max_rounds} | Score: {self.score}", True, (255, 255, 255))
-        screen.blit(status, (40, 40))
+            # Bow tension bar
+            bar_width = 300
+            bar_height = 20
+            bx = 400 - bar_width // 2
+            by = 500
+            pygame.draw.rect(screen, (50, 50, 50), (bx, by, bar_width, bar_height))
+            pygame.draw.rect(screen, (0, 255, 0), (bx, by, int(bar_width * self.tension), bar_height))

@@ -611,7 +611,7 @@ TRANSLATIONS["en"] = {
     "game_animal_radar_instructions": "Listen to the animal sound. Use the arrow keys to turn in that direction. Press Enter when you think you have the animal directly in front of you.",
     "game_audio_archery": "Audio Archery",
     "game_audio_archery_desc": "Shoot the arrow exactly into the center of the target.",
-    "game_audio_archery_instructions": "A sound moves from left to right. Press Enter or Space exactly when the sound is perfectly in the middle to hit the bullseye!",
+    "game_audio_archery_instructions": "The target moves left and right. The pitch tells you the distance (high = near, low = far). Hold Space to draw the bow. Release it at the perfect moment when the tension matches the distance AND the target is exactly in the middle!",
     "game_audio_balance": "Audio Balance",
     "game_audio_balance_desc": "Keep the sound centered.",
     "game_audio_balance_instructions": "The sound drifts left or right. Use arrow keys to keep it in the center.",
