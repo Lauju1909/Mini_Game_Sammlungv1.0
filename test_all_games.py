@@ -1,4 +1,4 @@
-import os
+﻿import os
 import glob
 import importlib.util
 import sys
@@ -21,6 +21,7 @@ class MockAudio:
     def update(self): pass
     def play_panned_sound(self, name, pan): pass
     def play_looping_sound(self, name): return MagicMock()
+    def play_tone(self, frequency, duration_ms=500, volume=None, pan=0.0): pass
     def create_tone_loop(self, freq): return MagicMock()
     def set_channel_volume(self, channel, vol_l, vol_r=None): pass
 
