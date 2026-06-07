@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 import sys
 import os
 import random
@@ -84,6 +84,7 @@ from games.audio_math import AudioMath
 from games.audio_lockpicker import AudioLockpicker
 from games.audio_fencer import AudioFencer
 from games.audio_lumberjack import AudioLumberjack
+from games.audio_simon_says import AudioSimonSays
 
 class Particle:
     def __init__(self, x, y):
@@ -205,7 +206,7 @@ class MiniGameCollection:
             self.menu.pop_menu()
             return
         
-        # Erzeuge eine Kopie der Spieleliste, um das Original nicht zu verändern
+        # Erzeuge eine Kopie der Spieleliste, um das Original nicht zu verÃ¤ndern
         game_list = list(item.get("games", []))
         if not any(g.get("id") == "back" for g in game_list):
             game_list.append({"label": _("back"), "id": "back"})
@@ -226,7 +227,7 @@ class MiniGameCollection:
             self.audio.speak(item['label'] + " entfernt", interrupt=True)
         else:
             self.game_queue.append(item)
-            self.audio.speak(item['label'] + " zur Playlist hinzugefügt", interrupt=True)
+            self.audio.speak(item['label'] + " zur Playlist hinzugefÃ¼gt", interrupt=True)
 
     def on_game_select(self, item):
         if item.get("id") == "back":
@@ -274,7 +275,7 @@ class MiniGameCollection:
 
     def on_multi_name_entered(self, name):
         if name is None:
-            # ESC wurde gedrückt -> Abbrechen
+            # ESC wurde gedrÃ¼ckt -> Abbrechen
             self.state = "main_menu"
             self.text_input = None
             self.setup_main_menu()
@@ -391,7 +392,7 @@ class MiniGameCollection:
             self.settings.set("language", new_lang)
             localization.set_language(new_lang)
             
-            # Alle Menü-Labels im aktuellen Menü (Einstellungen) aktualisieren
+            # Alle MenÃ¼-Labels im aktuellen MenÃ¼ (Einstellungen) aktualisieren
             self.refresh_settings_menu_labels()
             
             # Die Titel-Attribute im Stack und das aktuelle Menu aktualisieren
@@ -399,18 +400,18 @@ class MiniGameCollection:
             self.refresh_all_menu_stacks()
             self.audio.speak(_("language_changed"), interrupt=False)
         else:
-            # Fallback für Enter
+            # Fallback fÃ¼r Enter
             self.on_settings_adjust(item, 1)
 
     def refresh_all_menu_stacks(self):
-        """Aktualisiert alle Menüs im Stack auf die neue Sprache."""
-        # Das aktuelle Menü-Titel-Attribut aktualisieren
+        """Aktualisiert alle MenÃ¼s im Stack auf die neue Sprache."""
+        # Das aktuelle MenÃ¼-Titel-Attribut aktualisieren
         self.menu.current_title = _("settings")
         
         for i, stack_item in enumerate(self.menu.menu_stack):
             items, index, sel_cb, adj_cb, title = stack_item
             
-            # Identifiziere das Menü anhand seiner IDs und übersetze es neu
+            # Identifiziere das MenÃ¼ anhand seiner IDs und Ã¼bersetze es neu
             if any(it.get("id") == "play" for it in items):
                 new_items = [
                     {"label": _("play"), "id": "play"},
@@ -421,7 +422,7 @@ class MiniGameCollection:
                 self.menu.menu_stack[i] = (new_items, index, sel_cb, adj_cb, _("main_menu"))
             
             elif any(it.get("id") == "action" for it in items):
-                # Kategorien-Menü
+                # Kategorien-MenÃ¼
                 new_items = self._get_categories_list()
                 self.menu.menu_stack[i] = (new_items, index, sel_cb, adj_cb, _("select_category"))
             
@@ -528,7 +529,8 @@ class MiniGameCollection:
                 {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")},
                 {"label": _("game_audio_lockpicker"), "id": "audio_lockpicker", "class": AudioLockpicker, "desc": _("game_audio_lockpicker_desc")},
                 {"label": _("game_audio_fencer"), "id": "audio_fencer", "class": AudioFencer, "desc": _("game_audio_fencer_desc")},
-                {"label": _("game_audio_lumberjack"), "id": "audio_lumberjack", "class": AudioLumberjack, "desc": _("game_audio_lumberjack_desc")}
+                {"label": _("game_audio_lumberjack"), "id": "audio_lumberjack", "class": AudioLumberjack, "desc": _("game_audio_lumberjack_desc")},
+                {"label": _("game_audio_simon_says"), "id": "audio_simon_says", "class": AudioSimonSays, "desc": _("game_audio_simon_says_desc")}
             ]},
             {"label": _("cat_sim"), "id": "sim", "games": [
                 {"label": _("game_audio_bowling"), "id": "audio_bowling", "class": AudioBowling, "desc": _("game_audio_bowling_desc")},
@@ -604,7 +606,8 @@ class MiniGameCollection:
                 {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")},
                 {"label": _("game_audio_lockpicker"), "id": "audio_lockpicker", "class": AudioLockpicker, "desc": _("game_audio_lockpicker_desc")},
                 {"label": _("game_audio_fencer"), "id": "audio_fencer", "class": AudioFencer, "desc": _("game_audio_fencer_desc")},
-                {"label": _("game_audio_lumberjack"), "id": "audio_lumberjack", "class": AudioLumberjack, "desc": _("game_audio_lumberjack_desc")}
+                {"label": _("game_audio_lumberjack"), "id": "audio_lumberjack", "class": AudioLumberjack, "desc": _("game_audio_lumberjack_desc")},
+                {"label": _("game_audio_simon_says"), "id": "audio_simon_says", "class": AudioSimonSays, "desc": _("game_audio_simon_says_desc")}
             ]},
             {"label": _("back"), "id": "back"}
         ]
@@ -627,7 +630,7 @@ class MiniGameCollection:
         self.menu._announce_current()
 
     def setup_highscore_menu(self):
-        # Zeige Kategorien für Highscores
+        # Zeige Kategorien fÃ¼r Highscores
         items = [
             {"label": _("cat_action"), "id": "h_action"},
             {"label": _("cat_logic"), "id": "h_logic"},
@@ -693,7 +696,7 @@ class MiniGameCollection:
             return
         
         scores = item["scores"]
-        # Animation zurücksetzen
+        # Animation zurÃ¼cksetzen
         self.score_bars_anim[item["id"]] = 0.0
         # Wir zeigen die Highscores jetzt grafisch an
         self.state = "viewing_highscores"
@@ -707,7 +710,7 @@ class MiniGameCollection:
         if not scores:
             self.audio.speak(_("no_highscores"), interrupt=False)
         else:
-            # Ansage der Top 3 für Barrierefreiheit
+            # Ansage der Top 3 fÃ¼r Barrierefreiheit
             for i, s in enumerate(scores[:3]):
                 self.audio.speak(_("score_entry", idx=i+1, name=s['name'], score=s['score']), interrupt=False)
 
@@ -747,7 +750,7 @@ class MiniGameCollection:
         self.particles.update()
         self.particles.draw(self.screen)
         
-        # Ein paar abstrakte Formen für den "WOW"-Effekt
+        # Ein paar abstrakte Formen fÃ¼r den "WOW"-Effekt
         if not hasattr(self, 'wow_surface'):
             self.wow_surface = pygame.Surface((300, 300), pygame.SRCALPHA)
             pygame.draw.circle(self.wow_surface, (100, 100, 255, 10), (150, 150), 150)
@@ -759,7 +762,7 @@ class MiniGameCollection:
             self.screen.blit(self.wow_surface, (pos[0]-150, pos[1]-150))
         
         if self.state in ["main_menu", "playing", "tutorial", "description", "name_input", "viewing_highscores"]:
-            # Titel des aktuellen Menüs oder Zustands
+            # Titel des aktuellen MenÃ¼s oder Zustands
             title_text = ""
             if self.state == "main_menu":
                 title_text = self.menu.current_title
@@ -775,7 +778,7 @@ class MiniGameCollection:
                 self.screen.blit(surf, (40, 40))
 
         if self.state == "main_menu":
-            # Menü-Items rendern
+            # MenÃ¼-Items rendern
             menu_rect = pygame.Rect(40, 120, 720, 440)
             self.draw_glass_rect(menu_rect)
             
@@ -800,7 +803,7 @@ class MiniGameCollection:
             panel_rect = pygame.Rect(40, 100, 720, 460)
             self.draw_glass_rect(panel_rect, color=(20, 20, 40, 180), border_color=(100, 100, 255, 150))
             
-            # Überschrift
+            # Ãœberschrift
             title_surf = self.font_title.render(game_name, True, (255, 255, 255))
             self.screen.blit(title_surf, (panel_rect.centerx - title_surf.get_width()//2, 115))
             
@@ -811,7 +814,7 @@ class MiniGameCollection:
                 text = self.font_main.render(_("no_highscores"), True, (150, 150, 150))
                 self.screen.blit(text, (400 - text.get_width()//2, 280))
             else:
-                # Tabellenkopf (optional, aber schöner)
+                # Tabellenkopf (optional, aber schÃ¶ner)
                 header_y = 135
                 name_hdr = self.font_small.render("NAME", True, (150, 150, 150))
                 score_hdr = self.font_small.render(_("points").upper(), True, (150, 150, 150))
@@ -831,12 +834,12 @@ class MiniGameCollection:
                     # Farbe basierend auf Rang
                     rank_color = (255, 215, 0) if i == 0 else (192, 192, 192) if i == 1 else (205, 127, 50) if i == 2 else (255, 255, 255)
                     
-                    # Glaskasten-Effekt für jeden Eintrag
+                    # Glaskasten-Effekt fÃ¼r jeden Eintrag
                     entry_rect = pygame.Rect(60, y_pos - 5, 680, 34)
                     bg_alpha = 40 if i == 0 else 25 if i % 2 == 0 else 10
                     pygame.draw.rect(self.screen, (255, 255, 255, bg_alpha), entry_rect, border_radius=10)
                     
-                    # Spezial-Effekt für Platz 1
+                    # Spezial-Effekt fÃ¼r Platz 1
                     if i == 0:
                         # Goldener Schimmer-Rahmen
                         shimmer = abs(pygame.time.get_ticks() % 1000 - 500) / 500.0
@@ -862,7 +865,7 @@ class MiniGameCollection:
                     self.screen.blit(name_surf, (150, y_pos - 5))
                     self.screen.blit(score_surf, (600, y_pos - 5))
 
-                    # Balkendiagramm für Sehende (Visualisierung der Punktzahl) mit Animation
+                    # Balkendiagramm fÃ¼r Sehende (Visualisierung der Punktzahl) mit Animation
                     max_score = scores[0]['score'] if scores[0]['score'] > 0 else 1
                     target_bar_width = int(350 * (s['score'] / max_score))
                     bar_width = int(target_bar_width * anim_progress)
@@ -871,7 +874,7 @@ class MiniGameCollection:
                     # Hintergrund des Balkens (Spur)
                     pygame.draw.rect(self.screen, (255, 255, 255, 20), (150, y_pos + 22, target_bar_width, 4), border_radius=2)
                     
-                    # Farbverlauf für den Balken simulieren
+                    # Farbverlauf fÃ¼r den Balken simulieren
                     pygame.draw.rect(self.screen, rank_color, bar_rect, border_radius=2)
                     
                     # Kleiner Glow am Ende des Balkens
@@ -915,7 +918,7 @@ class MiniGameCollection:
                 self.screen.blit(val_surf, (220, 275))
         
         elif self.state in ["playing", "tutorial"]:
-            # Während des Spiels zeigen wir ein einfaches "Playing..." UI
+            # WÃ¤hrend des Spiels zeigen wir ein einfaches "Playing..." UI
             play_rect = pygame.Rect(40, 120, 720, 440)
             self.draw_glass_rect(play_rect)
             
@@ -1005,7 +1008,7 @@ class MiniGameCollection:
             if event.type == pygame.KEYDOWN:
                 if event.key in [pygame.K_ESCAPE, pygame.K_RETURN, pygame.K_BACKSPACE]:
                     self.state = "main_menu"
-                    self.menu.pop_menu() # Gehe zurück zur Spieleliste in der Highscore-Kategorie
+                    self.menu.pop_menu() # Gehe zurÃ¼ck zur Spieleliste in der Highscore-Kategorie
                     return None
                 elif event.key == pygame.K_UP:
                     scores = self.current_highscore_data["scores"]
