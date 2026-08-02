@@ -1,4 +1,4 @@
-﻿import pygame
+import pygame
 import sys
 import os
 import random
@@ -157,11 +157,21 @@ class MiniGameCollection:
         self.particles = ParticleSystem(80)
         self.ui_time = 0
         self.score_bars_anim = {}
-        self.running = True
-        self.game_queue = []
         self.current_queue_index = 0
         self.setup_main_menu()
         self.audio.speak(_("ready"), interrupt=False, priority=2)
+        
+        # Asynchrone Update-Prüfung
+        try:
+            from updater import check_for_update_async
+            check_for_update_async("1.1.0", self._on_update_checked)
+        except Exception as e:
+            print(f"[Main] Updater-Fehler: {e}")
+
+    def _on_update_checked(self, has_update, release_info):
+        if has_update and release_info:
+            tag = release_info.get("tag_name", "")
+            self.audio.speak(f"Ein neues Update {tag} ist verfügbar!", interrupt=False)
 
     def on_name_entered(self, name):
         if name:

@@ -8,8 +8,14 @@ data/settings.json
 data/highscores.json
 .vscode/
 .idea/
+.pytest_cache/
+.ruff_cache/
+.tmp.driveupload/
+build/
+dist/
+*.spec
 *.zip
 *.exe
-# Tolk.dll und Assets werden für die Lauffähigkeit benötigt
-# Tolk.dll
-# assets/
+Audio_Studio_Tycoon/
+Audio_Studio_Tycoon*
+
