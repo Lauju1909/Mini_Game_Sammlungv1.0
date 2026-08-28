@@ -34,7 +34,7 @@ class AudioSimonSays(BaseGame):
         self.player_sequence = []
         self.state = "playing_sequence"
         self.seq_idx = 0
-        self.last_tone_time = time.time()
+        self.last_tone_time = time.monotonic()
 
     def _play_tone_for_key(self, key):
         if key == pygame.K_UP:
@@ -51,7 +51,7 @@ class AudioSimonSays(BaseGame):
             return
             
         if self.state == "playing_sequence":
-            current_time = time.time()
+            current_time = time.monotonic()
             if current_time - self.last_tone_time > 0.6: # Wait 600ms between tones
                 if self.seq_idx < len(self.sequence):
                     key = self.sequence[self.seq_idx]
@@ -102,7 +102,7 @@ class AudioSimonSays(BaseGame):
                             self.player_sequence = []
                             self.state = "playing_sequence"
                             self.seq_idx = 0
-                            self.last_tone_time = time.time() + 1.0
+                            self.last_tone_time = time.monotonic() + 1.0
                         else:
                             self.state = "game_over"
                             self.audio.speak(self._("simon_gameover"), interrupt=True)

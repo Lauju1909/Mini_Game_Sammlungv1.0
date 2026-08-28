@@ -19,7 +19,7 @@ class AudioFencer(BaseGame):
         self.state_time = 0.0
         self.action_delay = 0.0
         
-        self.last_update = time.time()
+        self.last_update = time.monotonic()
 
     def start(self):
         super().start()
@@ -38,13 +38,13 @@ class AudioFencer(BaseGame):
     def _reset_round(self):
         self.fencer_state = "idle"
         self.action_delay = random.uniform(1.0, 3.0)
-        self.state_time = time.time()
+        self.state_time = time.monotonic()
 
     def update(self):
         if not self.active or self.state != "playing":
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         elapsed = current_time - self.state_time
         
         if self.fencer_state == "idle":
@@ -95,7 +95,7 @@ class AudioFencer(BaseGame):
                     self._try_attack()
 
     def _try_block(self):
-        current_time = time.time()
+        current_time = time.monotonic()
         elapsed = current_time - self.state_time
         
         if self.fencer_state == "attacking" and elapsed < self.action_delay:

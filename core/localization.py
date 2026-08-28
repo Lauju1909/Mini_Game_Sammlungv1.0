@@ -178,7 +178,6 @@ TRANSLATIONS["de"] = {
     "game_audio_simon_says": "Audio Simon Says",
     "game_audio_simon_says_desc": "Spiele die Tonabfolge exakt nach!",
     "game_audio_simon_says_instructions": "Du hörst eine Folge von Tönen. Präge dir die Tonhöhen und Richtungen ein und spiele sie mit den Pfeiltasten nach! Oben ist hoch, Unten ist tief, Links ist links, Rechts ist rechts.",
-    "simon_your_turn": "Du bist dran!",
     "simon_wrong_lives": "Falsch! Noch {lives} Leben.",
     "simon_gameover": "Du hast die Sequenz vergessen!",
     "stats_title": "Statistiken",
@@ -533,13 +532,18 @@ TRANSLATIONS["de"] = {
     "game_audio_fishing_instructions": "DrÃ¼cke die Leertaste zum Auswerfen. Wenn du das laute Piepen hÃ¶rst, hat ein Fisch angebissen. DrÃ¼cke sofort nochmal die Leertaste, um ihn einzuholen!",
     "press_space_to_cast": "DrÃ¼cke die Leertaste, um die Angel auszuwerfen.",
     "fish_escaped": "Der Fisch ist entkommen!",
-    "too_early": "Zu frÃ¼h gezogen! Du hast den Fisch verscheucht.",
     "fish_caught": "Du hast den Fisch gefangen! {points} Punkte.",
     "game_audio_train": "Audio-Zug-Weiche",
     "game_audio_train_desc": "Stelle die Weichen richtig fÃ¼r SchnellzÃ¼ge und GÃ¼terzÃ¼ge.",
     "game_audio_train_instructions": "HÃ¶rst du einen hohen Ton, ist es ein Schnellzug: DrÃ¼cke Pfeil Oben. HÃ¶rst du einen tiefen Ton, ist es ein GÃ¼terzug: DrÃ¼cke Pfeil Unten. Stelle die Weiche, bevor der Zug ankommt!",
     "train_success": "Zug sicher durchgefahren!",
     "train_crash": "ZusammenstoÃŸ! Noch {lives} Leben.",
+
+    "press_enter_to_continue": "Drücke Enter um fortzufahren",
+    "game_over_score": "Endstand: {score} Punkte",
+    "game_key_storm_title": "Tastensturm",
+    "score": "Punkte",
+    "update_available": "Ein neues Update {tag} ist verfügbar!",
 }
 
 TRANSLATIONS["en"] = {
@@ -989,7 +993,6 @@ TRANSLATIONS["en"] = {
     "game_audio_fishing_instructions": "Press Space to cast. When you hear the loud beep, a fish has bitten. Press Space again immediately to reel it in!",
     "press_space_to_cast": "Press Space to cast your line.",
     "fish_escaped": "The fish escaped!",
-    "too_early": "You pulled too early! You scared the fish away.",
     "fish_caught": "You caught the fish! {points} points.",
     "game_audio_train": "Audio Train Switch",
     "game_audio_train_desc": "Set the switches correctly for fast trains and slow freight trains.",
@@ -1005,7 +1008,6 @@ TRANSLATIONS["en"] = {
     "game_audio_simon_says": "Audio Simon Says",
     "game_audio_simon_says_desc": "Repeat the tone sequence exactly!",
     "game_audio_simon_says_instructions": "You hear a sequence of tones. Memorize the pitches and directions, then repeat them using the Arrow Keys! Up is high, Down is low, Left is left, Right is right.",
-    "simon_your_turn": "Your turn!",
     "simon_wrong_lives": "Wrong! {lives} lives remaining.",
     "simon_gameover": "You forgot the sequence!",
     "game_audio_juggler": "Audio Juggler",
@@ -1039,5 +1041,14 @@ TRANSLATIONS["en"] = {
     "fencer_enemy_hit": "Hit! Enemy has {hp} health left.",
     "fencer_enemy_defeated": "Enemy defeated! Next round.",
     "fencer_player_hit": "You were hit! {lives} lives remaining.",
-    "fencer_gameover": "You were defeated!"
+    "fencer_gameover": "You were defeated!",
+    "stats_title": "Game Statistics",
+    "game_frogger_desc": "Blindly cross a busy road.",
+    "game_frogger_instructions": "You stand safely by the roadside. Listen to the cars in the lane in front of you (with panning and Doppler effect). Find the gap in traffic and press Up Arrow at the perfect moment to hop across! Complete 10 lanes to reach the next level.",
+
+    "press_enter_to_continue": "Press Enter to continue",
+    "game_over_score": "Final score: {score} points",
+    "game_key_storm_title": "Key Storm",
+    "score": "Score",
+    "update_available": "A new update {tag} is available!",
 }

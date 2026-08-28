@@ -20,7 +20,7 @@ class AudioLockpicker(BaseGame):
         self.lift_speed = 0.5 # per second
         self.sweet_spot = 0.7 # Where it clicks
         self.click_played = False
-        self.last_update = time.time()
+        self.last_update = time.monotonic()
 
     def start(self):
         super().start()
@@ -39,7 +39,7 @@ class AudioLockpicker(BaseGame):
         self.pin_progress = 0.0
         self.is_lifting = False
         self.click_played = False
-        self.last_update = time.time()
+        self.last_update = time.monotonic()
         # Randomize sweet spot for each pin
         import random
         self.sweet_spot = random.uniform(0.4, 0.9)
@@ -49,7 +49,7 @@ class AudioLockpicker(BaseGame):
         if not self.active or self.state != "playing":
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         dt = current_time - self.last_update
         self.last_update = current_time
         

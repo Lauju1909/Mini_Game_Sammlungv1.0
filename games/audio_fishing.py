@@ -33,11 +33,11 @@ class AudioFishing(BaseGame):
         self.audio.play_sound("confirm") # Simulate casting sound
         self.state = "waiting_for_bite"
         # Fish will bite randomly between 2 to 6 seconds
-        self.fish_timer = time.time() + random.uniform(2.0, 6.0)
+        self.fish_timer = time.monotonic() + random.uniform(2.0, 6.0)
 
     def _trigger_bite(self):
         self.state = "biting"
-        self.bite_time = time.time()
+        self.bite_time = time.monotonic()
         # The player has a small window to react (0.5 to 1.2 seconds depending on round)
         self.bite_duration = max(0.5, 1.2 - (self.round * 0.1))
         self.audio.play_sound("blip") # The bite sound!
@@ -46,7 +46,7 @@ class AudioFishing(BaseGame):
         if not self.active:
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         
         if self.state == "waiting_for_bite":
             # Ambient water sounds
@@ -93,7 +93,7 @@ class AudioFishing(BaseGame):
             elif self.state == "biting":
                 if event.key == pygame.K_SPACE:
                     # Caught the fish!
-                    reaction_time = time.time() - self.bite_time
+                    reaction_time = time.monotonic() - self.bite_time
                     points = int(max(10, 1000 - (reaction_time * 1000)))
                     self.score += points
                     self.audio.play_sound("confirm")

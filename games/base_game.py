@@ -66,8 +66,8 @@ class BaseGame:
 
     def sleep(self, seconds):
         import time
-        end_time = time.time() + seconds
-        while time.time() < end_time:
+        end_time = time.monotonic() + seconds
+        while time.monotonic() < end_time:
             pygame.time.Clock().tick(60)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -77,6 +77,9 @@ class BaseGame:
 
     def finish(self):
         self.active = False
-        msg = self._("final_score", score=self.score)
-        self.audio.speak(f"{self._('game_over')} {msg}", priority=2)
-        self.highscores.add_score(self.game_id, self.player_name, self.score)
+        if self.score > 0:
+            msg = self._("final_score", score=self.score)
+            self.audio.speak(f"{self._('game_over')} {msg}", priority=2)
+            self.highscores.add_score(self.game_id, self.player_name, self.score)
+        else:
+            self.audio.speak(self._('game_over'), priority=2)

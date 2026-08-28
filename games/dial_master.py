@@ -18,18 +18,18 @@ class DialMaster(BaseGame):
         self.score = 1000
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
         self.game_start_time = 0
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
 
         if self.state == "starting":
             if now > self.start_timer:

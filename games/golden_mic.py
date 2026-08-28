@@ -23,7 +23,7 @@ class GoldenMic(BaseGame):
         self.score = 0
         self.last_beep = 0
     def update(self):
-        now = time.time()
+        now = time.monotonic()
         dist = math.sqrt((self.target_x - self.player_x)**2 + (self.target_y - self.player_y)**2)
         
         # Beep-Intervall basierend auf Distanz (0.1 bis 1.0 Sekunden)

@@ -8,12 +8,12 @@ class SpaceFlight(BaseGame):
         super().__init__(audio, highscore, settings, player)
         self.game_id = "space_flight"
         self.instructions = self._("game_space_flight_instructions")
-        self.next_asteroid = time.time() + 2
+        self.next_asteroid = time.monotonic() + 2
         self.asteroids_passed = 0
         self.waiting_for_dodge = False
 
     def update(self):
-        now = time.time()
+        now = time.monotonic()
         if self.waiting_for_dodge:
             if now > self.hit_deadline:
                 self._fail()

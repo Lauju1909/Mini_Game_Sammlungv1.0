@@ -10,7 +10,7 @@ class StereoCatch(BaseGame):
         self.pan = -1.0
         self.direction = 1
         self.speed = 0.025
-        self.last_tick = time.time()
+        self.last_tick = time.monotonic()
         self.last_beep = 0
 
     def update(self):
@@ -18,7 +18,7 @@ class StereoCatch(BaseGame):
             self.update_tutorial()
             return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
         
@@ -51,7 +51,7 @@ class StereoCatch(BaseGame):
                 self.tutorial_step = 4
         elif self.tutorial_step == 4:
             # Bewege die Münze im Tutorial
-            now = time.time()
+            now = time.monotonic()
             dt = now - self.last_tick
             self.last_tick = now
             self.pan += self.direction * (self.speed * 0.5) * (dt / 0.016) # Langsamer im Tutorial

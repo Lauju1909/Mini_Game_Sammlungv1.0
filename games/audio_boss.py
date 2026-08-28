@@ -14,12 +14,12 @@ class AudioBoss(BaseGame):
         self.score = 0
         
         self.state = "starting"
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
         
         self.current_attack = None
         self.attack_timer = 0
-        self.next_attack_time = time.time() + 4.0
-        self.last_tick = time.time()
+        self.next_attack_time = time.monotonic() + 4.0
+        self.last_tick = time.monotonic()
         self.last_beep = 0
         
         # Attack specific
@@ -33,7 +33,7 @@ class AudioBoss(BaseGame):
     def start(self):
         super().start()
         self.audio.speak(self._("boss_intro"), priority=2)
-        self.start_timer = time.time() + 4.0
+        self.start_timer = time.monotonic() + 4.0
 
     def start_random_attack(self):
         attacks = ["projectile", "melee", "aoe"]
@@ -48,16 +48,16 @@ class AudioBoss(BaseGame):
         elif chosen == "melee":
             self.current_attack = "melee_telegraph"
             self.melee_dir = random.choice(["UP", "DOWN", "LEFT", "RIGHT"])
-            self.attack_timer = time.time() + max(0.6, 1.2 - (100 - self.boss_hp)*0.005)
+            self.attack_timer = time.monotonic() + max(0.6, 1.2 - (100 - self.boss_hp)*0.005)
             
         elif chosen == "aoe":
             self.current_attack = "aoe"
-            self.attack_timer = time.time() + 3.0
+            self.attack_timer = time.monotonic() + 3.0
             self.shield_charge = 0
 
     def end_attack(self):
         self.current_attack = None
-        self.next_attack_time = time.time() + 1.5
+        self.next_attack_time = time.monotonic() + 1.5
 
     def take_damage(self):
         self.player_hp -= 1
@@ -88,7 +88,7 @@ class AudioBoss(BaseGame):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 

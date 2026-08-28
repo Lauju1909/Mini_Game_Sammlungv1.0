@@ -16,21 +16,21 @@ class AudioPingPong(BaseGame):
         self.side = random.choice([-1.0, 1.0])
         self.speed = 25.0
         
-        self.last_tick = time.time()
+        self.last_tick = time.monotonic()
         self.last_beep = 0
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 
@@ -53,7 +53,7 @@ class AudioPingPong(BaseGame):
                     self.finish()
                 else:
                     self.reset_ball()
-                    self.start_timer = time.time() + 1.5
+                    self.start_timer = time.monotonic() + 1.5
                     self.state = "starting" # Kurze Pause nach Fehler
             
             # Ton spielen (Intervall wird kürzer je näher der Ball ist)
@@ -67,7 +67,7 @@ class AudioPingPong(BaseGame):
     def reset_ball(self):
         self.distance = 100.0
         self.side = random.choice([-1.0, 1.0])
-        self.last_tick = time.time()
+        self.last_tick = time.monotonic()
 
     def handle_input(self, event):
         if not self.active: return

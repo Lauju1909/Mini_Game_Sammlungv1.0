@@ -20,16 +20,16 @@ class AudioArcheryPro(BaseGame):
         self.wind_offset = 0.0 
         
         self.state = "starting"
-        self.last_tick = time.time()
+        self.last_tick = time.monotonic()
         self.last_beep = 0
         self.last_wind_beep = 0
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
         
         self.arrow_pos = 0.0
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
 
     def next_arrow(self):
         self.state = "aiming"
@@ -45,14 +45,14 @@ class AudioArcheryPro(BaseGame):
         else:
             self.wind_offset = 0.0
             
-        self.last_tick = time.time()
+        self.last_tick = time.monotonic()
         self.audio.play_sound("click")
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 
@@ -128,7 +128,7 @@ class AudioArcheryPro(BaseGame):
             
         self.score += round_points
         self.state = "result"
-        self.start_timer = time.time() + 2.5
+        self.start_timer = time.monotonic() + 2.5
         
         # Sag das Resultat
         self.audio.speak(f"{self.result_text}. {round_points} {self._('points')}.", priority=1)

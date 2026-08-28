@@ -10,10 +10,10 @@ class BombDefuser(BaseGame):
         self.instructions = self._("game_bomb_defuser_instructions")
         self.speed = 1.0
         self.max_speed = 5.0
-        self.last_tick = time.time()
+        self.last_tick = time.monotonic()
 
     def update(self):
-        now = time.time()
+        now = time.monotonic()
         if now - self.last_tick > (1.0 / self.speed):
             self.audio.play_sound("click")
             self.last_tick = now
@@ -70,7 +70,7 @@ class BombDefuser(BaseGame):
         spark_x = 380 + 70 + math.cos(spark_angle) * 70
         spark_y = 150 + 70 - math.sin(spark_angle) * 70
         
-        if int(time.time() * 10) % 2 == 0:
+        if int(time.monotonic() * 10) % 2 == 0:
             pygame.draw.circle(screen, (255, 200, 0), (int(spark_x), int(spark_y)), 15)
             pygame.draw.circle(screen, (255, 50, 0), (int(spark_x), int(spark_y)), 8)
         width = int(progress * 600)

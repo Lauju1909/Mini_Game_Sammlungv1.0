@@ -21,14 +21,14 @@ class RhythmMaster(BaseGame):
 
     def start(self):
         super().start()
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
         self.next_beat_time = self.start_time + 1.0
         self.audio.speak(self._("ready"), interrupt=False)
 
     def update(self):
         if not self.active: return
         
-        current_time = time.time()
+        current_time = time.monotonic()
         if current_time - self.start_time > self.game_duration:
             self.finish()
             return
@@ -59,7 +59,7 @@ class RhythmMaster(BaseGame):
         if not self.active: return
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                current_time = time.time()
+                current_time = time.monotonic()
                 diff = abs(current_time - self.next_beat_time)
                 
                 if diff < 0.1: # Perfect
@@ -92,7 +92,7 @@ class RhythmMaster(BaseGame):
     def draw(self, screen):
         center = (400, 300)
         # Draw a rhythmic ring
-        current_time = time.time()
+        current_time = time.monotonic()
         pulse = (current_time % self.beat_interval) / self.beat_interval
         
         # Outer ring shrinking to center

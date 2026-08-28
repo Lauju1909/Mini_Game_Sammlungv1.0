@@ -26,12 +26,12 @@ class AudioJuggler(BaseGame):
     def _start_game(self):
         self.state = "playing"
         self.audio.speak(self._("start_go"), interrupt=True)
-        self.spawn_timer = time.time() + 1.0
+        self.spawn_timer = time.monotonic() + 1.0
 
     def _spawn_ball(self):
         pos = random.choice(["left", "center", "right"])
         fall_time = 2.0 / self.speed_multiplier
-        self.balls.append({"pos": pos, "time_to_hit": time.time() + fall_time})
+        self.balls.append({"pos": pos, "time_to_hit": time.monotonic() + fall_time})
         
         # Play the throw sound with panning
         pan = -0.8 if pos == "left" else (0.8 if pos == "right" else 0.0)
@@ -41,7 +41,7 @@ class AudioJuggler(BaseGame):
         if not self.active or self.state != "playing":
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         
         # Spawn new balls
         if current_time >= self.spawn_timer:
@@ -92,7 +92,7 @@ class AudioJuggler(BaseGame):
                     self._try_catch(pos_hit)
 
     def _try_catch(self, pos):
-        current_time = time.time()
+        current_time = time.monotonic()
         # Find the oldest ball in this position
         target_ball = None
         for ball in self.balls:

@@ -21,15 +21,15 @@ class AudioRacer(BaseGame):
         self.spawn_timer = 2.0
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
-        self.last_tick = time.time()
+        self.start_timer = time.monotonic() + 2.0
+        self.last_tick = time.monotonic()
         
         self.last_engine_beep = 0
         self.last_obs_beep = 0
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
 
     def spawn_obstacle(self):
         # Spawn auf zufälliger Spur
@@ -43,7 +43,7 @@ class AudioRacer(BaseGame):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 

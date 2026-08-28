@@ -18,7 +18,7 @@ class AudioMorseCode(BaseGame):
         self.input_index = 0
         
         self.state = "starting"
-        self.play_timer = time.time() + 2.0
+        self.play_timer = time.monotonic() + 2.0
         
         self.is_space_pressed = False
         self.space_down_time = 0
@@ -36,13 +36,13 @@ class AudioMorseCode(BaseGame):
         super().start()
         self.audio.speak(self._("start_go"), priority=2)
         self.state = "playing_sequence"
-        self.play_timer = time.time() + 2.0
+        self.play_timer = time.monotonic() + 2.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
 
         if self.state == "playing_sequence":
             if now > self.play_timer:
@@ -79,19 +79,19 @@ class AudioMorseCode(BaseGame):
                 self.state = "playing_sequence"
                 self.play_index = 0
                 self.input_index = 0
-                self.play_timer = time.time() + 0.5
+                self.play_timer = time.monotonic() + 0.5
                 return
 
             if self.state == "player_turn":
                 if event.key == pygame.K_SPACE:
                     self.is_space_pressed = True
-                    self.space_down_time = time.time()
+                    self.space_down_time = time.monotonic()
 
         elif event.type == pygame.KEYUP:
             if self.state == "player_turn":
                 if event.key == pygame.K_SPACE and self.is_space_pressed:
                     self.is_space_pressed = False
-                    duration = time.time() - self.space_down_time
+                    duration = time.monotonic() - self.space_down_time
                     
                     entered = "." if duration < 0.25 else "-"
                     expected = self.sequence[self.input_index]
@@ -108,7 +108,7 @@ class AudioMorseCode(BaseGame):
                             self.generate_sequence()
                             self.audio.speak(self._("morse_code_level_up", level=self.level), priority=2)
                             self.state = "playing_sequence"
-                            self.play_timer = time.time() + 2.5
+                            self.play_timer = time.monotonic() + 2.5
                     else:
                         # Falsches Zeichen
                         self.audio.play_sound("error")
@@ -123,7 +123,7 @@ class AudioMorseCode(BaseGame):
                             self.state = "playing_sequence"
                             self.play_index = 0
                             self.input_index = 0
-                            self.play_timer = time.time() + 2.0
+                            self.play_timer = time.monotonic() + 2.0
 
     def draw(self, screen):
         screen.fill((10, 30, 10))

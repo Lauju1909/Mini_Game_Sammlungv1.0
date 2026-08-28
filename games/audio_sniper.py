@@ -33,14 +33,14 @@ class AudioSniper(BaseGame):
     def _spawn_target(self):
         self.target_pos = random.uniform(-0.8, 0.8)
         self.aim_pos = 0.0 # Reset aim to center
-        self.target_move_timer = time.time() + max(1.0, 3.0 / self.speed)
-        self.breathe_timer = time.time() + 0.5
+        self.target_move_timer = time.monotonic() + max(1.0, 3.0 / self.speed)
+        self.breathe_timer = time.monotonic() + 0.5
         
     def update(self):
         if not self.active or self.state != "playing":
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         
         # Target moves if you take too long!
         if current_time >= self.target_move_timer:

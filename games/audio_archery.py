@@ -112,7 +112,7 @@ class AudioArchery(BaseGame):
         if not self.active or self.is_tutorial:
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         
         if self.state == "playing":
             # Move target

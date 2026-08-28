@@ -67,7 +67,8 @@ class AudioManager:
 
         # SAPI Fallback initialisieren
         self.sapi = None
-        self.sapi = None
+        self._pending_speech_volume = None
+        self._pending_speech_rate = None
 
         # Pygame Mixer initialisieren
         try:
@@ -96,6 +97,21 @@ class AudioManager:
                 print(f"SAPI Init Fehler im Worker: {e}")
 
         while not self.stop_worker:
+            # Apply pending speech settings
+            if thread_sapi:
+                if self._pending_speech_volume is not None:
+                    try:
+                        thread_sapi.Volume = self._pending_speech_volume
+                        self._pending_speech_volume = None
+                    except:
+                        pass
+                if self._pending_speech_rate is not None:
+                    try:
+                        thread_sapi.Rate = self._pending_speech_rate
+                        self._pending_speech_rate = None
+                    except:
+                        pass
+            
             try:
                 # Warte auf neue Nachrichten in der Queue
                 text, interrupt, priority = self.speech_queue.get(timeout=0.1)
@@ -107,9 +123,9 @@ class AudioManager:
                                 self.tolk.Tolk_Silence()
                         else:
                             # Warten, bis vorherige Sprachausgabe fertig ist, falls kein Interrupt
-                            wait_start = time.time()
+                            wait_start = time.monotonic()
                             while self.tolk.Tolk_IsSpeaking() and not self.interrupt_event.is_set():
-                                if self.stop_worker or (time.time() - wait_start > 5.0):
+                                if self.stop_worker or (time.monotonic() - wait_start > 5.0):
                                     break
                                 time.sleep(0.01)
                         
@@ -180,7 +196,7 @@ class AudioManager:
         """
         if not text or not str(text).strip(): return
         
-        now = time.time()
+        now = time.monotonic()
         
         # Debounce: Wenn der exakt gleiche Text innerhalb von 300ms nochmal kommt, ignorieren
         if hasattr(self, '_last_text') and self._last_text == text and (now - self.last_speech_time < 0.3):
@@ -366,24 +382,14 @@ class AudioManager:
 
     def set_speech_volume(self, volume):
         """Setzt die Sprachlautstärke (0-100)."""
+        self._pending_speech_volume = max(0, min(100, volume))
         print(f"Sprachlautstärke auf {volume}% gesetzt.")
-        if self.sapi:
-            try:
-                # SAPI Volume ist 0-100
-                self.sapi.Volume = max(0, min(100, volume))
-            except:
-                pass
 
     def set_speech_rate(self, rate):
         """Setzt die Sprechgeschwindigkeit (30-100)."""
+        sapi_rate = int((rate - 50) / 5)
+        self._pending_speech_rate = max(-10, min(10, sapi_rate))
         print(f"Sprechgeschwindigkeit auf {rate}% gesetzt.")
-        if self.sapi:
-            try:
-                # SAPI Rate ist -10 bis 10. 50% entspricht etwa 0.
-                sapi_rate = int((rate - 50) / 5)
-                self.sapi.Rate = max(-10, min(10, sapi_rate))
-            except:
-                pass
 
     def cleanup(self):
         self.stop_worker = True

@@ -18,24 +18,24 @@ class SubmarineSonar(BaseGame):
         
         self.last_ping_time = 0
         self.ping_interval = 1.2
-        self.spawn_timer = time.time() + 2.0
+        self.spawn_timer = time.monotonic() + 2.0
         self.time_between_spawns = 5.0
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
         
         self.torpedo_reload_time = 1.0
         self.last_fire_time = 0
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
 
         if self.state == "starting":
             if now > self.start_timer:
@@ -114,7 +114,7 @@ class SubmarineSonar(BaseGame):
                     self.audio.play_panned_sound("click", 0.5)
                     
                 elif event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                    now = time.time()
+                    now = time.monotonic()
                     if now - self.last_fire_time > self.torpedo_reload_time:
                         self.fire_torpedo()
                         self.last_fire_time = now

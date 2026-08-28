@@ -19,14 +19,14 @@ class MoleMaster(BaseGame):
 
     def start(self):
         super().start()
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
         self.last_mole_time = self.start_time
         self.audio.speak(self._("ready"), interrupt=False)
 
     def update(self):
         if not self.active: return
         
-        current_time = time.time()
+        current_time = time.monotonic()
         elapsed = current_time - self.start_time
         
         if elapsed > self.game_timer:
@@ -64,12 +64,12 @@ class MoleMaster(BaseGame):
             elif self.active_mole == 3 and event.key == pygame.K_DOWN: hit = True
             
             if hit:
-                reaction = time.time() - self.mole_timer
+                reaction = time.monotonic() - self.mole_timer
                 points = max(10, int(100 * (1.0 - reaction)))
                 self.score += points
                 self.audio.play_sound("confirm")
                 self.active_mole = None
-                self.last_mole_time = time.time()
+                self.last_mole_time = time.monotonic()
                 # Schwierigkeit leicht steigern
                 self.mole_spawn_rate = max(0.5, self.mole_spawn_rate * 0.95)
             elif event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN]:
@@ -114,7 +114,7 @@ class MoleMaster(BaseGame):
                 pygame.draw.circle(screen, eye_color, (pos[0]+15, pos[1]-10), 5)
 
         # Zeitbalken
-        elapsed = time.time() - self.start_time
+        elapsed = time.monotonic() - self.start_time
         remaining = max(0, self.game_timer - elapsed)
         bar_width = int(600 * (remaining / self.game_timer))
         pygame.draw.rect(screen, (50, 50, 50), (100, 500, 600, 20), border_radius=10)

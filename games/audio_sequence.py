@@ -34,7 +34,7 @@ class AudioSequence(BaseGame):
         self.player_sequence = []
         self.seq_idx = 0
         self.is_playing_sequence = True
-        self.last_seq_time = time.time()
+        self.last_seq_time = time.monotonic()
         self.audio.speak(self._("simon_listen"), interrupt=interrupt)
 
     def update(self):
@@ -43,7 +43,7 @@ class AudioSequence(BaseGame):
             if self.active_timer == 0: self.active_key = None
 
         if self.is_playing_sequence:
-            now = time.time()
+            now = time.monotonic()
             if now - self.last_seq_time > 1.0: # Langsamere Abfolge für bessere Merkfähigkeit
                 if self.seq_idx < len(self.sequence):
                     key = self.sequence[self.seq_idx]

@@ -20,7 +20,7 @@ class AudioSlots(BaseGame):
         self.audio.speak(self._("game_audio_slots_desc"), interrupt=True)
 
     def update(self):
-        now = time.time()
+        now = time.monotonic()
         if self.is_spinning:
             if now > self.spin_timer:
                 self.is_spinning = False
@@ -53,7 +53,7 @@ class AudioSlots(BaseGame):
         self.spins_left -= 1
         self.audio.play_sound("drumroll")
         self.audio.speak(self._("slots_spinning"), interrupt=True)
-        self.spin_timer = time.time() + 2.0 # 2 Sekunden Spannung
+        self.spin_timer = time.monotonic() + 2.0 # 2 Sekunden Spannung
         
         # Vorab Ergebnis bestimmen
         self.reels = [random.choice(self.symbols) for _ in range(3)]

@@ -18,8 +18,8 @@ class AudioFrogger(BaseGame):
         self.generate_roads()
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
-        self.last_tick = time.time()
+        self.start_timer = time.monotonic() + 2.0
+        self.last_tick = time.monotonic()
         self.last_car_beep = 0
 
     def generate_roads(self):
@@ -47,13 +47,13 @@ class AudioFrogger(BaseGame):
     def start(self):
         super().start()
         self.audio.speak(self._("start_go"), priority=2)
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 
@@ -136,7 +136,7 @@ class AudioFrogger(BaseGame):
                             self.generate_roads()
                             self.audio.speak(self._("frogger_level_up", level=self.level), priority=2)
                             self.state = "starting"
-                            self.start_timer = time.time() + 2.0
+                            self.start_timer = time.monotonic() + 2.0
 
     def draw(self, screen):
         screen.fill((30, 30, 30))

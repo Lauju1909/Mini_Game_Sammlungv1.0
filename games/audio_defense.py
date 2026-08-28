@@ -17,13 +17,13 @@ class AudioDefense(BaseGame):
         self.spawn_timer = 0
         self.spawn_interval = 3.0
         
-        self.last_tick = time.time()
+        self.last_tick = time.monotonic()
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
 
     def spawn_enemy(self):
         directions = ["UP", "DOWN", "LEFT", "RIGHT"]
@@ -40,7 +40,7 @@ class AudioDefense(BaseGame):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 

@@ -22,7 +22,7 @@ class AudioBouncer(BaseGame):
         
         self.state = "starting"
         self.play_idx = 0
-        self.play_timer = time.time() + 2.0
+        self.play_timer = time.monotonic() + 2.0
         
         self.generate_target()
 
@@ -53,13 +53,13 @@ class AudioBouncer(BaseGame):
         super().start()
         self.audio.speak(self._("start_go"), priority=2)
         self.state = "starting_shift"
-        self.play_timer = time.time() + 2.0
+        self.play_timer = time.monotonic() + 2.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
 
         if self.state == "starting_shift":
             if now > self.play_timer:
@@ -112,10 +112,10 @@ class AudioBouncer(BaseGame):
             self.generate_target()
             self.audio.speak(self._("bouncer_new_shift", level=self.level), priority=2)
             self.state = "starting_shift"
-            self.play_timer = time.time() + 2.5
+            self.play_timer = time.monotonic() + 2.5
         else:
             self.state = "waiting_for_guest"
-            self.play_timer = time.time() + 1.0
+            self.play_timer = time.monotonic() + 1.0
 
     def handle_input(self, event):
         if not self.active: return
@@ -132,7 +132,7 @@ class AudioBouncer(BaseGame):
                 if self.state in ["waiting_for_input", "waiting_for_guest"]:
                     self.state = "playing_target"
                     self.play_idx = 0
-                    self.play_timer = time.time()
+                    self.play_timer = time.monotonic()
                 return
                 
             if self.state == "waiting_for_input":

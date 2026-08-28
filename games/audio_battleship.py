@@ -17,7 +17,7 @@ class AudioBattleship(BaseGame):
         self.board = [["empty" for _ in range(self.grid_size)] for _ in range(self.grid_size)]
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
         
         self.generate_ships()
 
@@ -49,14 +49,14 @@ class AudioBattleship(BaseGame):
     def start(self):
         super().start()
         self.audio.speak(self._("start_go"), priority=2)
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
         if self.state == "starting":
-            if time.time() > self.start_timer:
+            if time.monotonic() > self.start_timer:
                 self.state = "playing"
 
     def handle_input(self, event):

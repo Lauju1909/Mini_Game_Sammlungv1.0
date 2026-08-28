@@ -35,8 +35,8 @@ class AudioTrain(BaseGame):
         # Or better: player must actively set it. We won't reset it, let player remember.
         
         duration = max(1.5, 4.0 - (self.round * 0.2))
-        self.arrival_time = time.time() + duration
-        self.last_chug = time.time()
+        self.arrival_time = time.monotonic() + duration
+        self.last_chug = time.monotonic()
         
         # Play the horn
         if self.train_type == "fast":
@@ -48,7 +48,7 @@ class AudioTrain(BaseGame):
         if not self.active:
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         
         if self.state == "approaching":
             # Play chug sound based on speed
@@ -72,7 +72,7 @@ class AudioTrain(BaseGame):
 
     def _resolve_train(self):
         self.state = "resolution"
-        self.arrival_time = time.time()
+        self.arrival_time = time.monotonic()
         
         if self.current_track == self.train_type:
             # Success

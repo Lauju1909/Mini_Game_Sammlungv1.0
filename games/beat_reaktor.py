@@ -9,7 +9,7 @@ class BeatReaktor(BaseGame):
         super().__init__(audio, highscore, settings, player)
         self.game_id = "beat_reaktor"
         self.instructions = self._("game_beat_reaktor_instructions")
-        self.next_hit = time.time() + random.uniform(2, 5)
+        self.next_hit = time.monotonic() + random.uniform(2, 5)
         self.waiting_for_hit = True
         self.hits = 0
 
@@ -18,10 +18,10 @@ class BeatReaktor(BaseGame):
             self.update_tutorial()
             return
 
-        if self.waiting_for_hit and time.time() >= self.next_hit:
+        if self.waiting_for_hit and time.monotonic() >= self.next_hit:
             self.audio.play_sound("confirm")
             self.waiting_for_hit = False
-            self.hit_time = time.time()
+            self.hit_time = time.monotonic()
 
     def update_tutorial(self):
         if self.tutorial_step == 1:
@@ -36,14 +36,14 @@ class BeatReaktor(BaseGame):
             if not self.audio.is_speaking():
                 self.audio.speak(self._("tut_br_3"), priority=1)
                 self.tutorial_step = 4
-                self.next_hit = time.time() + 2.0
+                self.next_hit = time.monotonic() + 2.0
                 self.waiting_for_hit = True
         elif self.tutorial_step == 4:
             # Warte auf den Beat im Tutorial
-            if self.waiting_for_hit and time.time() >= self.next_hit:
+            if self.waiting_for_hit and time.monotonic() >= self.next_hit:
                 self.audio.play_sound("confirm")
                 self.waiting_for_hit = False
-                self.hit_time = time.time()
+                self.hit_time = time.monotonic()
         elif self.tutorial_step == 5:
             if not self.audio.is_speaking():
                 self.finish_tutorial()
@@ -58,7 +58,7 @@ class BeatReaktor(BaseGame):
         if event.type == pygame.KEYDOWN:
             if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
                 if not self.waiting_for_hit:
-                    reaction = time.time() - self.hit_time
+                    reaction = time.monotonic() - self.hit_time
                     if reaction < 0.6:
                         points = int((0.6 - reaction) * 2000)
                         self.score += points
@@ -73,11 +73,11 @@ class BeatReaktor(BaseGame):
                             self.audio.speak(self._("final_score", score=self.score))
                             self.finish()
                         else:
-                            self.next_hit = time.time() + random.uniform(1.5, 3.5)
+                            self.next_hit = time.monotonic() + random.uniform(1.5, 3.5)
                             self.waiting_for_hit = True
                     else:
                         self.audio.speak(self._("too_late"))
-                        self.next_hit = time.time() + random.uniform(1, 2)
+                        self.next_hit = time.monotonic() + random.uniform(1, 2)
                         self.waiting_for_hit = True
                 else:
                     self.audio.speak(self._("too_early"))
@@ -91,14 +91,14 @@ class BeatReaktor(BaseGame):
             if event.key in [pygame.K_SPACE, pygame.K_RETURN]:
                 if self.tutorial_step == 4:
                     if not self.waiting_for_hit:
-                        reaction = time.time() - self.hit_time
+                        reaction = time.monotonic() - self.hit_time
                         if reaction < 0.8: # Großzügiger im Tutorial
                             self.audio.play_sound("success")
                             self.audio.speak(self._("tut_br_hit"), priority=2)
                             self.tutorial_step = 5
                         else:
                             self.audio.speak(self._("tut_br_miss"), priority=2)
-                            self.next_hit = time.time() + 2.0
+                            self.next_hit = time.monotonic() + 2.0
                             self.waiting_for_hit = True
                     else:
                         self.audio.speak(self._("too_early"), priority=2)
@@ -111,7 +111,7 @@ class BeatReaktor(BaseGame):
         font = pygame.font.SysFont("Arial", 40, bold=True)
         title = font.render("BEAT-REAKTOR", True, (255, 255, 255))
         # Leuchteffekt für Titel
-        glow = int(math.sin(time.time() * 3) * 50) + 205
+        glow = int(math.sin(time.monotonic() * 3) * 50) + 205
         title = font.render("BEAT-REAKTOR", True, (glow, glow, 255))
         screen.blit(title, (400 - title.get_width()//2, 80))
         
@@ -119,7 +119,7 @@ class BeatReaktor(BaseGame):
         center = (400, 300)
         if not self.waiting_for_hit:
             # Der Moment des Treffers! Großes leuchtendes Becken
-            elapsed = time.time() - self.hit_time
+            elapsed = time.monotonic() - self.hit_time
             size = int(100 + (1.0 - elapsed/0.6) * 50) if elapsed < 0.6 else 100
             color = (255, 255, 0) if elapsed < 0.6 else (100, 100, 0)
             pygame.draw.circle(screen, color, center, size)
@@ -128,7 +128,7 @@ class BeatReaktor(BaseGame):
             # Warten...
             pygame.draw.circle(screen, (50, 50, 70), center, 80)
             # Pulsierender Ring
-            pulse = int(math.sin(time.time() * 5) * 10) + 10
+            pulse = int(math.sin(time.monotonic() * 5) * 10) + 10
             pygame.draw.circle(screen, (80, 80, 100), center, 80 + pulse, 2)
 
         # Fortschritt

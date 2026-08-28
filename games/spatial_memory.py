@@ -15,7 +15,7 @@ class SpatialMemory(BaseGame):
         self.score = 0
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
         
         self.playback_timer = 0
         self.playback_index = 0
@@ -25,13 +25,13 @@ class SpatialMemory(BaseGame):
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
 
         if self.state == "starting":
             if now > self.start_timer:
@@ -55,7 +55,7 @@ class SpatialMemory(BaseGame):
         self.playback_index = 0
         self.player_index = 0
         self.state = "playback"
-        self.playback_timer = time.time() + 1.0 # 1 Sekunde Pause vor dem Vorspielen
+        self.playback_timer = time.monotonic() + 1.0 # 1 Sekunde Pause vor dem Vorspielen
         
         # Geschwindigkeit wird leicht erhöht bei längeren Sequenzen
         self.playback_interval = max(0.3, 0.8 - (len(self.sequence) * 0.02))
@@ -104,7 +104,7 @@ class SpatialMemory(BaseGame):
                             self.score += 100
                             self.audio.play_sound("success")
                             self.state = "success_pause"
-                            self.playback_timer = time.time() + 1.0
+                            self.playback_timer = time.monotonic() + 1.0
                     else:
                         # Falsch
                         self.lives -= 1
@@ -116,9 +116,9 @@ class SpatialMemory(BaseGame):
                         else:
                             # Sequenz nochmal abspielen
                             self.state = "success_pause" # Missbrauche diesen State als Pause
-                            self.playback_timer = time.time() + 1.5
+                            self.playback_timer = time.monotonic() + 1.5
 
-        if self.state == "success_pause" and time.time() > self.playback_timer:
+        if self.state == "success_pause" and time.monotonic() > self.playback_timer:
             if self.player_index == len(self.sequence):
                 self.add_to_sequence()
             else:
@@ -126,7 +126,7 @@ class SpatialMemory(BaseGame):
                 self.playback_index = 0
                 self.player_index = 0
                 self.state = "playback"
-                self.playback_timer = time.time() + 0.5
+                self.playback_timer = time.monotonic() + 0.5
 
     def draw(self, screen):
         screen.fill((10, 10, 20))

@@ -171,7 +171,7 @@ class MiniGameCollection:
     def _on_update_checked(self, has_update, release_info):
         if has_update and release_info:
             tag = release_info.get("tag_name", "")
-            self.audio.speak(f"Ein neues Update {tag} ist verfügbar!", interrupt=False)
+            self.audio.speak(self._("update_available", tag=tag), interrupt=False)
 
     def on_name_entered(self, name):
         if name:
@@ -724,14 +724,6 @@ class MiniGameCollection:
             for i, s in enumerate(scores[:3]):
                 self.audio.speak(_("score_entry", idx=i+1, name=s['name'], score=s['score']), interrupt=False)
 
-    def draw_gradient_rect(self, rect, color1, color2):
-        """Zeichnet ein Rechteck mit einem vertikalen Gradienten."""
-        target_rect = pygame.Rect(rect)
-        color_rect = pygame.Surface((2, 2))
-        pygame.draw.line(color_rect, color1, (0, 0), (1, 0))
-        pygame.draw.line(color_rect, color2, (0, 1), (1, 1))
-        color_rect = pygame.transform.smoothscale(color_rect, (target_rect.width, target_rect.height))
-        self.screen.blit(color_rect, target_rect)
 
     def draw_glass_rect(self, rect, color=(255, 255, 255, 30), border_color=(255, 255, 255, 100)):
         """Zeichnet ein halbtransparentes Rechteck mit Rahmen (Glas-Effekt)."""

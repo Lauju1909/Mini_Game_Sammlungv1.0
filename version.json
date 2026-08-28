@@ -1,6 +1,6 @@
 {
-    "version": "1.1.0",
+    "version": "1.2.0",
     "channel": "release",
-    "notes": "v1.1.0: Auto-updater integration, BOM cleanup, security hardening, and single EXE build.",
+    "notes": "v1.2.0: SAPI TTS stability overhaul, thread-safe volume & rate controls, monotonic timing migration across all games, localization cleanup (removed 180+ duplicate keys and added missing strings), removed misleading zero scores in puzzle games, and repository cleanup.",
     "min_launcher_version": "1.0.0"
 }

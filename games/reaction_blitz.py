@@ -28,27 +28,27 @@ class ReactionBlitz(BaseGame):
         self.current_round += 1
         self.state = "waiting"
         self.wait_time = random.uniform(2.0, 5.0)
-        self.timer = time.time()
+        self.timer = time.monotonic()
         self.audio.speak(self._("round_number", idx=self.current_round), interrupt=False)
 
     def update(self):
         if not self.active: return
         
         if self.state == "waiting":
-            if time.time() - self.timer > self.wait_time:
+            if time.monotonic() - self.timer > self.wait_time:
                 self.state = "prompt"
-                self.start_time = time.time()
+                self.start_time = time.monotonic()
                 self.audio.play_sound("confirm") # Blitz-Sound
         
         elif self.state == "prompt":
-            if time.time() - self.start_time > 2.0: # Zu langsam (2 Sek)
+            if time.monotonic() - self.start_time > 2.0: # Zu langsam (2 Sek)
                 self.state = "result"
                 self.audio.play_sound("error")
                 self.audio.speak(self._("too_slow"))
-                self.timer = time.time()
+                self.timer = time.monotonic()
 
         elif self.state == "result":
-            if time.time() - self.timer > 1.5:
+            if time.monotonic() - self.timer > 1.5:
                 self.next_round()
 
     def handle_input(self, event):
@@ -65,11 +65,11 @@ class ReactionBlitz(BaseGame):
                 self.audio.play_sound("error")
                 self.audio.speak(self._("too_early"))
                 self.score = max(0, self.score - 50)
-                self.timer = time.time()
+                self.timer = time.monotonic()
             
             elif self.state == "prompt":
                 # Getroffen!
-                reaction = (time.time() - self.start_time) * 1000 # in ms
+                reaction = (time.monotonic() - self.start_time) * 1000 # in ms
                 points = max(10, int(1000 - reaction))
                 self.score += points
                 self.reaction_times.append(reaction)
@@ -77,7 +77,7 @@ class ReactionBlitz(BaseGame):
                 self.state = "result"
                 self.audio.play_sound("success")
                 self.audio.speak(self._("reaction_result", ms=int(reaction)))
-                self.timer = time.time()
+                self.timer = time.monotonic()
 
     def draw(self, screen):
         # Visuelles Feedback

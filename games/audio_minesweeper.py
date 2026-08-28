@@ -16,8 +16,8 @@ class AudioMinesweeper(BaseGame):
         self.last_click = 0
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
-        self.last_tick = time.time()
+        self.start_timer = time.monotonic() + 2.0
+        self.last_tick = time.monotonic()
 
     def start(self):
         super().start()
@@ -40,7 +40,7 @@ class AudioMinesweeper(BaseGame):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 

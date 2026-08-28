@@ -72,7 +72,7 @@ class AudioMath(BaseGame):
         question_text = f"{self.num1} {op_spoken} {self.num2}"
         self.audio.speak(question_text, interrupt=True)
         
-        self.question_timer = time.time() + self.time_limit
+        self.question_timer = time.monotonic() + self.time_limit
         # Decrease time limit slightly
         self.time_limit = max(3.0, self.time_limit * 0.95)
 
@@ -80,7 +80,7 @@ class AudioMath(BaseGame):
         if not self.active or self.state != "playing":
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         
         if current_time >= self.question_timer:
             self.lives -= 1

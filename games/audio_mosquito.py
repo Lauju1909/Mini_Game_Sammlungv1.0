@@ -22,15 +22,15 @@ class AudioMosquito(BaseGame):
         self.distance_speed = 0.0
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
-        self.last_tick = time.time()
+        self.start_timer = time.monotonic() + 2.0
+        self.last_tick = time.monotonic()
         self.last_buzz = 0
 
     def start(self):
         super().start()
         self.audio.speak(self._("start_go"), priority=2)
         self.start_mosquito()
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
 
     def start_mosquito(self):
         self.angle_speed = random.uniform(1.5, 3.5) + (self.mosquitos_caught * 0.5)
@@ -42,7 +42,7 @@ class AudioMosquito(BaseGame):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 
@@ -105,7 +105,7 @@ class AudioMosquito(BaseGame):
                             self.audio.speak(str(self.mosquitos_caught), priority=1)
                             self.start_mosquito()
                             self.state = "starting"
-                            self.start_timer = time.time() + 1.0
+                            self.start_timer = time.monotonic() + 1.0
                     else:
                         # Verfehlt!
                         self.audio.play_sound("swipe")

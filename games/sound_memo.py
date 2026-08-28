@@ -23,7 +23,7 @@ class SoundMemo(BaseGame):
 
     def start(self):
         super().start()
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
         self.audio.speak(self._("grid_field", pos=self.pos + 1), interrupt=False)
 
     def update(self):
@@ -77,7 +77,7 @@ class SoundMemo(BaseGame):
                 self.revealed[self.pos] = True
                 
                 # Bonus-Punkte für Geschwindigkeit
-                elapsed = time.time() - self.start_time
+                elapsed = time.monotonic() - self.start_time
                 time_bonus = max(0, int(50 - elapsed / 2))
                 self.score += 20 + time_bonus
                 
@@ -173,7 +173,7 @@ class SoundMemo(BaseGame):
                 if self.revealed[i]:
                     check_surf = font_large.render("✓", True, (0, 255, 0))
                     # Leuchteffekt um das Häkchen
-                    pulse_val = int(abs(math.sin(time.time() * 4)) * 5)
+                    pulse_val = int(abs(math.sin(time.monotonic() * 4)) * 5)
                     circ_surf = pygame.Surface((40, 40), pygame.SRCALPHA)
                     pygame.draw.circle(circ_surf, (0, 255, 100, 50), (20, 20), 10 + pulse_val, width=1)
                     screen.blit(circ_surf, (x + 120 - 20, y + 20 - 20))

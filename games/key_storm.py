@@ -20,17 +20,17 @@ class KeyStorm(BaseGame):
 
     def start(self):
         super().start()
-        self.end_time = time.time() + 20
+        self.end_time = time.monotonic() + 20
         self.score = 0
         self._next_key(interrupt=False)
 
     def _next_key(self, interrupt=True):
         self.target_key = random.choice(list(self.keys.keys()))
         self.audio.speak(self.keys[self.target_key], interrupt=interrupt)
-        self.key_start_time = time.time()
+        self.key_start_time = time.monotonic()
 
     def update(self):
-        if time.time() > self.end_time:
+        if time.monotonic() > self.end_time:
             self.audio.speak(self._("time_up"))
             self.finish()
 
@@ -38,7 +38,7 @@ class KeyStorm(BaseGame):
         if event.type == pygame.KEYDOWN:
             if event.key == self.target_key:
                 # Punkte: 100 + Zeitbonus (bis zu 200)
-                reaction_time = time.time() - self.key_start_time
+                reaction_time = time.monotonic() - self.key_start_time
                 bonus = max(0, int((1.5 - reaction_time) * 100))
                 self.score += (100 + bonus)
                 
@@ -70,7 +70,7 @@ class KeyStorm(BaseGame):
         screen.blit(key_surf, (400 - key_surf.get_width()//2, 230))
         
         # Zeitbalken
-        remaining = max(0, self.end_time - time.time())
+        remaining = max(0, self.end_time - time.monotonic())
         width = int((remaining / 20) * 600)
         pygame.draw.rect(screen, (50, 50, 50), (100, 420, 600, 20), border_radius=10)
         pygame.draw.rect(screen, (200, 50, 50), (100, 420, width, 20), border_radius=10)

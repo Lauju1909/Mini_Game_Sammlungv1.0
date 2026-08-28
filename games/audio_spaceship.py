@@ -19,14 +19,14 @@ class AudioSpaceship(BaseGame):
         self.enemies = []
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
-        self.last_tick = time.time()
+        self.start_timer = time.monotonic() + 2.0
+        self.last_tick = time.monotonic()
         self.next_spawn = 0
 
     def start(self):
         super().start()
         self.audio.speak(self._("start_go"), priority=2)
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
 
     def spawn_enemy(self, now):
         t = "fighter" if random.random() > 0.4 else "bomber"
@@ -48,7 +48,7 @@ class AudioSpaceship(BaseGame):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         dt = now - self.last_tick
         self.last_tick = now
 

@@ -99,7 +99,7 @@ class AudioMaze(BaseGame):
         if not self.active or self.is_tutorial:
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         if current_time - self.last_wind_time > self.wind_interval:
             # Play wind hint
             dx = self.gx - self.px

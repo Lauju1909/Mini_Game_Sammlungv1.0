@@ -22,8 +22,8 @@ class AudioWaiter(BaseGame):
         self.target_timer = 0
         
         self.state = "starting"
-        self.start_timer = time.time() + 2.0
-        self.last_tick = time.time()
+        self.start_timer = time.monotonic() + 2.0
+        self.last_tick = time.monotonic()
         self.last_call = 0
         
         self.generate_level()
@@ -51,18 +51,18 @@ class AudioWaiter(BaseGame):
             if (tx, ty) != (self.player_x, self.player_y) and (tx, ty) not in self.obstacles:
                 self.target = (tx, ty)
                 
-        self.target_timer = time.time() + self.time_limit
+        self.target_timer = time.monotonic() + self.time_limit
 
     def start(self):
         super().start()
         self.audio.speak(self._("start_go"), priority=2)
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
         self.last_tick = now
 
         if self.state == "starting":
@@ -196,7 +196,7 @@ class AudioWaiter(BaseGame):
         
         # Timer Balken
         if self.state == "playing" and self.target:
-            time_left = max(0, self.target_timer - time.time())
+            time_left = max(0, self.target_timer - time.monotonic())
             ratio = time_left / self.time_limit
             pygame.draw.rect(screen, (255, 0, 0), (20, 550, int(760 * ratio), 20))
         

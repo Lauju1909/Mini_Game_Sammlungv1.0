@@ -5,10 +5,8 @@ Lädt neuere Versionen herunter und bietet barrierefreies Feedback.
 """
 
 import json
-import os
 import threading
 import urllib.request
-import hashlib
 from typing import Callable, Optional, Tuple, Dict
 
 GITHUB_API = "https://api.github.com/repos/Lauju1909/Mini_Game_Sammlungv1.0/releases"

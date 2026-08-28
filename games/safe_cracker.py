@@ -15,7 +15,7 @@ class SafeCracker(BaseGame):
 
     def start(self):
         super().start()
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
 
     def handle_input(self, event):
         if event.type == pygame.KEYDOWN:
@@ -40,7 +40,7 @@ class SafeCracker(BaseGame):
             self.audio.speak(self._("number_locked", idx=self.current_index + 1))
             self.current_index += 1
             if self.current_index >= 3:
-                duration = time.time() - self.start_time
+                duration = time.monotonic() - self.start_time
                 self.score = max(100, int(1000 - duration * 5))
                 self.audio.play_sound("handleCoins")
                 self.audio.speak(self._("safe_open"))

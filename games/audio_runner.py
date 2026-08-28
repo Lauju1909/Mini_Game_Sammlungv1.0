@@ -22,17 +22,17 @@ class AudioRunner(BaseGame):
         self.beep_interval = 0.4
         
         self.state = "starting" # starting, playing, game_over
-        self.start_timer = time.time()
+        self.start_timer = time.monotonic()
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 2.5 # Warten auf Instructions
+        self.start_timer = time.monotonic() + 2.5 # Warten auf Instructions
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
 
         if self.state == "starting":
             if now > self.start_timer:
@@ -140,7 +140,7 @@ class AudioRunner(BaseGame):
         
         # Hindernis
         if self.obstacle_active:
-            elapsed = time.time() - self.obstacle_start_time
+            elapsed = time.monotonic() - self.obstacle_start_time
             progress = elapsed / self.obstacle_duration
             obs_y = 100 + progress * 300
             obs_x = 400 + self.obstacle_lane * 150

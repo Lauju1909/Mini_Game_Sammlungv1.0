@@ -13,7 +13,7 @@ class RhythmBlacksmith(BaseGame):
         
         self.beat_interval = 0.8 # 75 BPM
         self.last_beat_time = 0
-        self.start_timer = time.time() + 2.0
+        self.start_timer = time.monotonic() + 2.0
         self.state = "starting"
         
         self.swords_forged = 0
@@ -21,13 +21,13 @@ class RhythmBlacksmith(BaseGame):
 
     def start(self):
         super().start()
-        self.start_timer = time.time() + 3.0
+        self.start_timer = time.monotonic() + 3.0
 
     def update(self):
         if not self.active: return
         if self.is_tutorial: return
 
-        now = time.time()
+        now = time.monotonic()
 
         if self.state == "starting":
             if now > self.start_timer:
@@ -54,7 +54,7 @@ class RhythmBlacksmith(BaseGame):
                 return
             
             if self.state == "playing" and event.key in [pygame.K_SPACE, pygame.K_RETURN]:
-                now = time.time()
+                now = time.monotonic()
                 
                 # Berechne die Distanz zum nächsten oder letzten Beat
                 diff_last = now - self.last_beat_time

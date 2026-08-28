@@ -43,7 +43,7 @@ class AudioLumberjack(BaseGame):
         if not self.active or self.state != "playing":
             return
             
-        current_time = time.time()
+        current_time = time.monotonic()
         
         if self.tree_state == "falling":
             if current_time >= self.fall_time:
@@ -96,7 +96,7 @@ class AudioLumberjack(BaseGame):
             # Play a long creaking sound panned to the direction it falls
             self.audio.play_panned_sound("scratch_004", pan=self.fall_direction)
             self.action_delay = max(0.6, 2.0 - (self.round_num * 0.15))
-            self.fall_time = time.time() + self.action_delay
+            self.fall_time = time.monotonic() + self.action_delay
 
     def _dodge(self, direction):
         if self.tree_state == "falling":

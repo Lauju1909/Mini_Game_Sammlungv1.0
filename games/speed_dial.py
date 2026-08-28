@@ -26,7 +26,7 @@ class SpeedDial(BaseGame):
         self.sequence = [random.randint(0, 9) for _ in range(3 + self.round)]
         self.current_pos = 0
         self.audio.speak(f"Runde {self.round}. Tippe: " + ", ".join(map(str, self.sequence)))
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
         self.waiting_for_start = False
 
     def handle_input(self, event):
@@ -52,7 +52,7 @@ class SpeedDial(BaseGame):
                     self.audio.play_sound("click")
                     self.current_pos += 1
                     if self.current_pos >= len(self.sequence):
-                        duration = time.time() - self.start_time
+                        duration = time.monotonic() - self.start_time
                         self.total_time += duration
                         self.audio.play_sound("confirm")
                         self.audio.speak(f"Fertig! {duration:.1f} Sekunden.")

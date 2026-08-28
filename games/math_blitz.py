@@ -19,13 +19,13 @@ class MathBlitz(BaseGame):
         self.target = 0
 
     def update(self):
-        if self.end_time > 0 and time.time() > self.end_time:
+        if self.end_time > 0 and time.monotonic() > self.end_time:
             self.audio.speak(self._("time_up"))
             self.finish()
 
     def start(self):
         super().start()
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
         self.end_time = self.start_time + self.time_limit
         self._next_question(interrupt=False)
 
@@ -45,7 +45,7 @@ class MathBlitz(BaseGame):
                 if self.current_answer == str(self.target):
                     self.audio.play_sound("success")
                     # Dynamische Punkte: 100 Basis + Zeitbonus
-                    remaining = max(0, self.end_time - time.time())
+                    remaining = max(0, self.end_time - time.monotonic())
                     bonus = int(remaining * 5) # Bis zu 150 Punkte Bonus bei 30s
                     self.score += (100 + bonus)
                     
@@ -76,12 +76,12 @@ class MathBlitz(BaseGame):
         screen.blit(task_surf, (400 - task_surf.get_width()//2, 180))
         
         # Zeige aktuelle Eingabe (mit blinkendem Cursor)
-        cursor = "_" if int(time.time() * 2) % 2 == 0 else " "
+        cursor = "_" if int(time.monotonic() * 2) % 2 == 0 else " "
         input_surf = font_large.render(self.current_answer + cursor, True, (255, 215, 0))
         screen.blit(input_surf, (400 - input_surf.get_width()//2, 280))
         
         # Zeige Zeitbalken
-        remaining = max(0, self.end_time - time.time())
+        remaining = max(0, self.end_time - time.monotonic())
         width = int((remaining / self.time_limit) * 600)
         
         # Schatten für Balken
