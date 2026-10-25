@@ -22,7 +22,7 @@ Willkommen bei der **Mini-Game-Sammlung**, einer massiven Sammlung von **75 barr
 - **Lückenlose Visualisierungen (`draw`):** Jedes einzelne Spiel besitzt eine moderne grafische Darstellung für sehende Mitspieler und Zuschauer.
 - **Sanftes Menü-Scrolling & Playlist-Queue:** Automatische Bildlaufleiste für lange Spiellisten und visuelle `[✓]` Kennzeichnung für vorgemerkte Playlists.
 - **Zufallsspiel-Modus:** Ein Klick im Hauptmenü wählt ein Überraschungsspiel aus allen 75 Titeln.
-- **Screenreader-Integration:** Unterstützt NVDA, JAWS und andere via Tolk mit automatischem SAPI Fallback.
+- **Screenreader-Integration:** Unterstützt NVDA, JAWS, OneCore und SAPI via modernem Prism-Audiosystem (prism.dll).
 - **Vollständig zweisprachig:** Volle Lokalisierung für **Deutsch** und **Englisch**.
 - **Mehrspielermodus:** Lokal an einem PC mit bis zu 4 Spielern und Session-Ranglisten.
 

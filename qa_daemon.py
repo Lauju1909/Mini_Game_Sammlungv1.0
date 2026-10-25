@@ -13,7 +13,7 @@ def run_tests():
                     f.write(result.stdout)
                     f.write(result.stderr)
             else:
-                print("Alle Fuzzing- und Edge-Case-Tests bestanden. Tolk/TTS simuliert. Warte auf nächsten Zyklus...")
+                print("Alle Fuzzing- und Edge-Case-Tests bestanden. Prism/TTS simuliert. Warte auf nächsten Zyklus...")
             
         except Exception as e:
             print(f"Fehler im Test-Runner: {e}")

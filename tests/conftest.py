@@ -15,8 +15,9 @@ def mute_audio_and_tolk():
         patch('pygame.mixer.music.play', return_value=None),
         patch('pygame.mixer.init', return_value=None),
         patch('pygame.mixer.quit', return_value=None),
-        # In case tests directly call Tolk
+        # In case tests directly call screen reader DLLs (Prism or Tolk)
         patch('ctypes.windll.LoadLibrary', return_value=MagicMock()),
+        patch('ctypes.cdll.LoadLibrary', return_value=MagicMock()),
     ]
     
     for p in patchers:

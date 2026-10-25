@@ -20,8 +20,7 @@ def build():
     cmd = [
         "python", "-m", "PyInstaller", "main.py", "--noconfirm", "--onefile",
         "--name", f"Mini_Game_Sammlung_v{VERSION}",
-        "--add-data", "Tolk.dll;.",
-        "--add-data", "nvdaControllerClient64.dll;.",
+        "--add-data", "prism.dll;.",
         "--add-data", "assets;assets",
         "--add-data", "core;core",
         "--add-data", "games;games",

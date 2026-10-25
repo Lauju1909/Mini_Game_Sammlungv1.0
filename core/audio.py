@@ -46,8 +46,12 @@ class AudioManager:
 
     def __init__(self, settings_manager):
         self.settings = settings_manager
-        self.tolk = None
-        self.tolk_active = False
+        self.prism = None
+        self.prism_ctx = None
+        self.prism_backend = None
+        self.prism_active = False
+        self.prism_backend_name = "None"
+        self._speech_end_time = 0.0
         
         # Audio Queue und Threading
         self.speech_queue = queue.Queue()
@@ -56,42 +60,61 @@ class AudioManager:
         self.current_priority = 0
         self.sound_cache = {}
         self.tone_cache = {}
-        
-        # Tolk initialisieren
         self.interrupt_event = threading.Event()
+        
+        # Prism initialisieren (Ersatz fuer Tolk.dll und nvdaControllerClient64.dll)
         try:
-            dll_path = resource_path("Tolk.dll")
+            dll_path = resource_path("prism.dll")
             if os.path.exists(dll_path):
-                self.tolk = ctypes.windll.LoadLibrary(dll_path)
+                self.prism = ctypes.cdll.LoadLibrary(dll_path)
                 
-                # Prototypen explizit definieren
-                self.tolk.Tolk_Load.restype = ctypes.c_bool
-                self.tolk.Tolk_IsLoaded.restype = ctypes.c_bool
-                self.tolk.Tolk_Unload.restype = None
+                # Prototypen fuer prism.dll definieren
+                self.prism.prism_init.argtypes = [ctypes.c_void_p]
+                self.prism.prism_init.restype = ctypes.c_void_p
                 
-                if hasattr(self.tolk, 'Tolk_TrySAPI'):
-                    self.tolk.Tolk_TrySAPI.argtypes = [ctypes.c_bool]
-                    self.tolk.Tolk_TrySAPI.restype = ctypes.c_bool
+                self.prism.prism_shutdown.argtypes = [ctypes.c_void_p]
+                self.prism.prism_shutdown.restype = None
                 
-                self.tolk.Tolk_Output.argtypes = [ctypes.c_wchar_p, ctypes.c_bool]
-                self.tolk.Tolk_Output.restype = ctypes.c_bool
-                self.tolk.Tolk_IsSpeaking.restype = ctypes.c_bool
+                self.prism.prism_registry_create_best.argtypes = [ctypes.c_void_p]
+                self.prism.prism_registry_create_best.restype = ctypes.c_void_p
                 
-                if hasattr(self.tolk, 'Tolk_Silence'):
-                    self.tolk.Tolk_Silence.restype = ctypes.c_bool
+                self.prism.prism_backend_name.argtypes = [ctypes.c_void_p]
+                self.prism.prism_backend_name.restype = ctypes.c_char_p
                 
-                # Initialisieren
-                if self.tolk.Tolk_Load():
-                    self.tolk_active = self.tolk.Tolk_IsLoaded()
-                    if self.tolk_active:
-                        if hasattr(self.tolk, 'Tolk_TrySAPI'):
-                            self.tolk.Tolk_TrySAPI(True)
+                self.prism.prism_backend_speak.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_bool]
+                self.prism.prism_backend_speak.restype = ctypes.c_int
+                
+                self.prism.prism_backend_output.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_bool]
+                self.prism.prism_backend_output.restype = ctypes.c_int
+                
+                self.prism.prism_backend_stop.argtypes = [ctypes.c_void_p]
+                self.prism.prism_backend_stop.restype = ctypes.c_int
+                
+                self.prism.prism_backend_set_volume.argtypes = [ctypes.c_void_p, ctypes.c_float]
+                self.prism.prism_backend_set_volume.restype = ctypes.c_int
+                
+                self.prism.prism_backend_set_rate.argtypes = [ctypes.c_void_p, ctypes.c_float]
+                self.prism.prism_backend_set_rate.restype = ctypes.c_int
+                
+                self.prism.prism_backend_free.argtypes = [ctypes.c_void_p]
+                self.prism.prism_backend_free.restype = None
+                
+                self.prism_ctx = self.prism.prism_init(None)
+                if self.prism_ctx:
+                    self.prism_backend = self.prism.prism_registry_create_best(self.prism_ctx)
+                    if self.prism_backend:
+                        self.prism_active = True
+                        raw_name = self.prism.prism_backend_name(self.prism_backend)
+                        self.prism_backend_name = raw_name.decode('utf-8', errors='ignore') if raw_name else "Unknown"
+                        print(f"Prism initialisiert mit Backend: {self.prism_backend_name}")
+                    else:
+                        print("Prism: Kein verfuegbares Backend im System gefunden.")
                 else:
-                    print("Tolk_Load() fehlgeschlagen.")
+                    print("Prism: prism_init() fehlgeschlagen.")
             else:
-                print("Tolk.dll nicht gefunden.")
+                print("prism.dll nicht gefunden.")
         except Exception as e:
-            print(f"Tolk Init Fehler: {e}")
+            print(f"Prism Init Fehler: {e}")
 
         # SAPI Fallback initialisieren
         self.sapi = None
@@ -114,10 +137,20 @@ class AudioManager:
         self.worker_thread = threading.Thread(target=self._speech_worker, daemon=True)
         self.worker_thread.start()
 
+    @property
+    def tolk(self):
+        """Rueckwaertskompatibilitaet fuer Altsysteme/Tests."""
+        return None
+
+    @property
+    def tolk_active(self):
+        """Rueckwaertskompatibilitaet: signalisiert aktive Screenreader-Ausgabe."""
+        return self.prism_active
+
     def _speech_worker(self):
         """Hintergrund-Thread zur Verarbeitung der Sprachausgabe."""
         thread_sapi = None
-        if not self.tolk_active and HAS_WIN32COM:
+        if not self.prism_active and HAS_WIN32COM:
             try:
                 import ctypes
                 ctypes.windll.ole32.CoInitialize(None)
@@ -127,7 +160,22 @@ class AudioManager:
 
         while not self.stop_worker:
             # Apply pending speech settings
-            if thread_sapi:
+            if self.prism_active and self.prism and self.prism_backend:
+                if self._pending_speech_volume is not None:
+                    try:
+                        vol_float = max(0.0, min(1.0, self._pending_speech_volume / 100.0))
+                        self.prism.prism_backend_set_volume(self.prism_backend, vol_float)
+                    except Exception:
+                        pass
+                    self._pending_speech_volume = None
+                if self._pending_speech_rate is not None:
+                    try:
+                        rate_float = max(0.2, min(3.0, (self._pending_speech_rate + 10) / 10.0))
+                        self.prism.prism_backend_set_rate(self.prism_backend, rate_float)
+                    except Exception:
+                        pass
+                    self._pending_speech_rate = None
+            elif thread_sapi:
                 if self._pending_speech_volume is not None:
                     try:
                         thread_sapi.Volume = self._pending_speech_volume
@@ -144,28 +192,38 @@ class AudioManager:
             try:
                 # Warte auf neue Nachrichten in der Queue
                 text, interrupt, priority = self.speech_queue.get(timeout=0.1)
+                text_str = str(text) if text is not None else ""
                 
-                if self.tolk_active and self.tolk:
+                # Geschaetzte Sprechdauer: ~60ms pro Wort + 250ms Grundzeit
+                word_count = len(text_str.split())
+                est_duration = max(0.3, 0.25 + word_count * 0.065)
+                
+                if self.prism_active and self.prism and self.prism_backend:
                     try:
                         if interrupt:
-                            if hasattr(self.tolk, 'Tolk_Silence'):
-                                self.tolk.Tolk_Silence()
+                            try:
+                                self.prism.prism_backend_stop(self.prism_backend)
+                            except Exception:
+                                pass
                         else:
-                            # Warten, bis vorherige Sprachausgabe fertig ist, falls kein Interrupt
+                            # Warten, bis vorherige Sprachausgabe abgelaufen ist, falls kein Interrupt
                             wait_start = time.monotonic()
-                            while self.tolk.Tolk_IsSpeaking() and not self.interrupt_event.is_set():
+                            while (time.monotonic() < self._speech_end_time) and not self.interrupt_event.is_set():
                                 if self.stop_worker or (time.monotonic() - wait_start > 5.0):
                                     break
                                 time.sleep(0.01)
                         
                         self.interrupt_event.clear()
-                        self.tolk.Tolk_Output(text, interrupt)
-                        self.current_priority = priority
+                        utf8_bytes = text_str.encode('utf-8', errors='replace')
+                        res = self.prism.prism_backend_output(self.prism_backend, utf8_bytes, interrupt)
+                        if res != 0:
+                            self.prism.prism_backend_speak(self.prism_backend, utf8_bytes, interrupt)
                         
-                        # Kurze Pause nach dem Starten
-                        time.sleep(0.05)
+                        self._speech_end_time = time.monotonic() + est_duration
+                        self.current_priority = priority
+                        time.sleep(0.04)
                     except Exception as e:
-                        print(f"Tolk Worker Fehler: {e}")
+                        print(f"Prism Worker Fehler: {e}")
                 elif thread_sapi:
                     try:
                         if interrupt:
@@ -174,7 +232,7 @@ class AudioManager:
                         
                         self.current_priority = priority
                         # Flags: Async (1)
-                        thread_sapi.Speak(text, 1)
+                        thread_sapi.Speak(text_str, 1)
                         
                         if not interrupt:
                             # Warte bis SAPI fertig ist
@@ -205,14 +263,11 @@ class AudioManager:
                 break
 
     def is_speaking(self):
-        """Gibt zurück ob gerade gesprochen wird oder noch Text in der Queue ist."""
+        """Gibt zurueck ob gerade gesprochen wird oder noch Text in der Queue ist."""
         if not self.speech_queue.empty():
             return True
-        if self.tolk_active and self.tolk:
-            try:
-                return self.tolk.Tolk_IsSpeaking()
-            except:
-                pass
+        if self.prism_active and time.monotonic() < self._speech_end_time:
+            return True
         return False
 
     def speak(self, text, interrupt=True, priority=1):
@@ -487,6 +542,16 @@ class AudioManager:
 
     def cleanup(self):
         self.stop_worker = True
-        if self.tolk_active and self.tolk:
-            self.tolk.Tolk_Unload()
+        if self.prism_active and self.prism:
+            try:
+                if self.prism_backend:
+                    self.prism.prism_backend_stop(self.prism_backend)
+                    self.prism.prism_backend_free(self.prism_backend)
+                    self.prism_backend = None
+                if self.prism_ctx:
+                    self.prism.prism_shutdown(self.prism_ctx)
+                    self.prism_ctx = None
+            except Exception as e:
+                print(f"Fehler bei Prism Cleanup: {e}")
+            self.prism_active = False
         pygame.mixer.quit()

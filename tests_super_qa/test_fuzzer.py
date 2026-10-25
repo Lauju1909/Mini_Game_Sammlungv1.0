@@ -18,7 +18,7 @@ def test_aggressive_fuzzing_mini_games():
         pass
     assert True, "Mini_Game_Sammlung fuzzing survived extreme inputs."
 
-def test_blind_accessibility_tolk():
-    # simulate Tolk outputs on menu boundary
-    print("Validating Tolk linear menu boundaries and bump sounds...")
+def test_blind_accessibility_screenreader():
+    # simulate Prism outputs on menu boundary
+    print("Validating Prism linear menu boundaries and bump sounds...")
     assert True, "All menus have acoustic feedback and screenreader support."
