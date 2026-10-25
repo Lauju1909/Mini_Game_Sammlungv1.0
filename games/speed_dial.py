@@ -19,7 +19,6 @@ class SpeedDial(BaseGame):
 
     def start(self):
         super().start()
-        self.audio.speak(self._("instructions"), interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def _next_round(self):
@@ -30,6 +29,9 @@ class SpeedDial(BaseGame):
         self.waiting_for_start = False
 
     def handle_input(self, event):
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            self.finish()
+            return
         if self.waiting_for_start:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 self._next_round()
@@ -69,3 +71,41 @@ class SpeedDial(BaseGame):
                     self.audio.speak(self._("wrong"))
                     # Strafe: 1 Sekunde Zeitaufschlag
                     self.start_time -= 1
+
+    def draw(self, screen):
+        # Schnellwahl-Telefon
+        pygame.draw.rect(screen, (20, 25, 35), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (240, 180, 40), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        big_font = pygame.font.SysFont("Arial", 36, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = font.render(f"SCHNELLWAHL - RUNDE {self.round} / {self.max_rounds}", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        score_surf = small_font.render(f"Punkte: {self.score}", True, (255, 215, 0))
+        screen.blit(score_surf, (400 - score_surf.get_width() // 2, 195))
+        
+        if self.waiting_for_start:
+            start_msg = font.render("Drücke EINGABE zum Starten der Runde", True, (100, 255, 150))
+            screen.blit(start_msg, (400 - start_msg.get_width() // 2, 300))
+        else:
+            # Zeige die Ziffernfolge
+            digits_str = " - ".join(str(d) for d in self.sequence)
+            seq_surf = big_font.render(digits_str, True, (255, 255, 255))
+            screen.blit(seq_surf, (400 - seq_surf.get_width() // 2, 260))
+            
+            # Bereits eingegebene Ziffern hervorheben
+            entered = "".join(str(self.sequence[i]) for i in range(self.current_pos))
+            entered_surf = font.render(f"Eingegeben: {entered}_", True, (100, 255, 120))
+            screen.blit(entered_surf, (400 - entered_surf.get_width() // 2, 330))
+            
+            # Zeitleiste
+            elapsed = time.monotonic() - self.start_time
+            time_txt = small_font.render(f"Zeit: {elapsed:.2f} s", True, (200, 200, 220))
+            screen.blit(time_txt, (400 - time_txt.get_width() // 2, 390))
+            
+        hint = small_font.render("Tippe die Ziffern (0-9) so schnell wie möglich ein", True, (190, 190, 210))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

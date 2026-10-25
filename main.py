@@ -85,6 +85,12 @@ from games.audio_lockpicker import AudioLockpicker
 from games.audio_fencer import AudioFencer
 from games.audio_lumberjack import AudioLumberjack
 from games.audio_simon_says import AudioSimonSays
+from games.audio_penalties import AudioPenalties
+from games.audio_barista import AudioBarista
+from games.audio_ghost_hunt import AudioGhostHunt
+from games.audio_alchemy import AudioAlchemy
+from games.audio_dj import AudioDJ
+from games.audio_birdwatcher import AudioBirdwatcher
 
 class Particle:
     def __init__(self, x, y):
@@ -171,7 +177,7 @@ class MiniGameCollection:
     def _on_update_checked(self, has_update, release_info):
         if has_update and release_info:
             tag = release_info.get("tag_name", "")
-            self.audio.speak(self._("update_available", tag=tag), interrupt=False)
+            self.audio.speak(_("update_available", tag=tag), interrupt=False)
 
     def on_name_entered(self, name):
         if name:
@@ -187,6 +193,7 @@ class MiniGameCollection:
     def setup_main_menu(self):
         items = [
             {"label": _("play"), "id": "play"},
+            {"label": _("random_game"), "id": "random_game"},
             {"label": _("highscores"), "id": "highscores"},
             {"label": _("settings"), "id": "settings"},
             {"label": _("exit"), "id": "quit"}
@@ -199,6 +206,15 @@ class MiniGameCollection:
     def on_main_menu_select(self, item):
         if item["id"] == "play":
             self.setup_categories()
+        elif item["id"] == "random_game":
+            all_cats = self._get_categories_list()
+            all_games = []
+            for cat in all_cats:
+                if cat["id"] != "all":
+                    all_games.extend(cat.get("games", []))
+            if all_games:
+                chosen = random.choice(all_games)
+                self.on_game_select(chosen)
         elif item["id"] == "highscores":
             self.setup_highscore_menu()
         elif item["id"] == "settings":
@@ -468,176 +484,116 @@ class MiniGameCollection:
                 self.menu.menu_stack[i] = (new_items, index, sel_cb, adj_cb, _("highscores"))
 
     def _get_categories_list(self):
-        """Hilfsfunktion zur Erzeugung der Kategorienliste (lokalisiert)."""
-        return [
-            {"label": _("cat_action"), "id": "action", "games": [
-                {"label": _("game_beat_reaktor"), "id": "beat_reaktor", "class": BeatReaktor, "desc": _("game_beat_reaktor_desc")},
-                {"label": _("game_stereo_catch"), "id": "stereo_catch", "class": StereoCatch, "desc": _("game_stereo_catch_desc")},
-                {"label": _("game_sound_catch"), "id": "sound_catch", "class": SoundCatch, "desc": _("game_sound_catch_desc")},
-                {"label": _("game_bomb_defuser"), "id": "bomb_defuser", "class": BombDefuser, "desc": _("game_bomb_defuser_desc")},
-                {"label": _("game_key_storm"), "id": "key_storm", "class": KeyStorm, "desc": _("game_key_storm_desc")},
-                {"label": _("game_speed_dial"), "id": "speed_dial", "class": SpeedDial, "desc": _("game_speed_dial_desc")},
-                {"label": _("game_mole_master"), "id": "mole_master", "class": MoleMaster, "desc": _("game_mole_master_desc")},
-                {"label": _("game_rhythm_master"), "id": "rhythm_master", "class": RhythmMaster, "desc": _("game_rhythm_master_desc")},
-                {"label": _("game_reaction_blitz"), "id": "reaction_blitz", "class": ReactionBlitz, "desc": _("game_reaction_blitz_desc")},
-                {"label": _("game_audio_archery"), "id": "audio_archery", "class": AudioArchery, "desc": _("game_audio_archery_desc")},
-                {"label": _("game_audio_archery_pro"), "id": "audio_archery_pro", "class": AudioArcheryPro, "desc": _("game_audio_archery_pro_desc")},
-                {"label": _("game_rhythm_blacksmith"), "id": "rhythm_blacksmith", "class": RhythmBlacksmith, "desc": _("game_rhythm_blacksmith_desc")},
-                {"label": _("game_audio_defense"), "id": "audio_defense", "class": AudioDefense, "desc": _("game_audio_defense_desc")},
-                {"label": _("game_audio_boss"), "id": "audio_boss", "class": AudioBoss, "desc": _("game_audio_boss_desc")},
-                {"label": _("game_audio_racer"), "id": "audio_racer", "class": AudioRacer, "desc": _("game_audio_racer_desc")},
-                {"label": _("game_audio_frogger"), "id": "audio_frogger", "class": AudioFrogger, "desc": _("game_audio_frogger_desc")},
-                {"label": _("game_audio_mosquito"), "id": "audio_mosquito", "class": AudioMosquito, "desc": _("game_audio_mosquito_desc")},
-                {"label": _("game_audio_waiter"), "id": "audio_waiter", "class": AudioWaiter, "desc": _("game_audio_waiter_desc")},
-                {"label": _("game_audio_darts"), "id": "audio_darts", "class": AudioDarts, "desc": _("game_audio_darts_desc")},
-                {"label": _("game_audio_spaceship"), "id": "audio_spaceship", "class": AudioSpaceship, "desc": _("game_audio_spaceship_desc")},
-                {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
-                {"label": _("game_audio_ping_pong"), "id": "audio_ping_pong", "class": AudioPingPong, "desc": _("game_audio_ping_pong_desc")},
-                {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
-                {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
-                {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
-                {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")},
-                {"label": _("game_audio_sniper"), "id": "audio_sniper", "class": AudioSniper, "desc": _("game_audio_sniper_desc")},
-                {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")}
-            ]},
-            {"label": _("cat_logic"), "id": "logic", "games": [
-                {"label": _("game_sound_memo"), "id": "sound_memo", "class": SoundMemo, "desc": _("game_sound_memo_desc")},
-                {"label": _("game_simon_says"), "id": "simon_says", "class": SimonSays, "desc": _("game_simon_says_desc")},
-                {"label": _("game_spatial_memory"), "id": "spatial_memory", "class": SpatialMemory, "desc": _("game_spatial_memory_desc")},
-                {"label": _("game_code_breaker"), "id": "code_breaker", "class": CodeBreaker, "desc": _("game_code_breaker_desc")},
-                {"label": _("game_number_guess"), "id": "number_guess", "class": NumberGuess, "desc": _("game_number_guess_desc")},
-                {"label": _("game_safe_cracker"), "id": "safe_cracker", "class": SafeCracker, "desc": _("game_safe_cracker_desc")},
-                {"label": _("game_dial_master"), "id": "dial_master", "class": DialMaster, "desc": _("game_dial_master_desc")},
-                {"label": _("game_math_blitz"), "id": "math_blitz", "class": MathBlitz, "desc": _("game_math_blitz_desc")},
-                {"label": _("game_ticking_clock"), "id": "ticking_clock", "class": TickingClock, "desc": _("game_ticking_clock_desc")},
-                {"label": _("game_pitch_perfect"), "id": "pitch_perfect", "class": PitchPerfect, "desc": _("game_pitch_perfect_desc")},
-                {"label": _("game_sound_weaver"), "id": "sound_weaver", "class": SoundWeaver, "desc": _("game_sound_weaver_desc")},
-                {"label": _("game_audio_sequence"), "id": "audio_sequence", "class": AudioSequence, "desc": _("game_audio_sequence_desc")},
-                {"label": _("game_audio_minesweeper"), "id": "audio_minesweeper", "class": AudioMinesweeper, "desc": _("game_audio_minesweeper_desc")},
-                {"label": _("game_audio_battleship"), "id": "audio_battleship", "class": AudioBattleship, "desc": _("game_audio_battleship_desc")},
-                {"label": _("game_audio_bouncer"), "id": "audio_bouncer", "class": AudioBouncer, "desc": _("game_audio_bouncer_desc")},
-                {"label": _("game_audio_morse_code"), "id": "audio_morse_code", "class": AudioMorseCode, "desc": _("game_audio_morse_code_desc")}
-            ]},
-            {"label": _("cat_nav"), "id": "nav", "games": [
-                {"label": _("game_golden_mic"), "id": "golden_mic", "class": GoldenMic, "desc": _("game_golden_mic_desc")},
-                {"label": _("game_audio_maze"), "id": "audio_maze", "class": AudioMaze, "desc": _("game_audio_maze_desc")},
-                {"label": _("game_echolot"), "id": "echolot", "class": Echolot, "desc": _("game_echolot_desc")},
-                {"label": _("game_blind_farm"), "id": "blind_farm", "class": BlindFarm, "desc": _("game_blind_farm_desc")},
-                {"label": _("game_space_flight"), "id": "space_flight", "class": SpaceFlight, "desc": _("game_space_flight_desc")},
-                {"label": _("game_animal_radar"), "id": "animal_radar", "class": AnimalRadar, "desc": _("game_animal_radar_desc")},
-                {"label": _("game_mystery_door"), "id": "mystery_door", "class": MysteryDoor, "desc": _("game_mystery_door_desc")},
-                {"label": _("game_frequency_jammer"), "id": "frequency_jammer", "class": FrequencyJammer, "desc": _("game_frequency_jammer_desc")},
-                {"label": _("game_stairs_of_fate"), "id": "stairs_of_fate", "class": StairsOfFate, "desc": _("game_stairs_of_fate_desc")},
-                {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")},
-                {"label": _("game_audio_train"), "id": "audio_train", "class": AudioTrain, "desc": _("game_audio_train_desc")}
-            ]},
-            {"label": _("cat_speech"), "id": "speech", "games": [
-                {"label": _("game_word_snake"), "id": "word_snake", "class": WordSnake, "desc": _("game_word_snake_desc")},
-                {"label": _("game_sound_quiz"), "id": "sound_quiz", "class": SoundQuiz, "desc": _("game_sound_quiz_desc")},
-                {"label": _("game_letter_salad"), "id": "letter_salad", "class": LetterSalad, "desc": _("game_letter_salad_desc")},
-                {"label": _("game_capital_hunter"), "id": "capital_hunter", "class": CapitalHunter, "desc": _("game_capital_hunter_desc")},
-                {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")},
-                {"label": _("game_audio_lockpicker"), "id": "audio_lockpicker", "class": AudioLockpicker, "desc": _("game_audio_lockpicker_desc")},
-                {"label": _("game_audio_fencer"), "id": "audio_fencer", "class": AudioFencer, "desc": _("game_audio_fencer_desc")},
-                {"label": _("game_audio_lumberjack"), "id": "audio_lumberjack", "class": AudioLumberjack, "desc": _("game_audio_lumberjack_desc")},
-                {"label": _("game_audio_simon_says"), "id": "audio_simon_says", "class": AudioSimonSays, "desc": _("game_audio_simon_says_desc")}
-            ]},
-            {"label": _("cat_sim"), "id": "sim", "games": [
-                {"label": _("game_audio_bowling"), "id": "audio_bowling", "class": AudioBowling, "desc": _("game_audio_bowling_desc")},
-                {"label": _("game_rps_extreme"), "id": "rps_extreme", "class": RPS_Extreme, "desc": _("game_rps_extreme_desc")},
-                {"label": _("game_audio_slots"), "id": "audio_slots", "class": AudioSlots, "desc": _("game_audio_slots_desc")},
-                {"label": _("game_echo_hunter"), "id": "echo_hunter", "class": EchoHunter, "desc": _("game_echo_hunter_desc")},
-                {"label": _("game_audio_fishing"), "id": "audio_fishing", "class": AudioFishing, "desc": _("game_audio_fishing_desc")}
-            ]},
-            {"label": _("cat_all"), "id": "all", "games": [
-                {"label": _("game_beat_reaktor"), "id": "beat_reaktor", "class": BeatReaktor, "desc": _("game_beat_reaktor_desc")},
-                {"label": _("game_stereo_catch"), "id": "stereo_catch", "class": StereoCatch, "desc": _("game_stereo_catch_desc")},
-                {"label": _("game_sound_catch"), "id": "sound_catch", "class": SoundCatch, "desc": _("game_sound_catch_desc")},
-                {"label": _("game_bomb_defuser"), "id": "bomb_defuser", "class": BombDefuser, "desc": _("game_bomb_defuser_desc")},
-                {"label": _("game_key_storm"), "id": "key_storm", "class": KeyStorm, "desc": _("game_key_storm_desc")},
-                {"label": _("game_speed_dial"), "id": "speed_dial", "class": SpeedDial, "desc": _("game_speed_dial_desc")},
-                {"label": _("game_mole_master"), "id": "mole_master", "class": MoleMaster, "desc": _("game_mole_master_desc")},
-                {"label": _("game_rhythm_master"), "id": "rhythm_master", "class": RhythmMaster, "desc": _("game_rhythm_master_desc")},
-                {"label": _("game_reaction_blitz"), "id": "reaction_blitz", "class": ReactionBlitz, "desc": _("game_reaction_blitz_desc")},
-                {"label": _("game_audio_archery"), "id": "audio_archery", "class": AudioArchery, "desc": _("game_audio_archery_desc")},
-                {"label": _("game_sound_memo"), "id": "sound_memo", "class": SoundMemo, "desc": _("game_sound_memo_desc")},
-                {"label": _("game_simon_says"), "id": "simon_says", "class": SimonSays, "desc": _("game_simon_says_desc")},
-                {"label": _("game_spatial_memory"), "id": "spatial_memory", "class": SpatialMemory, "desc": _("game_spatial_memory_desc")},
-                {"label": _("game_audio_sequence"), "id": "audio_sequence", "class": AudioSequence, "desc": _("game_audio_sequence_desc")},
-                {"label": _("game_code_breaker"), "id": "code_breaker", "class": CodeBreaker, "desc": _("game_code_breaker_desc")},
-                {"label": _("game_number_guess"), "id": "number_guess", "class": NumberGuess, "desc": _("game_number_guess_desc")},
-                {"label": _("game_safe_cracker"), "id": "safe_cracker", "class": SafeCracker, "desc": _("game_safe_cracker_desc")},
-                {"label": _("game_dial_master"), "id": "dial_master", "class": DialMaster, "desc": _("game_dial_master_desc")},
-                {"label": _("game_math_blitz"), "id": "math_blitz", "class": MathBlitz, "desc": _("game_math_blitz_desc")},
-                {"label": _("game_golden_mic"), "id": "golden_mic", "class": GoldenMic, "desc": _("game_golden_mic_desc")},
-                {"label": _("game_audio_maze"), "id": "audio_maze", "class": AudioMaze, "desc": _("game_audio_maze_desc")},
-                {"label": _("game_echolot"), "id": "echolot", "class": Echolot, "desc": _("game_echolot_desc")},
-                {"label": _("game_blind_farm"), "id": "blind_farm", "class": BlindFarm, "desc": _("game_blind_farm_desc")},
-                {"label": _("game_space_flight"), "id": "space_flight", "class": SpaceFlight, "desc": _("game_space_flight_desc")},
-                {"label": _("game_word_snake"), "id": "word_snake", "class": WordSnake, "desc": _("game_word_snake_desc")},
-                {"label": _("game_sound_quiz"), "id": "sound_quiz", "class": SoundQuiz, "desc": _("game_sound_quiz_desc")},
-                {"label": _("game_letter_salad"), "id": "letter_salad", "class": LetterSalad, "desc": _("game_letter_salad_desc")},
-                {"label": _("game_capital_hunter"), "id": "capital_hunter", "class": CapitalHunter, "desc": _("game_capital_hunter_desc")},
-                {"label": _("game_audio_bowling"), "id": "audio_bowling", "class": AudioBowling, "desc": _("game_audio_bowling_desc")},
-                {"label": _("game_rps_extreme"), "id": "rps_extreme", "class": RPS_Extreme, "desc": _("game_rps_extreme_desc")},
-                {"label": _("game_audio_slots"), "id": "audio_slots", "class": AudioSlots, "desc": _("game_audio_slots_desc")},
-                {"label": _("game_animal_radar"), "id": "animal_radar", "class": AnimalRadar, "desc": _("game_animal_radar_desc")},
-                {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")},
-                {"label": _("game_ticking_clock"), "id": "ticking_clock", "class": TickingClock, "desc": _("game_ticking_clock_desc")},
-                {"label": _("game_pitch_perfect"), "id": "pitch_perfect", "class": PitchPerfect, "desc": _("game_pitch_perfect_desc")},
-                {"label": _("game_mystery_door"), "id": "mystery_door", "class": MysteryDoor, "desc": _("game_mystery_door_desc")},
-                {"label": _("game_frequency_jammer"), "id": "frequency_jammer", "class": FrequencyJammer, "desc": _("game_frequency_jammer_desc")},
-                {"label": _("game_stairs_of_fate"), "id": "stairs_of_fate", "class": StairsOfFate, "desc": _("game_stairs_of_fate_desc")},
-                {"label": _("game_audio_archery_pro"), "id": "audio_archery_pro", "class": AudioArcheryPro, "desc": _("game_audio_archery_pro_desc")},
-                {"label": _("game_rhythm_blacksmith"), "id": "rhythm_blacksmith", "class": RhythmBlacksmith, "desc": _("game_rhythm_blacksmith_desc")},
-                {"label": _("game_audio_defense"), "id": "audio_defense", "class": AudioDefense, "desc": _("game_audio_defense_desc")},
-                {"label": _("game_audio_boss"), "id": "audio_boss", "class": AudioBoss, "desc": _("game_audio_boss_desc")},
-                {"label": _("game_audio_racer"), "id": "audio_racer", "class": AudioRacer, "desc": _("game_audio_racer_desc")},
-                {"label": _("game_audio_minesweeper"), "id": "audio_minesweeper", "class": AudioMinesweeper, "desc": _("game_audio_minesweeper_desc")},
-                {"label": _("game_audio_frogger"), "id": "audio_frogger", "class": AudioFrogger, "desc": _("game_audio_frogger_desc")},
-                {"label": _("game_audio_battleship"), "id": "audio_battleship", "class": AudioBattleship, "desc": _("game_audio_battleship_desc")},
-                {"label": _("game_audio_mosquito"), "id": "audio_mosquito", "class": AudioMosquito, "desc": _("game_audio_mosquito_desc")},
-                {"label": _("game_audio_waiter"), "id": "audio_waiter", "class": AudioWaiter, "desc": _("game_audio_waiter_desc")},
-                {"label": _("game_audio_bouncer"), "id": "audio_bouncer", "class": AudioBouncer, "desc": _("game_audio_bouncer_desc")},
-                {"label": _("game_audio_darts"), "id": "audio_darts", "class": AudioDarts, "desc": _("game_audio_darts_desc")},
-                {"label": _("game_audio_morse_code"), "id": "audio_morse_code", "class": AudioMorseCode, "desc": _("game_audio_morse_code_desc")},
-                {"label": _("game_audio_spaceship"), "id": "audio_spaceship", "class": AudioSpaceship, "desc": _("game_audio_spaceship_desc")},
-                {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
-                {"label": _("game_audio_ping_pong"), "id": "audio_ping_pong", "class": AudioPingPong, "desc": _("game_audio_ping_pong_desc")},
-                {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
-                {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
-                {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
-                {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")},
-                {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")},
-                {"label": _("game_audio_fishing"), "id": "audio_fishing", "class": AudioFishing, "desc": _("game_audio_fishing_desc")},
-                {"label": _("game_audio_train"), "id": "audio_train", "class": AudioTrain, "desc": _("game_audio_train_desc")},
-                {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")},
-                {"label": _("game_audio_sniper"), "id": "audio_sniper", "class": AudioSniper, "desc": _("game_audio_sniper_desc")},
-                {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")},
-                {"label": _("game_audio_lockpicker"), "id": "audio_lockpicker", "class": AudioLockpicker, "desc": _("game_audio_lockpicker_desc")},
-                {"label": _("game_audio_fencer"), "id": "audio_fencer", "class": AudioFencer, "desc": _("game_audio_fencer_desc")},
-                {"label": _("game_audio_lumberjack"), "id": "audio_lumberjack", "class": AudioLumberjack, "desc": _("game_audio_lumberjack_desc")},
-                {"label": _("game_audio_simon_says"), "id": "audio_simon_says", "class": AudioSimonSays, "desc": _("game_audio_simon_says_desc")}
-            ]},
-            {"label": _("back"), "id": "back"}
+        """Erzeugt die vollständige, dynamisch synchronisierte Kategorienliste (75 Spiele)."""
+        action_games = [
+            {"label": _("game_beat_reaktor"), "id": "beat_reaktor", "class": BeatReaktor, "desc": _("game_beat_reaktor_desc")},
+            {"label": _("game_stereo_catch"), "id": "stereo_catch", "class": StereoCatch, "desc": _("game_stereo_catch_desc")},
+            {"label": _("game_sound_catch"), "id": "sound_catch", "class": SoundCatch, "desc": _("game_sound_catch_desc")},
+            {"label": _("game_bomb_defuser"), "id": "bomb_defuser", "class": BombDefuser, "desc": _("game_bomb_defuser_desc")},
+            {"label": _("game_key_storm"), "id": "key_storm", "class": KeyStorm, "desc": _("game_key_storm_desc")},
+            {"label": _("game_speed_dial"), "id": "speed_dial", "class": SpeedDial, "desc": _("game_speed_dial_desc")},
+            {"label": _("game_mole_master"), "id": "mole_master", "class": MoleMaster, "desc": _("game_mole_master_desc")},
+            {"label": _("game_rhythm_master"), "id": "rhythm_master", "class": RhythmMaster, "desc": _("game_rhythm_master_desc")},
+            {"label": _("game_reaction_blitz"), "id": "reaction_blitz", "class": ReactionBlitz, "desc": _("game_reaction_blitz_desc")},
+            {"label": _("game_audio_archery"), "id": "audio_archery", "class": AudioArchery, "desc": _("game_audio_archery_desc")},
+            {"label": _("game_audio_archery_pro"), "id": "audio_archery_pro", "class": AudioArcheryPro, "desc": _("game_audio_archery_pro_desc")},
+            {"label": _("game_rhythm_blacksmith"), "id": "rhythm_blacksmith", "class": RhythmBlacksmith, "desc": _("game_rhythm_blacksmith_desc")},
+            {"label": _("game_audio_defense"), "id": "audio_defense", "class": AudioDefense, "desc": _("game_audio_defense_desc")},
+            {"label": _("game_audio_boss"), "id": "audio_boss", "class": AudioBoss, "desc": _("game_audio_boss_desc")},
+            {"label": _("game_audio_racer"), "id": "audio_racer", "class": AudioRacer, "desc": _("game_audio_racer_desc")},
+            {"label": _("game_audio_frogger"), "id": "audio_frogger", "class": AudioFrogger, "desc": _("game_audio_frogger_desc")},
+            {"label": _("game_audio_mosquito"), "id": "audio_mosquito", "class": AudioMosquito, "desc": _("game_audio_mosquito_desc")},
+            {"label": _("game_audio_waiter"), "id": "audio_waiter", "class": AudioWaiter, "desc": _("game_audio_waiter_desc")},
+            {"label": _("game_audio_darts"), "id": "audio_darts", "class": AudioDarts, "desc": _("game_audio_darts_desc")},
+            {"label": _("game_audio_spaceship"), "id": "audio_spaceship", "class": AudioSpaceship, "desc": _("game_audio_spaceship_desc")},
+            {"label": _("game_beat_matcher"), "id": "beat_matcher", "class": BeatMatcher, "desc": _("game_beat_matcher_desc")},
+            {"label": _("game_audio_ping_pong"), "id": "audio_ping_pong", "class": AudioPingPong, "desc": _("game_audio_ping_pong_desc")},
+            {"label": _("game_audio_balance"), "id": "audio_balance", "class": AudioBalance, "desc": _("game_audio_balance_desc")},
+            {"label": _("game_audio_runner"), "id": "audio_runner", "class": AudioRunner, "desc": _("game_audio_runner_desc")},
+            {"label": _("game_audio_factory"), "id": "audio_factory", "class": AudioFactory, "desc": _("game_audio_factory_desc")},
+            {"label": _("game_audio_juggler"), "id": "audio_juggler", "class": AudioJuggler, "desc": _("game_audio_juggler_desc")},
+            {"label": _("game_audio_sniper"), "id": "audio_sniper", "class": AudioSniper, "desc": _("game_audio_sniper_desc")},
+            {"label": _("game_morse_runner"), "id": "morse_runner", "class": MorseRunner, "desc": _("game_morse_runner_desc")},
+            {"label": _("game_audio_penalties"), "id": "audio_penalties", "class": AudioPenalties, "desc": _("game_audio_penalties_desc")},
+            {"label": _("game_audio_dj"), "id": "audio_dj", "class": AudioDJ, "desc": _("game_audio_dj_desc")}
+        ]
+        
+        logic_games = [
+            {"label": _("game_sound_memo"), "id": "sound_memo", "class": SoundMemo, "desc": _("game_sound_memo_desc")},
+            {"label": _("game_simon_says"), "id": "simon_says", "class": SimonSays, "desc": _("game_simon_says_desc")},
+            {"label": _("game_spatial_memory"), "id": "spatial_memory", "class": SpatialMemory, "desc": _("game_spatial_memory_desc")},
+            {"label": _("game_code_breaker"), "id": "code_breaker", "class": CodeBreaker, "desc": _("game_code_breaker_desc")},
+            {"label": _("game_number_guess"), "id": "number_guess", "class": NumberGuess, "desc": _("game_number_guess_desc")},
+            {"label": _("game_safe_cracker"), "id": "safe_cracker", "class": SafeCracker, "desc": _("game_safe_cracker_desc")},
+            {"label": _("game_dial_master"), "id": "dial_master", "class": DialMaster, "desc": _("game_dial_master_desc")},
+            {"label": _("game_math_blitz"), "id": "math_blitz", "class": MathBlitz, "desc": _("game_math_blitz_desc")},
+            {"label": _("game_ticking_clock"), "id": "ticking_clock", "class": TickingClock, "desc": _("game_ticking_clock_desc")},
+            {"label": _("game_pitch_perfect"), "id": "pitch_perfect", "class": PitchPerfect, "desc": _("game_pitch_perfect_desc")},
+            {"label": _("game_sound_weaver"), "id": "sound_weaver", "class": SoundWeaver, "desc": _("game_sound_weaver_desc")},
+            {"label": _("game_audio_sequence"), "id": "audio_sequence", "class": AudioSequence, "desc": _("game_audio_sequence_desc")},
+            {"label": _("game_audio_minesweeper"), "id": "audio_minesweeper", "class": AudioMinesweeper, "desc": _("game_audio_minesweeper_desc")},
+            {"label": _("game_audio_battleship"), "id": "audio_battleship", "class": AudioBattleship, "desc": _("game_audio_battleship_desc")},
+            {"label": _("game_audio_bouncer"), "id": "audio_bouncer", "class": AudioBouncer, "desc": _("game_audio_bouncer_desc")},
+            {"label": _("game_audio_morse_code"), "id": "audio_morse_code", "class": AudioMorseCode, "desc": _("game_audio_morse_code_desc")},
+            {"label": _("game_audio_alchemy"), "id": "audio_alchemy", "class": AudioAlchemy, "desc": _("game_audio_alchemy_desc")}
         ]
 
-    def refresh_settings_menu_labels(self):
-        for m_item in self.menu.current_menu:
-            i_id = m_item.get("id")
-            if i_id == "vol_sfx":
-                m_item["label"] = _("settings_sfx_vol", vol=self.settings.get("volume_sfx"))
-            elif i_id == "vol_music":
-                m_item["label"] = _("settings_music_vol", vol=self.settings.get("volume_music"))
-            elif i_id == "speech_rate":
-                m_item["label"] = _("settings_speech_rate", rate=self.settings.get("speech_rate"))
-            elif i_id == "speech_vol":
-                m_item["label"] = _("settings_speech_vol", vol=self.settings.get("speech_volume"))
-            elif i_id == "language":
-                m_item["label"] = _("settings_lang", lang=self.settings.get("language"))
-            elif i_id == "back":
-                m_item["label"] = _("back")
-        self.menu._announce_current()
+        nav_games = [
+            {"label": _("game_golden_mic"), "id": "golden_mic", "class": GoldenMic, "desc": _("game_golden_mic_desc")},
+            {"label": _("game_audio_maze"), "id": "audio_maze", "class": AudioMaze, "desc": _("game_audio_maze_desc")},
+            {"label": _("game_echolot"), "id": "echolot", "class": Echolot, "desc": _("game_echolot_desc")},
+            {"label": _("game_blind_farm"), "id": "blind_farm", "class": BlindFarm, "desc": _("game_blind_farm_desc")},
+            {"label": _("game_space_flight"), "id": "space_flight", "class": SpaceFlight, "desc": _("game_space_flight_desc")},
+            {"label": _("game_animal_radar"), "id": "animal_radar", "class": AnimalRadar, "desc": _("game_animal_radar_desc")},
+            {"label": _("game_mystery_door"), "id": "mystery_door", "class": MysteryDoor, "desc": _("game_mystery_door_desc")},
+            {"label": _("game_frequency_jammer"), "id": "frequency_jammer", "class": FrequencyJammer, "desc": _("game_frequency_jammer_desc")},
+            {"label": _("game_stairs_of_fate"), "id": "stairs_of_fate", "class": StairsOfFate, "desc": _("game_stairs_of_fate_desc")},
+            {"label": _("game_submarine_sonar"), "id": "submarine_sonar", "class": SubmarineSonar, "desc": _("game_submarine_sonar_desc")},
+            {"label": _("game_audio_train"), "id": "audio_train", "class": AudioTrain, "desc": _("game_audio_train_desc")},
+            {"label": _("game_audio_ghost_hunt"), "id": "audio_ghost_hunt", "class": AudioGhostHunt, "desc": _("game_audio_ghost_hunt_desc")}
+        ]
+
+        speech_games = [
+            {"label": _("game_word_snake"), "id": "word_snake", "class": WordSnake, "desc": _("game_word_snake_desc")},
+            {"label": _("game_sound_quiz"), "id": "sound_quiz", "class": SoundQuiz, "desc": _("game_sound_quiz_desc")},
+            {"label": _("game_letter_salad"), "id": "letter_salad", "class": LetterSalad, "desc": _("game_letter_salad_desc")},
+            {"label": _("game_capital_hunter"), "id": "capital_hunter", "class": CapitalHunter, "desc": _("game_capital_hunter_desc")},
+            {"label": _("game_audio_math"), "id": "audio_math", "class": AudioMath, "desc": _("game_audio_math_desc")},
+            {"label": _("game_audio_lockpicker"), "id": "audio_lockpicker", "class": AudioLockpicker, "desc": _("game_audio_lockpicker_desc")},
+            {"label": _("game_audio_fencer"), "id": "audio_fencer", "class": AudioFencer, "desc": _("game_audio_fencer_desc")},
+            {"label": _("game_audio_lumberjack"), "id": "audio_lumberjack", "class": AudioLumberjack, "desc": _("game_audio_lumberjack_desc")},
+            {"label": _("game_audio_simon_says"), "id": "audio_simon_says", "class": AudioSimonSays, "desc": _("game_audio_simon_says_desc")},
+            {"label": _("game_audio_birdwatcher"), "id": "audio_birdwatcher", "class": AudioBirdwatcher, "desc": _("game_audio_birdwatcher_desc")}
+        ]
+
+        sim_games = [
+            {"label": _("game_audio_bowling"), "id": "audio_bowling", "class": AudioBowling, "desc": _("game_audio_bowling_desc")},
+            {"label": _("game_rps_extreme"), "id": "rps_extreme", "class": RPS_Extreme, "desc": _("game_rps_extreme_desc")},
+            {"label": _("game_audio_slots"), "id": "audio_slots", "class": AudioSlots, "desc": _("game_audio_slots_desc")},
+            {"label": _("game_echo_hunter"), "id": "echo_hunter", "class": EchoHunter, "desc": _("game_echo_hunter_desc")},
+            {"label": _("game_audio_fishing"), "id": "audio_fishing", "class": AudioFishing, "desc": _("game_audio_fishing_desc")},
+            {"label": _("game_audio_barista"), "id": "audio_barista", "class": AudioBarista, "desc": _("game_audio_barista_desc")}
+        ]
+
+        categories = [
+            {"label": _("cat_action"), "id": "action", "games": action_games},
+            {"label": _("cat_logic"), "id": "logic", "games": logic_games},
+            {"label": _("cat_nav"), "id": "nav", "games": nav_games},
+            {"label": _("cat_speech"), "id": "speech", "games": speech_games},
+            {"label": _("cat_sim"), "id": "sim", "games": sim_games}
+        ]
+
+        # Dynamisch alle eindeutigen Spiele sammeln
+        all_games = []
+        seen = set()
+        for cat in categories:
+            for g in cat["games"]:
+                if g["id"] not in seen:
+                    seen.add(g["id"])
+                    all_games.append(g)
+
+        categories.append({"label": _("cat_all"), "id": "all", "games": all_games})
+        return categories
 
     def setup_highscore_menu(self):
         # Zeige Kategorien fÃ¼r Highscores
@@ -1041,7 +997,10 @@ class MiniGameCollection:
             if res == "quit":
                 return "quit"
         elif self.state in ["playing", "tutorial"] and self.current_game:
-            self.current_game.handle_input(event)
+            if self.state == "tutorial":
+                self.current_game.handle_tutorial_input(event)
+            else:
+                self.current_game.handle_input(event)
             if self.state == "tutorial" and self.current_game.tutorial_finished:
                 self.state = "playing"
                 self.current_game.start()
@@ -1062,7 +1021,10 @@ class MiniGameCollection:
                     running = False
                 
             if self.state in ["playing", "tutorial"] and self.current_game:
-                self.current_game.update()
+                if self.state == "tutorial":
+                    self.current_game.update_tutorial()
+                else:
+                    self.current_game.update()
                 if self.state == "tutorial" and self.current_game.tutorial_finished:
                     self.state = "playing"
                     self.current_game.start()

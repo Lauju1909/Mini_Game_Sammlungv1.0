@@ -42,3 +42,32 @@ class CapitalHunter(BaseGame):
         self.idx += 1
         if self.idx >= len(self.data): self.finish()
         else: self._ask()
+
+    def draw(self, screen):
+        # Hauptstädte-Quiz
+        pygame.draw.rect(screen, (20, 25, 40), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (80, 160, 255), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 22)
+        
+        title = font.render(f"HAUPTSTADT-JÄGER - FRAGE {self.idx + 1} / {len(self.data) if hasattr(self, 'data') else 3}", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        score_surf = small_font.render(f"Punkte: {self.score}", True, (255, 215, 0))
+        screen.blit(score_surf, (400 - score_surf.get_width() // 2, 195))
+        
+        if hasattr(self, 'data') and self.idx < len(self.data):
+            q = self.data[self.idx]
+            q_txt = font.render(f"Was ist die Hauptstadt von {q['country']}?", True, (230, 240, 255))
+            screen.blit(q_txt, (400 - q_txt.get_width() // 2, 240))
+            
+            for i, opt in enumerate(q["options"]):
+                oy = 300 + i * 45
+                pygame.draw.rect(screen, (40, 50, 75), (160, oy, 480, 38), border_radius=8)
+                opt_txt = small_font.render(f"Taste {i + 1}: {opt}", True, (255, 255, 255))
+                screen.blit(opt_txt, (180, oy + 6))
+                
+        hint = small_font.render("Drücke Taste 1, 2 oder 3 auf deiner Tastatur", True, (170, 190, 220))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

@@ -59,3 +59,43 @@ class GoldenMic(BaseGame):
                 self.audio.play_sound("success")
                 self.audio.speak(self._("mic_found"))
                 self.finish()
+
+    def draw(self, screen):
+        # 11x11 Audio-Raster
+        pygame.draw.rect(screen, (25, 25, 20), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (255, 215, 0), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = font.render("DAS GOLDENE MIKROFON", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        score_surf = small_font.render(f"Punkte: {self.score}", True, (255, 215, 0))
+        screen.blit(score_surf, (400 - score_surf.get_width() // 2, 190))
+        
+        # Grid zeichnen
+        cell_size = 20
+        grid_start_x = 400 - (11 * cell_size) // 2
+        grid_start_y = 230
+        
+        for y in range(11):
+            for x in range(11):
+                gx = grid_start_x + x * cell_size
+                gy = grid_start_y + y * cell_size
+                pygame.draw.rect(screen, (40, 40, 35), (gx, gy, cell_size - 2, cell_size - 2))
+                
+        # Spieler
+        px = grid_start_x + self.player_x * cell_size + cell_size // 2
+        py = grid_start_y + self.player_y * cell_size + cell_size // 2
+        pygame.draw.circle(screen, (100, 200, 255), (px, py), 8)
+        
+        # Goldenes Mikrofon (wenn gefunden oder leuchtend)
+        if self.score > 0:
+            tx = grid_start_x + self.target_x * cell_size + cell_size // 2
+            ty = grid_start_y + self.target_y * cell_size + cell_size // 2
+            pygame.draw.circle(screen, (255, 215, 0), (tx, ty), 9)
+            
+        hint = small_font.render("Pfeiltasten zum Bewegen  |  Folge dem immer schneller werdenden Ticken!", True, (220, 210, 170))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

@@ -1,4 +1,6 @@
 import pygame
+import time
+import sys
 from localization import get_text
 
 class BaseGame:
@@ -24,22 +26,51 @@ class BaseGame:
     def start_tutorial(self):
         self.is_tutorial = True
         self.tutorial_step = 1
-        self.audio.speak(self._("tutorial_welcome", game=self._(f"game_{self.game_id}")), priority=2)
+        self.tutorial_finished = False
+        game_name = self._(f"game_{self.game_id}")
+        if not game_name or game_name == f"game_{self.game_id}":
+            game_name = self.game_id.replace("_", " ").title()
+        welcome_text = self._("tutorial_welcome", game=game_name)
+        if not welcome_text or welcome_text == "tutorial_welcome":
+            welcome_text = f"Willkommen zum Tutorial von {game_name}."
+        self.audio.speak(welcome_text, priority=2)
 
     def update_tutorial(self):
-        pass
+        """Standard-Tutorial-Ablauf für alle Spiele ohne spezifisches Mini-Tutorial."""
+        if self.tutorial_step == 1:
+            if not self.audio.is_speaking():
+                self.audio.speak(self.instructions, priority=1)
+                self.tutorial_step = 2
+        elif self.tutorial_step == 2:
+            if not self.audio.is_speaking():
+                prompt = self._("tutorial_press_enter")
+                if not prompt or prompt == "tutorial_press_enter":
+                    prompt = "Drücke Eingabe oder Leertaste zum Starten, oder Escape zum Überspringen."
+                self.audio.speak(prompt, priority=1)
+                self.tutorial_step = 3
+        elif self.tutorial_step == 3:
+            pass
 
     def handle_tutorial_input(self, event):
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            self.finish_tutorial(skipped=True)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self.finish_tutorial(skipped=True)
+            elif event.key in [pygame.K_RETURN, pygame.K_SPACE]:
+                self.finish_tutorial(skipped=False)
 
     def finish_tutorial(self, skipped=False):
         self.is_tutorial = False
         self.tutorial_finished = True
         if skipped:
-            self.audio.speak(self._("tutorial_skip"), priority=2)
+            skip_msg = self._("tutorial_skip")
+            if not skip_msg or skip_msg == "tutorial_skip":
+                skip_msg = "Tutorial übersprungen."
+            self.audio.speak(skip_msg, priority=2)
         else:
-            self.audio.speak(self._("tutorial_finished"), priority=2)
+            fin_msg = self._("tutorial_finished")
+            if not fin_msg or fin_msg == "tutorial_finished":
+                fin_msg = "Tutorial abgeschlossen. Das Spiel beginnt!"
+            self.audio.speak(fin_msg, priority=2)
         
         # In Settings speichern, dass das Tutorial erledigt ist
         completed = self.settings.get("completed_tutorials", [])
@@ -65,15 +96,19 @@ class BaseGame:
         pass
 
     def sleep(self, seconds):
-        import time
+        """Unterbrechbarer Schlaf, der Fenster-Events verarbeitet und CPU schont."""
         end_time = time.monotonic() + seconds
-        while time.monotonic() < end_time:
-            pygame.time.Clock().tick(60)
+        clock = pygame.time.Clock()
+        while time.monotonic() < end_time and self.active:
+            clock.tick(60)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    self.active = False
                     pygame.quit()
-                    import sys
                     sys.exit()
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    self.finish()
+                    return
 
     def finish(self):
         self.active = False

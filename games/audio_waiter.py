@@ -105,9 +105,8 @@ class AudioWaiter(BaseGame):
                     freq = 600 - (dy * 60)
                     
                     # Gläser-Klirren simulieren (zwei schnelle helle Töne)
-                    self.audio.play_tone(frequency=int(freq), duration_ms=80, volume=vol, pan=pan)
-                    self.sleep(0.1)
-                    self.audio.play_tone(frequency=int(freq+150), duration_ms=100, volume=vol, pan=pan)
+                    self.audio.play_tone(frequency=int(freq), duration_ms=90, volume=vol, pan=pan)
+                    self.audio.play_tone(frequency=int(freq+180), duration_ms=120, volume=int(vol*0.8), pan=pan)
 
     def handle_input(self, event):
         if not self.active: return

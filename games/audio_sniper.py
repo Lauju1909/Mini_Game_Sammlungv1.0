@@ -22,7 +22,6 @@ class AudioSniper(BaseGame):
 
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def _start_game(self):
@@ -120,3 +119,37 @@ class AudioSniper(BaseGame):
                 self.audio.speak(self._("sniper_gameover"), interrupt=True)
                 self.audio.speak(self._("final_score", score=self.score), interrupt=False)
                 self.finish()
+
+    def draw(self, screen):
+        # Scharfschützen-Zielfernrohr
+        pygame.draw.rect(screen, (15, 20, 25), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (60, 180, 120), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = font.render("AUDIO-SCHÖTZE", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        info = small_font.render(f"Punkte: {self.score}   |   Leben: {self.lives}   |   Tempo: {self.speed:.1f}x", True, (255, 215, 0))
+        screen.blit(info, (400 - info.get_width() // 2, 195))
+        
+        # Zielfernrohr Kreis
+        scope_center = (400, 330)
+        pygame.draw.circle(screen, (40, 60, 50), scope_center, 90)
+        pygame.draw.circle(screen, (80, 200, 130), scope_center, 90, width=2)
+        pygame.draw.line(screen, (80, 200, 130), (scope_center[0] - 100, scope_center[1]), (scope_center[0] + 100, scope_center[1]), 1)
+        pygame.draw.line(screen, (80, 200, 130), (scope_center[0], scope_center[1] - 100), (scope_center[0], scope_center[1] + 100), 1)
+        
+        # Visier-Position (Spieler) vs Ziel
+        aim_x = int(400 + self.aim_pos * 80)
+        target_x = int(400 + self.target_pos * 80)
+        
+        # Ziel
+        pygame.draw.circle(screen, (255, 70, 70), (target_x, scope_center[1]), 8)
+        # Visier
+        pygame.draw.circle(screen, (255, 255, 255), (aim_x, scope_center[1]), 12, width=2)
+        
+        hint = small_font.render("Pfeil LINKS / RECHTS = Zielen  |  LEERTASTE = Schießen!", True, (180, 220, 190))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

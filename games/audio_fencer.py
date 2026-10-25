@@ -23,7 +23,6 @@ class AudioFencer(BaseGame):
 
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def _start_game(self):
@@ -141,3 +140,53 @@ class AudioFencer(BaseGame):
             self.audio.speak(self._("fencer_gameover"), interrupt=True)
             self.audio.speak(self._("final_score", score=self.score), interrupt=False)
             self.finish()
+
+    def draw(self, screen):
+        # Fecht-Arena
+        pygame.draw.rect(screen, (15, 25, 45), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (70, 130, 240), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        # Titel
+        title = font.render(f"AUDIO-FECHTEN - RUNDE {self.round_num}", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        # Lebensbalken Spieler
+        screen.blit(small_font.render("SPIELER", True, (100, 255, 100)), (100, 205))
+        for i in range(3):
+            col = (50, 220, 50) if i < self.lives else (60, 60, 60)
+            pygame.draw.rect(screen, col, (100 + i * 45, 235, 38, 16), border_radius=4)
+            
+        # Lebensbalken Gegner
+        screen.blit(small_font.render("GEGNER", True, (255, 100, 100)), (570, 205))
+        for i in range(3):
+            col = (255, 60, 60) if i < self.opponent_health else (60, 60, 60)
+            pygame.draw.rect(screen, col, (570 + i * 45, 235, 38, 16), border_radius=4)
+            
+        # Fechter-Zustand visualisieren
+        state_color = {
+            "idle": (180, 180, 180),
+            "approaching": (255, 200, 50),
+            "attacking": (255, 50, 50),
+            "blocked": (50, 150, 255),
+            "hit": (255, 100, 100)
+        }.get(self.fencer_state, (200, 200, 200))
+        
+        state_text = font.render(f"Status: {self.fencer_state.upper()}", True, state_color)
+        screen.blit(state_text, (400 - state_text.get_width() // 2, 290))
+        
+        # Schwerter-Visualisierung
+        center_x = 400
+        center_y = 390
+        # Spieler-Schwert
+        pygame.draw.line(screen, (100, 200, 255), (center_x - 120, center_y + 40), (center_x - 20, center_y - 20), 5)
+        # Gegner-Schwert
+        opp_offset = -40 if self.fencer_state == "attacking" else 0
+        pygame.draw.line(screen, (255, 100, 100), (center_x + 120 + opp_offset, center_y + 40), (center_x + 20 + opp_offset, center_y - 20), 5)
+        
+        # Aktions-Hinweis
+        hint = small_font.render("Pfeil UNTEN = Blocken  |  Pfeil OBEN = Kontern", True, (170, 170, 190))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

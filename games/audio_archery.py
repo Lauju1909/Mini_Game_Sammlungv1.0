@@ -31,7 +31,6 @@ class AudioArchery(BaseGame):
         
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
         self.state = "waiting_start"
 

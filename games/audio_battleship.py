@@ -129,6 +129,7 @@ class AudioBattleship(BaseGame):
                         
                         if not self.ships:
                             # Gewonnen!
+                            self.score = max(100, 1000 - self.shots_taken * 30)
                             self.audio.speak(self._("battleship_win", shots=self.shots_taken), priority=2)
                             self.sleep(2)
                             self.finish()

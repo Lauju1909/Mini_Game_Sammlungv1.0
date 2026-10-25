@@ -24,7 +24,6 @@ class AudioMath(BaseGame):
 
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def _start_game(self):
@@ -142,3 +141,40 @@ class AudioMath(BaseGame):
                 self.audio.speak(self._("math_gameover"), interrupt=True)
                 self.audio.speak(self._("final_score", score=self.score), interrupt=False)
                 self.finish()
+
+    def draw(self, screen):
+        # Kopfrechen-Tafel
+        pygame.draw.rect(screen, (15, 30, 25), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (80, 220, 140), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 36, bold=True)
+        mid_font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = mid_font.render("AUDIO-KOPFRECHNEN", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        info = small_font.render(f"Punkte: {self.score}   |   Leben: {self.lives} / 3", True, (255, 215, 0))
+        screen.blit(info, (400 - info.get_width() // 2, 195))
+        
+        # Aufgabe
+        eq_text = f"{self.num1} {self.operation} {self.num2} = "
+        eq_surf = font.render(eq_text, True, (240, 255, 240))
+        inp_surf = font.render(self.user_input + "_", True, (255, 215, 0))
+        
+        total_w = eq_surf.get_width() + inp_surf.get_width()
+        start_x = 400 - total_w // 2
+        screen.blit(eq_surf, (start_x, 270))
+        screen.blit(inp_surf, (start_x + eq_surf.get_width(), 270))
+        
+        # Zeitleiste
+        now = time.monotonic()
+        time_left = max(0.0, self.question_timer - now)
+        bar_w = int(max(0, min(500, (time_left / self.time_limit) * 500))) if self.time_limit > 0 else 0
+        pygame.draw.rect(screen, (40, 60, 50), (150, 370, 500, 12), border_radius=6)
+        bar_col = (80, 230, 120) if time_left > 3.0 else (255, 80, 80)
+        pygame.draw.rect(screen, bar_col, (150, 370, bar_w, 12), border_radius=6)
+        
+        hint = small_font.render("Ziffern eingeben, EINGABE zum Bestätigen, RÜCKTASTE zum Löschen", True, (180, 210, 190))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

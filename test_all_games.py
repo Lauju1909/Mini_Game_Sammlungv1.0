@@ -38,7 +38,8 @@ def run_tests():
     pygame.init()
     pygame.display.set_mode((1,1))
     
-    games_dir = "games"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    games_dir = os.path.join(base_dir, "games")
     
     audio = MockAudio()
     hs = MockHighscore()

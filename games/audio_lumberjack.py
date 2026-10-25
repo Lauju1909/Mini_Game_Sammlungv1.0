@@ -23,7 +23,6 @@ class AudioLumberjack(BaseGame):
         
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def _start_game(self):
@@ -110,3 +109,39 @@ class AudioLumberjack(BaseGame):
             else:
                 # Dodged into the tree
                 self.fall_time = 0 # Force immediate crush
+
+    def draw(self, screen):
+        # Holzfäller-Visualisierung
+        pygame.draw.rect(screen, (25, 30, 20), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (100, 200, 80), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = font.render(f"AUDIO-HOLZFÄLLER - BAUM {self.round_num}", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        info = small_font.render(f"Punkte: {self.score}   |   Leben: {self.lives}", True, (255, 215, 0))
+        screen.blit(info, (400 - info.get_width() // 2, 195))
+        
+        # Baumstamm
+        trunk_x = 400
+        if self.tree_state == "falling":
+            # Gekippter Stamm
+            tilt = self.fall_direction * 35
+            pygame.draw.line(screen, (160, 90, 40), (trunk_x, 420), (trunk_x + tilt * 3, 230), 24)
+            dir_text = "FÄLLT NACH LINKS! (Weiche nach RECHTS aus)" if self.fall_direction == -1 else "FÄLLT NACH RECHTS! (Weiche nach LINKS aus)"
+            warn = font.render(dir_text, True, (255, 70, 70))
+            screen.blit(warn, (400 - warn.get_width() // 2, 235))
+        else:
+            pygame.draw.rect(screen, (140, 80, 35), (trunk_x - 18, 240, 36, 180), border_radius=4)
+            # Kerben
+            for i in range(min(self.chops_done, self.chops_needed)):
+                ky = 400 - i * 15
+                pygame.draw.polygon(screen, (220, 180, 120), [(trunk_x - 18, ky), (trunk_x, ky + 6), (trunk_x - 18, ky + 12)])
+            chop_text = small_font.render(f"Schläge: {self.chops_done} / {self.chops_needed} (LEERTASTE)", True, (200, 240, 200))
+            screen.blit(chop_text, (400 - chop_text.get_width() // 2, 435))
+            
+        hint = small_font.render("LEERTASTE = Hacken  |  Pfeiltasten = Zur Gegenseite ausweichen!", True, (180, 210, 180))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

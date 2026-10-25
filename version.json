@@ -1,6 +1,6 @@
 {
-    "version": "1.2.0",
+    "version": "1.3.0",
     "channel": "release",
-    "notes": "v1.2.0: SAPI TTS stability overhaul, thread-safe volume & rate controls, monotonic timing migration across all games, localization cleanup (removed 180+ duplicate keys and added missing strings), removed misleading zero scores in puzzle games, and repository cleanup.",
+    "notes": "v1.3.0: Mega-Erweiterung auf 75 Spiele (inkl. Audio-Elfmeter, Audio-Barista, Audio-Geisterjagd, Audio-Alchemie, Audio-DJ-Turntable und Audio-Vogelstimmen). Vollständige Behebung des Tutorial-Flows in allen Spielen, sanftes Menü-Scrolling und Playlist-Indikatoren, Zufallsspiel-Modus, lückenlose visuelle Darstellungen (draw) für alle Spiele, Audio-Panning- und Lautstärke-Unterstützung im AudioManager mit synthetisierten Tone-Fallbacks, Highscore-Bereinigung.",
     "min_launcher_version": "1.0.0"
 }

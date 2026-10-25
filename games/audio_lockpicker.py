@@ -24,7 +24,6 @@ class AudioLockpicker(BaseGame):
 
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def _start_game(self):
@@ -133,3 +132,39 @@ class AudioLockpicker(BaseGame):
         self.audio.speak(self._("lock_opened"), interrupt=True)
         self.audio.speak(self._("final_score", score=self.score), interrupt=False)
         self.finish()
+
+    def draw(self, screen):
+        # Schloss-Visualisierung
+        pygame.draw.rect(screen, (20, 25, 30), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (220, 180, 60), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = font.render(f"AUDIO-SCHLOSSKNACKER - STIFT {self.pins_set + 1} / {self.pins_total}", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        info = small_font.render(f"Punkte: {self.score}   |   Fehlversuche übrig: {self.lives}", True, (255, 215, 0))
+        screen.blit(info, (400 - info.get_width() // 2, 195))
+        
+        # Zylinder / Stifte
+        for i in range(self.pins_total):
+            px = 280 + i * 120
+            py = 320
+            # Schacht
+            pygame.draw.rect(screen, (40, 45, 55), (px - 20, 240, 40, 140), border_radius=4)
+            # Gesetzter Stift vs aktiver
+            if i < self.pins_set:
+                col = (50, 220, 80)
+                pin_h = 40
+            elif i == self.pins_set:
+                col = (255, 200, 50) if self.click_played else (100, 180, 255)
+                pin_h = int(240 + (1.0 - self.pin_progress) * 90) - 240 + 20
+            else:
+                col = (90, 90, 90)
+                pin_h = 100
+            pygame.draw.rect(screen, col, (px - 16, 380 - pin_h, 32, pin_h), border_radius=4)
+            
+        hint = small_font.render("Pfeil OBEN gedrückt halten (Anheben), bei Klick LEERTASTE!", True, (200, 200, 220))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

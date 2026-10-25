@@ -54,7 +54,6 @@ class AudioMaze(BaseGame):
 
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def handle_input(self, event):

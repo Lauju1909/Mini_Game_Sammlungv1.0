@@ -20,7 +20,6 @@ class AudioSimonSays(BaseGame):
         
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def _start_game(self):
@@ -112,3 +111,40 @@ class AudioSimonSays(BaseGame):
         if event.type == pygame.USEREVENT + 1 and self.state == "waiting_next_round":
             pygame.time.set_timer(pygame.USEREVENT + 1, 0)
             self._next_round()
+
+    def draw(self, screen):
+        # Simon-Pads
+        pygame.draw.rect(screen, (20, 20, 35), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (100, 140, 240), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = font.render(f"AUDIO-SENSO - FOLGE: {len(self.sequence)}", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        info = small_font.render(f"Punkte: {self.score}   |   Leben: {self.lives}", True, (255, 215, 0))
+        screen.blit(info, (400 - info.get_width() // 2, 195))
+        
+        # 4 Pads: Oben (Rot), Unten (Blau), Links (Grün), Rechts (Gelb)
+        pads = [
+            (pygame.K_UP, (400, 250), (255, 60, 60), "OBEN (HOCH)"),
+            (pygame.K_DOWN, (400, 390), (60, 120, 255), "UNTEN (TIEF)"),
+            (pygame.K_LEFT, (280, 320), (50, 220, 80), "LINKS"),
+            (pygame.K_RIGHT, (520, 320), (255, 220, 50), "RECHTS"),
+        ]
+        
+        active_key = None
+        if self.state == "playing_sequence" and self.seq_idx > 0 and self.seq_idx <= len(self.sequence):
+            active_key = self.sequence[self.seq_idx - 1]
+            
+        for k, (px, py), col, label in pads:
+            is_active = (k == active_key)
+            radius = 38 if is_active else 30
+            pad_col = (255, 255, 255) if is_active else col
+            pygame.draw.circle(screen, pad_col, (px, py), radius)
+            pygame.draw.circle(screen, col, (px, py), radius - 4)
+            
+        hint = small_font.render("Wiederhole die Tonfolge mit den Pfeiltasten", True, (180, 180, 220))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

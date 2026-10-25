@@ -1,3 +1,4 @@
+import math
 import random
 import pygame
 import time
@@ -29,6 +30,9 @@ class SpaceFlight(BaseGame):
 
     def handle_input(self, event):
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self.finish()
+                return
             if not hasattr(self, 'waiting_for_dodge') or not self.waiting_for_dodge:
                 return # Ignoriere Eingaben wenn kein Asteroid da ist
             
@@ -54,3 +58,41 @@ class SpaceFlight(BaseGame):
         self.audio.play_sound("error")
         self.audio.speak(self._("hit_obstacle"))
         self.finish()
+
+    def draw(self, screen):
+        # Raumschiff-Cockpit
+        pygame.draw.rect(screen, (10, 10, 25), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (120, 180, 255), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = font.render(f"WELTRAUMFLUG - HINDERNISSE: {self.asteroids_passed} / 5", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        score_surf = small_font.render(f"Punkte: {self.score}", True, (255, 215, 0))
+        screen.blit(score_surf, (400 - score_surf.get_width() // 2, 195))
+        
+        # Warp-Sterne
+        now = time.monotonic()
+        for i in range(12):
+            star_x = int(400 + math.cos(i * 0.5 + now * 2) * (50 + i * 18))
+            star_y = int(320 + math.sin(i * 0.5 + now * 2) * (30 + i * 12))
+            pygame.draw.circle(screen, (200, 220, 255), (star_x, star_y), 2)
+            
+        # Raumschiff-Fadenkreuz
+        pygame.draw.circle(screen, (100, 200, 255), (400, 330), 20, width=2)
+        
+        # Warnung vor Asteroid
+        if self.waiting_for_dodge and hasattr(self, 'side'):
+            ax = 220 if self.side == "links" else 580
+            pygame.draw.circle(screen, (255, 80, 50), (ax, 330), 32)
+            warn_txt = font.render("ACHTUNG! ASTEROID!", True, (255, 70, 70))
+            screen.blit(warn_txt, (400 - warn_txt.get_width() // 2, 240))
+            dodge_dir = "RECHTS" if self.side == "links" else "LINKS"
+            sub_txt = small_font.render(f"Weiche nach {dodge_dir} aus! (Pfeil {dodge_dir})", True, (255, 220, 100))
+            screen.blit(sub_txt, (400 - sub_txt.get_width() // 2, 400))
+            
+        hint = small_font.render("Pfeil LINKS / RECHTS zum Ausweichen in die freie Richtung", True, (180, 190, 220))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

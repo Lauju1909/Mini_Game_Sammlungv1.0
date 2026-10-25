@@ -20,7 +20,6 @@ class AudioJuggler(BaseGame):
 
     def start(self):
         super().start()
-        self.audio.speak(self.instructions, interrupt=False)
         self.audio.speak(self._("press_enter_to_start"), interrupt=False)
 
     def _start_game(self):
@@ -112,3 +111,42 @@ class AudioJuggler(BaseGame):
                 
         # If we reach here, missed catch
         self.audio.play_sound("bump") # Empty hand sound
+
+    def draw(self, screen):
+        # Jongleur-Visualisierung
+        pygame.draw.rect(screen, (25, 20, 40), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (180, 100, 255), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 20)
+        
+        title = font.render("AUDIO-JONGLEUR", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        info = small_font.render(f"Punkte: {self.score}   |   Leben: {self.lives} / 3", True, (255, 215, 0))
+        screen.blit(info, (400 - info.get_width() // 2, 195))
+        
+        # 3 Bahnen: Links (220), Mitte (400), Rechts (580)
+        lanes = {"left": 220, "center": 400, "right": 580}
+        for name, lx in lanes.items():
+            pygame.draw.line(screen, (60, 50, 90), (lx, 220), (lx, 420), 2)
+            # Fang-Zone am unteren Ende
+            pygame.draw.circle(screen, (100, 70, 160), (lx, 420), 24, width=2)
+            lbl = small_font.render(name.upper()[:1], True, (150, 130, 200))
+            screen.blit(lbl, (lx - lbl.get_width() // 2, 430))
+            
+        # Fallende Bälle
+        now = time.monotonic()
+        for b in self.balls:
+            lx = lanes.get(b["pos"], 400)
+            time_left = b["time_to_hit"] - now
+            # y geht von 220 bis 420
+            progress = max(0.0, min(1.0, 1.0 - (time_left / 2.0)))
+            by = int(220 + progress * 200)
+            bcol = (255, 220, 50) if progress < 0.8 else (50, 255, 120)
+            pygame.draw.circle(screen, bcol, (lx, by), 16)
+            pygame.draw.circle(screen, (255, 255, 255), (lx - 4, by - 4), 5)
+            
+        hint = small_font.render("Pfeil LINKS / OBEN / RECHTS zum Fangen im richtigen Takt", True, (180, 180, 210))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

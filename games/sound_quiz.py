@@ -40,3 +40,32 @@ class SoundQuiz(BaseGame):
         self.idx += 1
         if self.idx >= len(self.questions): self.finish()
         else: self._ask()
+
+    def draw(self, screen):
+        # Sound-Quiz-Bühne
+        pygame.draw.rect(screen, (20, 20, 45), (60, 140, 680, 360), border_radius=20)
+        pygame.draw.rect(screen, (140, 100, 255), (60, 140, 680, 360), width=2, border_radius=20)
+        
+        font = pygame.font.SysFont("Arial", 28, bold=True)
+        small_font = pygame.font.SysFont("Arial", 22)
+        
+        title = font.render(f"SOUND-QUIZ - RUNDE {self.idx + 1} / {len(self.questions)}", True, (255, 255, 255))
+        screen.blit(title, (400 - title.get_width() // 2, 155))
+        
+        score_surf = small_font.render(f"Punkte: {self.score}", True, (255, 215, 0))
+        screen.blit(score_surf, (400 - score_surf.get_width() // 2, 195))
+        
+        if self.idx < len(self.questions):
+            q = self.questions[self.idx]
+            q_txt = font.render("Welches Geräusch hast du gehört?", True, (230, 230, 255))
+            screen.blit(q_txt, (400 - q_txt.get_width() // 2, 240))
+            
+            for i, opt in enumerate(q["options"]):
+                oy = 300 + i * 45
+                pygame.draw.rect(screen, (40, 40, 80), (160, oy, 480, 38), border_radius=8)
+                opt_txt = small_font.render(f"Taste {i + 1}: {opt}", True, (255, 255, 255))
+                screen.blit(opt_txt, (180, oy + 6))
+                
+        hint = small_font.render("Drücke Taste 1, 2 oder 3 auf deiner Tastatur", True, (180, 180, 220))
+        screen.blit(hint, (400 - hint.get_width() // 2, 465))
+

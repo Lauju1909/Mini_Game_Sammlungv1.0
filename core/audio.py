@@ -18,6 +18,32 @@ except ImportError:
     HAS_WIN32COM = False
 
 class AudioManager:
+    SOUND_ALIASES = {
+        "hit": "bump",
+        "menu_move": "select",
+        "radar": "blip",
+        "swipe": "knifeSlice",
+        "win": "success",
+        "explosion": "error_008",
+    }
+
+    FALLBACK_TONES = {
+        "hit": (280, 90),
+        "menu_move": (520, 45),
+        "radar": (880, 70),
+        "swipe": (640, 60),
+        "win": (784, 220),
+        "explosion": (110, 320),
+        "blip": (750, 60),
+        "select": (500, 45),
+        "confirm": (660, 110),
+        "success": (880, 180),
+        "error": (190, 220),
+        "warn": (330, 150),
+        "bump": (160, 90),
+        "click": (950, 25),
+    }
+
     def __init__(self, settings_manager):
         self.settings = settings_manager
         self.tolk = None
@@ -28,6 +54,8 @@ class AudioManager:
         self.stop_worker = False
         self.last_speech_time = 0
         self.current_priority = 0
+        self.sound_cache = {}
+        self.tone_cache = {}
         
         # Tolk initialisieren
         self.interrupt_event = threading.Event()
@@ -74,6 +102,7 @@ class AudioManager:
         try:
             pygame.mixer.pre_init(44100, -16, 2, 512)
             pygame.mixer.init()
+            pygame.mixer.set_num_channels(32)
         except Exception as e:
             print(f"Mixer Init Fehler: {e}")
 
@@ -227,90 +256,148 @@ class AudioManager:
         self.last_speech_time = now
         self.speech_queue.put((text, actual_interrupt, priority))
 
-    def play_sound(self, sound_name):
-        formats = ["ogg", "mp3", "wav"]
-        for fmt in formats:
-            path = resource_path(os.path.join("assets", f"{sound_name}.{fmt}"))
-            if os.path.exists(path):
-                try:
-                    sound = pygame.mixer.Sound(path)
-                    sound.set_volume(self.sfx_volume / 100.0)
-                    sound.play()
-                    return
-                except Exception as e:
-                    print(f"Fehler beim Abspielen von {sound_name}.{fmt}: {e}")
-        print(f"Sound nicht gefunden: {sound_name}")
+    def _resolve_volume(self, volume=None):
+        """Normalisiert Lautstärke-Werte (0.0-1.0 oder 0-100) relativ zu sfx_volume."""
+        base_vol = max(0.0, min(1.0, self.sfx_volume / 100.0))
+        if volume is None:
+            return base_vol
+        if isinstance(volume, float) and 0.0 <= volume <= 1.0:
+            return max(0.0, min(1.0, base_vol * volume))
+        return max(0.0, min(1.0, base_vol * (float(volume) / 100.0)))
 
-    def play_panned_sound(self, sound_name, pan):
-        """Spielt einen Sound mit Stereo-Panning (-1.0 links bis 1.0 rechts)."""
+    def _load_sound_cached(self, sound_name):
+        """Lädt eine Sound-Datei aus dem Cache oder von der Festplatte (inkl. Alias-Auflösung)."""
+        resolved_name = self.SOUND_ALIASES.get(sound_name, sound_name)
+        if resolved_name in self.sound_cache:
+            return self.sound_cache[resolved_name]
+
         formats = ["ogg", "mp3", "wav"]
-        for fmt in formats:
-            path = resource_path(os.path.join("assets", f"{sound_name}.{fmt}"))
-            if os.path.exists(path):
-                try:
-                    sound = pygame.mixer.Sound(path)
-                    channel = pygame.mixer.find_channel()
-                    if channel:
-                        # Berechne Lautstärke für links und rechts
-                        left = max(0.0, min(1.0, (1.0 - pan)))
-                        right = max(0.0, min(1.0, (1.0 + pan)))
-                        channel.set_volume(left * (self.sfx_volume/100.0), right * (self.sfx_volume/100.0))
-                        channel.play(sound)
-                        return channel
-                except Exception as e:
-                    print(f"Panning Fehler: {e}")
-        print(f"Sound nicht gefunden: {sound_name}")
+        for name_candidate in (sound_name, resolved_name):
+            for fmt in formats:
+                path = resource_path(os.path.join("assets", f"{name_candidate}.{fmt}"))
+                if os.path.exists(path):
+                    try:
+                        sound = pygame.mixer.Sound(path)
+                        self.sound_cache[resolved_name] = sound
+                        self.sound_cache[sound_name] = sound
+                        return sound
+                    except Exception as e:
+                        print(f"Fehler beim Laden von {name_candidate}.{fmt}: {e}")
         return None
+
+    def play_sound(self, sound_name, volume=None, pan=0.0):
+        """Spielt einen Sound ab (unterstützt optionale Lautstärke und Stereo-Panning)."""
+        if pan != 0.0:
+            return self.play_panned_sound(sound_name, pan=pan, volume=volume)
+
+        sound = self._load_sound_cached(sound_name)
+        vol = self._resolve_volume(volume)
+        if sound is not None:
+            try:
+                channel = pygame.mixer.find_channel(True)
+                if channel:
+                    channel.set_volume(vol)
+                    channel.play(sound)
+                    return channel
+                else:
+                    sound.set_volume(vol)
+                    sound.play()
+                    return None
+            except Exception as e:
+                print(f"Fehler beim Abspielen von {sound_name}: {e}")
+
+        # Synthetischer Fallback-Ton, falls Sound-Datei nicht existiert
+        freq, dur = self.FALLBACK_TONES.get(sound_name, (520, 80))
+        return self.play_tone(freq, duration_ms=dur, volume=vol * 100.0, pan=pan)
+
+    def play_panned_sound(self, sound_name, pan, volume=None):
+        """Spielt einen Sound mit Stereo-Panning (-1.0 links bis 1.0 rechts)."""
+        pan = max(-1.0, min(1.0, float(pan)))
+        sound = self._load_sound_cached(sound_name)
+        vol = self._resolve_volume(volume)
+        if sound is not None:
+            try:
+                channel = pygame.mixer.find_channel(True)
+                if channel:
+                    left = max(0.0, min(1.0, (1.0 - pan) * 0.5 if pan > 0 else 1.0))
+                    right = max(0.0, min(1.0, (1.0 + pan) * 0.5 if pan < 0 else 1.0))
+                    channel.set_volume(left * vol, right * vol)
+                    channel.play(sound)
+                    return channel
+            except Exception as e:
+                print(f"Panning Fehler: {e}")
+
+        freq, dur = self.FALLBACK_TONES.get(sound_name, (520, 80))
+        return self.play_tone(freq, duration_ms=dur, volume=vol * 100.0, pan=pan)
 
     def play_looping_sound(self, sound_name, volume=None):
         """Startet einen Sound in einer Endlosschleife und gibt den Kanal zurück."""
-        formats = ["ogg", "mp3", "wav"]
-        for fmt in formats:
-            path = resource_path(os.path.join("assets", f"{sound_name}.{fmt}"))
-            if os.path.exists(path):
-                try:
-                    sound = pygame.mixer.Sound(path)
-                    channel = pygame.mixer.find_channel()
-                    if channel:
-                        vol = (volume if volume is not None else self.sfx_volume) / 100.0
-                        channel.set_volume(vol)
-                        channel.play(sound, loops=-1)
-                        return channel
-                except Exception as e:
-                    print(f"Looping Fehler: {e}")
+        sound = self._load_sound_cached(sound_name)
+        vol = self._resolve_volume(volume)
+        if sound is not None:
+            try:
+                channel = pygame.mixer.find_channel(True)
+                if channel:
+                    channel.set_volume(vol)
+                    channel.play(sound, loops=-1)
+                    return channel
+            except Exception as e:
+                print(f"Looping Fehler: {e}")
         return None
 
     def play_tone(self, frequency, duration_ms=500, volume=None, pan=0.0):
         """Erzeugt einen Sinuston mit der angegebenen Frequenz."""
         try:
-            sample_rate = 44100
-            n_samples = int(sample_rate * (duration_ms / 1000.0))
-            
-            # Sinuswelle generieren (16-bit signed)
-            buffer = bytearray()
-            vol = (volume if volume is not None else self.sfx_volume) / 100.0
-            amplitude = 32767 * vol
-            
-            for i in range(n_samples):
-                # f(t) = A * sin(2 * pi * freq * t)
-                t = i / sample_rate
-                value = int(amplitude * math.sin(2 * math.pi * frequency * t))
-                # 16-bit Little Endian
-                buffer.extend(value.to_bytes(2, byteorder='little', signed=True))
-            
-            sound = pygame.mixer.Sound(buffer=buffer)
-            
-            if pan == 0.0:
+            frequency = max(40, min(10000, int(frequency)))
+            duration_ms = max(10, int(duration_ms))
+            pan = max(-1.0, min(1.0, float(pan)))
+            vol = self._resolve_volume(volume)
+
+            cache_key = (frequency, duration_ms)
+            sound = self.tone_cache.get(cache_key)
+            if sound is None:
+                mixer_init = pygame.mixer.get_init()
+                sample_rate = mixer_init[0] if mixer_init else 44100
+                channels = mixer_init[2] if mixer_init else 2
+                n_samples = max(1, int(sample_rate * (duration_ms / 1000.0)))
+                fade_samples = min(int(sample_rate * 0.005), max(1, n_samples // 4))
+
+                # Sinuswelle generieren (16-bit signed) mit sanftem Fade-In/Out gegen Knacken
+                buffer = bytearray()
+                amplitude = 28000
+                two_pi_f = 2.0 * math.pi * frequency / sample_rate
+
+                for i in range(n_samples):
+                    env = 1.0
+                    if i < fade_samples:
+                        env = i / fade_samples
+                    elif i > n_samples - fade_samples:
+                        env = (n_samples - i) / fade_samples
+                    value = int(amplitude * env * math.sin(two_pi_f * i))
+                    sample_bytes = value.to_bytes(2, byteorder='little', signed=True)
+                    if channels == 2:
+                        buffer.extend(sample_bytes)
+                        buffer.extend(sample_bytes)
+                    else:
+                        buffer.extend(sample_bytes)
+
+                sound = pygame.mixer.Sound(buffer=buffer)
+                if len(self.tone_cache) < 256:
+                    self.tone_cache[cache_key] = sound
+
+            channel = pygame.mixer.find_channel(True)
+            if channel:
+                if pan == 0.0:
+                    channel.set_volume(vol)
+                else:
+                    left = max(0.0, min(1.0, 1.0 - max(0.0, pan)))
+                    right = max(0.0, min(1.0, 1.0 + min(0.0, pan)))
+                    channel.set_volume(left * vol, right * vol)
+                channel.play(sound)
+                return channel
+            else:
                 sound.set_volume(vol)
                 sound.play()
-            else:
-                channel = pygame.mixer.find_channel()
-                if channel:
-                    left = max(0.0, min(1.0, (1.0 - pan)))
-                    right = max(0.0, min(1.0, (1.0 + pan)))
-                    channel.set_volume(left * vol, right * vol)
-                    channel.play(sound)
-                    return channel
         except Exception as e:
             print(f"Tone Generation Fehler: {e}")
         return None
@@ -318,23 +405,30 @@ class AudioManager:
     def create_tone_loop(self, frequency, volume=None):
         """Erzeugt einen looping Sinuston."""
         try:
-            sample_rate = 44100
-            # Eine Periode oder eine kurze Schleife, die nahtlos ist
-            # Wir nehmen eine feste Länge von 0.1s für den Loop-Puffer
-            duration = 0.1 
-            n_samples = int(sample_rate * duration)
+            frequency = max(40, min(10000, int(frequency)))
+            mixer_init = pygame.mixer.get_init()
+            sample_rate = mixer_init[0] if mixer_init else 44100
+            channels = mixer_init[2] if mixer_init else 2
+            # Ganze Perioden verwenden, damit der Loop nahtlos ist
+            cycles = max(1, int(round(frequency * 0.1)))
+            n_samples = max(1, int(round(sample_rate * cycles / frequency)))
             
             buffer = bytearray()
-            vol = (volume if volume is not None else self.sfx_volume) / 100.0
-            amplitude = 32767 * vol
+            vol = self._resolve_volume(volume)
+            amplitude = 26000
+            two_pi_f = 2.0 * math.pi * frequency / sample_rate
             
             for i in range(n_samples):
-                t = i / sample_rate
-                value = int(amplitude * math.sin(2 * math.pi * frequency * t))
-                buffer.extend(value.to_bytes(2, byteorder='little', signed=True))
+                value = int(amplitude * math.sin(two_pi_f * i))
+                sample_bytes = value.to_bytes(2, byteorder='little', signed=True)
+                if channels == 2:
+                    buffer.extend(sample_bytes)
+                    buffer.extend(sample_bytes)
+                else:
+                    buffer.extend(sample_bytes)
             
             sound = pygame.mixer.Sound(buffer=buffer)
-            channel = pygame.mixer.find_channel()
+            channel = pygame.mixer.find_channel(True)
             if channel:
                 channel.set_volume(vol)
                 channel.play(sound, loops=-1)

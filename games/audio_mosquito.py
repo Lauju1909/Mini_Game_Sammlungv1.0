@@ -96,8 +96,10 @@ class AudioMosquito(BaseGame):
                         # Getroffen!
                         self.audio.play_sound("success")
                         self.mosquitos_caught += 1
+                        self.score += 250
                         
                         if self.mosquitos_caught >= self.target_mosquitos:
+                            self.score += 500
                             self.audio.speak(self._("mosquito_win"), priority=2)
                             self.sleep(2)
                             self.finish()
