@@ -338,12 +338,14 @@ class MiniGameCollection:
                 self.current_game.start()
 
     def setup_settings_menu(self):
+        feedback_label = "Feedback an Lauju senden" if self.settings.get('language') == 'de' else "Send Feedback to Lauju"
         items = [
             {"label": _("settings_sfx_vol", vol=self.settings.get('volume_sfx')), "id": "vol_sfx"},
             {"label": _("settings_music_vol", vol=self.settings.get('volume_music')), "id": "vol_music"},
             {"label": _("settings_speech_rate", rate=self.settings.get('speech_rate')), "id": "speech_rate"},
             {"label": _("settings_lang", lang=self.settings.get('language')), "id": "language"},
             {"label": _("settings_speech_vol", vol=self.settings.get('speech_volume')), "id": "speech_vol"},
+            {"label": feedback_label, "id": "feedback"},
             {"label": _("back"), "id": "back"}
         ]
         self.menu.push_menu(items, _("settings"))
@@ -411,6 +413,14 @@ class MiniGameCollection:
         if item["id"] == "back":
             self.menu.pop_menu()
             return
+
+        if item["id"] == "feedback":
+            try:
+                from core.feedback_dialog import open_feedback_dialog
+                open_feedback_dialog("minigames", "1.2.0", self.audio)
+            except Exception as e:
+                print("Error opening feedback dialog:", e)
+            return
         
         if item["id"] == "language":
             current = self.settings.get("language")
@@ -428,6 +438,24 @@ class MiniGameCollection:
         else:
             # Fallback fÃ¼r Enter
             self.on_settings_adjust(item, 1)
+
+    def refresh_settings_menu_labels(self):
+        feedback_label = "Feedback an Lauju senden" if self.settings.get('language') == 'de' else "Send Feedback to Lauju"
+        for item in self.menu.items:
+            if item.get("id") == "vol_sfx":
+                item["label"] = _("settings_sfx_vol", vol=self.settings.get('volume_sfx'))
+            elif item.get("id") == "vol_music":
+                item["label"] = _("settings_music_vol", vol=self.settings.get('volume_music'))
+            elif item.get("id") == "speech_rate":
+                item["label"] = _("settings_speech_rate", rate=self.settings.get('speech_rate'))
+            elif item.get("id") == "language":
+                item["label"] = _("settings_lang", lang=self.settings.get('language'))
+            elif item.get("id") == "speech_vol":
+                item["label"] = _("settings_speech_vol", vol=self.settings.get('speech_volume'))
+            elif item.get("id") == "feedback":
+                item["label"] = feedback_label
+            elif item.get("id") == "back":
+                item["label"] = _("back")
 
     def refresh_all_menu_stacks(self):
         """Aktualisiert alle MenÃ¼s im Stack auf die neue Sprache."""
