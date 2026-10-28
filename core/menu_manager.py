@@ -11,6 +11,22 @@ class MenuManager:
         self.menu_stack = []
         self.current_title = None
 
+    @property
+    def items(self):
+        return self.current_menu
+
+    @items.setter
+    def items(self, val):
+        self.current_menu = val
+
+    @property
+    def selected_index(self):
+        return self.index
+
+    @selected_index.setter
+    def selected_index(self, val):
+        self.index = val
+
     def set_menu(self, items, title=None, silent=False, interrupt=True):
         self.current_title = title
         if title and not silent:

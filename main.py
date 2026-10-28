@@ -339,11 +339,12 @@ class MiniGameCollection:
 
     def setup_settings_menu(self):
         feedback_label = "Feedback an Lauju senden" if self.settings.get('language') == 'de' else "Send Feedback to Lauju"
+        lang_display = "Deutsch" if self.settings.get('language') == 'de' else "English"
         items = [
             {"label": _("settings_sfx_vol", vol=self.settings.get('volume_sfx')), "id": "vol_sfx"},
             {"label": _("settings_music_vol", vol=self.settings.get('volume_music')), "id": "vol_music"},
             {"label": _("settings_speech_rate", rate=self.settings.get('speech_rate')), "id": "speech_rate"},
-            {"label": _("settings_lang", lang=self.settings.get('language')), "id": "language"},
+            {"label": _("settings_lang", lang=lang_display), "id": "language"},
             {"label": _("settings_speech_vol", vol=self.settings.get('speech_volume')), "id": "speech_vol"},
             {"label": feedback_label, "id": "feedback"},
             {"label": _("back"), "id": "back"}
@@ -351,6 +352,74 @@ class MiniGameCollection:
         self.menu.push_menu(items, _("settings"))
         self.menu.on_select_callback = self.on_settings_select
         self.menu.on_adjust_callback = self.on_settings_adjust
+
+    def toggle_language(self):
+        """Schaltet die Sprache global um (de <-> en) und aktualisiert UI, Sound und Menüs."""
+        current = self.settings.get("language")
+        new_lang = "en" if current == "de" else "de"
+        self.settings.set("language", new_lang)
+        localization.set_language(new_lang)
+        pygame.display.set_caption(_("app_title"))
+        self.audio.play_sound("confirm")
+
+        # Menü-Stacks im Hintergrund aktualisieren
+        self.refresh_all_menu_stacks()
+
+        # Aktuelles Menü sofort aktualisieren
+        if any(it.get("id") == "language" for it in self.menu.items):
+            self.refresh_settings_menu_labels()
+            self.menu.current_title = _("settings")
+        elif any(it.get("id") == "play" for it in self.menu.items):
+            self.menu.items = [
+                {"label": _("play"), "id": "play"},
+                {"label": _("random_game"), "id": "random_game"},
+                {"label": _("highscores"), "id": "highscores"},
+                {"label": _("settings"), "id": "settings"},
+                {"label": _("exit"), "id": "quit"}
+            ]
+            self.menu.current_title = _("main_menu")
+        elif any(it.get("id") == "action" for it in self.menu.items):
+            self.menu.items = self._get_categories_list()
+            self.menu.current_title = _("select_category")
+        elif any(it.get("id") == "h_action" for it in self.menu.items):
+            self.menu.items = [
+                {"label": _("cat_action"), "id": "h_action"},
+                {"label": _("cat_logic"), "id": "h_logic"},
+                {"label": _("cat_nav"), "id": "h_nav"},
+                {"label": _("cat_speech"), "id": "h_speech"},
+                {"label": _("cat_sim"), "id": "h_sim"},
+                {"label": _("back"), "id": "back"}
+            ]
+            self.menu.current_title = _("highscores")
+        elif any(it.get("class") is not None for it in self.menu.items):
+            new_items = []
+            cat_label = _("select_game")
+            all_cats = self._get_categories_list()
+            for it in self.menu.items:
+                if it.get("id") == "back":
+                    new_items.append({"label": _("back"), "id": "back"})
+                else:
+                    found = False
+                    for cat in all_cats:
+                        for game in cat.get("games", []):
+                            if game["id"] == it.get("id"):
+                                new_items.append(game)
+                                cat_label = _("games_in_category", cat=cat["label"])
+                                found = True
+                                break
+                        if found:
+                            break
+                    if not found:
+                        new_items.append(it)
+            self.menu.items = new_items
+            self.menu.current_title = cat_label
+
+        lang_announcement = _("language_changed")
+        if self.state == "main_menu" and self.menu.items:
+            current_item = self.menu.items[self.menu.selected_index]
+            self.audio.speak(f"{lang_announcement}. {current_item.get('label', '')}", interrupt=True, priority=2)
+        else:
+            self.audio.speak(lang_announcement, interrupt=True, priority=2)
 
     def on_settings_adjust(self, item, direction):
         if item["id"] == "vol_sfx":
@@ -394,20 +463,7 @@ class MiniGameCollection:
                 item["label"] = _("settings_speech_vol", vol=new_vol)
                 self.audio.speak(item["label"])
         elif item["id"] == "language":
-            langs = ["de", "en"]
-            current = self.settings.get("language")
-            idx = langs.index(current)
-            if (idx == 0 and direction < 0) or (idx == len(langs)-1 and direction > 0):
-                self.audio.play_sound("bump")
-            else:
-                new_idx = idx + direction
-                new_lang = langs[new_idx]
-                self.settings.set("language", new_lang)
-                localization.set_language(new_lang)
-                self.refresh_settings_menu_labels()
-                self.menu.current_title = _("settings")
-                self.refresh_all_menu_stacks()
-                self.audio.speak(_("language_changed"), interrupt=False, priority=2)
+            self.toggle_language()
 
     def on_settings_select(self, item):
         if item["id"] == "back":
@@ -423,24 +479,14 @@ class MiniGameCollection:
             return
         
         if item["id"] == "language":
-            current = self.settings.get("language")
-            new_lang = "en" if current == "de" else "de"
-            self.settings.set("language", new_lang)
-            localization.set_language(new_lang)
-            
-            # Alle MenÃ¼-Labels im aktuellen MenÃ¼ (Einstellungen) aktualisieren
-            self.refresh_settings_menu_labels()
-            
-            # Die Titel-Attribute im Stack und das aktuelle Menu aktualisieren
-            self.menu.current_title = _("settings")
-            self.refresh_all_menu_stacks()
-            self.audio.speak(_("language_changed"), interrupt=False)
+            self.toggle_language()
         else:
-            # Fallback fÃ¼r Enter
+            # Fallback für Enter
             self.on_settings_adjust(item, 1)
 
     def refresh_settings_menu_labels(self):
         feedback_label = "Feedback an Lauju senden" if self.settings.get('language') == 'de' else "Send Feedback to Lauju"
+        lang_display = "Deutsch" if self.settings.get('language') == 'de' else "English"
         for item in self.menu.items:
             if item.get("id") == "vol_sfx":
                 item["label"] = _("settings_sfx_vol", vol=self.settings.get('volume_sfx'))
@@ -449,7 +495,7 @@ class MiniGameCollection:
             elif item.get("id") == "speech_rate":
                 item["label"] = _("settings_speech_rate", rate=self.settings.get('speech_rate'))
             elif item.get("id") == "language":
-                item["label"] = _("settings_lang", lang=self.settings.get('language'))
+                item["label"] = _("settings_lang", lang=lang_display)
             elif item.get("id") == "speech_vol":
                 item["label"] = _("settings_speech_vol", vol=self.settings.get('speech_volume'))
             elif item.get("id") == "feedback":
@@ -458,25 +504,37 @@ class MiniGameCollection:
                 item["label"] = _("back")
 
     def refresh_all_menu_stacks(self):
-        """Aktualisiert alle MenÃ¼s im Stack auf die neue Sprache."""
-        # Das aktuelle MenÃ¼-Titel-Attribut aktualisieren
-        self.menu.current_title = _("settings")
-        
+        """Aktualisiert alle Menüs im Stack auf die neue Sprache."""
         for i, stack_item in enumerate(self.menu.menu_stack):
             items, index, sel_cb, adj_cb, title = stack_item
             
-            # Identifiziere das MenÃ¼ anhand seiner IDs und Ã¼bersetze es neu
+            # Identifiziere das Menü anhand seiner IDs und übersetze es neu
             if any(it.get("id") == "play" for it in items):
                 new_items = [
                     {"label": _("play"), "id": "play"},
+                    {"label": _("random_game"), "id": "random_game"},
                     {"label": _("highscores"), "id": "highscores"},
                     {"label": _("settings"), "id": "settings"},
                     {"label": _("exit"), "id": "quit"}
                 ]
                 self.menu.menu_stack[i] = (new_items, index, sel_cb, adj_cb, _("main_menu"))
             
+            elif any(it.get("id") == "language" for it in items):
+                lang_display = "Deutsch" if self.settings.get('language') == 'de' else "English"
+                feedback_label = "Feedback an Lauju senden" if self.settings.get('language') == 'de' else "Send Feedback to Lauju"
+                new_items = [
+                    {"label": _("settings_sfx_vol", vol=self.settings.get('volume_sfx')), "id": "vol_sfx"},
+                    {"label": _("settings_music_vol", vol=self.settings.get('volume_music')), "id": "vol_music"},
+                    {"label": _("settings_speech_rate", rate=self.settings.get('speech_rate')), "id": "speech_rate"},
+                    {"label": _("settings_lang", lang=lang_display), "id": "language"},
+                    {"label": _("settings_speech_vol", vol=self.settings.get('speech_volume')), "id": "speech_vol"},
+                    {"label": feedback_label, "id": "feedback"},
+                    {"label": _("back"), "id": "back"}
+                ]
+                self.menu.menu_stack[i] = (new_items, index, sel_cb, adj_cb, _("settings"))
+            
             elif any(it.get("id") == "action" for it in items):
-                # Kategorien-MenÃ¼
+                # Kategorien-Menü
                 new_items = self._get_categories_list()
                 self.menu.menu_stack[i] = (new_items, index, sel_cb, adj_cb, _("select_category"))
             
@@ -967,6 +1025,12 @@ class MiniGameCollection:
         self.current_game.start()
 
     def handle_input(self, event):
+        if event.type == pygame.KEYDOWN:
+            mods = getattr(event, 'mod', 0) | pygame.key.get_mods()
+            if event.key == pygame.K_F8 or (event.key == pygame.K_l and bool(mods & pygame.KMOD_CTRL)):
+                self.toggle_language()
+                return None
+
         if self.state == "name_input" and self.text_input:
             self.text_input.handle_input(event)
         elif self.state == "description":

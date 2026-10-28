@@ -50,6 +50,19 @@ Willkommen bei der **Mini-Game-Sammlung**, einer massiven Sammlung von **75 barr
 - **Enter / Leertaste:** Bestätigen / Aktion ausführen.
 - **ESC:** Zurück zum Menü / Spiel abbrechen.
 - **Zahlen 1-9:** Eingabe in Quiz- und Rechenspielen.
+- **F8 / Strg + L (Ctrl + L):** **Sprache blitzschnell umschalten** (Deutsch <-> English) mit sofortiger Sprachausgabe und Menü-Aktualisierung.
+
+### 🌐 Schnelle Sprachumschaltung & Hotkey (Language Switching)
+In der **Mini-Game-Sammlung** kannst du die Sprache des Spiels jederzeit blitzschnell wechseln:
+- **Tastenkombination / Hotkey:** Drücke **`F8`** oder **`Strg + L`** (bzw. **`Ctrl + L`**), um das Spiel sofort an jeder beliebigen Stelle (im Hauptmenü, in Kategorien, in der Spieleliste oder während des Spielens) zwischen **Deutsch** und **Englisch** umzuschalten.
+- **Akustische Ansage:** Der Screenreader meldet sofort *"Sprache auf Deutsch gestellt."* bzw. *"Language set to English."* und liest das aktuelle Menü direkt in der neuen Sprache vor.
+- **Menü-Steuerung:** Alternativ lässt sich die Sprache über das Menü unter **Einstellungen (`Settings`) -> Sprache (`Language`)** mit Enter oder Pfeiltasten umschalten.
+- **Dauerhafte Speicherung:** Die gewählte Sprache wird automatisch in `data/settings.json` gespeichert und bleibt beim nächsten Spielstart erhalten.
+
+#### 🌐 English: Quick Language Switch
+- Press **`F8`** or **`Ctrl + L`** anytime to instantly toggle between **English** and **German**.
+- The screenreader announces the change immediately and refreshes all active menu items.
+- Your language preference is automatically saved to `data/settings.json`.
 
 ---
 
