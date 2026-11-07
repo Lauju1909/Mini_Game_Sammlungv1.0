@@ -134,3 +134,32 @@ pub extern "C" fn rust_mg_verify_file_hash(path_ptr: *const c_char) -> u64 {
         Err(_) => 0,
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_stereo_wav_generation_all_waveforms_and_panning() {
+        for waveform in 0..=3 {
+            for pan in [-1.0f32, -0.5, 0.0, 0.5, 1.0] {
+                let wav = synthesize_stereo_tone_wav(440.0, 50, 0.8, pan, waveform);
+                assert!(wav.len() > 44);
+                assert_eq!(&wav[0..4], b"RIFF");
+                assert_eq!(&wav[8..12], b"WAVE");
+                assert_eq!(&wav[12..16], b"fmt ");
+                assert_eq!(&wav[36..40], b"data");
+            }
+        }
+    }
+
+    #[test]
+    fn test_highscore_signature_determinism() {
+        let s1 = compute_highscore_signature(b"{\"score\":1500}");
+        let s2 = compute_highscore_signature(b"{\"score\":1500}");
+        let s3 = compute_highscore_signature(b"{\"score\":1501}");
+        assert_eq!(s1, s2);
+        assert_ne!(s1, s3);
+    }
+}

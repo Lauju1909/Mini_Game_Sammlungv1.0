@@ -71,6 +71,9 @@ class HighscoreManager:
     def get_scores(self, game_id):
         return self.highscores.get(game_id, [])
 
+    def get_highscores(self, game_id):
+        return self.get_scores(game_id)
+
     def clear_scores(self, game_id=None):
         if game_id:
             self.highscores.pop(game_id, None)

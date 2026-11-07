@@ -23,8 +23,9 @@ class SoundQuiz(BaseGame):
         self.audio.speak(self._("sound_quiz_question", opt1=q['options'][0], opt2=q['options'][1], opt3=q['options'][2]))
 
     def handle_input(self, event):
+        if self.idx >= len(self.questions):
+            return
         if event.type == pygame.KEYDOWN:
-            self.questions[self.idx]
             if event.key == pygame.K_1: self._check(0)
             elif event.key == pygame.K_2: self._check(1)
             elif event.key == pygame.K_3: self._check(2)
