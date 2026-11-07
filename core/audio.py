@@ -58,6 +58,20 @@ class AudioManager:
         self.stop_worker = False
         self.last_speech_time = 0
         self.current_priority = 0
+
+        # Native Rust Audio & Integrity Core (mini_game_core.dll)
+        self.rust_core = None
+        try:
+            rust_dll_path = resource_path("mini_game_core.dll")
+            if os.path.exists(rust_dll_path):
+                self.rust_core = ctypes.CDLL(rust_dll_path)
+                self.rust_core.rust_mg_generate_wav_file.argtypes = [
+                    ctypes.c_char_p, ctypes.c_float, ctypes.c_uint32,
+                    ctypes.c_float, ctypes.c_float, ctypes.c_uint8
+                ]
+                self.rust_core.rust_mg_generate_wav_file.restype = ctypes.c_int32
+        except Exception:
+            self.rust_core = None
         self.sound_cache = {}
         self.tone_cache = {}
         self.interrupt_event = threading.Event()
